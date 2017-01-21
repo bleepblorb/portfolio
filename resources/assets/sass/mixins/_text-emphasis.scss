@@ -1,0 +1,19 @@
+// Typography
+
+@mixin text-emphasis-variant($parent, $color) { 
+  &#{$parent} {
+    color: $color !important;
+  }
+  a#{$parent} {
+    @include hover-focus {
+      color: darken($color, 10%) !important;
+    }
+  }
+}
+
+// Transformations
+
+@mixin caps {
+  text-transform: uppercase !important;
+  letter-spacing: .05em;
+}

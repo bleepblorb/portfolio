@@ -1,0 +1,272 @@
+//
+// Headings
+//
+
+h1, h2, h3, h4, h5, h6,
+.t__h1, .t__h2, .t__h3, .t__h4, .t__h5, .t__h6 {
+  margin-bottom: $headings-margin-bottom;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+}
+
+h1, .h1 { font-size: $font-size-h1; }
+h2, .h2 { font-size: $font-size-h2; }
+h3, .h3 { font-size: $font-size-h3; }
+h4, .h4 { font-size: $font-size-h4; }
+h5, .h5 { font-size: $font-size-h5; }
+h6, .h6 { font-size: $font-size-h6; }
+
+
+// Type display classes
+.t__display--big {
+  font-size: $display1-size;
+  font-weight: $display1-weight;
+  line-height: $display-line-height;
+}
+.t__display {
+  font-size: $display2-size;
+  font-weight: $display2-weight;
+  line-height: $display-line-height;
+}
+
+
+//
+// Lists
+//
+
+// Default ul
+
+ul {
+  @include list-unstyled;
+}
+
+ul, ol {
+  &.list--relaxed {
+    li {
+      margin-bottom: .5rem;
+    }
+  }
+}
+
+ul.list--bullets {
+  list-style: none;
+  padding-left: 2em;
+
+  li:before {
+    content: '•';
+    width: 2rem;
+    margin-left: -2rem;
+    display: inline-block;
+    color: $gray-light;
+    text-align: center;
+    font-size: .75em;
+  }
+}
+
+ol {
+  list-style: none;
+  counter-reset: li;
+
+  li {
+    counter-increment: li;
+
+    &:before {
+      content: counter(li);
+      width: 2rem;
+      margin-left: -2rem;
+      display: inline-block;
+      color: $gray;
+      text-align: center;
+      font-weight: $font-weight-bold;
+      font-size: .75em;
+    }
+  }
+}
+
+
+// Inline turns list items into inline-block
+.list--inline {
+  @include list-unstyled;
+
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: $list-inline-padding;
+    }
+  }
+}
+
+//
+// Blockquotes
+//
+
+.blockquote {
+  padding: ($spacer / 2) $spacer;
+  margin-bottom: $spacer;
+  font-size: $blockquote-font-size;
+  border-left: $blockquote-border-width solid $blockquote-border-color;
+}
+
+.blockquote-footer {
+  display: block;
+  font-size: 80%; // back to default font-size
+  color: $blockquote-small-color;
+
+  &::before {
+    content: "\2014 \00A0"; // em dash, nbsp
+  }
+}
+
+// Opposite alignment of blockquote
+.blockquote-reverse {
+  padding-right: $spacer;
+  padding-left: 0;
+  text-align: right;
+  border-right: $blockquote-border-width solid $blockquote-border-color;
+  border-left: 0;
+}
+
+.blockquote-reverse .blockquote-footer {
+  &::before {
+    content: "";
+  }
+  &::after {
+    content: "\00A0 \2014"; // nbsp, em dash
+  }
+}
+
+
+//
+// General Modifiers
+//
+
+
+// -- Sizes
+
+.t--large {
+  font-size: $font-size-lg;
+}
+
+.t--regular {
+    font-size: $font-size-base;
+}
+
+small,
+.t--small {
+  font-size: $small-font-size;
+  font-weight: $font-weight-normal;
+}
+
+.t--smaller {
+  font-size: $font-size-xs;
+}
+
+.t--lead {
+  font-size: $lead-font-size;
+  font-weight: $lead-font-weight;
+}
+
+
+// -- Alignment
+
+.t--nowrap   { white-space: nowrap !important; }
+.t--truncate { @include text-truncate; }
+
+// Responsive alignment
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .t--left#{$infix}     { text-align: left !important; }
+    .t--right#{$infix}    { text-align: right !important; }
+    .t--center#{$infix}   { text-align: center !important; }
+    .t--justify#{$infix}  { text-align: justify !important; }
+  }
+}
+
+
+// -- Transformation
+
+.t--lc  { text-transform: lowercase !important; }
+.t--uc  { @include caps(); }
+.t--cap { text-transform: capitalize !important;}
+
+
+// -- Weight
+
+.t--normal { font-weight: $font-weight-normal; }
+.t--bold   { font-weight: $font-weight-bold; }
+
+
+// -- Contextual colors
+
+@include text-emphasis-variant('.text-muted', $text-muted);
+
+@include text-emphasis-variant('.text-success', $brand-success);
+
+@include text-emphasis-variant('.text-info', $brand-info);
+
+@include text-emphasis-variant('.text-warning', $brand-warning);
+
+@include text-emphasis-variant('.text-danger', $brand-danger);
+
+// Font color
+@include text-emphasis-variant('.text-white', $white );
+
+@include text-emphasis-variant('.text-primary', $brand-primary);
+
+@include text-emphasis-variant('.text-gray-dark', $gray-dark);
+
+
+//
+// Misc
+//
+
+.t--hide {
+  @include text-hide();
+}
+
+
+//
+// Horizontal rules
+//
+
+hr {
+  margin-top: $spacer-y;
+  margin-bottom: $spacer-y;
+  border: 0;
+  border-top: $hr-border-width solid $hr-border-color;
+}
+
+
+//
+// Emphasis
+//
+
+mark,
+.t--mark {
+  padding: $mark-padding;
+  background-color: $mark-bg;
+}
+
+.t--emphasis {
+  font-style: italic;
+}
+
+.t--italic {
+  font-style: italic;
+}
+
+
+//
+// Misc
+//
+
+// Builds on `abbr`
+.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
