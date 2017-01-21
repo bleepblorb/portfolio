@@ -36,6 +36,33 @@
       <h6>All their equipment and instruments are alive.</h6>
     </div>
   </div>
+
+  {{-- Colors --}}
+  <div class="row my-4">
+    <div class="col-12">
+      <h6 class="t--uc">Color Modifiers</h6>
+      <hr>
+    </div>
+    <div class="col-12">
+      <h4 class="">This Headline is the "default" color</h4>
+      <p><code>.c--gray-dark</code></p>
+      <h4 class="c--gray-dark">This Headline is the "dark gray" color</h4>
+      <p><code>.c--primary</code></p>
+      <h4 class="c--primary">This Headline is the "primary" color</h4>
+      <p><code>.c--muted</code></p>
+      <h4 class="c--muted">This Headline is the "muted" color</h4>
+      <p><code>.c--info</code></p>
+      <h4 class="c--info">This Headline is the "info" color</h4>
+      <p><code>.c--success</code></p>
+      <h4 class="c--success">This Headline is the "success" color</h4>
+      <p><code>.c--warning</code></p>
+      <h4 class="c--warning">This Headline is the "warning" color</h4>
+      <p><code>.c--danger</code></p>
+      <h4 class="c--danger">This Headline is the "danger" color</h4>
+    </div>
+  </div>
+
+  {{-- Paragraphs --}}
   <div class="row my-4">
     <div class="col-12">
       <h6 class="caps">Paragraph</h6>

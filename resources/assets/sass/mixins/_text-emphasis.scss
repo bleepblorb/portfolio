@@ -1,6 +1,6 @@
 // Typography
 
-@mixin text-emphasis-variant($parent, $color) { 
+@mixin text-color-variant($parent, $color) { 
   &#{$parent} {
     color: $color !important;
   }

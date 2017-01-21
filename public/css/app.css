@@ -807,67 +807,67 @@ small,
   font-weight: bold;
 }
 
-.text-muted {
+.c--muted {
   color: #636c72 !important;
 }
 
-a.text-muted:focus, a.text-muted:hover {
+a.c--muted:focus, a.c--muted:hover {
   color: #4b5257 !important;
 }
 
-.text-success {
+.c--success {
   color: #5cb85c !important;
 }
 
-a.text-success:focus, a.text-success:hover {
+a.c--success:focus, a.c--success:hover {
   color: #449d44 !important;
 }
 
-.text-info {
+.c--info {
   color: #5bc0de !important;
 }
 
-a.text-info:focus, a.text-info:hover {
+a.c--info:focus, a.c--info:hover {
   color: #31b0d5 !important;
 }
 
-.text-warning {
+.c--warning {
   color: #f0ad4e !important;
 }
 
-a.text-warning:focus, a.text-warning:hover {
+a.c--warning:focus, a.c--warning:hover {
   color: #ec971f !important;
 }
 
-.text-danger {
+.c--danger {
   color: #d9534f !important;
 }
 
-a.text-danger:focus, a.text-danger:hover {
+a.c--danger:focus, a.c--danger:hover {
   color: #c9302c !important;
 }
 
-.text-white {
+.c--white {
   color: #fff !important;
 }
 
-a.text-white:focus, a.text-white:hover {
+a.c--white:focus, a.c--white:hover {
   color: #e6e6e6 !important;
 }
 
-.text-primary {
+.c--primary {
   color: #ec7955 !important;
 }
 
-a.text-primary:focus, a.text-primary:hover {
+a.c--primary:focus, a.c--primary:hover {
   color: #e75527 !important;
 }
 
-.text-gray-dark {
+.c--gray-dark {
   color: #292b2c !important;
 }
 
-a.text-gray-dark:focus, a.text-gray-dark:hover {
+a.c--gray-dark:focus, a.c--gray-dark:hover {
   color: #101112 !important;
 }
 
