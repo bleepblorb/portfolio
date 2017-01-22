@@ -229,7 +229,7 @@ $container-max-widths: (
   md: 720px,
   lg: 960px,
   xl: 1140px
-) !default;
+);
 @include _assert-ascending($container-max-widths, "$container-max-widths");
 
 
@@ -246,6 +246,15 @@ $grid-gutter-widths: (
   lg: $grid-gutter-width-base,
   xl: $grid-gutter-width-base
 ) !default;
+
+$container-padding-widths: (
+  xs: $grid-gutter-width-base,
+  sm: 8%,
+  md: 9%,
+  lg: 10%,
+  xl: 11%
+);
+@include _assert-ascending($container-padding-widths, "$container-padding-widths");
 
 // Fonts
 //

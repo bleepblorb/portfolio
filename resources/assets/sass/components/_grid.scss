@@ -4,8 +4,8 @@
 
 @if $enable-grid-classes {
   .container {
-    @include make-container();
-    @include make-container-max-widths();
+    box-sizing: content-box;
+    @include make-container($container-padding-widths);
   }
 }
 
@@ -15,8 +15,8 @@
 // width for fluid, full width layouts.
 
 @if $enable-grid-classes {
-  .container-fluid {
-    @include make-container();
+  .container--fill {
+    @include make-container($grid-gutter-widths);
   }
 }
 
@@ -25,18 +25,18 @@
 // Rows contain and clear the floats of your columns.
 
 @if $enable-grid-classes {
-  .row {
+  .g__row {
     @include make-row();
   }
 
   // Remove the negative margin from default .row, then the horizontal padding
   // from all immediate children columns (to prevent runaway style inheritance).
-  .no-gutters {
+  .-no-gutters {
     margin-right: 0;
     margin-left: 0;
 
-    > .col,
-    > [class*="col-"] {
+    > .g__col,
+    > [class*="g__col"] {
       padding-right: 0;
       padding-left: 0;
     }
@@ -49,4 +49,15 @@
 
 @if $enable-grid-classes {
   @include make-grid-columns();
+}
+
+// Pre-defined Max Widths
+// ** Should probably move to a responsive utilities file **
+
+@each $breakpoint, $container-max-width in $container-max-widths {
+  .-max--#{$breakpoint} {
+    max-width: $container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

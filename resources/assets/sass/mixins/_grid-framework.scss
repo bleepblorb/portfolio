@@ -9,6 +9,7 @@
     position: relative;
     width: 100%;
     min-height: 1px; // Prevent columns from collapsing when empty
+    box-sizing: border-box;
 
     @include make-gutters($gutters);
   }
@@ -18,35 +19,35 @@
 
     // Allow columns to stretch full width below their breakpoints
     @for $i from 1 through $columns {
-      .col#{$infix}-#{$i} {
+      .g__col#{$i}#{$infix} {
         @extend %grid-column;
       }
     }
-    .col#{$infix} {
+    .g__col#{$infix} {
       @extend %grid-column;
     }
 
     @include media-breakpoint-up($breakpoint, $breakpoints) {
       // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-      .col#{$infix} {
+      .g__col#{$infix} {
         flex-basis: 0;
         flex-grow: 1;
         max-width: 100%;
       }
-      .col#{$infix}-auto {
+      .g__col-auto#{$infix} {
         flex: 0 0 auto;
         width: auto;
       }
 
       @for $i from 1 through $columns {
-        .col#{$infix}-#{$i} {
+        .g__col#{$i}#{$infix} {
           @include make-col($i, $columns);
         }
       }
 
       @each $modifier in (pull, push) {
         @for $i from 0 through $columns {
-          .#{$modifier}#{$infix}-#{$i} {
+          .-#{$modifier}#{$infix}-#{$i} {
             @include make-col-modifier($modifier, $i, $columns)
           }
         }
@@ -55,7 +56,7 @@
       // `$columns - 1` because offsetting by the width of an entire row isn't possible
       @for $i from 0 through ($columns - 1) {
         @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-xs-0
-          .offset#{$infix}-#{$i} {
+          .-offset#{$infix}-#{$i} {
             @include make-col-modifier(offset, $i, $columns)
           }
         }
