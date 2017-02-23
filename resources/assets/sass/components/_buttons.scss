@@ -7,6 +7,7 @@
 .btn {
   display: inline-block;
   font-weight: $btn-font-weight;
+  font-family: $font-family-sans-serif;
   line-height: $btn-line-height;
   text-align: center;
   white-space: nowrap;
@@ -80,6 +81,7 @@ fieldset[disabled] a.btn {
 }
 .btn-outline-info {
   @include button-outline-variant($btn-info-bg);
+  color: $late-night;
 }
 .btn-outline-success {
   @include button-outline-variant($btn-success-bg);

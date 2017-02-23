@@ -57,14 +57,14 @@ const Modal = (($) => {
 
   const ClassName = {
     SCROLLBAR_MEASURER : 'modal-scrollbar-measure',
-    BACKDROP           : 'modal-backdrop',
+    BACKDROP           : 'modal__backdrop',
     OPEN               : 'modal-open',
     FADE               : 'fade',
     SHOW               : 'show'
   }
 
   const Selector = {
-    DIALOG             : '.modal-dialog',
+    DIALOG             : '.modal__dialog',
     DATA_TOGGLE        : '[data-toggle="modal"]',
     DATA_DISMISS       : '[data-dismiss="modal"]',
     FIXED_CONTENT      : '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'

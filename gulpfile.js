@@ -19,7 +19,9 @@ elixir(mix => {
     mix.sass('app.scss');
 
     // compile javascript
-    mix.webpack('app.js');
+    mix.browserify([
+      'app.js'
+    ], './public/js/app.js');
 
     // Version files
     mix.version([

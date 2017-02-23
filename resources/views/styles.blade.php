@@ -44,6 +44,21 @@
     #menu {
       margin-top: 4rem;
     }
+
+    .style__color {
+      margin-bottom: 2rem;
+    }
+
+    .style__color__block {
+      height: 150px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,.1);
+    }
+
+    .style__color__name {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
   </style>
 
   @section('style')

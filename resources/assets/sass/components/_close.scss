@@ -1,3 +1,11 @@
+// Close
+
+$close-font-size:             $font-size-base;
+$close-font-weight:           $font-weight-bold !default;
+$close-color:                 $black !default;
+$close-text-shadow:           none;
+
+
 .close {
   float: right;
   font-size: $close-font-size;
@@ -6,6 +14,30 @@
   color: $close-color;
   text-shadow: $close-text-shadow;
   opacity: .5;
+  width: 16px;
+  height: 16px;
+
+  &:after, &:before {
+    // content: "\D7";
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 4px;
+    top: 7px;
+    width: 8px;
+    height: 2px;
+    background-color: $gray;
+    transition: all 150ms;
+  }
+
+  &:after{
+    transform: rotate(45deg);
+  }
+
+  &:before {
+    transform: rotate(135deg);
+  }
+
 
   @include hover-focus {
     color: $close-color;

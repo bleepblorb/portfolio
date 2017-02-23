@@ -12,6 +12,15 @@
 */
 
 Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+Route::get('/resume', function () {
+    return view('resume');
+})->name('resume');
+
+
+Route::get('/styles', function () {
     return view('styles');
 });
 

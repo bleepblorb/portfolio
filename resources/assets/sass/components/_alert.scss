@@ -1,3 +1,32 @@
+// Variables
+//
+// Define alert colors, border radius, and padding.
+
+$alert-padding-x:             1.25rem !default;
+$alert-padding-y:             .75rem !default;
+$alert-margin-bottom:         $spacer-y !default;
+$alert-border-radius:         $border-radius !default;
+$alert-link-font-weight:      $font-weight-bold !default;
+$alert-border-width:          1px;
+
+$alert-success-bg:            $state-success-bg !default;
+$alert-success-text:          $state-success-text !default;
+$alert-success-border:        $brand-success;
+
+$alert-info-bg:               $state-info-bg !default;
+$alert-info-text:             $state-info-text !default;
+$alert-info-border:           $state-info-border !default;
+
+$alert-warning-bg:            $state-warning-bg !default;
+$alert-warning-text:          $state-warning-text !default;
+$alert-warning-border:        $state-warning-border !default;
+
+$alert-danger-bg:             $state-danger-bg !default;
+$alert-danger-text:           $state-danger-text !default;
+$alert-danger-border:         $state-danger-border !default;
+
+
+
 //
 // Base styles
 //
@@ -7,25 +36,7 @@
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
   @include border-radius($alert-border-radius);
-}
 
-// Headings for larger alerts
-.alert-heading {
-  // Specified to prevent conflicts of changing $headings-color
-  color: inherit;
-}
-
-// Provide class for links that match alerts
-.alert-link {
-  font-weight: $alert-link-font-weight;
-}
-
-
-// Dismissible alerts
-//
-// Expand the right padding and account for the close button's positioning.
-
-.alert-dismissible {
   // Adjust close link position
   .close {
     position: relative;
@@ -36,20 +47,32 @@
   }
 }
 
+// Headings for larger alerts
+.alert__heading {
+  // Specified to prevent conflicts of changing $headings-color
+  color: inherit;
+}
+
+// Provide class for links that match alerts
+.alert-link {
+  font-weight: $alert-link-font-weight;
+}
+
 
 // Alternate styles
 //
 // Generate contextual modifier classes for colorizing the alert.
 
-.alert-success {
-  @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+.alert--success {
+  @include alert-variant(#fff, $alert-success-border, $alert-success-text);
+  // box-shadow: 0px 3px 8px fade-out($alert-success-border, .7);
 }
-.alert-info {
-  @include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+.alert--info {
+  @include alert-variant(#fff, $brand-info, $alert-info-text);
 }
-.alert-warning {
-  @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+.alert--warning {
+  @include alert-variant(#fff, $brand-warning, $alert-warning-text);
 }
-.alert-danger {
-  @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+.alert--danger {
+  @include alert-variant(#fff, $brand-danger, $alert-danger-text);
 }

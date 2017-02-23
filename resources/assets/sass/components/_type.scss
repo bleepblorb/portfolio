@@ -1,4 +1,8 @@
 //
+//
+//
+//
+//
 // Headings
 //
 
@@ -9,6 +13,10 @@ h1, h2, h3, h4, h5, h6,
   font-weight: $headings-font-weight;
   line-height: $headings-line-height;
   color: $headings-color;
+
+  strong {
+    font-weight: 700;
+  }
 }
 
 h1, .h1 { font-size: $font-size-h1; }
@@ -36,34 +44,13 @@ h6, .h6 { font-size: $font-size-h6; }
 // Lists
 //
 
-// Default ul
+// Default unordered list
 
 ul {
   @include list-unstyled;
 }
 
-ul, ol {
-  &.list--relaxed {
-    li {
-      margin-bottom: .5rem;
-    }
-  }
-}
-
-ul.list--bullets {
-  list-style: none;
-  padding-left: 2em;
-
-  li:before {
-    content: '•';
-    width: 2rem;
-    margin-left: -2rem;
-    display: inline-block;
-    color: $gray-light;
-    text-align: center;
-    font-size: .75em;
-  }
-}
+// Default ordered list
 
 ol {
   list-style: none;
@@ -86,18 +73,50 @@ ol {
 }
 
 
-// Inline turns list items into inline-block
-.list--inline {
-  @include list-unstyled;
+// List variants
 
-  li {
-    display: inline-block;
+ul, ol {
+  // Relaxed - extra spacing
+  &.-relaxed {
+    li {
+      margin-bottom: .5rem;
+    }
+  }
 
-    &:not(:last-child) {
-      margin-right: $list-inline-padding;
+  // Inline - turns list items into inline-block
+  &.-inline {
+    @include list-unstyled;
+
+    li {
+      display: inline-block;
+
+      &:not(:last-child) {
+        margin-right: $list-inline-padding;
+      }
     }
   }
 }
+
+
+ul {
+  // Bulleted list
+  &.-bullets {
+    list-style: none;
+    padding-left: 2em;
+
+    li:before {
+      content: '•';
+      width: 2rem;
+      margin-left: -2rem;
+      display: inline-block;
+      color: $gray-light;
+      text-align: center;
+      font-size: .75em;
+    }
+  }
+
+}
+
 
 //
 // Blockquotes
@@ -156,7 +175,7 @@ ol {
 
 small,
 .t--small {
-  font-size: $small-font-size;
+  font-size: $font-size-sm;
   font-weight: $font-weight-normal;
 }
 
@@ -165,6 +184,7 @@ small,
 }
 
 .t--lead {
+  font-family: $font-family-sans-serif;
   font-size: $lead-font-size;
   font-weight: $lead-font-weight;
 }
@@ -187,11 +207,10 @@ small,
   }
 }
 
-
 // -- Transformation
 
 .t--lc  { text-transform: lowercase !important; }
-.t--uc  { @include caps(); }
+.t--uc  { @include caps; }
 .t--cap { text-transform: capitalize !important;}
 
 
@@ -213,12 +232,31 @@ small,
 
 @include text-color-variant('.c--danger', $brand-danger);
 
-// Font color
+// Font colors
+
+// grays
 @include text-color-variant('.c--white', $white );
-
-@include text-color-variant('.c--primary', $brand-primary);
-
 @include text-color-variant('.c--gray-dark', $gray-dark);
+@include text-color-variant('.c--gray', $gray);
+@include text-color-variant('.c--gray-light', $gray-light);
+@include text-color-variant('.c--gray-lighter', $gray-lighter);
+@include text-color-variant('.c--gray-lightest', $gray-lightest);
+
+// blues
+@include text-color-variant('.c--late-night', $late-night);
+@include text-color-variant('.c--grover', $grover);
+@include text-color-variant('.c--jazzy', $jazzy);
+@include text-color-variant('.c--jean-jacket', $jean-jacket);
+@include text-color-variant('.c--ice-cube', $ice-cube);
+
+// brand
+@include text-color-variant('.c--lightning', $lightning);
+@include text-color-variant('.c--gummy', $gummy);
+
+// -- font-family
+
+.t--sans  { font-family: $font-family-sans-serif }
+.t--serif { font-family: $font-family-serif }
 
 
 //

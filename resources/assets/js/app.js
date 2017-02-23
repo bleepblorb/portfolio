@@ -4,6 +4,13 @@
 window.$ = window.jQuery = require('jquery');
 
 /**
+ * Tether (required by bootstrap)
+ */
+
+window.Tether = require('tether');
+
+
+/**
  * Framework Dependancies
  */
 require('./components/alert');

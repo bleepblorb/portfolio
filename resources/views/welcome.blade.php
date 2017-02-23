@@ -1,21 +1,27 @@
 @extends('base')
 
 @section('app')
-  <div class="container">
-    <div class="row justify-content-center">
-        <div class="col col-3">
-            <div class="title m-b-md">
-                Laravel
+  <div style="background-color:;">
+    <div class="container -max--md">
+      <div class="g__row -align-items--center" style="min-height: 100vh;">
+        <div class="g__col">
+          <div class="g__row -justify-content--center t--center">
+            <div class="g__col">
+              <h1 class="c--primary"><span>Well Done is the superflous moniker of Adam Volkman — a soggy Portland creative.</span></h1>
             </div>
-
-            <div class="links">
-                <a href="https://laravel.com/docs">Documentation</a>
-                <a href="https://laracasts.com">Laracasts</a>
-                <a href="https://laravel-news.com">News</a>
-                <a href="https://forge.laravel.com">Forge</a>
-                <a href="https://github.com/laravel/laravel">GitHub</a>
+          </div>
+          <div class="g__row  -justify-content--center mt-4">
+            <div class="g__col t--center">
+              <p>
+                <a href="{{route('resume')}}" class="btn btn-secondary">View Resume</a>
+              </p>
+              <p>
+                {{-- <a href="{{route('resume')}}" class="">View Resume</a> --}}
+              </p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 @endsection

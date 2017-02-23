@@ -7,6 +7,10 @@
 
     <title>{{$title or ":)"}}</title>
 
+    {{-- fonts  --}}
+    <script src="https://use.typekit.net/kyn4syh.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
     <!-- styles -->
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
 
@@ -14,8 +18,21 @@
 
   </head>
   <body>
+    {{-- <div class="fixed-top">
+      <div class="container">
+        <ul class="nav -align-items--baseline">
+          <li class="nav-item">
+            <a href="{{route('home')}}" class="nav-link"><strong class="c--muted" style="">well done</strong></a>
+          </li>
+          <li class="nav-item ml-auto">
+            <small class="nav-link c--muted">Full site in progress...</small>
+          </li>
+        </ul>
+      </div>
+    </div> --}}
     @yield('app')
   </body>
 
   <script type="text/javascript" src="{{elixir('js/app.js')}}"></script>
+  @stack('scripts')
 </html>

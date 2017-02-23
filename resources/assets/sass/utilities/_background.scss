@@ -1,4 +1,7 @@
 //
+//
+//
+//
 // Contextual backgrounds
 //
 
@@ -6,14 +9,28 @@
   background-color: darken($body-bg, 3%);
 }
 
-@include bg-variant('.bg-primary', $brand-primary);
+// brand
+@include bg-variant('.bg--lightning', $lightning);
+@include bg-variant('.bg--gummy', $gummy);
 
-@include bg-variant('.bg-success', $brand-success);
+// blues
+@include bg-variant('.bg--late-night', $late-night);
+@include bg-variant('.bg--grover', $grover);
+@include bg-variant('.bg--jazzy', $jazzy);
+@include bg-variant('.bg--jean-jacket', $jean-jacket);
+@include bg-variant('.bg--ice-cube', $ice-cube);
 
-@include bg-variant('.bg-info', $brand-info);
+// grays
+@include bg-variant('.bg--gray-dark', $gray-dark);
+@include bg-variant('.bg--gray', $gray);
+@include bg-variant('.bg--gray-light', $gray-light);
+@include bg-variant('.bg--gray-lighter', $gray-lighter);
+@include bg-variant('.bg--gray-lightest', $gray-lightest);
 
-@include bg-variant('.bg-warning', $brand-warning);
-
-@include bg-variant('.bg-danger', $brand-danger);
-
-@include bg-variant('.bg-inverse', $brand-inverse);
+// Contextual
+@include bg-variant('.bg--primary', $brand-primary);
+@include bg-variant('.bg--success', $brand-success);
+@include bg-variant('.bg--info', $brand-info);
+@include bg-variant('.bg--warning', $brand-warning);
+@include bg-variant('.bg--danger', $brand-danger);
+@include bg-variant('.bg--inverse', $brand-inverse);
