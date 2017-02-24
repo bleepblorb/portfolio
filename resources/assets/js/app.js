@@ -7,7 +7,7 @@ window.$ = window.jQuery = require('jquery');
  * Tether (required by bootstrap)
  */
 
-window.Tether = require('tether');
+// window.Tether = require('tether');
 
 
 /**

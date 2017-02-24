@@ -12,7 +12,7 @@
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
     <!-- styles -->
-    <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @yield('head')
 
@@ -33,6 +33,6 @@
     @yield('app')
   </body>
 
-  <script type="text/javascript" src="{{elixir('js/app.js')}}"></script>
+  <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
   @stack('scripts')
 </html>
