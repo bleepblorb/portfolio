@@ -1,7 +1,24 @@
-/**
- * jquery
- */
-window.$ = window.jQuery = require('jquery');
+
+require('./bootstrap');
+
+import resume from './components/resume';
+
+window.Event = new Vue();
+
+
+const app = new Vue ({
+  el: '#app',
+
+  data : {
+  },
+
+  components : {
+    resume
+  }
+});
+
+
+
 
 /**
  * Tether (required by bootstrap)
@@ -13,14 +30,14 @@ window.$ = window.jQuery = require('jquery');
 /**
  * Framework Dependancies
  */
-require('./components/alert');
-require('./components/button');
-require('./components/carousel');
-require('./components/collapse');
-require('./components/dropdown');
-require('./components/modal');
-require('./components/popover');
-require('./components/scrollspy');
-require('./components/tab');
-require('./components/tooltip');
-require('./components/util');
+// require('./components/alert');
+// require('./components/button');
+// require('./components/carousel');
+// require('./components/collapse');
+// require('./components/dropdown');
+// require('./components/modal');
+// require('./components/popover');
+// require('./components/scrollspy');
+// require('./components/tab');
+// require('./components/tooltip');
+// require('./components/util');

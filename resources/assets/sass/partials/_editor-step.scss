@@ -1,0 +1,179 @@
+//
+// Editor Step & Phase
+//
+
+.list-item {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform : translateX(0px);
+  opacity: 1;
+
+  &.v-enter-to {
+    transform : translateX(0px);
+    opacity: 1;
+  }
+
+  &.v-enter-active {
+    transition: all 3000ms 500ms;
+  }
+
+   &.v-leave-active {
+    transition: all 3000ms;
+   }
+
+  &.v-enter, &.v-leave-to {
+    opacity: 0;
+  }
+
+  &.v-enter {
+    transform: translateX(-100px);
+  }
+
+  &.v-leave-to {
+    transform: translateX(100px);
+  }
+}
+
+.editor__step {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+  min-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform : translateX(0px);
+  opacity: 1;
+
+  &.v-leave-active {
+    transition: all 3000ms;
+  }
+
+  &.v-enter-active {
+    transition: all 3000ms 500ms;
+  }
+
+  &.v-enter, &.v-leave-to {
+    opacity: 0;
+  }
+
+  &.v-enter {
+    transform: translateX(-400px);
+  }
+
+  &.v-leave-to {
+    transform: translateX(400px);
+  }
+}
+
+
+.editor__phase {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+  min-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // transform : translateX(0px);
+  opacity: 1;
+
+  &.slide-next-enter-active, &.slide-prev-enter-active {
+    transition: all 600ms 300ms ease;
+  }
+
+  &.slide-next-leave-active, &.slide-prev-leave-active {
+    transition: all 600ms cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  &.slide-next-enter,
+  &.slide-next-leave-to,
+  &.slide-prev-enter,
+  &.slide-prev-leave-to {
+    opacity: 0;
+  }
+
+  &.slide-next-enter,
+  &.slide-prev-leave-to {
+    transform: translateX(300px);
+  }
+
+  &.slide-prev-enter,
+  &.slide-next-leave-to {
+    transform: translateX(-300px);
+  }
+}
+
+.editor__content {
+  width: 400px;
+  position: relative;
+  margin: auto;
+  text-align: center;
+
+  .intro-photo {
+    margin-bottom: -16px;
+  }
+}
+
+.editor__question {
+  text-align: left;
+}
+
+.editor__input {
+  margin-top: 32px;
+
+  .btn {
+    padding: 16px;
+    font-size: $font-size-xs;
+    cursor: pointer;
+    background: transparent;
+    border-color: $jean-jacket;
+    width: 100%;
+    position: relative;
+    border-radius: 8px;
+    margin-bottom: 16px;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 24px;
+      height: 24px;
+      background-image: url('../img/UI/check-circle-gummy.svg');
+      transform: translateX(-16px) scale(.5);
+      transition: all 250ms cubic-bezier(0.240, 0.260, 0.245, 1.170);
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &:hover {
+      background-color: transparent;
+      border-color: $jazzy;
+      color: $jazzy;
+    }
+
+    &.-selected {
+      border-color: $gummy;
+      color: $gummy;
+      padding-left: 42px;
+
+      &:after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0px) scale(1);
+      }
+    }
+  }
+}

@@ -18,21 +18,26 @@
 
   </head>
   <body>
-    {{-- <div class="fixed-top">
-      <div class="container">
-        <ul class="nav -align-items--baseline">
-          <li class="nav-item">
-            <a href="{{route('home')}}" class="nav-link"><strong class="c--muted" style="">well done</strong></a>
-          </li>
-          <li class="nav-item ml-auto">
-            <small class="nav-link c--muted">Full site in progress...</small>
-          </li>
-        </ul>
-      </div>
-    </div> --}}
-    @yield('app')
+    <div id="poop"></div>
+    <div id="app">
+      {{-- <div class="fixed-top">
+        <div class="container">
+          <ul class="nav -align-items--baseline">
+            <li class="nav-item">
+              <a href="{{route('home')}}" class="nav-link"><strong class="c--muted" style="">well done</strong></a>
+            </li>
+            <li class="nav-item ml-auto">
+              <small class="nav-link c--muted">Full site in progress...</small>
+            </li>
+          </ul>
+        </div>
+      </div> --}}
+      @yield('app')
+    </div>
+
+
   </body>
 
-  <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
+  <script src="{{mix('js/app.js')}}"></script>
   @stack('scripts')
 </html>
