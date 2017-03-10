@@ -1,11 +1,14 @@
 <template>
     <div class="editor__phase">
-      <transition-group class="editor__steps" tag="div" type="transition">
+      <transition-group class="editor__steps" tag="div" :css="true" :appear="true"
+        v-on:enter="enter"
+        v-on:leave="leave"
+      >
         <resume-step
           v-for="(step, index) in steps"
-          v-show="currentStep == index"
-          :key="step.id"
-          :index="index"
+          v-show="state.currentStep ==  stepOffset + index"
+          :key="index"
+          :stepIndex="index"
           :stepNum="stepOffset + index"
           :imageUrl="step.imageUrl"
           :intro="step.intro"
@@ -41,7 +44,7 @@
         type : Number,
         required : true
       },
-      index : {
+      phaseIndex : {
         type : Number,
         required : true
       },
@@ -81,7 +84,7 @@
     watch : {
       completed() {
         if ( this.isComplete ) {
-          this.$emit('phaseComplete', this.index);
+          this.$emit('phaseComplete', this.phaseIndex);
         }
       },
       furthestAllowed() {
@@ -96,8 +99,14 @@
     },
 
     methods : {
+      enter(el) {
+        console.log("enter", el);
+      },
+      leave(el) {
+        console.log("leave", el);
+      },
       nextStep() {
-        if ( this.state.currentPhase !== this.index ) { return; }
+        if ( this.state.currentPhase !== this.phaseIndex ) { return; }
 
         if ( !this.isLastStep ) {
           if ( this.currentStep < this.furthestAllowed ) {
@@ -112,7 +121,7 @@
       },
 
       prevStep() {
-        if ( this.state.currentPhase !== this.index ) { return; }
+        if ( this.state.currentPhase !== this.phaseIndex ) { return; }
 
         if ( this.currentStep > 0 ) {
           console.log('Got to Previous Step', this.id);
@@ -128,8 +137,8 @@
         }
       },
 
-      setStep( step, phase = this.index ) {
-        if ( phase !== this.index ) { return; }
+      setStep( step, phase = this.phaseIndex ) {
+        if ( phase !== this.phaseIndex ) { return; }
 
         let index = step === "last" ? this.lastStep : step;
 

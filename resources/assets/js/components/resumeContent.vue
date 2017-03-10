@@ -1,11 +1,14 @@
 
 <template>
   <div class="resume__content">
-    <transition-group tag="div">
-      <div v-for="n in 5" class="list-item" v-show="state.currentStep == n" :key="n">
-        <p>{{n}}</p>
-      </div>
-    </transition-group>
+    <div v-for="a in 2" v-show="state.currentPhase == a - 1">
+      <transition-group tag="div">
+        <div v-for="n in 5" class="list-item" v-show="state.currentStep == n" :key="n">
+          <p>{{n}}</p>
+        </div>
+      </transition-group>
+    </div>
+
     <slot></slot>
   </div>
 </template>

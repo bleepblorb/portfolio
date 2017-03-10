@@ -1988,11 +1988,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.model = {
-  intro: '',
-  intro2: '',
-  intro3: '',
+  q1: '',
   q2: '',
-  q3: ''
+  q3: '',
+  q4: '',
+  q5: ''
 };
 
 __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
@@ -2016,10 +2016,10 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
       editMode: false,
       schema: {
         phases: [{
-          id: 'intros',
+          id: 'intro',
           title: "Intro",
           steps: [{
-            id: "intro",
+            id: "q1",
             intro: "Facial Hair",
             question: "Add some fuzz to this peach",
             type: "radialGroup",
@@ -2044,7 +2044,7 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
               value: "value 6"
             }]
           }, {
-            id: "intro2",
+            id: "q2",
             intro: "qestion 1.2",
             question: "This is Question 1.2",
             type: "radialGroup",
@@ -2059,7 +2059,7 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
               value: "value 3"
             }]
           }, {
-            id: "intro3",
+            id: "q3",
             intro: "qestion 1.3",
             question: "This is Question 1.3",
             type: "radialGroup",
@@ -2078,7 +2078,7 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
           id: "phase2",
           title: "Phase 2",
           steps: [{
-            id: "q2",
+            id: "q4",
             intro: "qestion 2.1",
             question: "This is Question 2.1",
             type: "radialGroup",
@@ -2093,7 +2093,7 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
               value: "value 3"
             }]
           }, {
-            id: "q3",
+            id: "q5",
             intro: "qestion 2.2",
             question: "This is Question 2.2",
             type: "radialGroup",
@@ -2190,6 +2190,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2223,7 +2226,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resumePhase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__resumePhase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resumeNav__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resumeNav___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__resumeNav__);
-//
 //
 //
 //
@@ -2549,6 +2551,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2571,7 +2576,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Number,
       required: true
     },
-    index: {
+    phaseIndex: {
       type: Number,
       required: true
     },
@@ -2612,7 +2617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {
     completed: function completed() {
       if (this.isComplete) {
-        this.$emit('phaseComplete', this.index);
+        this.$emit('phaseComplete', this.phaseIndex);
       }
     },
     furthestAllowed: function furthestAllowed() {
@@ -2628,8 +2633,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   methods: {
+    enter: function enter(el) {
+      console.log("enter", el);
+    },
+    leave: function leave(el) {
+      console.log("leave", el);
+    },
     nextStep: function nextStep() {
-      if (this.state.currentPhase !== this.index) {
+      if (this.state.currentPhase !== this.phaseIndex) {
         return;
       }
 
@@ -2644,7 +2655,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     prevStep: function prevStep() {
-      if (this.state.currentPhase !== this.index) {
+      if (this.state.currentPhase !== this.phaseIndex) {
         return;
       }
 
@@ -2661,9 +2672,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     setStep: function setStep(step) {
-      var phase = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.index;
+      var phase = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.phaseIndex;
 
-      if (phase !== this.index) {
+      if (phase !== this.phaseIndex) {
         return;
       }
 
@@ -2737,7 +2748,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Number,
       required: true
     },
-    index: {
+    stepIndex: {
       type: Number,
       required: true
     },
@@ -2762,7 +2773,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   data: function data() {
-    return {};
+    return {
+      state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state
+    };
   },
 
 
@@ -2778,15 +2791,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {
     isSet: function isSet() {
       if (this.value) {
-        console.log('value is set. Emit Step Completed', this.index);
-        this.$emit('completedStep', this.index);
+        console.log('value is set. Emit Step Completed', this.stepIndex);
+        this.$emit('completedStep', this.stepIndex);
         Event.$emit('stepComplete');
       }
     }
   },
 
   created: function created() {
-    // this.$emit('completedStep', this.index);
+    // this.$emit('completedStep', this.stepIndex);
   },
 
 
@@ -30439,22 +30452,31 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "resume__content"
-  }, [_c('transition-group', {
-    attrs: {
-      "tag": "div"
-    }
-  }, _vm._l((5), function(n) {
+  }, [_vm._l((2), function(a) {
     return _c('div', {
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (_vm.state.currentStep == n),
-        expression: "state.currentStep == n"
-      }],
-      key: n,
-      staticClass: "list-item"
-    }, [_c('p', [_vm._v(_vm._s(n))])])
-  })), _vm._v(" "), _vm._t("default")], 2)
+        value: (_vm.state.currentPhase == a - 1),
+        expression: "state.currentPhase == a - 1"
+      }]
+    }, [_c('transition-group', {
+      attrs: {
+        "tag": "div"
+      }
+    }, _vm._l((5), function(n) {
+      return _c('div', {
+        directives: [{
+          name: "show",
+          rawName: "v-show",
+          value: (_vm.state.currentStep == n),
+          expression: "state.currentStep == n"
+        }],
+        key: n,
+        staticClass: "list-item"
+      }, [_c('p', [_vm._v(_vm._s(n))])])
+    }))], 1)
+  }), _vm._v(" "), _vm._t("default")], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -30475,19 +30497,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "editor__steps",
     attrs: {
       "tag": "div",
-      "type": "transition"
+      "css": true,
+      "appear": true
+    },
+    on: {
+      "enter": _vm.enter,
+      "leave": _vm.leave
     }
   }, _vm._l((_vm.steps), function(step, index) {
     return _c('resume-step', {
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (_vm.currentStep == index),
-        expression: "currentStep == index"
+        value: (_vm.state.currentStep == _vm.stepOffset + index),
+        expression: "state.currentStep ==  stepOffset + index"
       }],
-      key: step.id,
+      key: index,
       attrs: {
-        "index": index,
+        "stepIndex": index,
         "stepNum": _vm.stepOffset + index,
         "imageUrl": step.imageUrl,
         "intro": step.intro,
@@ -30629,10 +30656,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }],
       key: phase.id,
       attrs: {
-        "isActive": _vm.currentPhase == index,
         "id": phase.id,
         "stepOffset": _vm.getStepOffset(index),
-        "index": index,
+        "phaseIndex": index,
         "steps": phase.steps
       },
       on: {

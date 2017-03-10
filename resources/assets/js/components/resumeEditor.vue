@@ -23,10 +23,9 @@
         v-for="(phase, index) in schema.phases"
         v-show="currentPhase == index"
         :key="phase.id"
-        :isActive="currentPhase == index"
         :id="phase.id"
         :stepOffset="getStepOffset(index)"
-        :index="index"
+        :phaseIndex="index"
         :steps="phase.steps"
         @phaseComplete="phaseComplete"
         ></resume-phase>

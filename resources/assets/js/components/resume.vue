@@ -15,11 +15,11 @@ import resumeEditor from './resumeEditor';
 import resumeContent from './resumeContent';
 
 store.resume.model = {
-  intro : '',
-  intro2 : '',
-  intro3 : '',
+  q1 : '',
   q2 : '',
   q3 : '',
+  q4 : '',
+  q5 : '',
 }
 
 store.resume.state = {
@@ -44,11 +44,11 @@ export default {
       schema : {
         phases : [
           {
-            id : 'intros',
+            id : 'intro',
             title : "Intro",
             steps : [
               {
-                id : "intro",
+                id : "q1",
                 intro : "Facial Hair",
                 question : "Add some fuzz to this peach",
                 type : "radialGroup",
@@ -81,7 +81,7 @@ export default {
                 ]
               },
               {
-                id : "intro2",
+                id : "q2",
                 intro : "qestion 1.2",
                 question : "This is Question 1.2",
                 type : "radialGroup",
@@ -101,7 +101,7 @@ export default {
                 ]
               },
               {
-                id : "intro3",
+                id : "q3",
                 intro : "qestion 1.3",
                 question : "This is Question 1.3",
                 type : "radialGroup",
@@ -127,7 +127,7 @@ export default {
             title: "Phase 2",
             steps : [
               {
-                id : "q2",
+                id : "q4",
                 intro : "qestion 2.1",
                 question : "This is Question 2.1",
                 type : "radialGroup",
@@ -147,7 +147,7 @@ export default {
                 ]
               },
               {
-                id : "q3",
+                id : "q5",
                 intro : "qestion 2.2",
                 question : "This is Question 2.2",
                 type : "radialGroup",

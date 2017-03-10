@@ -37,7 +37,7 @@
         type: Number,
         required : true
       },
-      index : {
+      stepIndex : {
         type: Number,
         required : true
       },
@@ -63,7 +63,7 @@
 
     data() {
       return {
-
+        state : store.resume.state
       }
     },
 
@@ -79,15 +79,15 @@
     watch : {
       isSet : function() {
         if(this.value) {
-          console.log('value is set. Emit Step Completed', this.index);
-          this.$emit('completedStep', this.index);
+          console.log('value is set. Emit Step Completed', this.stepIndex);
+          this.$emit('completedStep', this.stepIndex);
           Event.$emit('stepComplete');
         }
       }
     },
 
     created() {
-      // this.$emit('completedStep', this.index);
+      // this.$emit('completedStep', this.stepIndex);
     },
 
     methods : {
