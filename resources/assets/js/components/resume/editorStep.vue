@@ -19,8 +19,8 @@
 </template>
 
 <script>
-  import {store} from './global';
-  import radialGroup from './radialGroup';
+  import {store} from '../global';
+  import radialGroup from '../radialGroup';
 
   export default {
 
@@ -54,9 +54,6 @@
         required : true
       },
       imageUrl : {
-        type : String
-      },
-      animation : {
         type : String
       }
     },

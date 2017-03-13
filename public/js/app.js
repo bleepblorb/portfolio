@@ -1022,8 +1022,8 @@ module.exports = g;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_resume__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_resume___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_resume__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_resume_resume__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_resume_resume___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_resume_resume__);
 
 __webpack_require__(38);
 
@@ -1037,7 +1037,7 @@ var app = new Vue({
   data: {},
 
   components: {
-    resume: __WEBPACK_IMPORTED_MODULE_0__components_resume___default.a
+    resume: __WEBPACK_IMPORTED_MODULE_0__components_resume_resume___default.a
   }
 });
 
@@ -1966,10 +1966,429 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+
+  props: {},
+
+  data: function data() {
+    return {
+      state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state,
+      showPrompt: false,
+      promptText: true,
+      showDone: false
+    };
+  },
+
+
+  computed: {
+    disableNext: function disableNext() {
+      return this.state.currentStep < this.state.furthestAllowed ? false : true;
+    },
+    disablePrev: function disablePrev() {
+      return this.state.currentStep > 1 ? false : true;
+    },
+    isComplete: function isComplete() {
+      return this.state.isComplete;
+    }
+  },
+
+  watch: {
+    isComplete: function isComplete() {
+      if (this.isComplete) {
+        this.showPrompt = false;
+        this.showDone = this.isComplete;
+      }
+    }
+  },
+
+  methods: {
+    nextStep: function nextStep() {
+      if (this.state.currentStep < this.state.furthestAllowed) {
+        Event.$emit('nextStep');
+      }
+    },
+    prevStep: function prevStep() {
+      if (this.state.currentStep > 1) {
+        Event.$emit('prevStep');
+      }
+    },
+    close: function close() {
+      this.showDone = false;
+      Event.$emit('toggleEditMode');
+      Event.$emit('setPhase', 0, 0);
+    }
+  },
+
+  created: function created() {
+    var _this = this;
+
+    Event.$on('showPrompt', function () {
+      var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "next";
+
+      _this.showPrompt = true;
+      var promptOptions = ["Next", "Onward", "This Way", "More"];
+
+      _this.promptText = promptOptions[_.random(0, promptOptions.length - 1)];
+    });
+
+    Event.$on('hidePrompt', function () {
+      _this.showPrompt = false;
+    });
+
+    Event.$on('disablePrev', function () {
+      _this.disablePrev = true;
+    });
+
+    Event.$on('enablePrev', function () {
+      _this.disablePrev = false;
+    });
+  }
+};
+
+/***/ }),
+/* 33 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorStep__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorStep___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editorStep__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  components: {
+    editorStep: __WEBPACK_IMPORTED_MODULE_1__editorStep___default.a
+  },
+
+  props: {
+    id: {
+      type: String,
+      required: true
+    },
+    steps: {
+      type: Array,
+      required: true
+    },
+    stepOffset: {
+      type: Number,
+      required: true
+    },
+    phaseIndex: {
+      type: Number,
+      required: true
+    },
+    isActive: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  data: function data() {
+    return {
+      state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state,
+      currentStep: 0,
+      completed: -1
+    };
+  },
+
+
+  computed: {
+    totalSteps: function totalSteps() {
+      return this.steps.length;
+    },
+    lastStep: function lastStep() {
+      return this.totalSteps - 1;
+    },
+    furthestAllowed: function furthestAllowed() {
+      return _.min([this.completed + 1, this.lastStep]);
+    },
+    isComplete: function isComplete() {
+      return this.completed == this.lastStep;
+    },
+    isLastStep: function isLastStep() {
+      return this.currentStep == this.lastStep;
+    },
+    animation: function animation() {
+      return 'slide-' + this.state.direction;
+    }
+  },
+
+  watch: {
+    completed: function completed() {
+      if (this.isComplete) {
+        this.$emit('phaseComplete', this.phaseIndex);
+      }
+    },
+    furthestAllowed: function furthestAllowed() {
+      Event.$emit('showPrompt');
+    }
+  },
+
+  created: function created() {
+    Event.$on('nextStep', this.nextStep);
+    Event.$on('prevStep', this.prevStep);
+    Event.$on('setStep', this.setStep);
+  },
+
+
+  methods: {
+    enter: function enter(el) {
+      console.log("enter", el);
+    },
+    leave: function leave(el) {
+      console.log("leave", el);
+    },
+    nextStep: function nextStep() {
+      // this.animation = "slide-next";
+      if (this.state.currentPhase !== this.phaseIndex) {
+        return;
+      }
+
+      if (!this.isLastStep) {
+        if (this.currentStep < this.furthestAllowed) {
+
+          this.setStep(this.currentStep + 1);
+        }
+      } else {
+        console.log('end of phase, call nextPhase');
+        Event.$emit('nextPhase');
+      }
+    },
+    prevStep: function prevStep() {
+      // this.animation = "slide-prev";
+      if (this.state.currentPhase !== this.phaseIndex) {
+        return;
+      }
+
+      if (this.currentStep > 0) {
+        console.log('Got to Previous Step', this.id);
+        this.setStep(this.currentStep - 1);
+      } else {
+        console.log('beggining of phase, call prevPhase');
+
+        this.$nextTick(function () {
+          Event.$emit('prevPhase', this.id);
+        });
+      }
+    },
+    setStep: function setStep(step) {
+      var phase = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.phaseIndex;
+
+      if (phase !== this.phaseIndex) {
+        return;
+      }
+
+      var index = step === "last" ? this.lastStep : step;
+
+      if (index >= 0 && index <= this.furthestAllowed) {
+        console.log('Step Set to:', index, this.id);
+
+        this.state.direction = this.stepOffset + index > this.state.currentStep ? 'next' : 'prev';
+        console.log(this.stepOffset + index, this.state.currentStep, this.state.direction);
+
+        this.$nextTick(function () {
+          this.state.currentStep = this.stepOffset + index;
+          this.currentStep = index;
+          Event.$emit('hidePrompt');
+        });
+      }
+    },
+    completedStep: function completedStep(index) {
+      if (index > this.completed && index <= this.lastStep) {
+        console.log('completed step:', index);
+        this.completed = index;
+      } else {
+        console.log('already completed');
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__radialGroup__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__radialGroup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__radialGroup__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+
+  components: {
+    radialGroup: __WEBPACK_IMPORTED_MODULE_1__radialGroup___default.a
+  },
+
+  props: {
+    id: {
+      type: String,
+      required: true
+    },
+    stepNum: {
+      type: Number,
+      required: true
+    },
+    stepIndex: {
+      type: Number,
+      required: true
+    },
+    intro: {
+      type: String
+    },
+    question: {
+      type: String
+    },
+    inputType: {
+      type: String
+    },
+    items: {
+      required: true
+    },
+    imageUrl: {
+      type: String
+    }
+  },
+
+  data: function data() {
+    return {
+      state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state
+    };
+  },
+
+
+  computed: {
+    value: function value() {
+      return __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.model[this.id];
+    },
+    isSet: function isSet() {
+      return this.value ? true : false;
+    }
+  },
+
+  watch: {
+    isSet: function isSet() {
+      if (this.value) {
+        console.log('value is set. Emit Step Completed', this.stepIndex);
+        this.$emit('completedStep', this.stepIndex);
+        Event.$emit('stepComplete');
+      }
+    }
+  },
+
+  created: function created() {
+    // this.$emit('completedStep', this.stepIndex);
+  },
+
+
+  methods: {
+    updateModel: function updateModel(newValue) {
+      Event.$emit("updateModel", this.id, newValue);
+    }
+  }
+};
+
+/***/ }),
+/* 35 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resumeEditor__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resumeEditor__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resumeEditor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__resumeEditor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resumeContent__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resumeContent__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resumeContent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__resumeContent__);
 //
 //
@@ -1988,7 +2407,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.model = {
-  q1: '',
+  introStyle: '',
   q2: '',
   q3: '',
   q4: '',
@@ -2001,7 +2420,10 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
   furthestAllowed: 0,
   completedSteps: 0,
   totalSteps: 0,
-  isComplete: false
+  direction: '',
+  isComplete: false,
+  editMode: false,
+  showIntro: true
 };
 
 /* harmony default export */ __webpack_exports__["default"] = {
@@ -2013,15 +2435,14 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
     return {
       model: __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.model,
       state: __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state,
-      editMode: false,
       schema: {
         phases: [{
           id: 'intro',
           title: "Intro",
           steps: [{
-            id: "q1",
-            intro: "Facial Hair",
-            question: "Add some fuzz to this peach",
+            id: "introStyle",
+            intro: "First impressions",
+            question: "You only get one. Well, there are six options, but pick one.",
             type: "radialGroup",
             imageUrl: "/img/portrait-beard.png",
             items: [{
@@ -2129,6 +2550,9 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
     },
     furthestAllowed: function furthestAllowed() {
       return _.min([this.state.completedSteps + 1, this.state.totalSteps]);
+    },
+    editMode: function editMode() {
+      return this.state.editMode;
     }
   },
 
@@ -2145,12 +2569,13 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
     }
   },
 
-  mounted: function mounted() {
-    var button = document.getElementsByClassName('edit-btn');
-    button[0].addEventListener('click', function () {
+  methods: {
+    toggle: function toggle() {
       Event.$emit('toggleEditMode');
-    });
+    }
   },
+
+  mounted: function mounted() {},
   created: function created() {
     var _this = this;
 
@@ -2162,7 +2587,7 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
     });
 
     Event.$on('toggleEditMode', function () {
-      _this.editMode = !_this.editMode;
+      _this.state.editMode = !_this.state.editMode;
     });
 
     Event.$on('stepComplete', function () {
@@ -2172,12 +2597,14 @@ __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state = {
 };
 
 /***/ }),
-/* 33 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__introPhase__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__introPhase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__introPhase__);
 //
 //
 //
@@ -2193,39 +2620,88 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
 
-  components: {},
+  components: {
+    introPhase: __WEBPACK_IMPORTED_MODULE_1__introPhase___default.a
+  },
 
   props: {
-    introVal: {
-      type: String,
-      default: ''
+    schema: {
+      type: Object,
+      required: true
     }
   },
 
   data: function data() {
     return {
       state: __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.state,
-      currentStep: 0
+      model: __WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* store */].resume.model
     };
+  },
+
+
+  computed: {
+    animation: function animation() {
+      return "slide-" + this.state.direction;
+    }
+  },
+
+  methods: {
+    start: function start() {
+      Event.$emit('toggleEditMode');
+      this.state.showIntro = false;
+    },
+    toggle: function toggle() {
+      Event.$emit('toggleEditMode');
+    }
   }
 };
 
 /***/ }),
-/* 34 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resumePhase__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resumePhase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__resumePhase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resumeNav__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resumeNav___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__resumeNav__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorPhase__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorPhase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editorPhase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editorNav__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editorNav___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__editorNav__);
 //
 //
 //
@@ -2275,7 +2751,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = {
 
   components: {
-    resumePhase: __WEBPACK_IMPORTED_MODULE_1__resumePhase___default.a, resumeNav: __WEBPACK_IMPORTED_MODULE_2__resumeNav___default.a
+    editorPhase: __WEBPACK_IMPORTED_MODULE_1__editorPhase___default.a, editorNav: __WEBPACK_IMPORTED_MODULE_2__editorNav___default.a
   },
 
   props: {
@@ -2290,7 +2766,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state,
       currentPhase: 0,
       completed: -1,
-      animation: "slide-next",
       nextBtn: {
         "class": "-disabled",
         "text": "next"
@@ -2326,6 +2801,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     percentComplete: function percentComplete() {
       return this.state.completedSteps / this.totalSteps * 100;
+    },
+    animation: function animation() {
+      if (this.state.direction == 'next') {
+        return 'slide-next';
+      } else if (this.state.direction == 'prev') {
+        return 'slide-prev';
+      };
     }
   },
 
@@ -2369,7 +2851,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       console.log('Phase Set to:', index);
       if (index <= this.furthestAllowed) {
-        this.animation = index > this.currentPhase ? 'slide-next' : 'slide-prev';
         this.currentPhase = index;
         this.state.currentPhase = index;
 
@@ -2392,421 +2873,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     Event.$on('nextPhase', this.nextPhase);
     Event.$on('prevPhase', this.prevPhase);
-  }
-};
-
-/***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = {
-
-  props: {},
-
-  data: function data() {
-    return {
-      state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state,
-      showPrompt: false,
-      promptText: true,
-      showDone: false
-    };
-  },
-
-
-  computed: {
-    disableNext: function disableNext() {
-      return this.state.currentStep < this.state.furthestAllowed ? false : true;
-    },
-    disablePrev: function disablePrev() {
-      return this.state.currentStep > 1 ? false : true;
-    },
-    isComplete: function isComplete() {
-      return this.state.isComplete;
-    }
-  },
-
-  watch: {
-    isComplete: function isComplete() {
-      if (this.isComplete) {
-        this.showPrompt = false;
-        this.showDone = this.isComplete;
-      }
-    }
-  },
-
-  methods: {
-    nextStep: function nextStep() {
-      if (this.state.currentStep < this.state.furthestAllowed) {
-        Event.$emit('nextStep');
-      }
-    },
-    prevStep: function prevStep() {
-      if (this.state.currentStep > 1) {
-        Event.$emit('prevStep');
-      }
-    },
-    close: function close() {
-      this.showDone = false;
-      Event.$emit('toggleEditMode');
-    }
-  },
-
-  created: function created() {
-    var _this = this;
-
-    Event.$on('showPrompt', function () {
-      var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "next";
-
-      _this.showPrompt = true;
-      _this.promptText = text;
-    });
-
-    Event.$on('hidePrompt', function () {
-      _this.showPrompt = false;
-    });
-
-    Event.$on('disablePrev', function () {
-      _this.disablePrev = true;
-    });
-
-    Event.$on('enablePrev', function () {
-      _this.disablePrev = false;
-    });
-  }
-};
-
-/***/ }),
-/* 36 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resumeStep__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__resumeStep___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__resumeStep__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = {
-  components: {
-    resumeStep: __WEBPACK_IMPORTED_MODULE_1__resumeStep___default.a
-  },
-
-  props: {
-    id: {
-      type: String,
-      required: true
-    },
-    steps: {
-      type: Array,
-      required: true
-    },
-    stepOffset: {
-      type: Number,
-      required: true
-    },
-    phaseIndex: {
-      type: Number,
-      required: true
-    },
-    isActive: {
-      type: Boolean,
-      default: false
-    }
-  },
-
-  data: function data() {
-    return {
-      state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state,
-      animation: "slide-next",
-      currentStep: 0,
-      completed: -1
-    };
-  },
-
-
-  computed: {
-    totalSteps: function totalSteps() {
-      return this.steps.length;
-    },
-    lastStep: function lastStep() {
-      return this.totalSteps - 1;
-    },
-    furthestAllowed: function furthestAllowed() {
-      return _.min([this.completed + 1, this.lastStep]);
-    },
-    isComplete: function isComplete() {
-      return this.completed == this.lastStep;
-    },
-    isLastStep: function isLastStep() {
-      return this.currentStep == this.lastStep;
-    }
-  },
-
-  watch: {
-    completed: function completed() {
-      if (this.isComplete) {
-        this.$emit('phaseComplete', this.phaseIndex);
-      }
-    },
-    furthestAllowed: function furthestAllowed() {
-      Event.$emit('showPrompt');
-    }
-  },
-
-  created: function created() {
-    Event.$on('nextStep', this.nextStep);
-    Event.$on('prevStep', this.prevStep);
-    Event.$on('setStep', this.setStep);
-  },
-
-
-  methods: {
-    enter: function enter(el) {
-      console.log("enter", el);
-    },
-    leave: function leave(el) {
-      console.log("leave", el);
-    },
-    nextStep: function nextStep() {
-      if (this.state.currentPhase !== this.phaseIndex) {
-        return;
-      }
-
-      if (!this.isLastStep) {
-        if (this.currentStep < this.furthestAllowed) {
-          this.animation = "slide-next";
-          this.setStep(this.currentStep + 1);
-        }
-      } else {
-        console.log('end of phase, call nextPhase');
-        Event.$emit('nextPhase');
-      }
-    },
-    prevStep: function prevStep() {
-      if (this.state.currentPhase !== this.phaseIndex) {
-        return;
-      }
-
-      if (this.currentStep > 0) {
-        console.log('Got to Previous Step', this.id);
-        this.animation = "slide-prev";
-        this.setStep(this.currentStep - 1);
-      } else {
-        console.log('beggining of phase, call prevPhase');
-
-        this.$nextTick(function () {
-          Event.$emit('prevPhase', this.id);
-        });
-      }
-    },
-    setStep: function setStep(step) {
-      var phase = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.phaseIndex;
-
-      if (phase !== this.phaseIndex) {
-        return;
-      }
-
-      var index = step === "last" ? this.lastStep : step;
-
-      if (index >= 0 && index <= this.furthestAllowed) {
-        console.log('Step Set to:', index, this.id);
-        this.currentStep = index;
-        this.state.currentStep = this.stepOffset + index;
-
-        Event.$emit('hidePrompt');
-        console.log(this.currentStep);
-      }
-    },
-    completedStep: function completedStep(index) {
-      if (index > this.completed && index <= this.lastStep) {
-        console.log('completed step:', index);
-        this.completed = index;
-      } else {
-        console.log('already completed');
-      }
-    }
-  }
-};
-
-/***/ }),
-/* 37 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__radialGroup__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__radialGroup___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__radialGroup__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = {
-
-  components: {
-    radialGroup: __WEBPACK_IMPORTED_MODULE_1__radialGroup___default.a
-  },
-
-  props: {
-    id: {
-      type: String,
-      required: true
-    },
-    stepNum: {
-      type: Number,
-      required: true
-    },
-    stepIndex: {
-      type: Number,
-      required: true
-    },
-    intro: {
-      type: String
-    },
-    question: {
-      type: String
-    },
-    inputType: {
-      type: String
-    },
-    items: {
-      required: true
-    },
-    imageUrl: {
-      type: String
-    },
-    animation: {
-      type: String
-    }
-  },
-
-  data: function data() {
-    return {
-      state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state
-    };
-  },
-
-
-  computed: {
-    value: function value() {
-      return __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.model[this.id];
-    },
-    isSet: function isSet() {
-      return this.value ? true : false;
-    }
-  },
-
-  watch: {
-    isSet: function isSet() {
-      if (this.value) {
-        console.log('value is set. Emit Step Completed', this.stepIndex);
-        this.$emit('completedStep', this.stepIndex);
-        Event.$emit('stepComplete');
-      }
-    }
-  },
-
-  created: function created() {
-    // this.$emit('completedStep', this.stepIndex);
-  },
-
-
-  methods: {
-    updateModel: function updateModel(newValue) {
-      Event.$emit("updateModel", this.id, newValue);
-    }
+    Event.$on('setPhase', this.setPhase);
   }
 };
 
@@ -30173,7 +30240,7 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(31),
   /* template */
-  __webpack_require__(53),
+  __webpack_require__(54),
   /* scopeId */
   null,
   /* cssModules */
@@ -30207,15 +30274,15 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(32),
   /* template */
-  __webpack_require__(54),
+  __webpack_require__(53),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume.vue"
+Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume/editorNav.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] resume.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] editorNav.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -30224,9 +30291,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-98ef2ad4", Component.options)
+    hotAPI.createRecord("data-v-860e4a86", Component.options)
   } else {
-    hotAPI.reload("data-v-98ef2ad4", Component.options)
+    hotAPI.reload("data-v-860e4a86", Component.options)
   }
 })()}
 
@@ -30241,15 +30308,15 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(33),
   /* template */
-  __webpack_require__(49),
+  __webpack_require__(51),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resumeContent.vue"
+Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume/editorPhase.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] resumeContent.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] editorPhase.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -30258,9 +30325,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-101398b3", Component.options)
+    hotAPI.createRecord("data-v-7faa3695", Component.options)
   } else {
-    hotAPI.reload("data-v-101398b3", Component.options)
+    hotAPI.reload("data-v-7faa3695", Component.options)
   }
 })()}
 
@@ -30281,9 +30348,9 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resumeEditor.vue"
+Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume/editorStep.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] resumeEditor.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] editorStep.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -30292,9 +30359,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-751119ba", Component.options)
+    hotAPI.createRecord("data-v-85c489bc", Component.options)
   } else {
-    hotAPI.reload("data-v-751119ba", Component.options)
+    hotAPI.reload("data-v-85c489bc", Component.options)
   }
 })()}
 
@@ -30309,15 +30376,15 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(35),
   /* template */
-  __webpack_require__(51),
+  __webpack_require__(48),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resumeNav.vue"
+Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume/resume.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] resumeNav.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] resume.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -30326,9 +30393,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2e57ed46", Component.options)
+    hotAPI.createRecord("data-v-0eb74814", Component.options)
   } else {
-    hotAPI.reload("data-v-2e57ed46", Component.options)
+    hotAPI.reload("data-v-0eb74814", Component.options)
   }
 })()}
 
@@ -30349,9 +30416,9 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resumePhase.vue"
+Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume/resumeContent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] resumePhase.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] resumeContent.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -30360,9 +30427,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-21743d35", Component.options)
+    hotAPI.createRecord("data-v-5371495a", Component.options)
   } else {
-    hotAPI.reload("data-v-21743d35", Component.options)
+    hotAPI.reload("data-v-5371495a", Component.options)
   }
 })()}
 
@@ -30377,15 +30444,15 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(48),
+  __webpack_require__(49),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resumeStep.vue"
+Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume/resumeEditor.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] resumeStep.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] resumeEditor.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -30394,9 +30461,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0ca86082", Component.options)
+    hotAPI.createRecord("data-v-1e70dc83", Component.options)
   } else {
-    hotAPI.reload("data-v-0ca86082", Component.options)
+    hotAPI.reload("data-v-1e70dc83", Component.options)
   }
 })()}
 
@@ -30405,6 +30472,196 @@ module.exports = Component.exports
 
 /***/ }),
 /* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    class: {
+      'edit-mode': _vm.editMode
+    },
+    attrs: {
+      "id": "resume"
+    }
+  }, [_c('resume-editor', {
+    attrs: {
+      "schema": _vm.schema
+    }
+  }), _vm._v(" "), _c('resume-content', {
+    attrs: {
+      "schema": _vm.schema
+    }
+  }, [(_vm.state.isComplete) ? _c('button', {
+    staticClass: "edit-btn btn btn-secondary",
+    on: {
+      "click": _vm.toggle
+    }
+  }, [_vm._v(" edit ")]) : _vm._e()])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0eb74814", module.exports)
+  }
+}
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "resume__editor"
+  }, [_c('div', {
+    staticClass: "editor__header"
+  }, [_c('div', {
+    staticClass: "progress editor__progress"
+  }, [_c('div', {
+    staticClass: "progress-bar",
+    style: ({
+      width: _vm.percentComplete + '%'
+    }),
+    attrs: {
+      "role": "progressbar",
+      "aria-valuenow": _vm.percentComplete,
+      "aria-valuemin": "0",
+      "aria-valuemax": "100"
+    }
+  })]), _vm._v(" "), _c('h5', {
+    staticClass: "editor__phase-heading"
+  }, [_vm._v(_vm._s(_vm.schema.phases[_vm.currentPhase].title))]), _vm._v(" "), _c('ul', {
+    staticClass: "editor__phase__dots"
+  }, _vm._l((_vm.schema.phases), function(phase, index) {
+    return _c('li', {
+      class: {
+        '-active': _vm.currentPhase == index, '-disabled': _vm.furthestAllowed < index
+      },
+      on: {
+        "click": function($event) {
+          _vm.setPhase(index, 0)
+        }
+      }
+    }, [_vm._v("\n        " + _vm._s(index + 1) + "\n      ")])
+  })), _vm._v(" "), _c('hr')]), _vm._v(" "), _c('transition-group', {
+    staticClass: "editor_phases",
+    attrs: {
+      "name": "v",
+      "tag": "div"
+    }
+  }, _vm._l((_vm.schema.phases), function(phase, index) {
+    return _c('editor-phase', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.currentPhase == index),
+        expression: "currentPhase == index"
+      }],
+      key: phase.id,
+      attrs: {
+        "id": phase.id,
+        "stepOffset": _vm.getStepOffset(index),
+        "phaseIndex": index,
+        "steps": phase.steps
+      },
+      on: {
+        "phaseComplete": _vm.phaseComplete
+      }
+    })
+  })), _vm._v(" "), _c('div', {
+    staticClass: "editor__footer"
+  }, [_c('editor-nav')], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-1e70dc83", module.exports)
+  }
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "resume__content"
+  }, [(_vm.state.showIntro) ? _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "g__row"
+  }, [_c('div', {
+    staticClass: "g__col12"
+  }, [_c('h1', [_vm._v("Resume Content")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-secondary",
+    on: {
+      "click": function($event) {
+        _vm.start()
+      }
+    }
+  }, [_vm._v(" Lets Go! ")])])]), _vm._v(" "), _vm._t("default")], 2) : [_c('intro-phase', {
+    attrs: {
+      "id": "intro",
+      "phase-index": 0,
+      "phase": _vm.schema.phases[0]
+    }
+  }), _vm._v(" "), _c('button', {
+    staticClass: "edit-btn btn btn-secondary",
+    on: {
+      "click": function($event) {
+        _vm.toggle()
+      }
+    }
+  }, [_vm._v(_vm._s(this.state.editMode ? 'close' : 'edit'))])]], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5371495a", module.exports)
+  }
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "editor__phase"
+  }, [_c('transition', {
+    attrs: {
+      "name": _vm.animation
+    }
+  }, _vm._l((_vm.steps), function(step, index) {
+    return (_vm.state.currentStep == _vm.stepOffset + index) ? _c('editor-step', {
+      key: index,
+      attrs: {
+        "stepIndex": index,
+        "stepNum": _vm.stepOffset + index,
+        "imageUrl": step.imageUrl,
+        "intro": step.intro,
+        "question": step.question,
+        "inputType": step.type,
+        "items": step.items,
+        "id": step.id
+      },
+      on: {
+        "completedStep": _vm.completedStep
+      }
+    }) : _vm._e()
+  }))], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7faa3695", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -30441,104 +30698,12 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0ca86082", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-85c489bc", module.exports)
   }
 }
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "resume__content"
-  }, [_vm._l((2), function(a) {
-    return _c('div', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (_vm.state.currentPhase == a - 1),
-        expression: "state.currentPhase == a - 1"
-      }]
-    }, [_c('transition-group', {
-      attrs: {
-        "tag": "div"
-      }
-    }, _vm._l((5), function(n) {
-      return _c('div', {
-        directives: [{
-          name: "show",
-          rawName: "v-show",
-          value: (_vm.state.currentStep == n),
-          expression: "state.currentStep == n"
-        }],
-        key: n,
-        staticClass: "list-item"
-      }, [_c('p', [_vm._v(_vm._s(n))])])
-    }))], 1)
-  }), _vm._v(" "), _vm._t("default")], 2)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-101398b3", module.exports)
-  }
-}
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "editor__phase"
-  }, [_c('transition-group', {
-    staticClass: "editor__steps",
-    attrs: {
-      "tag": "div",
-      "css": true,
-      "appear": true
-    },
-    on: {
-      "enter": _vm.enter,
-      "leave": _vm.leave
-    }
-  }, _vm._l((_vm.steps), function(step, index) {
-    return _c('resume-step', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (_vm.state.currentStep == _vm.stepOffset + index),
-        expression: "state.currentStep ==  stepOffset + index"
-      }],
-      key: index,
-      attrs: {
-        "stepIndex": index,
-        "stepNum": _vm.stepOffset + index,
-        "imageUrl": step.imageUrl,
-        "intro": step.intro,
-        "question": step.question,
-        "inputType": step.type,
-        "items": step.items,
-        "id": step.id
-      },
-      on: {
-        "completedStep": _vm.completedStep
-      }
-    })
-  }))], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-21743d35", module.exports)
-  }
-}
-
-/***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -30605,80 +30770,12 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2e57ed46", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-860e4a86", module.exports)
   }
 }
 
 /***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "resume__editor"
-  }, [_c('div', {
-    staticClass: "editor__header"
-  }, [_c('div', {
-    staticClass: "progress editor__progress"
-  }, [_c('div', {
-    staticClass: "progress-bar",
-    style: ({
-      width: _vm.percentComplete + '%'
-    }),
-    attrs: {
-      "role": "progressbar",
-      "aria-valuenow": _vm.percentComplete,
-      "aria-valuemin": "0",
-      "aria-valuemax": "100"
-    }
-  })]), _vm._v(" "), _c('h5', {
-    staticClass: "editor__phase-heading"
-  }, [_vm._v(_vm._s(_vm.schema.phases[_vm.currentPhase].title))]), _vm._v(" "), _c('ul', {
-    staticClass: "editor__phase__dots"
-  }, _vm._l((_vm.schema.phases), function(phase, index) {
-    return _c('li', {
-      class: {
-        '-active': _vm.currentPhase == index, '-disabled': _vm.furthestAllowed < index
-      },
-      on: {
-        "click": function($event) {
-          _vm.setPhase(index, 0)
-        }
-      }
-    }, [_vm._v("\n        " + _vm._s(index + 1) + "\n      ")])
-  })), _vm._v(" "), _c('hr')]), _vm._v(" "), _vm._l((_vm.schema.phases), function(phase, index) {
-    return _c('resume-phase', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (_vm.currentPhase == index),
-        expression: "currentPhase == index"
-      }],
-      key: phase.id,
-      attrs: {
-        "id": phase.id,
-        "stepOffset": _vm.getStepOffset(index),
-        "phaseIndex": index,
-        "steps": phase.steps
-      },
-      on: {
-        "phaseComplete": _vm.phaseComplete
-      }
-    })
-  }), _vm._v(" "), _c('div', {
-    staticClass: "editor__footer"
-  }, [_c('resume-nav')], 1)], 2)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-751119ba", module.exports)
-  }
-}
-
-/***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -30708,34 +30805,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-8f7512f2", module.exports)
-  }
-}
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    class: {
-      'edit-mode': _vm.editMode
-    },
-    attrs: {
-      "id": "resume"
-    }
-  }, [_c('resume-editor', {
-    attrs: {
-      "schema": _vm.schema
-    }
-  }), _vm._v(" "), _c('resume-content', [_c('button', {
-    staticClass: "edit-btn btn btn-secondary"
-  }, [_vm._v(" edit ")])])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-98ef2ad4", module.exports)
   }
 }
 
@@ -39350,6 +39419,274 @@ module.exports = function(module) {
 __webpack_require__(11);
 module.exports = __webpack_require__(12);
 
+
+/***/ }),
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resumePhase__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resumePhase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__resumePhase__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__resumePhase___default.a],
+
+  components: {
+    resumePhase: __WEBPACK_IMPORTED_MODULE_0__resumePhase___default.a
+  },
+
+  props: {},
+
+  data: function data() {
+    return {};
+  },
+
+
+  computed: {
+    introStyle: function introStyle() {
+      return this.model.introStyle;
+    }
+  },
+
+  watch: {},
+
+  methods: {},
+
+  created: function created() {}
+};
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  components: {},
+
+  props: {
+    id: {
+      type: String,
+      required: true
+    },
+    phaseIndex: {
+      type: Number,
+      required: true
+    },
+    phase: {
+      type: Object
+    }
+  },
+
+  data: function data() {
+    return {
+      state: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.state,
+      model: __WEBPACK_IMPORTED_MODULE_0__global__["a" /* store */].resume.model
+    };
+  },
+
+
+  computed: {},
+
+  watch: {},
+
+  methods: {},
+
+  created: function created() {}
+};
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(66),
+  /* template */
+  __webpack_require__(70),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume/introPhase.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] introPhase.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-81bf8e90", Component.options)
+  } else {
+    hotAPI.reload("data-v-81bf8e90", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(67),
+  /* template */
+  __webpack_require__(71),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/adamvolkman/Code/well-done/resources/assets/js/components/resume/resumePhase.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] resumePhase.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8e0fb056", Component.options)
+  } else {
+    hotAPI.reload("data-v-8e0fb056", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('resume-phase', {
+    attrs: {
+      "id": _vm.id,
+      "phaseIndex": _vm.phaseIndex,
+      "phase": _vm.phase
+    }
+  }, [(_vm.introStyle) ? _c('div', [_c('h4', {
+    staticClass: "c--gray-light"
+  }, [_c('span', {
+    staticClass: "c--gummy"
+  }, [_vm._v("Adam Volkman")]), _vm._v(" – Maker of things")])]) : _vm._e(), _vm._v(" "), (_vm.introStyle == 'value 1') ? _c('div', {}, [_c('h3', [_vm._v("I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to make things with purpose.")])]) : _vm._e(), _vm._v(" "), (_vm.introStyle == 'value 2') ? _c('div', {}, [_c('h4', [_vm._v("section 2")])]) : _vm._e(), _vm._v(" "), (_vm.introStyle == 'value 3') ? _c('div', {}, [_c('h4', [_vm._v("section 3")])]) : _vm._e(), _vm._v(" "), (_vm.introStyle == 'value 4') ? _c('div', {}, [_c('h4', [_vm._v("section 4")])]) : _c('div', {
+    staticClass: "alert alert--info -max--sm"
+  }, [_c('p', {
+    staticClass: "t--sans"
+  }, [_c('strong', [_vm._v("Tip.")]), _vm._v(" The intro is your main first impression. Make sure this part really grabs you and makes you want to continue reading.")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-81bf8e90", module.exports)
+  }
+}
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('transition', {
+    attrs: {
+      "name": "slide",
+      "mode": "out-in"
+    }
+  }, [(_vm.phaseIndex == _vm.state.currentPhase) ? _c('div', {
+    staticClass: "content__phase-wrap",
+    attrs: {
+      "id": 'phase__' + _vm.id
+    }
+  }, [_c('div', {
+    staticClass: "content__phase"
+  }, [_c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "g__row"
+  }, [_c('div', {
+    staticClass: "g__col mb-4"
+  }, [_c('h4', [_vm._v(_vm._s(_vm.phase.title))])])]), _vm._v(" "), _c('div', {
+    staticClass: "g__row"
+  }, [_c('div', {
+    staticClass: "g__col"
+  }, [_vm._t("default")], 2)])])])]) : _vm._e()])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-8e0fb056", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

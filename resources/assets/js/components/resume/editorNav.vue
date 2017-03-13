@@ -39,7 +39,7 @@
 
 <script>
 
-  import {store} from './global';
+  import {store} from '../global';
 
 
   export default {
@@ -93,13 +93,18 @@
       close() {
         this.showDone = false;
         Event.$emit('toggleEditMode');
+        Event.$emit('setPhase', 0, 0);
       }
     },
 
     created() {
       Event.$on('showPrompt', (text = "next") => {
         this.showPrompt = true;
-        this.promptText = text;
+        let promptOptions = [
+          "Next", "Onward", "This Way", "More"
+        ]
+
+        this.promptText = promptOptions[_.random(0, promptOptions.length - 1)];
       });
 
       Event.$on('hidePrompt', () => {

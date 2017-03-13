@@ -1,22 +1,20 @@
 <template>
   <div id="resume" :class="{'edit-mode' : editMode}">
     <resume-editor :schema="schema"></resume-editor>
-    <resume-content>
-      <button class="edit-btn btn btn-secondary"> edit </button>
-    </resume-content>
+    <resume-content :schema="schema"></resume-content>
   </div>
 
 </template>
 
 <script>
 
-import {store} from './global.js';
+import {store} from '../global.js';
 import resumeEditor from './resumeEditor';
 import resumeContent from './resumeContent';
 
 store.resume.model = {
-  q1 : '',
-  q2 : '',
+  introStyle : '',
+  personal : '',
   q3 : '',
   q4 : '',
   q5 : '',
@@ -28,7 +26,10 @@ store.resume.state = {
   furthestAllowed : 0,
   completedSteps : 0,
   totalSteps : 0,
+  direction : '',
   isComplete : false,
+  editMode : false,
+  showIntro : true,
 };
 
 export default {
@@ -40,7 +41,6 @@ export default {
     return {
       model : store.resume.model,
       state : store.resume.state,
-      editMode : false,
       schema : {
         phases : [
           {
@@ -48,19 +48,19 @@ export default {
             title : "Intro",
             steps : [
               {
-                id : "q1",
-                intro : "Facial Hair",
-                question : "Add some fuzz to this peach",
+                id : "introStyle",
+                intro : "First impressions",
+                question : "You only get to pick one.",
                 type : "radialGroup",
                 imageUrl : "/img/portrait-beard.png",
                 items : [
                   {
-                    text : "option 1",
-                    value : "value 1"
+                    text : "Pretty Standard",
+                    value : "standard"
                   },
                   {
-                    text : "option 2",
-                    value : "value 2"
+                    text : "Poetic",
+                    value : "haiku"
                   },
                   {
                     text : "option 3",
@@ -81,7 +81,7 @@ export default {
                 ]
               },
               {
-                id : "q2",
+                id : "personal",
                 intro : "qestion 1.2",
                 question : "This is Question 1.2",
                 type : "radialGroup",
@@ -188,6 +188,9 @@ export default {
     },
     furthestAllowed() {
       return _.min([this.state.completedSteps + 1, this.state.totalSteps]);
+    },
+    editMode() {
+      return this.state.editMode;
     }
   },
 
@@ -205,11 +208,13 @@ export default {
     }
   },
 
-  mounted() {
-    let button = document.getElementsByClassName('edit-btn');
-    button[0].addEventListener('click', () => {
+  methods : {
+    toggle() {
       Event.$emit('toggleEditMode');
-    });
+    }
+  },
+
+  mounted() {
   },
 
   created() {
@@ -222,7 +227,7 @@ export default {
     });
 
     Event.$on('toggleEditMode', () => {
-      this.editMode = !this.editMode;
+      this.state.editMode = !this.state.editMode;
     });
 
     Event.$on('stepComplete', () => {

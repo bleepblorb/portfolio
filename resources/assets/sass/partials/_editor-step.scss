@@ -2,81 +2,7 @@
 // Editor Step & Phase
 //
 
-.list-item {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform : translateX(0px);
-  opacity: 1;
-
-  &.v-enter-to {
-    transform : translateX(0px);
-    opacity: 1;
-  }
-
-  &.v-enter-active {
-    transition: all 3000ms 500ms;
-  }
-
-   &.v-leave-active {
-    transition: all 3000ms;
-   }
-
-  &.v-enter, &.v-leave-to {
-    opacity: 0;
-  }
-
-  &.v-enter {
-    transform: translateX(-100px);
-  }
-
-  &.v-leave-to {
-    transform: translateX(100px);
-  }
-}
-
-.editor__step {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  top: 0;
-  min-width: 480px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform : translateX(0px);
-  opacity: 1;
-
-  &.v-leave-active {
-    transition: all 3000ms;
-  }
-
-  &.v-enter-active {
-    transition: all 3000ms 500ms;
-  }
-
-  &.v-enter, &.v-leave-to {
-    opacity: 0;
-  }
-
-  &.v-enter {
-    transform: translateX(-400px);
-  }
-
-  &.v-leave-to {
-    transform: translateX(400px);
-  }
-}
-
-
-.editor__phase {
+.editor__phase, .editor__step {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -88,13 +14,17 @@
   align-items: center;
   // transform : translateX(0px);
   opacity: 1;
+}
+
+
+.editor__step {
 
   &.slide-next-enter-active, &.slide-prev-enter-active {
-    transition: all 600ms 300ms ease;
+    transition: all 500ms 200ms ease-in-out;
   }
 
   &.slide-next-leave-active, &.slide-prev-leave-active {
-    transition: all 600ms cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 700ms ease-in-out;
   }
   &.slide-next-enter,
   &.slide-next-leave-to,
@@ -105,12 +35,23 @@
 
   &.slide-next-enter,
   &.slide-prev-leave-to {
-    transform: translateX(300px);
+    transform: translateX(400px);
   }
 
   &.slide-prev-enter,
   &.slide-next-leave-to {
-    transform: translateX(-300px);
+    transform: translateX(-400px);
+  }
+}
+
+.editor__phase {
+  &.v-enter-active,
+  &.v-leave-active {
+    transition: all 900ms;
+  }
+
+  &.v-enter, &.v-leave-to {
+    opacity: 0;
   }
 }
 

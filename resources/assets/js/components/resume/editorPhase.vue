@@ -1,12 +1,9 @@
 <template>
     <div class="editor__phase">
-      <transition-group class="editor__steps" tag="div" :css="true" :appear="true"
-        v-on:enter="enter"
-        v-on:leave="leave"
-      >
-        <resume-step
+      <transition :name="animation">
+        <editor-step
           v-for="(step, index) in steps"
-          v-show="state.currentStep ==  stepOffset + index"
+          v-if="state.currentStep ==  stepOffset + index"
           :key="index"
           :stepIndex="index"
           :stepNum="stepOffset + index"
@@ -17,18 +14,18 @@
           :items="step.items"
           :id="step.id"
           @completedStep="completedStep"
-        ></resume-step>
-      </transition-group>
+        ></editor-step>
+      </transition>
     </div>
 </template>
 
 <script>
-  import {store} from './global';
-  import resumeStep from './resumeStep';
+  import {store} from '../global';
+  import editorStep from './editorStep';
 
   export default {
     components : {
-      resumeStep
+      editorStep
     },
 
     props : {
@@ -57,9 +54,9 @@
     data() {
       return {
         state : store.resume.state,
-        animation : "slide-next",
         currentStep : 0,
         completed : -1,
+        // animation : ''
       }
     },
 
@@ -78,6 +75,9 @@
       },
       isLastStep() {
         return this.currentStep == this.lastStep;
+      },
+      animation() {
+        return 'slide-' + this.state.direction
       }
     },
 
@@ -106,11 +106,12 @@
         console.log("leave", el);
       },
       nextStep() {
+        // this.animation = "slide-next";
         if ( this.state.currentPhase !== this.phaseIndex ) { return; }
 
         if ( !this.isLastStep ) {
           if ( this.currentStep < this.furthestAllowed ) {
-            this.animation = "slide-next";
+
             this.setStep( this.currentStep + 1 );
           }
         }
@@ -121,11 +122,11 @@
       },
 
       prevStep() {
+        // this.animation = "slide-prev";
         if ( this.state.currentPhase !== this.phaseIndex ) { return; }
 
         if ( this.currentStep > 0 ) {
           console.log('Got to Previous Step', this.id);
-          this.animation = "slide-prev";
           this.setStep(this.currentStep - 1);
         }
         else {
@@ -144,11 +145,15 @@
 
         if (index >= 0 && index <= this.furthestAllowed) {
           console.log('Step Set to:', index, this.id);
-          this.currentStep = index;
-          this.state.currentStep = this.stepOffset + index;
 
-          Event.$emit('hidePrompt');
-          console.log(this.currentStep);
+          this.state.direction =  this.stepOffset + index > this.state.currentStep ? 'next' : 'prev';
+          console.log(this.stepOffset + index, this.state.currentStep, this.state.direction)
+
+          this.$nextTick(function() {
+            this.state.currentStep = this.stepOffset + index;
+            this.currentStep = index;
+            Event.$emit('hidePrompt');
+          });
         }
       },
 

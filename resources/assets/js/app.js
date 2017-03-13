@@ -1,7 +1,7 @@
 
 require('./bootstrap');
 
-import resume from './components/resume';
+import resume from './components/resume/resume';
 
 window.Event = new Vue();
 

@@ -18,8 +18,8 @@
     </div>
 
     <!-- Slot Content -->
-    <!-- <transition-group :name="animation" tag="div" class="editor_phases"> -->
-      <resume-phase
+    <transition-group name="v" tag="div" class="editor_phases">
+      <editor-phase
         v-for="(phase, index) in schema.phases"
         v-show="currentPhase == index"
         :key="phase.id"
@@ -28,26 +28,26 @@
         :phaseIndex="index"
         :steps="phase.steps"
         @phaseComplete="phaseComplete"
-        ></resume-phase>
-    <!-- </transition-group> -->
+      ></editor-phase>
+    </transition-group>
 
     <!-- Footer -->
     <div class="editor__footer">
-      <resume-nav></resume-nav>
+      <editor-nav></editor-nav>
     </div>
   </div>
 </template>
 
 <script>
 
-  import {store} from './global';
-  import resumePhase from './resumePhase';
-  import resumeNav from './resumeNav';
+  import {store} from '../global';
+  import editorPhase from './editorPhase';
+  import editorNav from './editorNav';
 
   export default {
 
     components : {
-      resumePhase, resumeNav
+      editorPhase, editorNav
     },
 
     props : {
@@ -62,7 +62,6 @@
         state : store.resume.state,
         currentPhase: 0,
         completed: -1,
-        animation: "slide-next",
         nextBtn : {
           "class" : "-disabled",
           "text" : "next"
@@ -97,6 +96,10 @@
       },
       percentComplete() {
         return (this.state.completedSteps / this.totalSteps) * 100;
+      },
+      animation() {
+        if ( this.state.direction == 'next' ) { return 'slide-next' }
+        else if ( this.state.direction == 'prev' ) { return 'slide-prev' };
       }
     },
 
@@ -143,7 +146,6 @@
       setPhase(index, step = null) {
         console.log('Phase Set to:', index);
         if (index <= this.furthestAllowed) {
-          this.animation = index > this.currentPhase ? 'slide-next' : 'slide-prev';
           this.currentPhase = index;
           this.state.currentPhase = index;
 
@@ -167,6 +169,7 @@
     created() {
       Event.$on('nextPhase', this.nextPhase);
       Event.$on('prevPhase', this.prevPhase);
+      Event.$on('setPhase', this.setPhase);
     }
   }
 </script>
