@@ -19,6 +19,10 @@ Route::get('/resume', function () {
     return view('resume');
 })->name('resume');
 
+Route::post('/img/portrait', 'ImageController@portrait');
+
+
+// Style Guide
 
 Route::get('/styles', function () {
     return view('styles');
