@@ -1,51 +1,55 @@
 <template>
-  <resume-phase :id="id" :phaseIndex="phaseIndex" :phase="phase">
-    <transition name="slide" mode="out-in">
-      <div class="" v-if="introStyle == 'standard'" key="standard">
-        <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-        <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to make things with worth.</h2>
-      </div>
-      <div class="" v-else-if="introStyle == 'haiku'" key="haiku">
-        <!-- <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4> -->
-        <h2>
-          A maker of things. <small>(5)</small><br>
-          Design, dev, & draw – you bet! <small>(7)</small><br>
-          A poet? why not. <small>(5)</small>
-        </h2>
-        <h6 class="c--gray-light mt-2">— Adam Volkman, 2017</h6>
-      </div>
-      <div class="" v-else-if="introStyle == 'value 3'" key="value2">
-        <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-        <h4>section 3</h4>
-      </div>
-      <div class="" v-else-if="introStyle == 'value 4'" key="value3">
-        <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-        <h4>section 4</h4>
-      </div>
-      <div class="" v-else-if="introStyle == 'value 5'" key="value4">
-        <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-        <h4>section 5</h4>
-      </div>
-      <div class="" v-else-if="introStyle == 'value 6'" key="value5">
-        <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-        <h4>section 6</h4>
-      </div>
-      <div v-else class="alert alert--info -max--sm">
-        <p class="t--sans c--jazzy"><strong>Remember —</strong> Your first impression is very important. It sets the tone for the whole resume and everyone will decide instantly whether they hate you or not. <strong>Good Luck!</strong></p>
+    <div :id="'phase__' + id">
+      <!-- <transition name="slide" mode="out-in"> -->
+        <div class="" v-if="introStyle == 'standard'" key="standard">
+          <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
+          <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to <toggler :active="state.editMode" id="togglerIntro" :index="togglerIntro" :options="['create things with value', 'make cool shit', 'get paid for doing something I love']"></toggler>.</h2>
+        </div>
+        <div class="" v-else-if="introStyle == 'haiku'" key="haiku">
+          <h2>
+            A maker of things. <small>(5)</small><br>
+            Design, dev, &amp; draw – you bet! <small>(7)</small><br>
+            A poet? <toggler :active="state.editMode" id="togglerPoem" :index="togglerPoem" :options="['oh yeah', 'why not', 'uh, meh', 'no way']"></toggler>. <small>(5)</small>
+          </h2>
+          <h6 class="c--gray-light mt-2">— Adam Volkman, 2017</h6>
+        </div>
+        <div class="" v-else-if="introStyle == 'value 3'" key="value2">
+          <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
+          <h4>section 3</h4>
+        </div>
+        <div class="" v-else-if="introStyle == 'value 4'" key="value3">
+          <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
+          <h4>section 4</h4>
+        </div>
+        <div class="" v-else-if="introStyle == 'value 5'" key="value4">
+          <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
+          <h4>section 5</h4>
+        </div>
+        <div class="" v-else-if="introStyle == 'value 6'" key="value5">
+          <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
+          <h4>section 6</h4>
+        </div>
+        <div v-else class="alert alert--info -max--sm">
+          <p class="t--sans c--jazzy"><strong>Remember —</strong> Your first impression is very important. It sets the tone for the whole resume and everyone will decide instantly whether they hate you or not. <strong>Good Luck!</strong></p>
+        </div>
+      <!-- </transition> -->
+      <div class="g__row mt-3">
+        <div class="g__col">
+          <p >Personal Interests include <ul class="-inline-text"><li v-for="item in model.personal">{{item}}</span></ul>.</p>
         </div>
       </div>
-    </transition>
-  </resume-phase>
+    </div>
 </template>
 
 <script>
   import resumePhase from './resumePhase';
+  import toggler from '../toggler';
 
   export default {
     mixins : [ resumePhase ],
 
     components : {
-      resumePhase
+      resumePhase, toggler
     },
 
     props : {
@@ -53,13 +57,28 @@
 
     data() {
       return {
-
       }
     },
 
     computed : {
       introStyle() {
         return this.model.introStyle;
+      },
+      togglerPoem : {
+        get() {
+          return this.model.togglerPoem;
+        },
+        set(value) {
+          this.model.togglerPoem = value;
+        }
+      },
+      togglerIntro : {
+        get() {
+          return this.model.togglerIntro;
+        },
+        set(value) {
+          this.model.togglerIntro = value;
+        }
       }
     },
 
@@ -72,6 +91,9 @@
     },
 
     created() {
+      this.$on('toggleUpdate', function(id, value) {
+        this[id] = value;
+      });
     },
 
   }

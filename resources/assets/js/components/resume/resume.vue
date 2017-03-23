@@ -2,6 +2,9 @@
   <div id="resume" :class="{'edit-mode' : editMode}">
     <resume-editor :schema="schema"></resume-editor>
     <resume-content :schema="schema"></resume-content>
+    <div class="sidebar"  v-if="!state.showIntro">
+      <button @click="toggle()" class="edit-btn">e</button>
+    </div>
   </div>
 
 </template>
@@ -13,11 +16,18 @@ import resumeEditor from './resumeEditor';
 import resumeContent from './resumeContent';
 
 store.resume.model = {
-  introStyle : '',
-  personal : '',
-  q3 : '',
-  q4 : '',
-  q5 : '',
+  intro : {
+    introStyle : '',
+    personal : [],
+    togglerPoem : 0,
+    togglerIntro : 0,
+  },
+  portrait : {
+    expression : 'normal',
+    facialHair : '',
+    hair : 'default',
+    attire : ''
+  }
 }
 
 store.resume.state = {
@@ -28,8 +38,9 @@ store.resume.state = {
   totalSteps : 0,
   direction : '',
   isComplete : false,
-  editMode : false,
-  showIntro : true,
+  editMode : true,
+  showIntro : false,
+
 };
 
 export default {
@@ -39,8 +50,8 @@ export default {
 
   data() {
     return {
-      model : store.resume.model,
       state : store.resume.state,
+      model : store.resume.model,
       schema : {
         phases : [
           {
@@ -51,7 +62,7 @@ export default {
                 id : "introStyle",
                 intro : "First impressions",
                 question : "You only get to pick one.",
-                type : "radialGroup",
+                type : "radial-group",
                 imageUrl : "/img/portrait-beard.png",
                 items : [
                   {
@@ -82,87 +93,104 @@ export default {
               },
               {
                 id : "personal",
-                intro : "qestion 1.2",
-                question : "This is Question 1.2",
-                type : "radialGroup",
+                intro : "Humanize me",
+                question : "The spot for obligitory personal interests",
+                imageUrl : "/img/portrait-beard.png",
+                type : "checkbox-group",
                 items : [
                   {
-                    text : "option 1",
-                    value : "value 1"
+                    text : "Cooking",
+                    value : "making a mess in the kitchen"
                   },
                   {
-                    text : "option 2",
-                    value : "value 2"
+                    text : "Hiking",
+                    value : "pooping in the woods"
                   },
                   {
-                    text : "option 3",
-                    value : "value 3"
-                  }
-                ]
-              },
-              {
-                id : "q3",
-                intro : "qestion 1.3",
-                question : "This is Question 1.3",
-                type : "radialGroup",
-                items : [
-                  {
-                    text : "option 1",
-                    value : "value 1"
+                    text : "Cartoons",
+                    value : "watching cartoons"
                   },
                   {
-                    text : "option 2",
-                    value : "value 2"
+                    text : "Tennis",
+                    value : "playing tennis"
                   },
                   {
-                    text : "option 3",
-                    value : "value 3"
+                    text : "Pooping",
+                    value : "pooping"
+                  },
+                  {
+                    text : "Learning",
+                    value : "learning new skills (that killz)"
                   }
                 ]
               }
             ]
           },
           {
-            id : "phase2",
-            title: "Phase 2",
+            id : "portrait",
+            title: "Portrait",
             steps : [
               {
-                id : "q4",
-                intro : "qestion 2.1",
-                question : "This is Question 2.1",
-                type : "radialGroup",
+                id : "expression",
+                imageUrl : "/img/portrait-beard.png",
+                intro : "Expression",
+                question : "Choose a face",
+                type: "slider-input",
+                label: "Level Of Excitement",
                 items : [
                   {
-                    text : "option 2.1",
-                    value : "value 2.1"
+                    text : "All Business",
+                    value : "business"
                   },
                   {
-                    text : "option 2.2",
-                    value : "value 2"
+                    text : "Robotic",
+                    value : "robot"
                   },
                   {
-                    text : "option 3.2",
-                    value : "value 3"
+                    text : "Seemingly Normal",
+                    value : "normal"
+                  },
+                  {
+                    text : "Happy Go Lucky",
+                    value : "happy"
+                  },
+                  {
+                    text : "Sugar Buzz",
+                    value : "excited"
+                  },
+                ]
+
+              },
+              {
+                id : "facialHair",
+                imageUrl : "/img/portrait-beard.png",
+                intro : "Facial hair",
+                question : "Put some fuzz on this peach",
+                type : "radial-group",
+                items : [
+                  {
+                    text : "Beardo weirdo",
+                    value : "beard"
+                  },
+                  {
+                    text : "No Thanks",
+                    value : "clean"
                   }
                 ]
               },
               {
-                id : "q5",
+                id : "background",
                 intro : "qestion 2.2",
                 question : "This is Question 2.2",
-                type : "radialGroup",
+                type : "radial-group",
                 items : [
                   {
-                    text : "option 2.1",
-                    value : "value 2.1"
+                    text : "K.I.S.S.",
+                    value : "white"
                   },
                   {
-                    text : "option 2.2",
-                    value : "value 2"
-                  },
-                  {
-                    text : "option 3.2",
-                    value : "value 3"
+                    text : "Camping",
+                    value : "camping"
                   }
                 ]
               }
@@ -218,20 +246,24 @@ export default {
   },
 
   created() {
+    console.log(this.model);
 
     this.state.totalSteps = this.totalSteps;
 
-    Event.$on('updateModel', (name, value) => {
-      this.model[name] = value;
-      console.log("updating Model", name, "to", value);
+    Event.$on('updateModel', (phase, step, value) => {
+      this.$set(this.model[phase], step, value);
+      console.log("updating " + phase +"->" + step + " to " + value);
     });
 
     Event.$on('toggleEditMode', () => {
       this.state.editMode = !this.state.editMode;
     });
 
-    Event.$on('stepComplete', () => {
-      this.state.completedSteps++;
+    Event.$on('stepComplete', (step) => {
+      console.log(step, this.state.completedSteps);
+      if ( step > this.state.completedSteps ) {
+        this.state.completedSteps = step;
+      }
     });
   }
 }

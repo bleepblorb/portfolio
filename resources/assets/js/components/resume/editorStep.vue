@@ -1,18 +1,33 @@
 <template>
   <div class="editor__step">
     <div class="editor__content">
-      <img class="intro-photo" v-if="imageUrl" :src="imageUrl" alt="">
+      <div class="intro-photo" v-if="imageUrl">
+        <img :src="imageUrl" alt="">
+      </div>
       <div class="editor__question">
         <h4 class="c--gummy">{{intro}}</h4>
         <h3 class="c--late-night">{{question}}</h3>
       </div>
 
-      <div class="editor__input" :class="inputType">
-        <radial-group
+      <multiselect
+        v-model="value"
+        :options="items"
+        placeholder="select something"
+        track-by="value"
+        label="text"
+      ></multiselect>
+
+      <div class="editor__input">
+        <component :is="inputType"
           @updateValue="updateModel"
           :items="items"
-          :value="value">
-        </radial-group>
+          :value="value"
+          :id="id"
+          :label="label">
+        </component>
+      </div>
+      <div class="editor__errors">
+        <p class="has-error">{{error}}</p>
       </div>
     </div>
   </div>
@@ -21,11 +36,14 @@
 <script>
   import {store} from '../global';
   import radialGroup from '../radialGroup';
+  import checkboxGroup from '../checkboxGroup';
+  import sliderInput from '../sliderInput';
+  import multiselect from '../multiselect';
 
   export default {
 
     components : {
-      radialGroup
+      radialGroup, checkboxGroup, sliderInput, multiselect
     },
 
     props : {
@@ -55,41 +73,80 @@
       },
       imageUrl : {
         type : String
+      },
+      phase : {
+        type : String,
+        required : true
+      },
+      label : {
+        type : String,
+        required : false
       }
     },
 
     data() {
       return {
-        state : store.resume.state
+        state : store.resume.state,
+        model : store.resume.model[this.phase],
+        error : '',
       }
     },
 
     computed : {
-      value() {
-        return store.resume.model[this.id];
+      value : {
+        get() {
+          return this.model[this.id];
+        },
+        set(newValue) {
+          this.model[this.id] = newValue;
+        }
       },
       isSet() {
-        return this.value ? true : false;
+        return this.isEmpty(this.value);
       }
     },
 
     watch : {
       isSet : function() {
-        if(this.value) {
+        if(this.isSet) {
           console.log('value is set. Emit Step Completed', this.stepIndex);
           this.$emit('completedStep', this.stepIndex);
-          Event.$emit('stepComplete');
+          Event.$emit('stepComplete', this.stepNum);
         }
       }
     },
 
     created() {
       // this.$emit('completedStep', this.stepIndex);
+      //
+      if ( this.isSet ) {
+        console.log('value is set. Emit Step Completed', this.stepIndex);
+        this.$emit('completedStep', this.stepIndex);
+        Event.$emit('stepComplete', this.stepNum);
+      }
+
+      this.$on('setError', (error) => {
+        this.error = error;
+        window.setTimeout( () => {
+          this.error = '';
+          console.log('reset', this);
+        }, 2000);
+      });
     },
 
     methods : {
       updateModel : function(newValue) {
-        Event.$emit("updateModel", this.id, newValue);
+        Event.$emit("updateModel", this.phase, this.id, newValue);
+      },
+
+      isEmpty(value) {
+        if( _.isEmpty(value)) {
+          return false;
+        }
+
+        if (value) {
+          return true;
+        }
       }
     }
   }

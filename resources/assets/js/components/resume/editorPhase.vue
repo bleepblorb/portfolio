@@ -13,6 +13,8 @@
           :inputType="step.type"
           :items="step.items"
           :id="step.id"
+          :phase="id"
+          :label="step.label"
           @completedStep="completedStep"
         ></editor-step>
       </transition>
@@ -56,7 +58,6 @@
         state : store.resume.state,
         currentStep : 0,
         completed : -1,
-        // animation : ''
       }
     },
 
