@@ -95,6 +95,46 @@ ul, ol {
       }
     }
   }
+
+  &.-inline-text {
+    display: inline;
+
+    li {
+      display: inline;
+
+      &:after {
+        content: ',';
+      }
+
+      &:nth-of-type(2):before {
+        content: ', '
+      }
+
+      &:before {
+        content: ' ';
+      }
+
+      &:last-of-type:before {
+        content: ' and ';
+      }
+
+      &:last-of-type:after {
+        content: '';
+      }
+      
+      &:first-of-type:after {
+        content: '';
+      }
+
+      &:first-of-type:before {
+        content: '';
+      }
+
+      // &:nth-last-of-type(2):before {
+      //   content: ' and ';
+      // }
+    }
+  }
 }
 
 
