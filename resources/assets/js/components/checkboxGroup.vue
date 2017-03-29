@@ -1,10 +1,9 @@
 
 <template>
-  <div class="g__row">
-
+  <div class="g__row checkbox-group">
     <div v-for="item in items" class="checkbox-group__item">
       <label class="custom-control custom-checkbox" >
-        <input type="checkbox" class="custom-control-input" :value="item.value" v-model="updatedValue">
+        <input type="checkbox" class="custom-control-input" :value="item.value" v-model="internalValue">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">{{item.text}}</span>
       </label>
@@ -32,7 +31,7 @@
 
     data() {
       return {
-        updatedValue : this.value,
+        internalValue : this.value
       }
     },
 
@@ -49,14 +48,17 @@
     },
 
     watch : {
-      updatedValue(newValue) {
+      internalValue(newValue) {
         if ( _.isEmpty(newValue) ) {
           this.$parent.$emit('setError', 'You must have at least one item selected');
-          this.updatedValue = this.value;
+          this.internalValue = this.value;
         }
         else {
-          this.$emit('updateValue', newValue);
+          this.$emit('input', newValue);
         }
+      },
+      value (newValue) {
+        this.internalValue = newValue;
       }
     },
 
