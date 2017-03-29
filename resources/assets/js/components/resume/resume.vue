@@ -26,7 +26,8 @@ store.resume.model = {
     expression : 'normal',
     facialHair : '',
     hair : 'default',
-    attire : ''
+    attire : '',
+    hands : ''
   }
 }
 
@@ -64,29 +65,29 @@ export default {
                 question : "You only get to pick one.",
                 type : "radial-group",
                 imageUrl : "/img/portrait-beard.png",
-                items : [
+                options : [
                   {
-                    text : "Pretty Standard",
+                    label : "Pretty Standard",
                     value : "standard"
                   },
                   {
-                    text : "Poetic",
+                    label : "Poetic",
                     value : "haiku"
                   },
                   {
-                    text : "option 3",
+                    label : "option 3",
                     value : "value 3"
                   },
                   {
-                    text : "option 4",
+                    label : "option 4",
                     value : "value 4"
                   },
                   {
-                    text : "option 5",
+                    label : "option 5",
                     value : "value 5"
                   },
                   {
-                    text : "option 6",
+                    label : "option 6",
                     value : "value 6"
                   }
                 ]
@@ -97,29 +98,29 @@ export default {
                 question : "The spot for obligitory personal interests",
                 imageUrl : "/img/portrait-beard.png",
                 type : "checkbox-group",
-                items : [
+                options : [
                   {
-                    text : "Cooking",
+                    label : "Cooking",
                     value : "making a mess in the kitchen"
                   },
                   {
-                    text : "Hiking",
+                    label : "Hiking",
                     value : "pooping in the woods"
                   },
                   {
-                    text : "Cartoons",
+                    label : "Cartoons",
                     value : "watching cartoons"
                   },
                   {
-                    text : "Tennis",
+                    label : "Tennis",
                     value : "playing tennis"
                   },
                   {
-                    text : "Pooping",
+                    label : "Pooping",
                     value : "pooping"
                   },
                   {
-                    text : "Learning",
+                    label : "Learning",
                     value : "learning new skills (that killz)"
                   }
                 ]
@@ -136,26 +137,26 @@ export default {
                 intro : "Expression",
                 question : "Choose a face",
                 type: "slider-input",
-                label: "Level Of Excitement",
-                items : [
+                placeholder: "Level Of Excitement",
+                options : [
                   {
-                    text : "All Business",
+                    label : "All Business",
                     value : "business"
                   },
                   {
-                    text : "Robotic",
+                    label : "Robotic",
                     value : "robot"
                   },
                   {
-                    text : "Seemingly Normal",
+                    label : "Seemingly Normal",
                     value : "normal"
                   },
                   {
-                    text : "Happy Go Lucky",
+                    label : "Happy Go Lucky",
                     value : "happy"
                   },
                   {
-                    text : "Sugar Buzz",
+                    label : "Sugar Buzz",
                     value : "excited"
                   },
                 ]
@@ -167,13 +168,13 @@ export default {
                 intro : "Facial hair",
                 question : "Put some fuzz on this peach",
                 type : "radial-group",
-                items : [
+                options : [
                   {
-                    text : "Beardo weirdo",
+                    label : "Beardo weirdo",
                     value : "beard"
                   },
                   {
-                    text : "No Thanks",
+                    label : "No Thanks",
                     value : "clean"
                   }
                 ]
@@ -183,14 +184,38 @@ export default {
                 intro : "qestion 2.2",
                 question : "This is Question 2.2",
                 type : "radial-group",
-                items : [
+                options : [
                   {
-                    text : "K.I.S.S.",
+                    label : "K.I.S.S.",
                     value : "white"
                   },
                   {
-                    text : "Camping",
+                    label : "Camping",
                     value : "camping"
+                  }
+                ]
+              },
+              {
+                id : "hands",
+                intro : "🎶",
+                question : "I've got one hand in my pocket, the other is...",
+                type : "multiselect",
+                options : [
+                  {
+                    label : "Giving a Thumbs Up",
+                    value : "thumbs-up"
+                  },
+                  {
+                    label : "Grabbing a Craft Brew",
+                    value : "brew"
+                  },
+                  {
+                    label : "Holding a Spot of Tea",
+                    value : "tea"
+                  },
+                  {
+                    label : "Also in My Pocket",
+                    value : "none"
                   }
                 ]
               }

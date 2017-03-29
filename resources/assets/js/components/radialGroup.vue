@@ -1,13 +1,13 @@
 
 <template>
   <div class="radial-group g__row">
-    <div v-for="item in items" class="g__col6">
+    <div v-for="option in options" class="g__col6">
       <button
         type="button"
         class="btn"
-        @click="setValue(item.value)"
-        :class="{'-selected' : isActive(item.value)}">
-        {{item.text}}
+        @click="setValue(option.value)"
+        :class="{'-selected' : isActive(option.value)}">
+        {{option.label}}
       </button>
     </div>
   </div>
@@ -16,7 +16,7 @@
 <script>
   export default {
     props : {
-      items : {
+      options : {
         type : Array,
         required : true
       },

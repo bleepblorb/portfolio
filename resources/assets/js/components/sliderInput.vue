@@ -3,19 +3,19 @@
   <div>
     <h4 class="t--center c--gummy">{{text}}</h4>
     <div class="slider-input__bar">
-      <label v-for="(item, index) in items" class="slider-input__item custom-control custom-radio custom-con">
-        <input :id="id+'_'+index" :name="id" type="radio" class="custom-control-input" :value="item.value" v-model="updatedValue">
+      <label v-for="(option, index) in options" class="slider-input__item custom-control custom-radio custom-con">
+        <input :id="id+'_'+index" :name="id" type="radio" class="custom-control-input" :value="option.value" v-model="updatedValue">
         <span class="custom-control-indicator"></span>
       </label>
     </div>
-    <h6 class="t--center c--grover t--normal">{{label}}</h6>
+    <h6 v-if="placeholder" class="t--center c--grover t--normal">{{placeholder}}</h6>
   </div>
 </template>
 
 <script>
   export default {
     props : {
-      items : {
+      options : {
         type : Array,
         required : true
       },
@@ -27,7 +27,7 @@
         type : String,
         required : true
       },
-      label : {
+      placeholder : {
         type : String
       }
     },
@@ -40,16 +40,16 @@
 
     computed : {
       text() {
-        let active =  _.find(this.items, item => {
+        let active =  _.find(this.options, item => {
           return item.value == this.value;
         });
-        return active.text;
+        return active.label;
       }
     },
 
     watch : {
       updatedValue(newValue) {
-        this.$emit('updateValue', newValue );
+        this.$emit('input', newValue );
       }
     },
 

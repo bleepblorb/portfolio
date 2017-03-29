@@ -1,11 +1,11 @@
 
 <template>
   <div class="g__row checkbox-group">
-    <div v-for="item in items" class="checkbox-group__item">
+    <div v-for="option in options" class="checkbox-group__item">
       <label class="custom-control custom-checkbox" >
-        <input type="checkbox" class="custom-control-input" :value="item.value" v-model="internalValue">
+        <input type="checkbox" class="custom-control-input" :value="option.value" v-model="internalValue">
         <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">{{item.text}}</span>
+        <span class="custom-control-description">{{option.label}}</span>
       </label>
     </div>
     <!-- <div class="g__col12">
@@ -19,7 +19,7 @@
 <script>
   export default {
     props : {
-      items : {
+      options : {
         type : Array,
         required : true
       },
@@ -39,8 +39,8 @@
       allItems() {
         let values = [];
 
-        _.each(this.items, (item) => {
-          values.push(item.value);
+        _.each(this.options, (option) => {
+          values.push(option.value);
         });
 
         return values;

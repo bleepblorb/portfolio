@@ -13,9 +13,7 @@
       <div class="editor__input -condensed">
         <multiselect
           v-model="value"
-          :options="items"
-          track-by="value"
-          label="text"
+          :options="options"
           :placeholder="placeholder || 'Select'"
           :multiple="this.inputType === 'checkbox-group'"
           :close-on-select="this.inputType !== 'checkbox-group'"
@@ -27,9 +25,10 @@
       <div class="editor__input -standard">
         <component :is="inputType"
           @updateValue="updateModel"
-          :items="items"
+          :options="options"
           :id="id"
           v-model="value"
+          :placeholder="placeholder || 'Select'"
           :label="label">
         </component>
       </div>
@@ -76,7 +75,8 @@
       inputType : {
         type : String
       },
-      items : {
+      options : {
+        type: Array,
         required : true
       },
       imageUrl : {
