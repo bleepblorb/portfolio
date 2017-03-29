@@ -8,11 +8,11 @@
   width: 100%;
   right: 0;
   top: 0;
-  min-width: 480px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // transform : translateX(0px);
+  transform : translateX(0px);
   opacity: 1;
 }
 
@@ -63,6 +63,16 @@
   .intro-photo {
     margin-bottom: -16px;
     text-align: center;
+
+    img {
+      height: 125px;
+    }
+
+    @media ( min-height: 550px){
+      img {
+        height: 165px;
+      }
+    }
   }
 }
 
@@ -72,6 +82,20 @@
 
 .editor__input {
   margin-top: 32px;
+
+  &.-standard {
+    display: none;
+  }
+
+  @media ( min-height: 700px ) {
+    &.-standard {
+      display: block;
+    }
+
+    &.-condensed {
+      display: none;
+    }
+  }
 }
 
 .editor__errors {

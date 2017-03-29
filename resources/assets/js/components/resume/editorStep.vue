@@ -4,28 +4,36 @@
       <div class="intro-photo" v-if="imageUrl">
         <img :src="imageUrl" alt="">
       </div>
+
       <div class="editor__question">
         <h4 class="c--gummy">{{intro}}</h4>
         <h3 class="c--late-night">{{question}}</h3>
       </div>
 
-      <multiselect
-        v-model="value"
-        :options="items"
-        placeholder="select something"
-        track-by="value"
-        label="text"
-      ></multiselect>
+      <div class="editor__input -condensed">
+        <multiselect
+          v-model="value"
+          :options="items"
+          track-by="value"
+          label="text"
+          :placeholder="placeholder || 'Select'"
+          :multiple="this.inputType === 'checkbox-group'"
+          :close-on-select="this.inputType !== 'checkbox-group'"
+          :allow-empty="false"
+          class="g__col">
+        </multiselect>
+      </div>
 
-      <div class="editor__input">
+      <div class="editor__input -standard">
         <component :is="inputType"
           @updateValue="updateModel"
           :items="items"
-          :value="value"
           :id="id"
+          v-model="value"
           :label="label">
         </component>
       </div>
+
       <div class="editor__errors">
         <p class="has-error">{{error}}</p>
       </div>
@@ -81,6 +89,10 @@
       label : {
         type : String,
         required : false
+      },
+      placeholder : {
+        type : String,
+        required : false
       }
     },
 
@@ -102,7 +114,7 @@
         }
       },
       isSet() {
-        return this.isEmpty(this.value);
+        return !this.isEmpty(this.value);
       }
     },
 
@@ -117,8 +129,7 @@
     },
 
     created() {
-      // this.$emit('completedStep', this.stepIndex);
-      //
+
       if ( this.isSet ) {
         console.log('value is set. Emit Step Completed', this.stepIndex);
         this.$emit('completedStep', this.stepIndex);
@@ -141,12 +152,14 @@
 
       isEmpty(value) {
         if( _.isEmpty(value)) {
-          return false;
+          return true;
         }
 
         if (value) {
-          return true;
+          return false;
         }
+
+        return true;
       }
     }
   }

@@ -1,39 +1,41 @@
 
 <template>
   <div class="resume__editor">
-    <!-- Header -->
-    <div class="editor__header">
-      <div class="progress editor__progress">
-        <div class="progress-bar" role="progressbar" :aria-valuenow="percentComplete" aria-valuemin="0" aria-valuemax="100" :style="{width : percentComplete + '%'}"></div>
+    <div class="resume__editor-wrap">
+      <!-- Header -->
+      <div class="editor__header">
+        <div class="progress editor__progress">
+          <div class="progress-bar" role="progressbar" :aria-valuenow="percentComplete" aria-valuemin="0" aria-valuemax="100" :style="{width : percentComplete + '%'}"></div>
+        </div>
+        <h5 class="editor__phase-heading">{{schema.phases[currentPhase].title}}</h5>
+        <ul class="editor__phase__dots">
+          <li v-for="(phase, index) in schema.phases"
+          :class="{'-active' : currentPhase == index, '-disabled' : furthestAllowed < index}"
+          @click="setPhase(index, 0)">
+            {{index + 1}}
+          </li>
+        </ul>
+        <hr>
       </div>
-      <h5 class="editor__phase-heading">{{schema.phases[currentPhase].title}}</h5>
-      <ul class="editor__phase__dots">
-        <li v-for="(phase, index) in schema.phases"
-        :class="{'-active' : currentPhase == index, '-disabled' : furthestAllowed < index}"
-        @click="setPhase(index, 0)">
-          {{index + 1}}
-        </li>
-      </ul>
-      <hr>
-    </div>
 
-    <!-- Slot Content -->
-    <transition-group name="v" tag="div" class="editor_phases">
-      <editor-phase
-        v-for="(phase, index) in schema.phases"
-        v-show="currentPhase == index"
-        :key="phase.id"
-        :id="phase.id"
-        :stepOffset="getStepOffset(index)"
-        :phaseIndex="index"
-        :steps="phase.steps"
-        @phaseComplete="phaseComplete"
-      ></editor-phase>
-    </transition-group>
+      <!-- Slot Content -->
+      <transition-group name="v" tag="div" class="editor_phases">
+        <editor-phase
+          v-for="(phase, index) in schema.phases"
+          v-show="currentPhase == index"
+          :key="phase.id"
+          :id="phase.id"
+          :stepOffset="getStepOffset(index)"
+          :phaseIndex="index"
+          :steps="phase.steps"
+          @phaseComplete="phaseComplete"
+        ></editor-phase>
+      </transition-group>
 
-    <!-- Footer -->
-    <div class="editor__footer">
-      <editor-nav></editor-nav>
+      <!-- Footer -->
+      <div class="editor__footer">
+        <editor-nav></editor-nav>
+      </div>
     </div>
   </div>
 </template>

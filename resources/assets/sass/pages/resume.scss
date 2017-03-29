@@ -18,18 +18,27 @@
 //
 
 .resume__editor {
-  position: relative;
-  min-width: 0px;
   width: 0px;
+  min-width: 0px;
   max-width: 0px;
   background-color: $ice-cube;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  transition: min-width 650ms 600ms cubic-bezier(0.240, 0.260, 0.245, 1.170),
+              max-width 650ms 600ms cubic-bezier(0.240, 0.260, 0.245, 1.170),;
+}
+
+.resume__editor-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: space-between;
+  height: 100%;
+  min-height: 550px;
+  width: 100%;
   overflow: hidden;
-
-  transition: all 650ms 600ms cubic-bezier(0.240, 0.260, 0.245, 1.170);
 }
 
 
@@ -46,8 +55,9 @@
   top: 0;
   width: 100%;
   text-align: center;
-  padding: 32px;
+  padding: 24px;
   z-index: 5;
+  transition: padding 350ms;
 
   .editor__phase-heading {
     color: $jazzy;
@@ -58,68 +68,10 @@
     border-color: $jean-jacket;
   }
 
-  .editor__phase__dots {
-    margin-top: 24px;
-    margin-bottom: 24px;
-    text-align: center;
-
-    li {
-      display: inline-block;
-      position: relative;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      text-align: center;
-      margin: 0 8px;
-      font-family: $font-family-sans-serif;
-      font-size: $font-size-sm;
-      line-height: 32px;
-      font-weight: 700;
-      color: $jazzy;
-      vertical-align: middle;
-      cursor: pointer;
-      transition: all 150ms;
-
-      &:after {
-        content: '';
-        position: absolute;
-        left: 4px;
-        top: 4px;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        z-index: -1;
-        transition: all 150ms ease-out;
-      }
-
-      &:hover {
-        &:after {
-          background-color: fade-out($jean-jacket, .75);
-        }
-      }
-
-      &.-active {
-        color: $white;
-
-        &:after {
-          top: 0;
-          left: 0;
-          width: 32px;
-          height: 32px;
-          background-color: $gummy;
-        }
-      }
-
-      &.-disabled {
-        color: $jean-jacket;
-        cursor: default;
-
-        &:after {
-          content: none;
-        }
-      }
-    }
+  @media ( min-height: 700px ) {
+    padding: 32px;
   }
+
 
   .editor__progress {
     position: absolute;
@@ -138,6 +90,75 @@
   }
 }
 
+.editor__phase__dots {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+  transition: padding 350ms;
+
+  @media ( min-height: 700px ) {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  li {
+    display: inline-block;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 8px;
+    font-family: $font-family-sans-serif;
+    font-size: $font-size-sm;
+    line-height: 32px;
+    font-weight: 700;
+    color: $jazzy;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 150ms;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      z-index: -1;
+      transition: all 150ms ease-out;
+    }
+
+    &:hover {
+      &:after {
+        background-color: fade-out($jean-jacket, .75);
+      }
+    }
+
+    &.-active {
+      color: $white;
+
+      &:after {
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 32px;
+        background-color: $gummy;
+      }
+    }
+
+    &.-disabled {
+      color: $jean-jacket;
+      cursor: default;
+
+      &:after {
+        content: none;
+      }
+    }
+  }
+}
+
 .editor__footer {
   position: absolute;
   bottom: 0;
@@ -149,8 +170,7 @@
 }
 
 
-
-// resume Content section
+// ** resume Content
 
 .resume__content {
   max-width: 100%;

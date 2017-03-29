@@ -2094,9 +2094,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   computed: {
-    // internalValue() {
-    //   return this.value;
-    // },
     allItems: function allItems() {
       var values = [];
 
@@ -2114,7 +2111,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$parent.$emit('setError', 'You must have at least one item selected');
         this.internalValue = this.value;
       } else {
-        // this.$emit('updateValue', newValue);
         this.$emit('input', newValue);
       }
     },
@@ -2688,6 +2684,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sliderInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__sliderInput__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__multiselect__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__multiselect__);
+//
 //
 //
 //
@@ -3393,6 +3390,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorPhase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__editorPhase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editorNav__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editorNav___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__editorNav__);
+//
+//
 //
 //
 //
@@ -34274,6 +34273,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "resume__editor"
   }, [_c('div', {
+    staticClass: "resume__editor-wrap"
+  }, [_c('div', {
     staticClass: "editor__header"
   }, [_c('div', {
     staticClass: "progress editor__progress"
@@ -34302,7 +34303,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.setPhase(index, 0)
         }
       }
-    }, [_vm._v("\n        " + _vm._s(index + 1) + "\n      ")])
+    }, [_vm._v("\n          " + _vm._s(index + 1) + "\n        ")])
   })), _vm._v(" "), _c('hr')]), _vm._v(" "), _c('transition-group', {
     staticClass: "editor_phases",
     attrs: {
@@ -34330,7 +34331,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   })), _vm._v(" "), _c('div', {
     staticClass: "editor__footer"
-  }, [_c('editor-nav')], 1)], 1)
+  }, [_c('editor-nav')], 1)], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -34783,8 +34784,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.intro))]), _vm._v(" "), _c('h3', {
     staticClass: "c--late-night"
   }, [_vm._v(_vm._s(_vm.question))])]), _vm._v(" "), _c('div', {
-    staticClass: "editor__input"
-  }, [(_vm.inputType !== 'multiselect') ? _c('multiselect', {
+    staticClass: "editor__input -condensed"
+  }, [_c('multiselect', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -34809,7 +34810,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.value = $event
       }
     }
-  }) : _vm._e(), _vm._v(" "), _c(_vm.inputType, {
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "editor__input -standard"
+  }, [_c(_vm.inputType, {
     directives: [{
       name: "model",
       rawName: "v-model",
