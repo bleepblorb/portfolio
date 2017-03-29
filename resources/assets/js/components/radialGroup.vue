@@ -1,6 +1,6 @@
 
 <template>
-  <div class="radial__group g__row">
+  <div class="radial-group g__row">
     <div v-for="item in items" class="g__col6">
       <button
         type="button"

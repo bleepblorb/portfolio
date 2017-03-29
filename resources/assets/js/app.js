@@ -2,6 +2,7 @@
 require('./bootstrap');
 
 import resume from './components/resume/resume';
+import multiselect from './components/multiselect';
 
 window.Event = new Vue();
 
@@ -13,7 +14,7 @@ const app = new Vue ({
   },
 
   components : {
-    resume
+    resume, multiselect
   }
 });
 
