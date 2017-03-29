@@ -229,6 +229,7 @@ export default {
       search: '',
       showSearch: false,
       isOpen: false,
+      isSelectable: false,
       internalValue: this.getInternalValue(this.value),
       tether : {},
       style : {},
@@ -517,7 +518,7 @@ export default {
      */
     select (option, key) {
 
-      if (this.blockKeys.indexOf(key) !== -1 || this.disabled || option.$isLabel) return
+      if (this.blockKeys.indexOf(key) !== -1 || this.disabled || option.$isLabel || !this.isSelectable) return
 
       if (this.max && this.multiple && this.internalValue.length === this.max) return
 
@@ -595,7 +596,12 @@ export default {
 
       this.pointer = null;
 
-      this.isOpen = true
+      this.isOpen = true;
+
+      window.setTimeout(() => {
+        this.isSelectable = true;
+      }, 350);
+
       /* istanbul ignore else  */
       if (this.searchable) {
         this.search = ''
@@ -623,6 +629,7 @@ export default {
       if (!this.isOpen) return
 
       this.isOpen = false
+      this.isSelectable = false
       this.$el.blur()
       this.search = '';
       this.pointer = null;

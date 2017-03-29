@@ -26,6 +26,9 @@ fieldset[disabled] .multiselect {
   @include border-radius($custom-select-border-radius);
   text-align: left;
 
+  cursor: default;
+  user-select: none;
+
   // ** State Management
 
   &:focus {
@@ -68,6 +71,8 @@ fieldset[disabled] .multiselect {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
+  cursor: default;
+  user-select: none;
 
   mask-image: linear-gradient( to right, rgba(0, 0, 0, 1.0) 80%, transparent);
   mask-position: top left;
@@ -78,7 +83,6 @@ fieldset[disabled] .multiselect {
 .multiselect__placeholder {
   color: $input-color-placeholder;
   display: block;
-  cursor: default;
 }
 
 
@@ -156,12 +160,18 @@ fieldset[disabled] .multiselect {
 
   &:hover, &:focus {
     padding: 6px 26px 6px 10px;
+    outline: none;
+    background-color: darken($gummy, 5%);
 
     &:after {
       opacity: 1;
       width: 22px;
       transition: all 400ms 50ms ease;
     }
+  }
+
+  &:focus {
+    box-shadow: 0px 0px 5px fade-out($grover, .5);
   }
 }
 
@@ -249,9 +259,10 @@ fieldset[disabled] .multiselect {
   text-transform: none;
   vertical-align: middle;
   position: relative;
-  cursor: pointer;
   white-space: nowrap;
   border-bottom: $custom-select-border-width solid $ice-cube;
+  cursor: default;
+  user-select: none;
 }
 
 .multiselect__element {

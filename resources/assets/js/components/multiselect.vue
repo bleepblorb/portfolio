@@ -21,7 +21,7 @@
       <span
         v-for="option of visibleValue"
         @keydown.enter.prevent="removeElement(option)"
-        @mousedown.prevent="removeElement(option)"
+        @click.prevent="removeElement(option)"
         v-text="getOptionLabel(option)"
         tabindex="1"
         class="multiselect__tag">
@@ -72,7 +72,8 @@
               >
                 <span
                   tabindex="0"
-                  @mousedown.prevent="select(option)"
+                  @mousedown.prevent=""
+                  @mouseup.prevent="select(option)"
                   @mouseenter="pointerSetIndex(index)"
                   class="multiselect__option">
                     <slot name="option" :option="option">
