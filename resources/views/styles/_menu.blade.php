@@ -8,5 +8,6 @@
     <li><a href="{{route('style', 'buttons')}}">Buttons</a></li>
     <li><a href="{{route('style', 'dropdowns')}}">Dropdowns</a></li>
     <li><a href="{{route('style', 'modal')}}">Modals</a></li>
+    <li><a href="{{route('style', 'forms')}}">Forms</a></li>
   </ul>
 </div>
