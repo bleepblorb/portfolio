@@ -16,6 +16,7 @@ $close-text-shadow:           none;
   opacity: .5;
   width: 16px;
   height: 16px;
+  position: relative;
 
   &:after, &:before {
     // content: "\D7";

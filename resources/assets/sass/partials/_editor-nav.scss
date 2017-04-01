@@ -92,7 +92,7 @@
 
   &.-active {
     height: 46px;
-    width: 250px;
+    width: 200px;
     border-radius: 46px;
 
     .i--arrow {
@@ -187,7 +187,7 @@
 @keyframes next-btn-close {
   0% {
     height: 46px;
-    width: 250px;
+    width: 200px;
     border-radius: 46px;
     background-color: $jazzy;
     line-height: 46px;
@@ -195,14 +195,14 @@
 
   40% {
     height: 46px;
-    width: 250px;
+    width: 200px;
     border-radius: 46px;
     background-color: $jean-jacket;
   }
 
   50% {
     height: 36px;
-    width: 240px;
+    width: 190px;
     border-radius: 36px;
 
   }
@@ -234,7 +234,7 @@
   }
   100% {
     height: 46px;
-    width: 250px;
+    width: 200px;
   }
 }
 
@@ -253,6 +253,6 @@
   }
   100% {
     height: 46px;
-    width: 250px;
+    width: 200px;
   }
 }

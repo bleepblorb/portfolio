@@ -8,7 +8,6 @@
   width: 100%;
   right: 0;
   top: 0;
-  min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +17,9 @@
 
 
 .editor__step {
+
+  padding-left: $grid-gutter-width-base;
+  padding-right: $grid-gutter-width-base;
 
   &.slide-next-enter-active, &.slide-prev-enter-active {
     transition: all 500ms 200ms ease-in-out;
@@ -56,7 +58,8 @@
 }
 
 .editor__content {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   position: relative;
   margin: auto;
 
@@ -68,7 +71,7 @@
       height: 125px;
     }
 
-    @media ( min-height: 550px){
+    @media ( min-height: 600px){
       img {
         height: 165px;
       }
@@ -109,6 +112,11 @@
   }
 }
 
+.editor__input {
+  .multiselect {
+    @include make-col-ready();
+  }
+}
 
 .radial-group {
   .btn {

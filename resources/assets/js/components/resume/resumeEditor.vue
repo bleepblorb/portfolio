@@ -1,6 +1,7 @@
 
 <template>
-  <div class="resume__editor">
+  <div class="resume__editor g__col" @mousedown="setPreview(false)">
+
     <div class="resume__editor-wrap">
       <!-- Header -->
       <div class="editor__header">
@@ -37,6 +38,7 @@
         <editor-nav></editor-nav>
       </div>
     </div>
+    <!-- <div class="preview-toggle" @click="togglePreview()"></div> -->
   </div>
 </template>
 
@@ -112,6 +114,10 @@
     },
 
     methods : {
+      setPreview(bool) {
+        Event.$emit('setPreviewMode', bool);
+      },
+
       getStepOffset(index) {
         let offset = 1;
 

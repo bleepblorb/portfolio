@@ -1,12 +1,32 @@
 <template>
-  <div id="resume" :class="{'edit-mode' : editMode}">
-    <resume-editor :schema="schema"></resume-editor>
-    <resume-content :schema="schema"></resume-content>
-    <div class="sidebar"  v-if="!state.showIntro">
-      <button @click="toggle()" class="edit-btn">e</button>
-    </div>
-  </div>
+  <div id="resume" :class="{'edit-mode' : editMode, 'preview-mode' : previewMode}">
+    <transition name="intro">
+      <resume-intro v-show="state.showIntro" key="intro"></resume-intro>
+    </transition>
+    <template v-show="!state.showIntro">
+      <transition name="edit-mode">
+        <div v-show="editMode " class="resume__editor-mode">
+          <div class="preview-toggle">
+            <div class="preview-toggle__btn" @click="togglePreview()">
+              <span class="i--arrow"></span>
+            </div>
+          </div>
+          <resume-editor :schema="schema"></resume-editor>
+          <resume-content :schema="schema"></resume-content>
+        </div>
+      </transition>
 
+      <transition name="edit-mode">
+        <resume-layout  v-show="!editMode && state.isComplete"></resume-layout>
+      </transition>
+
+      <div class="sidebar"  v-if="!state.showIntro">
+        <button @click="toggle()" class="edit-btn">e</button>
+      </div>
+
+      <button @click="toggle()" v-if="editMode" class="close"></button>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -14,6 +34,8 @@
 import {store} from '../global.js';
 import resumeEditor from './resumeEditor';
 import resumeContent from './resumeContent';
+import resumeLayout from './resumeLayout';
+import resumeIntro from './resumeIntro';
 
 store.resume.model = {
   intro : {
@@ -39,20 +61,21 @@ store.resume.state = {
   totalSteps : 0,
   direction : '',
   isComplete : false,
-  editMode : true,
-  showIntro : false,
+  editMode : false,
+  showIntro : true,
 
 };
 
 export default {
   components : {
-    resumeEditor, resumeContent
+    resumeEditor, resumeContent, resumeLayout, resumeIntro
   },
 
   data() {
     return {
       state : store.resume.state,
       model : store.resume.model,
+      previewMode : false,
       schema : {
         phases : [
           {
@@ -264,7 +287,17 @@ export default {
   methods : {
     toggle() {
       Event.$emit('toggleEditMode');
-    }
+    },
+    togglePreview() {
+      Event.$emit('togglePreviewMode');
+    },
+    setPreview(bool) {
+      console.log(bool);
+      if ( (bool && !this.previewMode) || (!bool && this.previewMode) ) {
+        Event.$emit('togglePreviewMode');
+      }
+    },
+
   },
 
   mounted() {
@@ -290,6 +323,15 @@ export default {
         this.state.completedSteps = step;
       }
     });
+
+    Event.$on('togglePreviewMode', () => {
+      this.previewMode = !this.previewMode;
+    });
+
+    Event.$on('setPreviewMode', (bool) => {
+      this.previewMode = bool;
+    });
+
   }
 }
 </script>

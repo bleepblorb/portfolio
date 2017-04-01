@@ -1,5 +1,5 @@
 <template>
-  <div v-if="state.showIntro" id="resume__intro" key="intro">
+  <div id="resume__intro" key="intro">
     <div class="container -max--xl">
       <div class="g__row -align-items--center">
         <div class="g__col8">
@@ -20,3 +20,27 @@
     </div>
   </div>
 </template>
+
+<script>
+  import {store} from '../global.js';
+
+  export default {
+
+    data() {
+      return {
+        state : store.resume.state
+      }
+    },
+
+    methods : {
+      start() {
+        this.state.showIntro = false;
+
+        window.setTimeout(() => {
+          this.state.editMode = true;
+        }, 350);
+      }
+    }
+  }
+
+</script>
