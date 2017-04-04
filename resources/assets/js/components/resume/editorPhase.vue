@@ -89,8 +89,10 @@
           this.$emit('phaseComplete', this.phaseIndex);
         }
       },
-      furthestAllowed() {
-        Event.$emit('showPrompt');
+      furthestAllowed(val, oldVal) {
+        if ( val > oldVal ) {
+          Event.$emit('showPrompt');
+        }
       }
     },
 
@@ -98,6 +100,13 @@
       Event.$on('nextStep', this.nextStep);
       Event.$on('prevStep', this.prevStep);
       Event.$on('setStep', this.setStep);
+      Event.$on('setComplete', () => {
+        this.completed = this.lastStep;
+      });
+      Event.$on('reset', () => {
+        this.currentStep = 0;
+        this.completed = -1;
+      });
     },
 
     methods : {

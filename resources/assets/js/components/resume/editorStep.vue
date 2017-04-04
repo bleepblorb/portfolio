@@ -24,7 +24,6 @@
 
       <div class="editor__input -standard">
         <component :is="inputType"
-          @updateValue="updateModel"
           :options="options"
           :id="id"
           v-model="value"
@@ -99,12 +98,14 @@
     data() {
       return {
         state : store.resume.state,
-        model : store.resume.model[this.phase],
         error : '',
       }
     },
 
     computed : {
+      model() {
+        return store.resume.model[this.phase]
+      },
       value : {
         get() {
           return this.model[this.id];
@@ -129,7 +130,6 @@
     },
 
     created() {
-
       if ( this.isSet ) {
         console.log('value is set. Emit Step Completed', this.stepIndex);
         this.$emit('completedStep', this.stepIndex);
@@ -140,16 +140,11 @@
         this.error = error;
         window.setTimeout( () => {
           this.error = '';
-          console.log('reset', this);
         }, 2000);
       });
     },
 
     methods : {
-      updateModel : function(newValue) {
-        Event.$emit("updateModel", this.phase, this.id, newValue);
-      },
-
       isEmpty(value) {
         if( _.isEmpty(value)) {
           return true;

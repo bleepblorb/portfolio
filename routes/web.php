@@ -19,6 +19,8 @@ Route::get('/resume', function () {
     return view('resume');
 })->name('resume');
 
+// Route::get('/resume/new', "ResumeController@getFresh");
+
 Route::post('/img/portrait', 'ImageController@portrait');
 
 

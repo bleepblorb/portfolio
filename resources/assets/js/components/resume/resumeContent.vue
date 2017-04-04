@@ -57,7 +57,9 @@
         Event.$emit('toggleEditMode');
       },
       setPreview(bool) {
-        Event.$emit('setPreviewMode', bool);
+        if ( this.state.previewMode !== bool ) {
+          Event.$emit('setPreviewMode', bool);
+        }
       },
     }
   }

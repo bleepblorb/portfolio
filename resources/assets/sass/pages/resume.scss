@@ -395,6 +395,9 @@
   transform: translateX(0%);
   transition: all 350ms 650ms;
   z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   .edit-mode & {
     transform: translateX(-100%);
@@ -402,7 +405,7 @@
   }
 
   .edit-btn {
-    position: absolute;
+    flex: 0 0 auto;
     left: 0px;
     bottom: 0px;
     margin: 15px;

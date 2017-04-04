@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::get('/resume/new', "ResumeController@getFresh");
+Route::get('/resume/default', "ResumeController@getDefault");
+Route::post('/resume/default', "ResumeController@getDefault");

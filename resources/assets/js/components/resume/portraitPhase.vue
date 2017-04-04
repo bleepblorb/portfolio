@@ -25,7 +25,9 @@
 
     computed : {
       expression() {
-        return this.model.expression;
+        if(this.model) {
+          return this.model.expression;
+        }
       },
       backgroundImage() {
         return {
@@ -47,16 +49,18 @@
 
     methods : {
       updatePortrait() {
-        axios.post('/img/portrait', {
-          facialHair: this.model.facialHair,
-          background: this.model.background
-        })
-        .then(response => {
-          this.url = response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        if (this.model) {
+          axios.post('/img/portrait', {
+            facialHair: this.model.facialHair,
+            background: this.model.background
+          })
+          .then(response => {
+            this.url = response.data;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        }
       }
     },
 

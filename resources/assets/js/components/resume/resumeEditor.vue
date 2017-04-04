@@ -66,10 +66,6 @@
         state : store.resume.state,
         currentPhase: 0,
         completed: -1,
-        nextBtn : {
-          "class" : "-disabled",
-          "text" : "next"
-        }
       }
     },
 
@@ -108,14 +104,18 @@
     },
 
     watch : {
-      furthestAllowed() {
-        Event.$emit('showPrompt');
+      furthestAllowed(val, oldVal) {
+        if ( val > oldVal ) {
+          Event.$emit('showPrompt');
+        }
       }
     },
 
     methods : {
       setPreview(bool) {
-        Event.$emit('setPreviewMode', bool);
+        if (this.state.previewMode != bool ) {
+          Event.$emit('setPreviewMode', bool);
+        }
       },
 
       getStepOffset(index) {
@@ -178,6 +178,13 @@
       Event.$on('nextPhase', this.nextPhase);
       Event.$on('prevPhase', this.prevPhase);
       Event.$on('setPhase', this.setPhase);
+      Event.$on('setComplete', () => {
+        this.completed = this.lastPhase;
+      });
+      Event.$on('reset', () => {
+        this.currentPhase = 0;
+        this.completed = -1;
+      });
     }
   }
 </script>

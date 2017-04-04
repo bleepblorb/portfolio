@@ -35,7 +35,7 @@
       <!-- </transition> -->
       <div class="g__row mt-3">
         <div class="g__col">
-          <p >Personal Interests include <ul class="-inline-text"><li v-for="item in model.personal">{{item}}</span></ul>.</p>
+          <p >Personal Interests include <ul class="-inline-text"><li v-for="item in personal">{{item}}</span></ul>.</p>
         </div>
       </div>
     </div>
@@ -62,22 +62,35 @@
 
     computed : {
       introStyle() {
-        return this.model.introStyle;
+        if(this.model) {
+          return this.model.introStyle;
+        }
       },
       togglerPoem : {
         get() {
-          return this.model.togglerPoem;
+          if(this.model) {
+            return this.model.togglerPoem;
+          }
         },
         set(value) {
-          this.model.togglerPoem = value;
+          if(this.model) {
+            this.model.togglerPoem = value;
+          }
         }
       },
       togglerIntro : {
         get() {
-          return this.model.togglerIntro;
+          if(this.model) {
+            return this.model.togglerIntro;
+          }
         },
         set(value) {
           this.model.togglerIntro = value;
+        }
+      },
+      personal() {
+        if ( this.model ) {
+          return this.model.personal;
         }
       }
     },

@@ -31,7 +31,7 @@
         class="editor__next-btn -active -done"
         @click="close()"
         >
-        <span class="editor-btn__text">Finish</span>
+        <span class="editor-btn__text">Done</span>
       </div>
     </transition>
   </div>
@@ -91,9 +91,7 @@
       },
 
       close() {
-        this.showDone = false;
-        Event.$emit('toggleEditMode');
-        Event.$emit('setPhase', 0, 0);
+        Event.$emit('closeEdit');
       }
     },
 
@@ -117,6 +115,10 @@
 
       Event.$on('enablePrev', () => {
         this.disablePrev = false;
+      });
+
+      Event.$on('reset', () => {
+        this.showDone = false;
       });
     }
   }

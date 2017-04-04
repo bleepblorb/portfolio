@@ -13,7 +13,7 @@
             <button @click="start()" class="btn btn-primary"> Lets Go! </button>
           </p>
           <h6 class="t--sans">
-            <a href="#" class="c--gray">I'm boring, just show me a resume <span class="i--arrow"></span></a>
+            <a href="#" class="c--gray" @click="setDefault()">I'm boring, just show me a resume <span class="i--arrow"></span></a>
           </h6>
         </div>
       </div>
@@ -39,6 +39,10 @@
         window.setTimeout(() => {
           this.state.editMode = true;
         }, 350);
+      },
+
+      setDefault() {
+        Event.$emit('setDefault');
       }
     }
   }

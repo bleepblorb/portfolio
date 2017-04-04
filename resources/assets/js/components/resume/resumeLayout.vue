@@ -6,7 +6,7 @@
         <div class="g__row -justify-content--center">
           <div class="g__col8">
             <intro-phase id="intro"></intro-phase>
-            <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute</p>
+            <h6 class="mt-2">For more general info about me, visit the <a href="#">about page</a>.</h6>
           </div>
         </div>
       </div>

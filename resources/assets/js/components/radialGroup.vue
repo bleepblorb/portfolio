@@ -37,7 +37,7 @@
 
     methods : {
       setValue : function(newValue) {
-        this.$emit('updateValue', newValue);
+        this.$emit('input', newValue);
       },
       isActive : function(value) {
         return this.value === value;
