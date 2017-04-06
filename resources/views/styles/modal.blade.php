@@ -1,13 +1,13 @@
 {{-- Modal --}}
 
-<section id="buttons" class="">
+<section id="modals" class="">
   <div class="g__row mb-3">
     <div class="g__col">
       <h3 class="text-muted">Modals</h3>
     </div>
   </div>
 
-  {{-- Size --}}
+  {{-- Standard Types--}}
   <div class="g__row my-4">
     <div class="g__col12">
       <h6 class="caps">Standard Modal</h6>
@@ -15,11 +15,29 @@
     </div>
     <div class="g__col">
       <p>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#standardModal">Launch Modal</button>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#centeredModal">Centered Modal</button>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','standardModal')">Launch Modal</button>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','centeredModal')">Centered Modal</button>
       </p>
     </div>
   </div>
+
+  {{-- Sizes--}}
+  <div class="g__row my-4">
+    <div class="g__col12">
+      <h6 class="caps">Modal sizes</h6>
+      <hr>
+    </div>
+    <div class="g__col">
+      <p>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','xlModal')">XL Modal</button>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','largeModal')">Large Modal</button>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','mediumModal')">Medium Modal</button>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','smallModal')">Small Modal</button>
+      </p>
+    </div>
+  </div>
+
+
 
   {{-- Header & Footer --}}
   <div class="g__row my-4">
@@ -29,7 +47,7 @@
     </div>
     <div class="g__col">
       <p>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#fullModal">Launch Modal</button>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','headerModal')">Launch Modal</button>
       </p>
     </div>
   </div>
@@ -42,83 +60,87 @@
     </div>
     <div class="g__col">
       <p>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#gridModal">Launch Modal</button>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','gridModal')">Grid Modal</button>
+      </p>
+    </div>
+  </div>
+
+  {{-- Confirmation Modal --}}
+  <div class="g__row my-4">
+    <div class="g__col12">
+      <h6 class="caps">Confirmation</h6>
+      <hr>
+    </div>
+    <div class="g__col">
+      <p>
+        <button type="button" class="btn btn-default" @click="Emit('show::modal','confirmModal')">Confirmation Modal</button>
       </p>
     </div>
   </div>
 </section>
 
-{{-- standard Modal --}}
-<div class="modal fade" id="standardModal">
-  <div class="modal__dialog -max--sm" role="document">
-    <div class="modal__content">
-      <div class="modal__body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-        <p>Modal body text goes here. Modal body text goes here. Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit Sed Do Eius</p>
-      </div>
-    </div>
-  </div>
-</div>
-
+{{-- Basic Modal --}}
+<modal id="standardModal">
+  <p>This is the most basic modal</p>
+  <div style="height: 400px"></div>
+  <p>bottom of modal</p>
+</modal>
 
 {{-- Centered Modal --}}
-<div class="modal fade modal--centered" id="centeredModal">
-  <div class="modal__dialog -max--sm" role="document">
-    <div class="modal__content">
-      <div class="modal__body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-        <p>Modal body text goes here. Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit Sed Do Eius</p>
-      </div>
-    </div>
-  </div>
-</div>
+<modal id="centeredModal">
+  <h4 class="c--jazzy">A centered Modal</h4>
+  <p>Still nice and basic</p>
+</modal>
 
-{{-- Centered Modal --}}
-<div class="modal fade modal--centered" id="fullModal">
-  <div class="modal__dialog -max--sm" role="document">
-    <div class="modal__content">
-      <div class="modal__header">
-        <h5 class="modal-title">Modal title</h5>
-      </div>
-      <div class="modal__body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal__footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+{{-- Modal Sizes --}}
+<modal id="xlModal" size="xl">
+  <h4 class="c--jazzy">XL Modal</h4>
+  <p>Still nice and basic</p>
+</modal>
+
+<modal id="largeModal" size="lg">
+  <h4 class="c--jazzy">Large Modal</h4>
+  <p>Still nice and basic</p>
+</modal>
+
+<modal id="mediumModal" size="md">
+  <h4 class="c--jazzy">Medium Modal (default)</h4>
+  <p>Still nice and basic</p>
+</modal>
+
+<modal id="smallModal" size="sm">
+  <h4 class="c--jazzy">Small Modal</h4>
+  <p>Still nice and basic</p>
+</modal>
+
+{{-- Header & Footer --}}
+
+<modal id="headerModal" title="This is a header">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
+  <p slot="modal-footer">This is the footer</p>
+</modal>
 
 {{-- Grid Modal --}}
-<div class="modal fade modal--centered" id="gridModal">
-  <div class="modal__dialog -max--md" role="document">
-    <div class="modal__content">
-      <div class="modal__header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="close"></button>
-        <h5 class="modal-title">Grid Modal</h5>
-      </div>
-      <div class="modal__body">
-        <div class="conatiner t--center">
-          <div class="g__row">
-            <div class="g__col">
-              <div class="card"> col 1 </div>
-            </div>
-            <div class="g__col">
-              <div class="card"> col 2 </div>
-            </div>
-            <div class="g__col">
-              <div class="card"> col 3 </div>
-            </div>
-          </div>
-          <div class="g__row">
-            <div class="g__col">
-              <div class="card">col 12</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<modal id="gridModal" title="Grid Modal">
+  <div class="g__row t--center">
+    <div class="g__col">
+      <div class="card"> col 1 </div>
+    </div>
+    <div class="g__col">
+      <div class="card"> col 2 </div>
+    </div>
+    <div class="g__col">
+      <div class="card"> col 3 </div>
     </div>
   </div>
+  <div class="g__row">
+    <div class="g__col">
+      <div class="card">col 12</div>
+    </div>
+  </div>
+</div>
+
+{{-- Confirm Modal --}}
+<modal id="confirmModal" title="Confirmation Modal" confirmation>
+  <h4 class="t--center">Are you sure you want to do that?</h4>
 </div>

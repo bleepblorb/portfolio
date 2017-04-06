@@ -3,6 +3,7 @@ require('./bootstrap');
 
 import resume from './components/resume/resume';
 import multiselect from './components/multiselect';
+import modal from './components/modal.vue';
 
 window.Event = new Vue();
 
@@ -14,7 +15,15 @@ const app = new Vue ({
   },
 
   components : {
-    resume, multiselect
+    resume,
+    multiselect,
+    modal,
+  },
+
+  methods : {
+    Emit(name, ...args) {
+      Event.$emit(name, ...args);
+    }
   }
 });
 
