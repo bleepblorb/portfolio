@@ -6,7 +6,7 @@
   overflow: hidden;
   height: 100vh;
 
-  .close {
+  > .close {
     position: fixed;
     padding: 16px;
     background-color: $jazzy;
@@ -344,11 +344,11 @@
 .preview-toggle__btn {
   position: absolute;
   display: flex;
-  top: 50vh;
+  top: 25vh;
   right: -16px;
   width: 32px;
   height: 32px;
-  background-color: $jazzy;
+  background-color: $jean-jacket;
   border-radius: 50%;
   transition: all 250ms 0ms, top 1ms;
   opacity: 0;
@@ -357,6 +357,7 @@
 
   .i--arrow {
     margin: 0;
+    background-image: url('../img/UI/arrow-right-lighter.svg');
   }
 
   .preview-mode & {

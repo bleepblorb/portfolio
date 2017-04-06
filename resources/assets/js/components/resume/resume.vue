@@ -21,12 +21,28 @@
       </transition>
 
       <div class="sidebar"  v-if="!state.showIntro">
-        <button @click="reset()" class="edit-btn">R</button>
+        <button @click="reset(true)" class="edit-btn">R</button>
         <button @click="toggle()" class="edit-btn">e</button>
       </div>
 
-      <button @click="close()" v-if="editMode" class="close"></button>
+      <button @click="close(!isComplete)" v-if="editMode" class="close"></button>
     </template>
+
+    <modal id="modal-close" confirmation ok-title="Yeah, Don't Care" close-title="Fine, I'll do it." size="sm" @ok="close()">
+      <div class="p-3">
+        <h3 class="c--jazzy">But, you aren't finished yet...</h3>
+        <p class="t--sans">I'll have to finish the rest of the resume for you</p>
+      </div>
+    </modal>
+
+    <modal id="modal-reset" confirmation ok-title="Yes, please" close-title="Nevermind" size="sm" @ok="reset()">
+      <div class="p-3">
+        <h3 class="c--jazzy">Are you sure?</h3>
+        <p class="t--sans">Just checking, because this will erase all the things.</p>
+        <h6 class="c--gray">... no do-overs</h6>
+      </div>
+    </modal>
+
   </div>
 </template>
 
@@ -39,7 +55,7 @@ import resumeEditor from './resumeEditor';
 import resumeContent from './resumeContent';
 import resumeLayout from './resumeLayout';
 import resumeIntro from './resumeIntro';
-
+import modal from '../modal.vue';
 
 store.resume.state = {
   currentStep : 1,
@@ -73,7 +89,7 @@ store.resume.model = {
 
 export default {
   components : {
-    resumeEditor, resumeContent, resumeLayout, resumeIntro
+    resumeEditor, resumeContent, resumeLayout, resumeIntro, modal
   },
 
   data() {
@@ -293,10 +309,19 @@ export default {
 
   methods : {
 
-    close() {
+    close(confirm = false) {
 
-      this.state.editMode = false;
+      if ( !this.state.editMode ) {
+        return;
+      }
 
+      if ( confirm ) {
+
+        Event.$emit( 'show::modal', 'modal-close' );
+
+      } else {
+
+        this.state.editMode = false;
 
         window.setTimeout( () => {
           if ( !this.isComplete ) {
@@ -305,31 +330,37 @@ export default {
           this.state.previewMode = false;
           Event.$emit('setPhase', 0, 0);
         }, 650)
+      }
 
     },
 
-    reset() {
+    reset(confirm = false) {
 
-      this.state.currentStep = 1;
-      this.state.currentPhase = 0;
-      this.state.furthestAllowed = 0;
-      this.state.completedSteps = 0;
-      this.state.isComplete = false;
-      this.state.editMode = false;
-      this.state.showIntro = true;
+      if ( confirm ) {
+        Event.$emit( 'show::modal', 'modal-reset' );
+      }
+      else {
 
-      axios.get('api/resume/new')
-      .then(response => {
-        _.forEach(response.data, (item, key) => {
-          store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
+        this.state.currentStep = 1;
+        this.state.currentPhase = 0;
+        this.state.furthestAllowed = 0;
+        this.state.completedSteps = 0;
+        this.state.isComplete = false;
+        this.state.editMode = false;
+        this.state.showIntro = true;
+
+        axios.get('api/resume/new')
+        .then(response => {
+          _.forEach(response.data, (item, key) => {
+            store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
         });
-        console.log(store.resume.model);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
 
-      Event.$emit('reset');
+        Event.$emit('reset');
+      }
     },
 
     toggle() {
@@ -386,7 +417,6 @@ export default {
   },
 
   created() {
-
     this.state.totalSteps = this.totalSteps;
 
     Event.$on('updateModel', (phase, step, value) => {
