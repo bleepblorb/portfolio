@@ -1,6 +1,6 @@
 <template>
     <div class="editor__phase">
-      <transition :name="animation">
+      <transition :name="'slide-' + this.state.direction">
         <editor-step
           v-for="(step, index) in steps"
           v-if="state.currentStep ==  stepOffset + index"
@@ -78,9 +78,6 @@
       isLastStep() {
         return this.currentStep == this.lastStep;
       },
-      animation() {
-        return 'slide-' + this.state.direction
-      }
     },
 
     watch : {
@@ -110,12 +107,15 @@
     },
 
     methods : {
+
       enter(el) {
         console.log("enter", el);
       },
+
       leave(el) {
         console.log("leave", el);
       },
+
       nextStep() {
         // this.animation = "slide-next";
         if ( this.state.currentPhase !== this.phaseIndex ) { return; }

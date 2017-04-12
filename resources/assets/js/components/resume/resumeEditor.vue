@@ -8,7 +8,7 @@
         <div class="progress editor__progress">
           <div class="progress-bar" role="progressbar" :aria-valuenow="percentComplete" aria-valuemin="0" aria-valuemax="100" :style="{width : percentComplete + '%'}"></div>
         </div>
-        <h5 class="editor__phase-heading">{{schema.phases[currentPhase].title}}</h5>
+        <h5 class="editor__phase-heading">{{ schema.phases[currentPhase] ? schema.phases[currentPhase].title : ''}}</h5>
         <ul class="editor__phase__dots">
           <li v-for="(phase, index) in schema.phases"
           :class="{'-active' : currentPhase == index, '-disabled' : furthestAllowed < index}"
@@ -21,6 +21,17 @@
 
       <!-- Slot Content -->
       <transition-group name="v" tag="div" class="editor_phases">
+        <editor-toc
+          key="toc"
+          :options="phaseList"
+          v-show="currentPhase == 'toc'"
+        ></editor-toc>
+
+        <editor-welcome
+          key="intro"
+          v-show="currentPhase == 'welcome'"
+        ></editor-welcome>
+
         <editor-phase
           v-for="(phase, index) in schema.phases"
           v-show="currentPhase == index"
@@ -46,12 +57,14 @@
 
   import {store} from '../global';
   import editorPhase from './editorPhase';
+  import editorToc from './editorToc';
+  import editorWelcome from './editorWelcome';
   import editorNav from './editorNav';
 
   export default {
 
     components : {
-      editorPhase, editorNav
+      editorPhase, editorNav, editorToc, editorWelcome
     },
 
     props : {
@@ -64,12 +77,20 @@
     data() {
       return {
         state : store.resume.state,
-        currentPhase: 0,
         completed: -1,
       }
     },
 
     computed : {
+      phaseList() {
+        console.log(this.schema.phases, _.map(this.schema.phases, 'title'));
+        return _.map(this.schema.phases, 'title');
+      },
+
+      currentPhase() {
+        return this.state.currentPhase;
+      },
+
       totalPhases() {
         return this.schema.phases.length;
       },
@@ -96,10 +117,6 @@
       },
       percentComplete() {
         return (this.state.completedSteps / this.totalSteps) * 100;
-      },
-      animation() {
-        if ( this.state.direction == 'next' ) { return 'slide-next' }
-        else if ( this.state.direction == 'prev' ) { return 'slide-prev' };
       }
     },
 
@@ -185,6 +202,9 @@
         this.currentPhase = 0;
         this.completed = -1;
       });
+    },
+
+    mounted() {
     }
   }
 </script>

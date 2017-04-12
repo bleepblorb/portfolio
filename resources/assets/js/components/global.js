@@ -1,17 +1,16 @@
 window.store = {
-  resume : {}
+  resume : {},
+  state : {
+    showMenu : true
+  }
 };
 
+window.Vue = require('vue');
 
-// require('../bootstrap')
-//
-// window.axios.get('api/resume/new')
-// .then(response => {
-//   store.resume.model = response.data;
-//   console.log(response.data);
-// })
-// .catch(function (error) {
-//   console.log(error);
-// });
+import popover from './popover.vue';
+Vue.component('popover', popover);
+
+import hint from './hint.vue';
+Vue.component('hint', hint);
 
 export {store};

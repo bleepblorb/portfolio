@@ -7,6 +7,11 @@
           <div class="g__col8">
             <intro-phase id="intro"></intro-phase>
             <h6 class="mt-2">For more general info about me, visit the <a href="#">about page</a>.</h6>
+            <p>
+              <popover placement="top" title="Instant Regret?" content="I can’t give you back all the time you’ve just wasted, but you can go back and make edits anytime!" triggers="hover">
+                <button class="btn btn-primary">Popover</button>
+              </popover>
+            </p>
           </div>
         </div>
       </div>

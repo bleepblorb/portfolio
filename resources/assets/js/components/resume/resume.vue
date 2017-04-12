@@ -3,30 +3,30 @@
     <transition name="intro">
       <resume-intro v-show="state.showIntro" key="intro"></resume-intro>
     </transition>
-    <template v-show="!state.showIntro">
-      <transition name="edit-mode">
-        <div v-show="editMode " class="resume__editor-mode">
-          <div class="preview-toggle">
-            <div class="preview-toggle__btn" @click="togglePreview()">
-              <span class="i--arrow"></span>
-            </div>
+    <transition name="edit-mode">
+      <div v-show="editMode" class="resume__editor-mode">
+        <div class="preview-toggle">
+          <div class="preview-toggle__btn" @click="togglePreview()">
+            <span class="i--arrow"></span>
           </div>
-          <resume-editor :schema="schema"></resume-editor>
-          <resume-content :schema="schema"></resume-content>
         </div>
-      </transition>
-
-      <transition name="edit-mode">
-        <resume-layout  v-show="!editMode && state.isComplete"></resume-layout>
-      </transition>
-
-      <div class="sidebar"  v-if="!state.showIntro">
-        <button @click="reset(true)" class="edit-btn">R</button>
-        <button @click="toggle()" class="edit-btn">e</button>
+        <resume-editor :schema="schema"></resume-editor>
+        <resume-content :schema="schema"></resume-content>
       </div>
+    </transition>
 
-      <button @click="close(!isComplete)" v-if="editMode" class="close"></button>
-    </template>
+    <transition name="edit-mode">
+      <resume-layout  v-show="!editMode && state.isComplete"></resume-layout>
+    </transition>
+
+    <div class="sidebar" v-show="!state.showIntro && !state.editMode">
+      <button @click="reset(true)" class="edit-btn">R</button>
+      <hint ref="editPopover" placement="right" title="Instant Regret?" content="I can’t give you back all the time you’ve just wasted, but you can go back and make edits anytime!" :closeOnClickOff="false" :trigger="false">
+        <button @click="toggle()" class="edit-btn">e</button>
+      </hint>
+    </div>
+
+    <button @click="close(!isComplete)" v-if="editMode" class="close"></button>
 
     <modal id="modal-close" confirmation ok-title="Yeah, Don't Care" close-title="Fine, I'll do it." size="sm" @ok="close()">
       <div class="p-3">
@@ -50,6 +50,7 @@
 
 require('../../bootstrap')
 
+
 import {store} from '../global.js';
 import resumeEditor from './resumeEditor';
 import resumeContent from './resumeContent';
@@ -68,6 +69,8 @@ store.resume.state = {
   showIntro : true,
   editMode : false,
   previewMode : false,
+  readerMode : false,
+  tourComplete : false,
 };
 
 store.resume.model = {
@@ -270,11 +273,8 @@ export default {
   },
 
   computed :{
-    // model() {
-    //   return store.resume.model;
-    // },
     isComplete() {
-      return this.state.completedSteps == this.totalSteps ? true : false;
+      return this.state.completedSteps == this.state.totalSteps ? true : false;
     },
     totalSteps() {
       let count = 0;
@@ -294,20 +294,39 @@ export default {
   },
 
   watch : {
-    isComplete() {
-      if ( this.isComplete ) {
-        this.state.isComplete = true;
-      }
-      else {
-        this.state.isComplete = false;
+    isComplete(newVal) {
+      this.state.isComplete = newVal;
+
+      if ( newVal ) {
+        console.log('iscompleteChange');
+        this.$refs.editPopover.$emit('show::popover');
       }
     },
     furthestAllowed() {
       this.state.furthestAllowed = this.furthestAllowed;
+    },
+    editMode(newVal) {
+      newVal ? Event.$emit('hideMenu') : Event.$emit('showMenu');
+
+      if ( !this.state.tourComplete ) {
+        this._editorTour.start();
+      }
     }
   },
 
   methods : {
+
+    open() {
+
+      if ( this.state.editMode ) {
+        return;
+      }
+
+      this.state.currentPhase = 'toc';
+      this.state.currentStep = -1;
+      this.state.direction = 'next';
+      this.state.editMode = true;
+    },
 
     close(confirm = false) {
 
@@ -328,10 +347,8 @@ export default {
             this.setDefault();
           }
           this.state.previewMode = false;
-          Event.$emit('setPhase', 0, 0);
-        }, 650)
+        }, 850)
       }
-
     },
 
     reset(confirm = false) {
@@ -393,15 +410,18 @@ export default {
       });
 
       Event.$emit('setComplete');
+    },
+
+    sidebarEnter() {
+      console.log('sidebar enter');
+      if ( this.state.isComplete ) {
+        this.$refs.editPopover.$emit('show::popover');
+      }
     }
 
   },
 
-  mounted() {
-  },
-
   beforeCreate() {
-    console.log(store.resume.model);
 
     axios.get('api/resume/new')
     .then(response => {
@@ -417,6 +437,7 @@ export default {
   },
 
   created() {
+
     this.state.totalSteps = this.totalSteps;
 
     Event.$on('updateModel', (phase, step, value) => {
@@ -425,7 +446,7 @@ export default {
     });
 
     Event.$on('toggleEditMode', () => {
-      this.state.editMode = !this.state.editMode;
+      this.state.editMode ? this.close() : this.open();
     });
 
     Event.$on('stepComplete', (step) => {
@@ -453,9 +474,116 @@ export default {
       this.state.completedSteps = this.state.totalSteps;
     });
 
-    Event.$on('closeEdit', () => {
-      this.close();
+    Event.$on('closeEdit', (confirm = false) => {
+      this.close(confirm);
     });
+
+    //
+    // Editor Tour
+
+    // this._editorTour = new Shepherd.Tour({
+    //   defaults : {
+    //     classes : 'popover',
+    //     tetherOptions : {
+    //       classPrefix: 'tether',
+    //       optimizations: {
+    //         // gpu: false
+    //       }
+    //     },
+    //   }
+    // });
+    //
+    // this._editorTour.addStep('open', {
+    //   title : "Welcome",
+    //   text : "Thank you for taking the time to create the perfect resume. Let's just take a quick tour",
+    //   buttons : [
+    //     {
+    //       text : '*sigh* Alright',
+    //       action : this._editorTour.next
+    //     },
+    //     {
+    //       text : 'veto!',
+    //       action : this._editorTour.cancel
+    //     }
+    //   ]
+    // });
+    //
+    // this._editorTour.addStep('navigation', {
+    //   text : "This is the nav",
+    //   attachTo : ".editor__nav top"
+    // });
+    //
+    // this._editorTour.addStep('moreNav', {
+    //   text : "This is also some nav",
+    //   attachTo : ".editor__phase__dots bottom",
+    // });
+    //
+    // this._editorTour.addStep('preview-toggle', {
+    //   title : "Preview Toggle",
+    //   text : "This button will toggle the preview mode (on smaller screens)",
+    //   attachTo : ".preview-toggle__btn left",
+    //   when : {
+    //     'before-show' : function() {
+    //       let toggle = document.querySelector('.preview-toggle__btn');
+    //       toggle.style.display = 'flex';
+    //       toggle.style.opacity = '1';
+    //     },
+    //     hide : function() {
+    //       let toggle = document.querySelector('.preview-toggle__btn');
+    //       toggle.style = '';
+    //     }
+    //   }
+    // });
+    //
+    // this._editorTour.addStep('preview', {
+    //   title : "Preview Area",
+    //   text : "This is the preview area. You can preview your answers, and sometimes make further edits.",
+    //   attachTo : ".preview__phase top",
+    //   when : {
+    //     'before-show' : function() {
+    //       Event.$emit('setPreviewMode', true);
+    //     },
+    //     show : function() {
+    //       this.el.classList.remove('shepherd-open');
+    //       window.setTimeout(()=> {
+    //         this.el.classList.add('shepherd-open');
+    //         this.tether.position();
+    //       }, 650);
+    //     }
+    //   }
+    // });
+    //
+    // this._editorTour.addStep('toggler', {
+    //   title : "Get the perfect wording",
+    //   text : "Underlied areas allow you to toggle through wording options. <strong>Try it out</strong>",
+    //   attachTo : ".toggler top",
+    //   advanceOn : {selector: '.toggler', event: 'click'},
+    //   buttons : false
+    // });
+    //
+    // this._editorTour.addStep('toggler-response', {
+    //   title : "Sweet, looking good",
+    //   attachTo : ".toggler top",
+    //   when : {
+    //     hide : function() {
+    //       Event.$emit('setPreviewMode', false);
+    //     }
+    //   }
+    // });
+    //
+    // this._editorTour.addStep('done', {
+    //   title : "Done",
+    //   text : "I think you are ready to tackle it on your own, young padawan",
+    //   buttons : [
+    //     {
+    //       text : 'Finish',
+    //       action : this._editorTour.complete
+    //     }
+    //   ]
+    // });
+    //
+    // this._editorTour.on('complete', () => {
+    // });
 
   }
 }

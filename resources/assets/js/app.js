@@ -1,6 +1,7 @@
 
 require('./bootstrap');
 
+import {store} from './components/global.js';
 import resume from './components/resume/resume';
 import multiselect from './components/multiselect';
 import modal from './components/modal.vue';
@@ -12,6 +13,7 @@ const app = new Vue ({
   el: '#app',
 
   data : {
+    state : store.state
   },
 
   components : {
@@ -24,7 +26,17 @@ const app = new Vue ({
     Emit(name, ...args) {
       Event.$emit(name, ...args);
     }
+  },
+
+  created() {
+    Event.$on('hideMenu', () => {
+      this.state.showMenu = false;
+    });
+    Event.$on('showMenu', () => {
+      this.state.showMenu = true;
+    });
   }
+
 });
 
 

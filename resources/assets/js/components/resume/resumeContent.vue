@@ -5,6 +5,7 @@
       <div class="preview__phase">
         <div class="container -max--lg">
           <transition name="slide" mode="out-in">
+            <welcome-phase id="welcome" v-if="state.currentPhase == 'welcome'"></welcome-phase>
             <intro-phase id="intro" v-if="state.currentPhase == 0"></intro-phase>
             <portrait-phase id="portrait" v-if="state.currentPhase == 1"></portrait-phase>
           </transition>
@@ -18,11 +19,12 @@
   import {store} from '../global.js';
   import introPhase from './introPhase';
   import portraitPhase from './portraitPhase';
+  import welcomePhase from './welcomePhase';
 
   export default {
 
     components : {
-      introPhase, portraitPhase
+      introPhase, portraitPhase, welcomePhase
     },
 
     props : {

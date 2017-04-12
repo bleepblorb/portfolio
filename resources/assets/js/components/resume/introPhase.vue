@@ -1,6 +1,7 @@
 <template>
     <div :id="'phase__' + id">
       <!-- <transition name="slide" mode="out-in"> -->
+      <div v-if="state.currentStep == 1">
         <div class="" v-if="introStyle == 'standard'" key="standard">
           <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
           <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to <toggler :active="state.editMode" id="togglerIntro" :index="togglerIntro" :options="['create things with value', 'make cool shit', 'get paid for doing something I love']"></toggler>.</h2>
@@ -29,13 +30,22 @@
           <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
           <h4>section 6</h4>
         </div>
-        <div v-else class="alert alert--info -max--sm">
-          <p class="t--sans c--jazzy"><strong>Remember —</strong> Your first impression is very important. It sets the tone for the whole resume and everyone will decide instantly whether they hate you or not. <strong>Good Luck!</strong></p>
+        <div v-else >
+          <h2>
+            Let's get started with a <toggler :active="state.editMode" id="togglerTest" :index="togglerTest" :options="['perfect', 'complicated', 'badass', 'quirky', 'half-assed']"></toggler> intro.
+          </h2>
+          <!-- <div class="alert alert--info -max--sm">
+            <p class="t--sans c--jazzy"><strong>Remember —</strong> Your first impression is very important. It sets the tone for the whole resume and everyone will decide instantly whether they hate you or not. <strong>Good Luck!</strong>
+            </p>
+          </div> -->
         </div>
+      </div>
       <!-- </transition> -->
-      <div class="g__row mt-3">
-        <div class="g__col">
-          <p >Personal Interests include <ul class="-inline-text"><li v-for="item in personal">{{item}}</span></ul>.</p>
+      <div v-if="state.currentStep == 2">
+        <div class="g__row mt-3">
+          <div class="g__col">
+            <p >Personal Interests include <ul class="-inline-text"><li v-for="item in personal">{{item}}</span></ul>.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -57,6 +67,7 @@
 
     data() {
       return {
+        togglerTest : 0
       }
     },
 

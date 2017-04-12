@@ -1,8 +1,4 @@
 //
-//
-//
-//
-//
 // Headings
 //
 
@@ -39,6 +35,13 @@ h6, .h6 { font-size: $font-size-h6; }
   line-height: $display-line-height;
 }
 
+//
+//  Paragraphs
+//
+
+p {
+  font-family: $font-family-serif;
+}
 
 //
 // Lists
@@ -121,7 +124,7 @@ ul, ol {
       &:last-of-type:after {
         content: '';
       }
-      
+
       &:first-of-type:after {
         content: '';
       }
@@ -263,13 +266,9 @@ small,
 // -- Contextual colors
 
 @include text-color-variant('.c--muted', $text-muted);
-
 @include text-color-variant('.c--success', $brand-success);
-
 @include text-color-variant('.c--info', $brand-info);
-
 @include text-color-variant('.c--warning', $brand-warning);
-
 @include text-color-variant('.c--danger', $brand-danger);
 
 // Font colors

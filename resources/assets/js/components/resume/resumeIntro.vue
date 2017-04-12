@@ -35,10 +35,8 @@
     methods : {
       start() {
         this.state.showIntro = false;
-
-        window.setTimeout(() => {
-          this.state.editMode = true;
-        }, 350);
+        this.state.editMode = true;
+        Event.$emit('setPhase', 0, 0);
       },
 
       setDefault() {

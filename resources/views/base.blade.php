@@ -19,23 +19,10 @@
 
   </head>
   <body>
-    <div id="app">
-      {{-- <div class="fixed-top">
-        <div class="container">
-          <ul class="nav -align-items--baseline">
-            <li class="nav-item">
-              <a href="{{route('home')}}" class="nav-link"><strong class="c--muted" style="">well done</strong></a>
-            </li>
-            <li class="nav-item ml-auto">
-              <small class="nav-link c--muted">Full site in progress...</small>
-            </li>
-          </ul>
-        </div>
-      </div> --}}
+    <div id="app" :class="{'-hide-menu' : !state.showMenu}">
+      @include('partials.menu')
       @yield('app')
     </div>
-
-
   </body>
   <!-- Scripts -->
   <script>
