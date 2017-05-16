@@ -19,7 +19,7 @@
 
     data() {
       return {
-        url : "/storage/portrait/portrait-base.jpg"
+        url : ""
       }
     },
 
@@ -50,10 +50,7 @@
     methods : {
       updatePortrait() {
         if (this.model) {
-          axios.post('/img/portrait', {
-            facialHair: this.model.facialHair,
-            background: this.model.background
-          })
+          axios.post('/img/portrait', this.model)
           .then(response => {
             this.url = response.data;
           })

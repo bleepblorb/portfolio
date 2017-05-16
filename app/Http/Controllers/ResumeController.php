@@ -16,12 +16,12 @@ class ResumeController extends Controller
       'togglerIntro' => 0,
     ],
     'portrait' => [
-      'expression' => 'normal',
+      'expression' => 'neutral',
       'facialHair' => '',
-      'hair' => 'default',
+      'hair' => 'standard',
       'background' => '',
-      'attire' => '',
-      'hands' => '',
+      'attire' => 'base',
+      'hands' => 'default',
     ]
   ];
 
@@ -50,7 +50,9 @@ class ResumeController extends Controller
         'personal' => ["making a mess in the kitchen", "pooping in the woods", "watching cartoons", "learning new skills (that killz)", "playing tennis"],
       ],
       'portrait' => [
-        'facialHair' => 'beard',
+        'facialHair' => 'scruff',
+        'attire' => 'casual',
+        'expression' => 'smile-2',
         'background' => 'white'
       ]
     ];

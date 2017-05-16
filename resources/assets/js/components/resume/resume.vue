@@ -83,7 +83,6 @@ store.resume.model = {
   portrait : {
     expression : '',
     facialHair : '',
-    hair : '',
     attire : '',
     hands : '',
     background : '',
@@ -140,7 +139,7 @@ export default {
               },
               {
                 id : "personal",
-                intro : "Humanize me",
+                intro : "Make me interesting",
                 question : "The spot for obligitory personal interests",
                 imageUrl : "/img/portrait-beard.png",
                 type : "checkbox-group",
@@ -187,23 +186,27 @@ export default {
                 options : [
                   {
                     label : "All Business",
-                    value : "business"
+                    value : "grump"
                   },
                   {
                     label : "Robotic",
-                    value : "robot"
+                    value : "neutral"
                   },
                   {
                     label : "Seemingly Normal",
-                    value : "normal"
+                    value : "smile-1"
                   },
                   {
                     label : "Happy Go Lucky",
-                    value : "happy"
+                    value : "smile-2"
+                  },
+                  {
+                    label : "Joyful",
+                    value : "smile-3"
                   },
                   {
                     label : "Sugar Buzz",
-                    value : "excited"
+                    value : "creepy"
                   },
                 ]
 
@@ -220,8 +223,93 @@ export default {
                     value : "beard"
                   },
                   {
+                    label : "Friendly Chops",
+                    value : "chops"
+                  },
+                  {
+                    label : "Goatee",
+                    value : "goatee"
+                  },
+                  {
+                    label : "Simple Stache",
+                    value : "stache"
+                  },
+                  {
+                    label : "Scruff",
+                    value : "scruff"
+                  },
+                  {
                     label : "No Thanks",
                     value : "clean"
+                  }
+                ]
+              },
+              {
+                id : "attire",
+                imageUrl : "/img/portrait-beard.png",
+                intro : "Dress for success",
+                question : "Dress me for the job I want, not the job I don't have",
+                type : "radial-group",
+                options : [
+                  {
+                    label : "Casual",
+                    value : "casual"
+                  },
+                  {
+                    label : "Everyday",
+                    value : "everyday"
+                  },
+                  {
+                    label : "Business",
+                    value : "business"
+                  },
+                  {
+                    label : "Outdoorsy",
+                    value : "outdoors"
+                  },
+                  {
+                    label : "Sunday Best",
+                    value : "sweater"
+                  },
+                  {
+                    label : "Work from Home",
+                    value : "home"
+                  },
+                ]
+              },
+              {
+                id : "hands",
+                intro : "Strike a pose",
+                question : "I've got one hand in my pocket, the other is...",
+                type : "multiselect",
+                options : [
+                  {
+                    label : "Giving a Thumbs Up",
+                    value : "thumbs-up"
+                  },
+                  {
+                    label : "Holding a Spot of Tea",
+                    value : "tea"
+                  },
+                  {
+                    label : "Grabbing a Craft Brew",
+                    value : "beer"
+                  },
+                  {
+                    label : "Baking Some Brownies",
+                    value : "baking"
+                  },
+                  {
+                    label : "Playing a Ukelele",
+                    value : "uke"
+                  },
+                  {
+                    label : "Suporting Local Sports Team",
+                    value : "sports"
+                  },
+                  {
+                    label : "Also in My Pocket",
+                    value : "default"
                   }
                 ]
               },
@@ -238,30 +326,6 @@ export default {
                   {
                     label : "Camping",
                     value : "camping"
-                  }
-                ]
-              },
-              {
-                id : "hands",
-                intro : "🎶",
-                question : "I've got one hand in my pocket, the other is...",
-                type : "multiselect",
-                options : [
-                  {
-                    label : "Giving a Thumbs Up",
-                    value : "thumbs-up"
-                  },
-                  {
-                    label : "Grabbing a Craft Brew",
-                    value : "brew"
-                  },
-                  {
-                    label : "Holding a Spot of Tea",
-                    value : "tea"
-                  },
-                  {
-                    label : "Also in My Pocket",
-                    value : "none"
                   }
                 ]
               }
@@ -299,7 +363,7 @@ export default {
 
       if ( newVal ) {
         console.log('iscompleteChange');
-        this.$refs.editPopover.$emit('show::popover');
+        // this.$refs.editPopover.$emit('show::popover');
       }
     },
     furthestAllowed() {
@@ -308,9 +372,9 @@ export default {
     editMode(newVal) {
       newVal ? Event.$emit('hideMenu') : Event.$emit('showMenu');
 
-      if ( !this.state.tourComplete ) {
-        this._editorTour.start();
-      }
+      // if ( !this.state.tourComplete ) {
+      //   this._editorTour.start();
+      // }
     }
   },
 
