@@ -43,7 +43,10 @@
         let active =  _.find(this.options, item => {
           return item.value == this.value;
         });
-        return active.label;
+        
+        if (active) {
+          return active.label;
+        }
       }
     },
 

@@ -12,37 +12,37 @@
       @click="onClickOut($event)"
     >
 
-    <div :class="['modal__dialog']">
-      <div class="modal__content" @click.stop="" :class="['-max--'+size]">
+      <div :class="['modal__dialog']">
+        <div class="modal__content" @click.stop="" :class="['-max--'+size]">
 
-        <div class="modal__header" v-if="this.$slots['modal-footer'] || this.$slots['modal-title'] || this.title">
-          <slot name="modal__header">
-            <h5 class="modal__title">
-              <slot name="modal-title">{{title}}</slot>
-            </h5>
-          </slot>
+          <div class="modal__header" v-if="this.$slots['modal-footer'] || this.$slots['modal-title'] || this.title">
+            <slot name="modal__header">
+              <h5 class="modal__title">
+                <slot name="modal-title">{{title}}</slot>
+              </h5>
+            </slot>
+          </div>
+
+          <div class="modal__body">
+            <slot></slot>
+          </div>
+
+          <div class="modal__footer" v-if="confirmation">
+            <slot name="modal-footer">
+              <button class="btn btn-link -align-self--start"  @click="hide(false)">{{closeTitle}}</button>
+              <button class="btn btn-primary" @click="hide(true)">{{okTitle}}</button>
+            </slot>
+          </div>
+          <div class="modal__footer" v-else-if="this.$slots['modal-footer']">
+            <slot name="modal-footer"></slot>
+          </div>
+
+          <button type="button" class="close" aria-label="Close" @click="hide()"></button>
+
         </div>
-
-        <div class="modal__body">
-          <slot></slot>
-        </div>
-
-        <div class="modal__footer" v-if="confirmation">
-          <slot name="modal-footer">
-            <button class="btn btn-link -align-self--start"  @click="hide(false)">{{closeTitle}}</button>
-            <button class="btn btn-primary" @click="hide(true)">{{okTitle}}</button>
-          </slot>
-        </div>
-        <div class="modal__footer" v-else-if="this.$slots['modal-footer']">
-          <slot name="modal-footer"></slot>
-        </div>
-
-        <button type="button" class="close" aria-label="Close" @click="hide()"></button>
-
       </div>
     </div>
-  </div>
-  <!-- </transition-group> -->
+  </transition>
 </template>
 
 
