@@ -11,10 +11,10 @@
       <div class="g__col">
         <ul class="nav -justify-content--end">
           <li class="nav-item">
-            <a href="{{route('resume')}}" class="nav-link active">Resume</a>
+            <a href="{{route('resume')}}" class="nav-link active">Words</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Visuals</a>
+            <a href="{{route('visuals')}}" class="nav-link">Pictures</a>
           </li>
         </ul>
       </div>
