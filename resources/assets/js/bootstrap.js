@@ -31,3 +31,33 @@ window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
     'X-Requested-With': 'XMLHttpRequest'
 };
+
+window.Blazy = require('./components/image-loader');
+require('./components/scrollspy');
+
+(function() {
+    // Initialize
+    var bLazy = new Blazy({
+      selector : '[data-image-load]',
+      successClass : '-loaded',
+      breakpoints : [
+        {
+          width: 576,
+          src: 'data-src-sm'
+        },
+        {
+          width: 768,
+          src: 'data-src-md'
+        },
+        {
+          width: 992,
+          src: 'data-src-lg'
+        },
+        {
+          width: 1200,
+          src: 'data-src-xl'
+        },
+
+      ]
+    });
+})();
