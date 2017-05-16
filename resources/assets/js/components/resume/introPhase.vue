@@ -44,7 +44,7 @@
       <div v-if="state.currentStep == 2">
         <div class="g__row mt-3">
           <div class="g__col">
-            <p >Personal Interests include <ul class="-inline-text"><li v-for="item in personal">{{item}}</span></ul>.</p>
+            <p >Personal Interests include <ul class="-inline-text"><li v-for="item in personal">{{item}}</li></ul>.</p>
           </div>
         </div>
       </div>
