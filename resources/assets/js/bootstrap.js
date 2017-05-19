@@ -37,7 +37,7 @@ require('./components/scrollspy');
 
 (function() {
     // Initialize
-    var bLazy = new Blazy({
+    window.bLazy = new Blazy({
       selector : '[data-image-load]',
       successClass : '-loaded',
       breakpoints : [

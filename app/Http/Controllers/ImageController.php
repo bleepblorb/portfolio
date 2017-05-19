@@ -22,7 +22,8 @@ class ImageController extends Controller
       'facialHair' => 'clean',
       'expression' => 'neutral',
       'background' => 'none',
-      'hair' => 'defualt'
+      'hair' => 'defualt',
+      'hands' => 'default'
     ];
     $portrait = array_merge( $defaults, $input );
     ksort($portrait);
@@ -30,11 +31,18 @@ class ImageController extends Controller
     // convert array to hash
     $decode = json_encode($portrait);
     $hash = md5($decode);
-    $filename = 'portrait-'.$hash.'.jpg';
+    $fileType = '.jpg';
+
+    $filenameBase = 'portrait-'.$hash;
+    $filenameXs = $filenameBase.'-xs'.$fileType;
+    $filenameMd = $filenameBase.'-md'.$fileType;
+    $filenameLg = $filenameBase.'-lg'.$fileType;
+    $filenameXl = $filenameBase.'-xl'.$fileType;
 
 
     // If cached version doesnt exits, generate new image
-    if(!Storage::exists('public/portrait/cache/'.$filename)) {
+    if(!Storage::disk('s3')->exists('public/portrait/'.$filenameXs)) {
+    // if(true) {
       // Generate Image
       $img =  Image::canvas(2400, 1350, '#f5f5f5');
 
@@ -131,14 +139,32 @@ class ImageController extends Controller
         $img->insert($baseUrl.$facialHair, 'top-left', 828, 0);
       }
 
-      if(!Storage::exists('public/portrait/cache')) {
-        Storage::makeDirectory('public/portrait/cache');
+      if(!Storage::disk('s3')->exists('public/portrait')) {
+        Storage::disk('s3')->makeDirectory('public/portrait');
       }
-      // Save generted image to the cache
-      $img->save($baseUrl.'cache/'.$filename);
+      // Save generted images to storage
+
+      // xs
+      $xsImg = clone $img;
+      $xsImg->crop(1800, 1350)->widen(576);
+      Storage::disk('s3')->put('public/portrait/'.$filenameXs, $xsImg->stream()->__toString());
+
+      // md
+      $mdImg = clone $img;
+      $mdImg->widen(1200);
+      Storage::disk('s3')->put('public/portrait/'.$filenameMd, $mdImg->stream()->__toString());
+
+      // xs
+      Storage::disk('s3')->put('public/portrait/'.$filenameXl, $img->stream()->__toString());
     }
 
     // return URL to location
-    return asset('storage/portrait/cache/'.$filename);
+    // return asset('storage/portrait/cache/'.$filename);
+    $urlList = [];
+    $urlList['xs'] = Storage::disk('s3')->url('public/portrait/'.$filenameXs);
+    $urlList['md'] = Storage::disk('s3')->url('public/portrait/'.$filenameMd);
+    $urlList['lg'] = Storage::disk('s3')->url('public/portrait/'.$filenameXl);
+
+    return json_encode($urlList);
   }
 }

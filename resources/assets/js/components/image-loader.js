@@ -186,9 +186,9 @@
         // if element is visible, not loaded or forced
         if (!hasClass(ele, options.successClass) && (force || options.loadInvisible || (ele.offsetWidth > 0 && ele.offsetHeight > 0))) {
             var source = getSource(ele, options);
-            console.log(source);
             var dataSrc = getAttr(ele, source) || getAttr(ele, options.src); // fallback to default 'data-src'
             if (dataSrc) {
+
                 var dataSrcSplitted = dataSrc.split(options.separator);
                 var src = dataSrcSplitted[_isRetina && dataSrcSplitted.length > 1 ? 1 : 0];
                 var srcset = getAttr(ele, options.srcset);
@@ -217,7 +217,7 @@
                         } else {
                             ele.style.backgroundImage = 'url("' + src + '")';
                         }
-                        // itemLoaded(ele, options);
+                        itemLoaded(ele, options);
                         unbindEvent(img, 'load', onLoadHandler);
                         unbindEvent(img, 'error', onErrorHandler);
                     };
@@ -229,6 +229,7 @@
                             handleSource(source, _attrSrcset, options.srcset);
                         });
                     }
+
                     bindEvent(img, 'error', onErrorHandler);
                     bindEvent(img, 'load', onLoadHandler);
                     handleSources(img, src, srcset); // Preload
@@ -242,14 +243,19 @@
     }
 
     function itemLoaded(ele, options) {
-        addClass(ele, options.successClass);
+        // addClass(ele, options.successClass);
         if (options.success) options.success(ele);
+
         // cleanup markup, remove data source attributes
-        removeAttr(ele, options.src);
-        removeAttr(ele, options.srcset);
-        each(options.breakpoints, function(object) {
-            removeAttr(ele, object.src);
-        });
+        // removeAttr(ele, options.src);
+        // removeAttr(ele, options.srcset);
+        // each(options.breakpoints, function(object) {
+        //     removeAttr(ele, object.src);
+        // });
+
+        // emit loaded events
+        var event = new CustomEvent( "loaded" );
+        ele.dispatchEvent(event);
     }
 
     function handleSource(ele, attr, dataAttr) {

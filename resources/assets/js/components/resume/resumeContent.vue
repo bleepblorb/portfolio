@@ -5,9 +5,9 @@
       <div class="preview__phase">
         <div class="container -max--lg">
           <transition name="slide" mode="out-in">
-            <welcome-phase id="welcome" v-if="state.currentPhase == 'welcome'"></welcome-phase>
-            <intro-phase id="intro" v-if="state.currentPhase == 0"></intro-phase>
-            <portrait-phase id="portrait" v-if="state.currentPhase == 1"></portrait-phase>
+            <welcome-phase key="welcome" id="welcome" v-if="state.currentPhase == 'welcome'"></welcome-phase>
+            <intro-phase key="intro" id="intro" v-if="state.currentPhase == 0"></intro-phase>
+            <portrait-phase key="portrait" id="portrait" v-if="state.currentPhase == 1"></portrait-phase>
           </transition>
         </div>
       </div>
