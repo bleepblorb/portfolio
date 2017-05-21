@@ -372,9 +372,9 @@ export default {
     editMode(newVal) {
       newVal ? Event.$emit('hideMenu') : Event.$emit('showMenu');
 
-      // if ( !this.state.tourComplete ) {
-      //   this._editorTour.start();
-      // }
+      if ( !this.state.tourComplete ) {
+        // this._editorTour.start();
+      }
     }
   },
 
@@ -544,111 +544,111 @@ export default {
 
     //
     // Editor Tour
+    console.log(window.Shepherd);
+    this._editorTour = new Shepherd.Tour({
+      defaults : {
+        classes : 'popover',
+        tetherOptions : {
+          classPrefix: 'tether',
+          optimizations: {
+            // gpu: false
+          }
+        },
+      }
+    });
 
-    // this._editorTour = new Shepherd.Tour({
-    //   defaults : {
-    //     classes : 'popover',
-    //     tetherOptions : {
-    //       classPrefix: 'tether',
-    //       optimizations: {
-    //         // gpu: false
-    //       }
-    //     },
-    //   }
-    // });
-    //
-    // this._editorTour.addStep('open', {
-    //   title : "Welcome",
-    //   text : "Thank you for taking the time to create the perfect resume. Let's just take a quick tour",
-    //   buttons : [
-    //     {
-    //       text : '*sigh* Alright',
-    //       action : this._editorTour.next
-    //     },
-    //     {
-    //       text : 'veto!',
-    //       action : this._editorTour.cancel
-    //     }
-    //   ]
-    // });
-    //
-    // this._editorTour.addStep('navigation', {
-    //   text : "This is the nav",
-    //   attachTo : ".editor__nav top"
-    // });
-    //
-    // this._editorTour.addStep('moreNav', {
-    //   text : "This is also some nav",
-    //   attachTo : ".editor__phase__dots bottom",
-    // });
-    //
-    // this._editorTour.addStep('preview-toggle', {
-    //   title : "Preview Toggle",
-    //   text : "This button will toggle the preview mode (on smaller screens)",
-    //   attachTo : ".preview-toggle__btn left",
-    //   when : {
-    //     'before-show' : function() {
-    //       let toggle = document.querySelector('.preview-toggle__btn');
-    //       toggle.style.display = 'flex';
-    //       toggle.style.opacity = '1';
-    //     },
-    //     hide : function() {
-    //       let toggle = document.querySelector('.preview-toggle__btn');
-    //       toggle.style = '';
-    //     }
-    //   }
-    // });
-    //
-    // this._editorTour.addStep('preview', {
-    //   title : "Preview Area",
-    //   text : "This is the preview area. You can preview your answers, and sometimes make further edits.",
-    //   attachTo : ".preview__phase top",
-    //   when : {
-    //     'before-show' : function() {
-    //       Event.$emit('setPreviewMode', true);
-    //     },
-    //     show : function() {
-    //       this.el.classList.remove('shepherd-open');
-    //       window.setTimeout(()=> {
-    //         this.el.classList.add('shepherd-open');
-    //         this.tether.position();
-    //       }, 650);
-    //     }
-    //   }
-    // });
-    //
-    // this._editorTour.addStep('toggler', {
-    //   title : "Get the perfect wording",
-    //   text : "Underlied areas allow you to toggle through wording options. <strong>Try it out</strong>",
-    //   attachTo : ".toggler top",
-    //   advanceOn : {selector: '.toggler', event: 'click'},
-    //   buttons : false
-    // });
-    //
-    // this._editorTour.addStep('toggler-response', {
-    //   title : "Sweet, looking good",
-    //   attachTo : ".toggler top",
-    //   when : {
-    //     hide : function() {
-    //       Event.$emit('setPreviewMode', false);
-    //     }
-    //   }
-    // });
-    //
-    // this._editorTour.addStep('done', {
-    //   title : "Done",
-    //   text : "I think you are ready to tackle it on your own, young padawan",
-    //   buttons : [
-    //     {
-    //       text : 'Finish',
-    //       action : this._editorTour.complete
-    //     }
-    //   ]
-    // });
-    //
-    // this._editorTour.on('complete', () => {
-    // });
+    this._editorTour.addStep('open', {
+      title : "Welcome",
+      text : "Thank you for taking the time to create the perfect resume. Let's just take a quick tour",
+      buttons : [
+        {
+          text : '*sigh* Alright',
+          action : this._editorTour.next
+        },
+        {
+          text : 'veto!',
+          action : this._editorTour.complete
+        }
+      ]
+    });
 
+    this._editorTour.addStep('navigation', {
+      text : "This is the nav",
+      attachTo : ".editor__nav top"
+    });
+
+    this._editorTour.addStep('moreNav', {
+      text : "This is also some nav",
+      attachTo : ".editor__phase__dots bottom",
+    });
+
+    this._editorTour.addStep('preview-toggle', {
+      title : "Preview Toggle",
+      text : "This button will toggle the preview mode (on smaller screens)",
+      attachTo : ".preview-toggle__btn left",
+      when : {
+        'before-show' : function() {
+          let toggle = document.querySelector('.preview-toggle__btn');
+          toggle.style.display = 'flex';
+          toggle.style.opacity = '1';
+        },
+        hide : function() {
+          let toggle = document.querySelector('.preview-toggle__btn');
+          toggle.style = '';
+        }
+      }
+    });
+
+    this._editorTour.addStep('preview', {
+      title : "Preview Area",
+      text : "This is the preview area. You can preview your answers, and sometimes make further edits.",
+      attachTo : ".preview__phase top",
+      when : {
+        'before-show' : function() {
+          Event.$emit('setPreviewMode', true);
+        },
+        show : function() {
+          this.el.classList.remove('shepherd-open');
+          window.setTimeout(()=> {
+            this.el.classList.add('shepherd-open');
+            this.tether.position();
+          }, 650);
+        }
+      }
+    });
+
+    this._editorTour.addStep('toggler', {
+      title : "Get the perfect wording",
+      text : "Underlied areas allow you to toggle through wording options. <strong>Try it out</strong>",
+      attachTo : ".toggler top",
+      advanceOn : {selector: '.toggler', event: 'click'},
+      buttons : false
+    });
+
+    this._editorTour.addStep('toggler-response', {
+      title : "Sweet, looking good",
+      attachTo : ".toggler top",
+      when : {
+        hide : function() {
+          Event.$emit('setPreviewMode', false);
+        }
+      }
+    });
+
+    this._editorTour.addStep('done', {
+      title : "Done",
+      text : "I think you are ready to tackle it on your own, young padawan",
+      buttons : [
+        {
+          text : 'Finish',
+          action : this._editorTour.complete
+        }
+      ]
+    });
+
+    this._editorTour.on('complete', () => {
+      this.state.tourComplete = true;
+    });
   }
 }
 </script>

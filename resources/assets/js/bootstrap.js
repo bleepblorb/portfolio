@@ -1,7 +1,8 @@
 
 window._ = require('lodash');
 window.Tether = require('tether');
-window.Shepherd = require('./components/shepherd.js');
+window.Shepherd = require('tether-shepherd');
+// window.Shepherd = require('./components/shepherd.js');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
