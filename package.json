@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "node node_modules/webpack/bin/webpack.js --progress --hide-modules --config=$npm_package_config_webpack",
+    "dev": "gulp dev; node node_modules/webpack/bin/webpack.js --progress --hide-modules --config=$npm_package_config_webpack",
     "watch": "npm run dev -- -w",
     "watch-poll": "npm run dev -- -w --watch-poll",
     "hot": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=$npm_package_config_webpack",
@@ -13,9 +13,11 @@
   "devDependencies": {
     "axios": "^0.15.3",
     "bootstrap-sass": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-svg-symbols": "^2.0.2",
     "in-view": "^0.6.0",
     "jquery": "^3.1.1",
-    "laravel-mix": "^0.8.1",
+    "laravel-mix": "^0.11.1",
     "lodash": "^4.17.4",
     "tether": "^1.4.0",
     "tether-shepherd": "^1.8.1",

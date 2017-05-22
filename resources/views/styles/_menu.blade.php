@@ -4,6 +4,7 @@
     <li><a href="{{route('style', 'base')}}">Base</a></li>
     <li><a href="{{route('style', 'grid')}}">Grid</a></li>
     <li><a href="{{route('style', 'type')}}">Typography</a></li>
+    <li><a href="{{route('style', 'icons')}}">Icons</a></li>
     <li><a href="{{route('style', 'alerts')}}">Alerts</a></li>
     <li><a href="{{route('style', 'buttons')}}">Buttons</a></li>
     <li><a href="{{route('style', 'dropdowns')}}">Dropdowns</a></li>
