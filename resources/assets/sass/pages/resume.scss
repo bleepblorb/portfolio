@@ -1,5 +1,9 @@
 // Resume specific styles
 
+body.edit {
+  overflow: hidden;
+}
+
 #resume {
 
   width: 100%;
@@ -19,7 +23,7 @@
 //
 
 .resume__editor-mode {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -103,6 +107,10 @@
   overflow: hidden;
   transform: translateX(0px);
   transition: opacity 650ms;
+
+  // .edit-mode & {
+  //   transform: translateX(-350px);
+  // }
 
   @include media-breakpoint-down(lg){
     .preview-mode & {
@@ -399,18 +407,36 @@
   justify-content: flex-end;
   align-items: center;
 
-  .edit-mode & {
-    transform: translateX(-100%);
-    transition: all 350ms 0ms;
+  // .edit-mode & {
+  //   transform: translateX(-100%);
+  //   transition: all 350ms 0ms;
+  // }
+
+  &.v-enter-active,
+  &.v-leave-active {
+    transition: all 350ms;
   }
+
+  &.v-enter-active {
+    transition-delay: 850ms;
+  }
+
+  &.v-enter,
+  &.v-leave-to {
+    transform: translateX(-100%);
+  }
+
 
   .edit-btn {
     flex: 0 0 auto;
-    left: 0px;
-    bottom: 0px;
-    width: 20px;
     margin-bottom: 15px;
-    z-index: 99;
+    color: $gray;
+    opacity: .5;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
   }
 }
 
@@ -556,6 +582,14 @@
 #resume__layout {
   padding-top: 6rem;
 
+  transition: all 650ms;
+  opacity: 1;
+
+  .edit-mode & {
+    transform: translateY(48px);
+    opacity: 0;
+  }
+
   &.edit-mode-enter-active {
     transition-duration: 1250ms;
   }
@@ -566,25 +600,27 @@
 }
 
 .resume__layout-wrap {
-  .edit-mode-enter-active & {
-    transition: all 650ms 400ms ease;
-  }
 
-  .edit-mode-leave-active & {
-    transition: all 450ms ease-out;
-  }
 
-  .edit-mode-enter & {
-    transform: translateY(48px);
-    opacity: 0;
-  }
 
-  .edit-mode-leave-to & {
-    opacity: 0;
-    transform: translateY(100px);
-  }
+  // .edit-mode-enter-active & {
+  //   transition: all 650ms 400ms ease;
+  // }
+  //
+  // .edit-mode-leave-active & {
+  //   transition: all 450ms ease-out;
+  // }
+  //
+  // .edit-mode-enter & {
+  //   transform: translateY(48px);
+  //   opacity: 0;
+  // }
+  //
+  // .edit-mode-leave-to & {
+  //   opacity: 0;
+  //   transform: translateY(100px);
+  // }
 }
-
 
 .i--arrow {
   display: inline-block;

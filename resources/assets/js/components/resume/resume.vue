@@ -16,15 +16,19 @@
     </transition>
 
     <transition name="edit-mode">
-      <resume-layout  v-show="!editMode && state.isComplete"></resume-layout>
+      <resume-layout  v-show="state.isComplete"></resume-layout>
     </transition>
 
-    <div class="sidebar" v-show="!state.showIntro && !state.editMode">
-      <button @click="reset(true)" class="edit-btn">R</button>
-      <hint ref="editPopover" placement="right" title="Instant Regret?" content="I can’t give you back all the time you’ve just wasted, but you can go back and make edits anytime!" :closeOnClickOff="false" :trigger="false">
-        <button @click="toggle()" class="edit-btn">e</button>
-      </hint>
-    </div>
+    <transition>
+      <div class="sidebar" v-show="!state.showIntro && !state.editMode">
+        <popover placement="right" content="Start Over" triggers="hover" :delay="800">
+          <button @click="reset(true)" class="btn-link edit-btn"><icon name="delete"></icon></button>
+        </popover>
+        <hint ref="editPopover" placement="right" title="Instant Regret?" content="I can’t give you back all the time you’ve just wasted, but you can go back and make edits anytime!" :closeOnClickOff="false" :trigger="false">
+          <button @click="toggle()" class="edit-btn btn-link"><icon name="edit"></icon></button>
+        </hint>
+      </div>
+    </transition>
 
     <button @click="close(!isComplete)" v-if="editMode" class="close"></button>
 
@@ -375,6 +379,14 @@ export default {
       if ( !this.state.tourComplete ) {
         // this._editorTour.start();
       }
+
+      this.$nextTick(() => {
+        if (newVal) {
+          document.querySelector('body').classList.add('edit');
+        } else {
+          document.querySelector('body').classList.remove('edit');
+        }
+      })
     }
   },
 
