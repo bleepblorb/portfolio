@@ -7,6 +7,10 @@ window.store = {
 
 window.Vue = require('vue');
 
+// Alert
+import alert from './alert.vue';
+Vue.component('alert', alert);
+
 // Popover
 import popover from './popover.vue';
 Vue.component('popover', popover);
@@ -18,5 +22,7 @@ Vue.component('hint', hint);
 // Icons
 import icon from './icon.vue';
 Vue.component('icon', icon);
+
+
 
 export {store};

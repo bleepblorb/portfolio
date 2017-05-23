@@ -36,14 +36,27 @@ $alert-danger-border:         $state-danger-border !default;
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
   @include border-radius($alert-border-radius);
+  position: relative;
+  font-size: $font-size-sm;
 
   // Adjust close link position
   .close {
-    position: relative;
-    top: -$alert-padding-y;
-    right: -$alert-padding-x;
-    padding: $alert-padding-y $alert-padding-x;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: .25rem;
     color: inherit;
+  }
+
+  // Transitions
+  &.v-enter-active,
+  &.v-leave-active {
+    transition: all 450ms;
+  }
+
+  &.v-enter,
+  &.v-leave-to {
+    opacity: 0;
   }
 }
 
@@ -63,16 +76,20 @@ $alert-danger-border:         $state-danger-border !default;
 //
 // Generate contextual modifier classes for colorizing the alert.
 
-.alert--success {
+.alert {
+  @include alert-variant(#fff, $gray-light, $gray);
+}
+
+.alert.-success {
   @include alert-variant(#fff, $alert-success-border, $alert-success-text);
   // box-shadow: 0px 3px 8px fade-out($alert-success-border, .7);
 }
-.alert--info {
+.alert.-info {
   @include alert-variant(#fff, $brand-info, $alert-info-text);
 }
-.alert--warning {
+.alert.-warning {
   @include alert-variant(#fff, $brand-warning, $alert-warning-text);
 }
-.alert--danger {
+.alert.-danger {
   @include alert-variant(#fff, $brand-danger, $alert-danger-text);
 }
