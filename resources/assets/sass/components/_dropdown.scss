@@ -1,7 +1,43 @@
-// The dropdown wrapper (`<div>`)
-.dropup,
-.dropdown {
+// Dropdowns
+//
+// Dropdown menu container and contents.
+
+$dropdown-min-width:             10rem !default;
+$dropdown-padding-y:             .5rem !default;
+$dropdown-margin-top:            .125rem !default;
+$dropdown-bg:                    $white !default;
+// $dropdown-border-color:          rgba($black,.15) !default;
+$dropdown-border-color:          $jean-jacket;
+$dropdown-border-width:          $border-width !default;
+$dropdown-divider-bg:            $gray-lighter !default;
+$dropdown-box-shadow:            0px 6px 28px -6px fade-out($grover, .75);
+
+$dropdown-link-color:            $gray-dark !default;
+$dropdown-link-hover-color:      darken($gray-dark, 5%) !default;
+$dropdown-link-hover-bg:         $gray-lightest !default;
+
+$dropdown-link-active-color:     $component-active-color !default;
+$dropdown-link-active-bg:        $component-active-bg !default;
+
+$dropdown-link-disabled-color:   $gray-light !default;
+
+$dropdown-item-padding-x:        1.5rem !default;
+
+$dropdown-header-color:          $gray-light !default;
+
+
+[v-cloak] {
+  display: none;
+}
+
+
+//
+// The dropdown Wrapper
+//
+
+.dropdown__link {
   position: relative;
+  display: inline-block;
 }
 
 .dropdown-toggle {
@@ -33,37 +69,155 @@
   }
 }
 
-// The dropdown menu
-.dropdown-menu {
+//
+// The dropdown
+//
+
+.dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  display: block;
+  left: 0px;
+  top: 0%;
   z-index: $zindex-dropdown;
-  display: none; // none by default, but block on "open" of the menu
-  float: left;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.dropdown__drop-wrap {
+  position: relative;
+  overflow-x: hidden;
   min-width: $dropdown-min-width;
-  padding: $dropdown-padding-y 0;
+  display: inline-block;
+
   margin: $dropdown-margin-top 0 0; // override default ul
   font-size: $font-size-base; // Redeclare because nesting can cause inheritance issues
   color: $body-color;
   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
-  list-style: none;
   background-color: $dropdown-bg;
   background-clip: padding-box;
   border: $dropdown-border-width solid $dropdown-border-color;
   @include border-radius($border-radius);
   @include box-shadow($dropdown-box-shadow);
+
+  // For Overflow Arrows
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 0rem;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 250ms, background 250ms, height 0ms 250ms;
+  }
+
+  &:before {
+    top: 0px;
+    background-image: url('../img/UI/chevron-up.svg'), linear-gradient(to bottom, $white, fade-out($white, 1));
+    background-position: left 50% top 0%, center;
+  }
+
+  &:after {
+    bottom: 0px;
+    background-image: url('../img/UI/chevron-down.svg'), linear-gradient(to top, $white, fade-out($white, 1));
+    background-position: left 50% bottom 0%, center;
+  }
+}
+
+
+// ** Overflow States
+.dropdown.-overflow-top .dropdown__drop-wrap:before,
+.dropdown.-overflow-btm .dropdown__drop-wrap:after {
+  opacity: 1;
+  height: 2rem;
+  // transition: opacity 550ms, background 250ms, height 0ms;
+}
+
+.dropdown.-overflow-top .dropdown__drop-wrap:before {
+  background-position: left 50% top 25%, center;
+}
+
+.dropdown.-overflow-btm .dropdown__drop-wrap:after {
+  background-position: left 50% bottom 25%, center;
+}
+
+// ** Transitions
+.dropdown {
+  opacity: 0;
+  transition: visibility 0ms,  opacity 400ms;
+
+  .dropdown__drop-wrap {
+    transition: all 300ms cubic-bezier(0.240, 0.260, 0.245, 1.4);
+    transform: scale(.9);
+  }
+
+  &.popup-element-attached-top {
+    .dropdown__drop-wrap {
+      transform-origin: top;
+    }
+  }
+
+  &.popup-element-attached-middle {
+    .dropdown__drop-wrap {
+      transform-origin: center;
+    }
+  }
+
+  &.popup-element-attached-bottom {
+    .dropdown__drop-wrap {
+      transform-origin: bottom;
+    }
+  }
+
+  &.popup-element-attached-left {
+    .dropdown__drop-wrap {
+      transform-origin: left;
+    }
+  }
+
+  &.popup-element-attached-right {
+    .dropdown__drop-wrap {
+      transform-origin: right;
+    }
+  }
+
+  &.-active {
+    visibility: visible;
+    opacity: 1;
+
+    .dropdown__drop-wrap {
+      transform: scale(1);
+    }
+  }
+
+  &.popup-out-of-bounds {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0ms 400ms,  opacity 400ms;
+  }
+}
+
+.dropdown__content {
+  overflow-y: scroll;
+  padding: $dropdown-padding-y 0;
+  padding-right: 50px;
+  margin-right: -50px;
+  min-width: 300px;
+  display: inline-block;
 }
 
 // Dividers (basically an `<hr>`) within the dropdown
-.dropdown-divider {
+.dropdown__divider {
+  display: block;
   @include nav-divider($dropdown-divider-bg);
 }
 
 // Links, buttons, and more within the dropdown menu
 //
 // `<button>`-specific styles are denoted with `// For <button>s`
-.dropdown-item {
+.dropdown__item {
   display: block;
   width: 100%; // For `<button>`s
   padding: 3px $dropdown-item-padding-x;

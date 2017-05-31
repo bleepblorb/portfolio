@@ -3,24 +3,57 @@
 $popover-inner-padding:               $grid-gutter-width-base / 1.5;
 $popover-bg:                          $gummy;
 $popover-max-width:                   276px !default;
-$popover-border-width:                $border-width !default;
+$popover-border-width:                0px;
 $popover-border-color:                transparent;
 $popover-box-shadow:                  0px 4px 28px -4px fade-out($grover, .85);
 
 $popover-arrow-width:                 6px;
-$popover-arrow-height:                30px;
+$popover-arrow-height:                32px;
 $popover-arrow-color:                 $popover-bg !default;
 
 $popover-arrow-outer-width:           ($popover-arrow-width + 1px) !default;
 $popover-arrow-outer-color:           fade-in($popover-border-color, .05) !default;
 
+$popover-offset:                      $popover-arrow-width + 6;
 
-.popover {
+
+.popup {
+  // // display: none;
+  // visibility: hidden;
+  //
+  // &.-enabled {
+  //   // display: block;
+  //   visibility: visible;
+  // }
+}
+
+.popover__link {
+  display: inline-block;
+  position: relative;
+
+  // &.popup-target-attached-right {
+  //   &::before {
+  //     right: -($popover-arrow-width * 2) - 7;
+  //   }
+  //
+  //   &.popup-enabled::before {
+  //     top: 50%;
+  //     right: -$popover-arrow-width - 7;
+  //     margin-top: -$popover-arrow-height / 2;
+  //     width: $popover-arrow-outer-width;
+  //     height: $popover-arrow-height;
+  //     background: {
+  //       image: url('../img/UI/popover-nub-left.svg');
+  //       position: right center;
+  //       repeat: no-repeat;
+  //     }
+  //   }
+  // }
+}
+
+.popover__drop {
   position: absolute;
   z-index: $zindex-popover;
-  display: block;
-  max-width: $popover-max-width;
-  padding: $popover-inner-padding;
   // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
   // So reset our font and text properties to avoid inheriting weird values.
   @include reset-text();
@@ -28,24 +61,40 @@ $popover-arrow-outer-color:           fade-in($popover-border-color, .05) !defau
   font-family: $font-family-sans-serif;
   // Allow breaking very long words so they don't overflow the popover's bounds
   word-wrap: break-word;
-  background-color: $popover-bg;
-  color: $white;
-  background-clip: padding-box;
-  border: $popover-border-width solid $popover-border-color;
-  @include border-radius($border-radius-lg);
-  @include box-shadow($popover-box-shadow);
+  opacity: 0;
 
+  .nub {
+    position: absolute;
+    width : $popover-arrow-outer-width;
+    height: $popover-arrow-height + 4;
+    background: {
+      image: url('../img/UI/popover-nub-left.svg');
+      position: center center;
+      repeat: no-repeat;
+    }
+  }
+  .popover__drop-wrap {
+    position: relative;
+    max-width: $popover-max-width;
+    padding: $popover-inner-padding;
+    background-color: $popover-bg;
+    color: $white;
+    background-clip: padding-box;
+    border: $popover-border-width solid $popover-border-color;
+    @include border-radius($border-radius-lg);
+    @include box-shadow($popover-box-shadow);
+  }
 
   // Popover directions
-
-  &.popover-top,
-  &.bs-tether-element-attached-bottom {
+  //
+  //
+  &.popup-element-attached-bottom {
     margin-top: -$popover-arrow-width - 6;
 
-    &::before {
-      bottom: -$popover-arrow-width;
+    .nub {
+      bottom: 0;
       left: 50%;
-      margin-left: -$popover-arrow-height / 2;
+      margin-bottom: -$popover-arrow-width;
       height: $popover-arrow-outer-width;
       width: $popover-arrow-height;
       background: {
@@ -56,32 +105,30 @@ $popover-arrow-outer-color:           fade-in($popover-border-color, .05) !defau
     }
   }
 
-  &.popover-right,
-  &.bs-tether-element-attached-left {
+  &.popup-element-attached-left {
     margin-left: $popover-arrow-width + 6;
 
-    &::before {
+    .nub {
       top: 50%;
-      left: -$popover-arrow-width;
-      margin-top: -$popover-arrow-height / 2;
-      width: $popover-arrow-outer-width;
-      height: $popover-arrow-height;
+      left: 0px;
+      margin-left: -$popover-arrow-width;
+      width : $popover-arrow-outer-width;
+      height: $popover-arrow-height + 4;
       background: {
         image: url('../img/UI/popover-nub-left.svg');
-        position: right center;
+        position: center center;
         repeat: no-repeat;
       }
     }
   }
 
-  &.popover-bottom,
-  &.bs-tether-element-attached-top {
-    margin-top: $popover-arrow-width + 6;
+  &.popup-element-attached-top {
+    margin-top: $popover-offset;
 
-    &::before {
-      top: -$popover-arrow-width;
+    .nub {
+      top: 0px;
       left: 50%;
-      margin-left: -$popover-arrow-height / 2;
+      margin-top: -$popover-arrow-width;
       height: $popover-arrow-outer-width;
       width: $popover-arrow-height;
       background: {
@@ -92,14 +139,13 @@ $popover-arrow-outer-color:           fade-in($popover-border-color, .05) !defau
     }
   }
 
-  &.popover-left,
-  &.bs-tether-element-attached-right {
+  &.popup-element-attached-right {
     margin-left: -$popover-arrow-width - 6;
 
-    &::before {
+    .nub {
       top: 50%;
-      right: -$popover-arrow-width;
-      margin-top: -$popover-arrow-height / 2;
+      right: 0px;
+      margin-right: -$popover-arrow-width;
       width: $popover-arrow-outer-width;
       height: $popover-arrow-height;
       background: {
@@ -118,8 +164,67 @@ $popover-arrow-outer-color:           fade-in($popover-border-color, .05) !defau
 }
 
 
+// ** Transitions
+
+.popover__drop {
+  transition: opacity 300ms;
+
+  .popover__drop-wrap {
+    transition: all 300ms cubic-bezier(0.240, 0.260, 0.245, 1.8);
+    transform: translateY(8px);
+  }
+
+  &.-active {
+    opacity: 1;
+
+    .popover__drop-wrap {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  .nub {
+    transition: margin 250ms 50ms ease;
+  }
+
+  &:not(.-active) {
+    .nub {
+      margin : 0;
+    }
+  }
+
+  //
+  //
+  // &.poop-enter-active,
+  // &.poop-leave-active {
+  //   transition: opacity 350ms;
+  //
+  //   .popover__drop-wrap {
+  //     transition: all 350ms cubic-bezier(0.240, 0.260, 0.245, 1.8);
+  //   }
+  //   .nub {
+  //     transition: transform 250ms ease, margin 200ms 50ms ease;
+  //   }
+  // }
+  //
+  // &.poop-enter,
+  // &.poop-leave-to,
+  // {
+  //   opacity: 0;
+  //
+  //   .popover__drop-wrap {
+  //     transform: translateY(8px);
+  //   }
+  //
+  //   .nub {
+  //     margin: 0px;
+  //   }
+  // }
+
+}
+
 // Offset the popover to account for the popover arrow
-.popover-title {
+.popover__title {
   margin-bottom: .5rem; // Reset the default from Reboot
   font-size: $font-size-h5;
   color: $white;
@@ -131,7 +236,7 @@ $popover-arrow-outer-color:           fade-in($popover-border-color, .05) !defau
   }
 }
 
-.popover-content {
+.popover__content {
 
 }
 

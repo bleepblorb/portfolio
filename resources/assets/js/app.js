@@ -8,7 +8,6 @@ import modal from './components/modal.vue';
 
 window.Event = new Vue();
 
-
 const app = new Vue ({
   el: '#app',
 

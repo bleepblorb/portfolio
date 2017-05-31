@@ -11,10 +11,6 @@ window.Vue = require('vue');
 import alert from './alert.vue';
 Vue.component('alert', alert);
 
-// Popover
-import popover from './popover.vue';
-Vue.component('popover', popover);
-
 // Hint
 import hint from './hint.vue';
 Vue.component('hint', hint);
@@ -23,6 +19,13 @@ Vue.component('hint', hint);
 import icon from './icon.vue';
 Vue.component('icon', icon);
 
+// Popover
+import popover from './popover.vue';
+Vue.component('popover', popover);
+
+// Dropdown
+import dropdown from './dropdown.vue';
+Vue.component('dropdown', dropdown);
 
 
 export {store};

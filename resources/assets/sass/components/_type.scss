@@ -3,7 +3,7 @@
 //
 
 h1, h2, h3, h4, h5, h6,
-.t__h1, .t__h2, .t__h3, .t__h4, .t__h5, .t__h6 {
+.t--h1, .t--h2, .t--h3, .t--h4, .t--h5, .t--h6 {
   margin-bottom: $headings-margin-bottom;
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
@@ -15,12 +15,12 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
-h1, .h1 { font-size: $font-size-h1; }
-h2, .h2 { font-size: $font-size-h2; }
-h3, .h3 { font-size: $font-size-h3; }
-h4, .h4 { font-size: $font-size-h4; }
-h5, .h5 { font-size: $font-size-h5; }
-h6, .h6 { font-size: $font-size-h6; }
+h1, .t--h1 { font-size: $font-size-h1; }
+h2, .t--h2 { font-size: $font-size-h2; }
+h3, .t--h3 { font-size: $font-size-h3; }
+h4, .t--h4 { font-size: $font-size-h4; }
+h5, .t--h5 { font-size: $font-size-h5; }
+h6, .t--h6 { font-size: $font-size-h6; }
 
 
 // Type display classes

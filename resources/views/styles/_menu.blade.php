@@ -8,6 +8,7 @@
     <li><a href="{{route('style', 'alerts')}}">Alerts</a></li>
     <li><a href="{{route('style', 'buttons')}}">Buttons</a></li>
     <li><a href="{{route('style', 'dropdowns')}}">Dropdowns</a></li>
+    <li><a href="{{route('style', 'popovers')}}">Popovers</a></li>
     <li><a href="{{route('style', 'modal')}}">Modals</a></li>
     <li><a href="{{route('style', 'forms')}}">Forms</a></li>
   </ul>

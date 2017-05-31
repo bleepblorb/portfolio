@@ -6,95 +6,196 @@
     </div>
   </div>
   {{-- Single Dropdown --}}
-  <div class="row my-4">
-    <div class="col-12">
-      <h6 class="caps">Single Button Dropdown</h6>
+  <div class="g__row my-4">
+    <div class="g__col12">
+      <h6 class="caps">Basic Dropdowns</h6>
       <hr>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </div>
-
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          This dropdown's menu is right-aligned
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <button class="dropdown-item" type="button">Action</button>
-          <button class="dropdown-item" type="button">Another action</button>
-          <button class="dropdown-item" type="button">Something else here</button>
-        </div>
-      </div>
+      <p>
+          <dropdown position="bottom">
+            <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" slot="target">
+              Click to Open
+            </button>
+              <a class="dropdown__item" href="#">Action</a>
+              <a class="dropdown__item" href="#">Another action</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+          </dropdown>
+        </p>
+        <p>
+          <dropdown trigger="hover" position="bottom" :close-on-select="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" slot="target">
+              Hover to Open
+            </button>
+              <a class="dropdown__item" href="#">Action</a>
+              <a class="dropdown__item" href="#">Another action</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+          </dropdown>
+        </p>
+        <p>
+          This is a random
+          <dropdown >
+            <a href="#" slot="target">Dropdown</a>
+            <a class="dropdown__item" href="#">Action</a>
+            <a class="dropdown__item" href="#">Another action</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+          </dropdown>
+          in a paragraph.
+      </p>
     </div>
   </div>
 
-  {{-- Split Button Dropdown --}}
+
+  {{-- Dropdown Locations --}}
   <div class="row my-4">
     <div class="col-12">
-      <h6 class="caps">Split Button Dropdown</h6>
+      <h6 class="caps">Dropdowns Directions</h6>
       <hr>
-      <div class="btn-group">
-        <button type="button" class="btn btn-danger">Action</button>
-        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-        </div>
-      </div>
+      <p>
+          <dropdown position="bottom">
+            <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" slot="target">
+              Bottom (Default)
+            </button>
+
+            <a class="dropdown__item" href="#">Action</a>
+            <a class="dropdown__item" href="#">Another action</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+          </dropdown>
+
+          <dropdown position="top">
+            <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" slot="target">
+              Open on Top
+            </button>
+
+            <a class="dropdown__item" href="#">Action</a>
+            <a class="dropdown__item" href="#">Another action</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+          </dropdown>
+
+          <dropdown position="middle">
+            <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" slot="target">
+              Open in Middle
+            </button>
+            <a class="dropdown__item" href="#">Action</a>
+            <a class="dropdown__item" href="#">Another action</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+          </dropdown>
+
+          <dropdown position="right">
+            <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" slot="target">
+              Open Right
+            </button>
+            <a class="dropdown__item" href="#">Action</a>
+            <a class="dropdown__item" href="#">Another action</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+            <a class="dropdown__item" href="#">Something else here</a>
+          </dropdown>
+
+          <dropdown position="left">
+            <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" slot="target">
+              Open Left
+            </button>
+              <a class="dropdown__item" href="#">Action</a>
+              <a class="dropdown__item" href="#">Another action</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+              <a class="dropdown__item" href="#">Something else here</a>
+          </dropdown>
+      </p>
     </div>
   </div>
 
-  {{-- DropUP variation --}}
-  <div class="row my-4">
-    <div class="col-12">
-      <h6 class="caps">Drop<b>up</b> Variation</h6>
-      <hr>
-      <!-- Default dropup button -->
-      <div class="btn-group dropup">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdup
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  {{-- All the Dropdown styles --}}
-  <div class="row my-4">
-    <div class="col-12">
-      <h6 class="caps">Dropdown Menu items</h6>
-      <hr>
-      <!-- Default dropup button -->
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown Items
-        </button>
-        <div class="dropdown-menu">
-          <h6 class="dropdown-header">Dropdown header</h6>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-          <a class="dropdown-item disabled" href="#">Disabled link</a>
-        </div>
+    {{-- Max Height --}}
+    <div class="row my-4">
+      <div class="col-12">
+        <h6 class="caps">Setting a Max Hight</h6>
+        <hr>
+        <p><code>:max-height="200"</code></p>
+        <p>
+            <dropdown position="bottom" :max-height="200">
+              <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" slot="target">
+                Max of 200px
+              </button>
+                <a class="dropdown__item" href="#">Action</a>
+                <a class="dropdown__item" href="#">Another action</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+            </dropdown>
+        </p>
       </div>
     </div>
-  </div>
+
+    {{-- Button Group --}}
+    <div class="row my-4">
+      <div class="col-12">
+        <h6 class="caps">Split Button Dropdown</h6>
+        <hr>
+        <p>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary">Action</button>
+            <dropdown class="btn btn-secondary dropdown-toggle dropdown-toggle-split" position="bottom">
+                <span  slot="target"><span class="sr-only">Toggle Dropdown</span></span>
+
+                <a class="dropdown__item" href="#">Action</a>
+                <a class="dropdown__item" href="#">Another action</a>
+                <a class="dropdown__item" href="#">Something else here</a>
+                <span class="dropdown__divider"></span>
+                <a class="dropdown__item" href="#">Separated link</a>
+            </dropdown>
+          </div>
+        </p>
+      </div>
+    </div>
+
+
+    {{-- Anything --}}
+    <div class="g__row my-4">
+      <div class="g__col12">
+        <h6 class="caps">Dropdown With Anything</h6>
+        <hr>
+          <dropdown :close-on-select="false" position="middle">
+              <icon slot="target" name="delete"></icon>
+            </button>
+            <div class="p-2 -max--sm">
+              <div class="g__row">
+                <div class="g__col">
+                  <h3>Trash it?</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  <p>
+                    <button type="button" name="button" class="btn btn-secondary">Close</button>
+                    <button type="button" name="button" class="btn btn-success">Yeah</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </dropdown>
+          <p class="small">Cannot be placed inside an <code>p</code> or other inline element</p>
+      </div>
+    </div>
 </section>

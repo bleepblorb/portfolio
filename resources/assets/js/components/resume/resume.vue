@@ -21,12 +21,12 @@
 
     <transition>
       <div class="sidebar" v-show="!state.showIntro && !state.editMode">
-        <popover placement="right" content="Start Over" triggers="hover" :delay="800">
+        <popover position="right" content="Start Over" triggers="hover" :delay="800">
           <button @click="reset(true)" class="btn-link edit-btn"><icon name="delete"></icon></button>
         </popover>
-        <hint ref="editPopover" placement="right" title="Instant Regret?" content="I can’t give you back all the time you’ve just wasted, but you can go back and make edits anytime!" :closeOnClickOff="false" :trigger="false">
+        <popover ref="editPopover" position="right" title="Instant Regret?" content="I can’t give you back all the time you’ve just wasted, but you can go back and make edits anytime!" :closeOnClickOff="false" :trigger="false">
           <button @click="toggle()" class="edit-btn btn-link"><icon name="edit"></icon></button>
-        </hint>
+        </popover>
       </div>
     </transition>
 
