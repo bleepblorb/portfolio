@@ -25,3 +25,8 @@
 html {
  -webkit-font-smoothing: antialiased;
 }
+
+
+[v-cloak] {
+  display: none;
+}

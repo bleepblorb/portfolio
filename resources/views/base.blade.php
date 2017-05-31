@@ -19,7 +19,7 @@
 
   </head>
   <body>
-    <div id="app" :class="{'-hide-menu' : !state.showMenu}">
+    <div id="app" :class="{'-hide-menu' : !state.showMenu}" v-cloak>
       @include('partials.menu')
       @yield('app')
     </div>
