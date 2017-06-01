@@ -2,7 +2,7 @@
 
 // Make the div behave like a button
 .btn-group,
-.btn-group-vertical {
+.btn-group--vertical {
   position: relative;
   display: inline-flex;
   vertical-align: middle; // match .btn alignment given font-size hack above
@@ -10,6 +10,8 @@
   > .btn {
     position: relative;
     flex: 0 1 auto;
+    box-shadow: none !important;
+    transform: none !important;
 
     // Bring the hover, focused, and "active" buttons to the fron to overlay
     // the borders properly
@@ -88,8 +90,10 @@
 //
 // Remix the default button sizing classes into new ones for easier manipulation.
 
-.btn-group-sm > .btn { @extend .btn-sm; }
-.btn-group-lg > .btn { @extend .btn-lg; }
+.btn-group, .btn-group--vertical {
+  &.-sm > .btn { @extend .btn.-sm; }
+  &.-lg > .btn { @extend .btn.-lg; }
+}
 
 
 //
@@ -132,7 +136,7 @@
 // Vertical button groups
 //
 
-.btn-group-vertical {
+.btn-group--vertical {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -150,30 +154,33 @@
     margin-top: -$input-btn-border-width;
     margin-left: 0;
   }
-}
 
-.btn-group-vertical > .btn {
-  &:not(:first-child):not(:last-child) {
+  > .btn {
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+    &:first-child:not(:last-child) {
+      @include border-bottom-radius(0);
+    }
+    &:last-child:not(:first-child) {
+      @include border-top-radius(0);
+    }
+  }
+
+  > .btn-group:not(:first-child):not(:last-child) > .btn {
     border-radius: 0;
   }
-  &:first-child:not(:last-child) {
-    @include border-bottom-radius(0);
+
+  > .btn-group:first-child:not(:last-child) {
+    > .btn:last-child,
+    > .dropdown-toggle {
+      @include border-bottom-radius(0);
+    }
   }
-  &:last-child:not(:first-child) {
+
+  > .btn-group:last-child:not(:first-child) > .btn:first-child {
     @include border-top-radius(0);
   }
-}
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {
-  border-radius: 0;
-}
-.btn-group-vertical > .btn-group:first-child:not(:last-child) {
-  > .btn:last-child,
-  > .dropdown-toggle {
-    @include border-bottom-radius(0);
-  }
-}
-.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child {
-  @include border-top-radius(0);
 }
 
 

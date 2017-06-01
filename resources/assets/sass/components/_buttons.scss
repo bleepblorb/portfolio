@@ -1,4 +1,66 @@
-// scss-lint:disable QualifyingElement
+//
+// Buttons
+//
+
+// Variables
+// For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-padding-x:                  2rem;
+$btn-padding-y:                  .5rem !default;
+$btn-line-height:                1.25 !default;
+$btn-font-weight:                $font-weight-normal !default;
+$btn-box-shadow:                 inset 0 1px 0 rgba($white,.15), 0 1px 1px rgba($black,.075) !default;
+$btn-focus-box-shadow:           0 0 0 2px rgba($brand-primary, .25) !default;
+$btn-active-box-shadow:          inset 0 3px 5px rgba($black,.125) !default;
+$btn-border-width:               $border-width;
+
+// Colors
+$btn-default-color:              $gray;
+$btn-default-bg:                 lighten($gray-lighter, 8%);
+$btn-default-border:             $btn-default-bg;
+
+$btn-primary-color:              $white !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             $btn-primary-bg !default;
+
+$btn-secondary-color:            $white;
+$btn-secondary-bg:               $jazzy;
+$btn-secondary-border:           $jazzy;
+
+$btn-info-color:                 $white !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border:                $btn-info-bg !default;
+
+$btn-success-color:              $white !default;
+$btn-success-bg:                 $brand-success !default;
+$btn-success-border:             $btn-success-bg !default;
+
+$btn-warning-color:              $gummy !default;
+$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-border:             $btn-warning-bg !default;
+
+$btn-danger-color:               $white !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border:              $btn-danger-bg !default;
+
+$btn-link-disabled-color:        $gray-light !default;
+
+// sizing
+$btn-padding-x-sm:               1rem !default;
+$btn-padding-y-sm:               .25rem !default;
+
+$btn-padding-x-lg:               2.5rem !default;
+$btn-padding-y-lg:               .75rem !default;
+
+$btn-block-spacing-y:            .5rem !default;
+$btn-toolbar-margin:             .5rem !default;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius:              $border-radius;
+$btn-border-radius-lg:           $border-radius-lg;
+$btn-border-radius-sm:           $border-radius-sm !default;
+
+$btn-transition:                 all 150ms cubic-bezier(0.240, 0.260, 0.245, 1);
 
 //
 // Base styles
@@ -13,9 +75,17 @@
   white-space: nowrap;
   vertical-align: middle;
   user-select: none;
-  border: $input-btn-border-width solid transparent;
+  border:  $btn-border-width  solid transparent;
   @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
-  @include transition($btn-transition);
+  transition: $btn-transition;
+  cursor: pointer;
+
+  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+
+  &.-outline {
+    @include button-outline-variant($btn-default-bg, $gray);
+    color: $gray;
+  }
 
   // Share hover and focus styles
   @include hover-focus {
@@ -24,7 +94,6 @@
   &:focus,
   &.focus {
     outline: 0;
-    box-shadow: $btn-focus-box-shadow;
   }
 
   // Disabled comes first so active can properly restyle
@@ -38,7 +107,14 @@
   &:active,
   &.active {
     background-image: none;
-    @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  & + & {
+    margin-left: 4px;
   }
 }
 
@@ -52,83 +128,91 @@ fieldset[disabled] a.btn {
 //
 // Alternate buttons
 //
+.btn {
+  &.-primary {
+    @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border, $gummy-dark, $gummy-dark );
 
-.btn-primary {
-  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
-}
-.btn-secondary {
-  @include button-variant($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
-}
-.btn-info {
-  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
-}
-.btn-success {
-  @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
-}
-.btn-warning {
-  @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border);
-}
-.btn-danger {
-  @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
-}
+    &.-outline {
+      @include button-outline-variant($btn-primary-bg);
+    }
+  }
+  &.-secondary, .-jazzy {
+    @include button-variant($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border, $grover, $grover);
 
-// Remove all backgrounds
-.btn-outline-primary {
-  @include button-outline-variant($btn-primary-bg);
-}
-.btn-outline-secondary {
-  @include button-outline-variant($btn-secondary-border);
-}
-.btn-outline-info {
-  @include button-outline-variant($btn-info-bg);
-  color: $late-night;
-}
-.btn-outline-success {
-  @include button-outline-variant($btn-success-bg);
-}
-.btn-outline-warning {
-  @include button-outline-variant($btn-warning-bg);
-}
-.btn-outline-danger {
-  @include button-outline-variant($btn-danger-bg);
-}
+    &.-outline {
+      @include button-outline-variant($btn-secondary-border, $white, $grover);
+    }
+  }
+  &.-info {
+    @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border, $jazzy, $jazzy);
 
+    &.-outline {
+      @include button-outline-variant($btn-info-bg);
+      color: $jazzy;
+    }
+  }
+  &.-success {
+    @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+
+    &.-outline {
+      @include button-outline-variant($btn-success-bg);
+    }
+  }
+  &.-warning {
+    @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+
+    &.-outline {
+      @include button-outline-variant($btn-warning-bg, $gummy);
+      color: $gummy;
+    }
+  }
+  &.-danger {
+    @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+
+    &.-outline {
+      @include button-outline-variant($btn-danger-bg);
+    }
+  }
+}
 
 //
 // Link buttons
 //
 
 // Make a button look and behave like a link
-.btn-link {
-  font-weight: $font-weight-normal;
-  color: $link-color;
-  border-radius: 0;
+.btn {
 
-  &,
-  &:active,
-  &.active,
-  &:disabled {
-    background-color: transparent;
-    @include box-shadow(none);
-  }
-  &,
-  &:focus,
-  &:active {
-    border-color: transparent;
-  }
-  @include hover {
-    border-color: transparent;
-  }
-  @include hover-focus {
-    color: $link-hover-color;
-    text-decoration: $link-hover-decoration;
-    background-color: transparent;
-  }
-  &:disabled {
-    color: $btn-link-disabled-color;
+  &.-link {
+    font-weight: $font-weight-normal;
+    color: $link-color;
+    border-radius: 0;
 
+    &,
+    &:active,
+    &.active,
+    &:disabled {
+      background-color: transparent;
+      @include box-shadow(none);
+    }
+    &,
+    &:focus,
+    &:active {
+      border-color: transparent;
+    }
+    @include hover {
+      border-color: transparent;
+    }
     @include hover-focus {
-      text-decoration: none;
+      color: $link-hover-color;
+      text-decoration: $link-hover-decoration;
+      background-color: transparent;
+    }
+    &:disabled {
+      color: $btn-link-disabled-color;
+
+      @include hover-focus {
+        text-decoration: none;
+      }
     }
   }
 }
@@ -138,13 +222,28 @@ fieldset[disabled] a.btn {
 // Button Sizes
 //
 
-.btn-lg {
-  // line-height: ensure even-numbered height of button next to large input
-  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-border-radius-lg);
-}
-.btn-sm {
-  // line-height: ensure proper height of button next to small input
-  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm);
+.btn {
+
+  &.-rounded {
+    border-radius: 20px;
+  }
+
+  &.-sm {
+    // line-height: ensure proper height of button next to small input
+    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm);
+
+    &.-rounded {
+      border-radius: 16px;
+    }
+  }
+  &.-lg {
+    // line-height: ensure even-numbered height of button next to large input
+    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-border-radius-lg);
+
+    &.-rounded {
+      border-radius: 26px;
+    }
+  }
 }
 
 
@@ -152,13 +251,15 @@ fieldset[disabled] a.btn {
 // Block button
 //
 
-.btn-block {
-  display: block;
-  width: 100%;
+.btn {
+  &.-block {
+    display: block;
+    width: 100%;
+  }
 }
 
 // Vertically space out multiple block buttons
-.btn-block + .btn-block {
+.btn.-block + .btn.-block {
   margin-top: $btn-block-spacing-y;
 }
 
@@ -166,7 +267,7 @@ fieldset[disabled] a.btn {
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  &.btn-block {
+  &.btn.-block {
     width: 100%;
   }
 }

@@ -10,7 +10,8 @@
           <h2 class="c--late-night">Build the designer you’ve been dreaming of!<sup>*</sup></h2>
           <h5 class="c--gray-light">*so long as its me</h5>
           <p class="mt-4">
-            <button @click="start()" class="btn btn-primary"> Lets Go! </button>
+            <!-- <button @click="start()" class="btn btn-primary"> Lets Go! </button> -->
+            <v-button @click="start()" color="primary" size="lg" variant="outline">Let's Go!</v-button>
           </p>
           <h6 class="t--sans">
             <a href="#" class="c--gray" @click="setDefault()">I'm boring, just show me a resume <span class="i--arrow"></span></a>

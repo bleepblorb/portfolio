@@ -2,13 +2,11 @@
 <template>
   <div class="radial-group g__row">
     <div v-for="option in options" class="g__col6">
-      <button
-        type="button"
-        class="btn"
+      <v-button
         @click="setValue(option.value)"
         :class="{'-selected' : isActive(option.value)}">
         {{option.label}}
-      </button>
+      </v-button>
     </div>
   </div>
 </template>

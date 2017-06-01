@@ -32,3 +32,21 @@ tbody {
   overflow: hidden;
   @include transition($transition-collapse);
 }
+
+// Scale In
+
+.scale-in-enter-active,
+.scale-in-leave-active {
+  transition: all 350ms
+}
+
+.scale-in-enter,
+.scale-in-leave-to {
+  opacity: 0;
+  transform: scale(.8);
+}
+
+.scale-in-enter-to,
+.scale-in-leave {
+  transform: scale(1);
+}

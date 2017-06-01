@@ -11,6 +11,10 @@ window.Vue = require('vue');
 import alert from './alert.vue';
 Vue.component('alert', alert);
 
+// Button
+import vButton from './button.vue';
+Vue.component('v-button', vButton);
+
 // Hint
 import hint from './hint.vue';
 Vue.component('hint', hint);
