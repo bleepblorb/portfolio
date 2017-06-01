@@ -87,6 +87,11 @@
 // Variable format should follow the `$component-modifier-state-property` order.
 
 
+// Base Ratio
+$base-ratio: 1.2; // Minor Third
+$base-ratio-md: 1.25; // Major Third
+$base-ratio-lg: 1.33; // Perfect Fourth
+
 // Colors
 //
 // Grayscale and brand colors for use across Bootstrap.
@@ -141,9 +146,6 @@ $enable-hover-media-query:  false !default;
 $enable-grid-classes:       true !default;
 $enable-print-styles:       true !default;
 
-
-// Base Ratio
-$base-ratio: 1.33; // Perfect Fourth
 
 // Spacing
 //
@@ -274,6 +276,7 @@ $font-family-sans-serif: "soleil", "source-sans-pro", -apple-system, system-ui, 
 $font-family-serif: "expo-serif-pro", Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:       $font-family-sans-serif;
+
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg:   1.125rem !default;
