@@ -16,3 +16,16 @@
   transform: translateY(-100%);
   transition: all 650ms;
 }
+
+.logo-mark {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding: 16px 24px;
+  // opacity: .5;
+  z-index: 999;
+
+  .icon {
+    width: 2em;
+  }
+}
