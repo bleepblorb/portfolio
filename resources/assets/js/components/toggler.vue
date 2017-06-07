@@ -1,5 +1,5 @@
 <template>
-  <span @click="toggle" class="toggler" :class="{'-active' : active }">{{options[index]}}</span>
+  <span @click="toggle" class="toggler" :class="{'-active' : active }">{{options[activeIndex]}}</span>
 
 </template>
 
@@ -10,7 +10,7 @@
     props : {
       id : {
         type : String,
-        required : true
+        default : null
       },
       options : {
         type : Array,
@@ -28,7 +28,7 @@
 
     data() {
       return {
-
+        activeIndex : this.index
       }
     },
 
@@ -42,16 +42,13 @@
       toggle() {
         if (!this.active) { return;}
 
-        let activeIndex = this.index;
-
-        if ( this.index == this.length - 1 ) {
-          activeIndex = 0;
+        if ( this.activeIndex == this.length - 1 ) {
+          this.activeIndex = 0;
         }
         else {
-          activeIndex = this.index + 1;
+          this.activeIndex ++;
         }
-        console.log(this.id);
-        this.$parent.$emit('toggleUpdate', this.id, activeIndex);
+        this.$parent.$emit('toggleUpdate', this.id, this.activeIndex);
       }
     }
   }
