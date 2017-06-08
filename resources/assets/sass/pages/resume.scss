@@ -535,26 +535,19 @@ body.edit {
 
 
 //
-//  Resume introStyle
+//  Resume intro Style
 //
 
-#resume__intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
+#resume-intro {
+  position: relative;
 
+  // ** Transition
   &.intro-enter-active {
     transition: all 800ms ease-out;
   }
 
   &.intro-leave-active {
     transition: all 600ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
-
-    .g__row > div {
-      transition: all 600ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
-    }
   }
 
   &.intro-enter {
@@ -565,12 +558,42 @@ body.edit {
   &.intro-leave-to {
     opacity: 0;
     transform: translateY(100px);
-    // .g__row > div:nth-of-type(1) {
-    //   transform: translateX(-100%);
-    // }
-    // .g__row > div:nth-of-type(2) {
-    //   transform: translateX(100%);
-    // }
+  }
+
+  .resume-intro__text {
+    display: flex;
+    position: relative;
+    min-height: 100vh;
+    padding-top: 64px;
+    padding-bottom: 100px;
+    overflow: hidden;
+  }
+
+  .resume-intro__illo {
+    position: absolute;
+    top: 70%;
+    height: 55vh;
+    min-height: 300px;
+    left: 0px;
+    right: 0px;
+    background : {
+      size: cover;
+      repeat: no-repeat;
+      position: top center;
+    }
+
+    @include media-breakpoint-up(sm){
+      top: 60%;
+    }
+
+    @include media-breakpoint-up(lg){
+      top: 50%;
+    }
+    @include media-breakpoint-up(xl){
+      top: 40%;
+      height: 65vh;
+    }
+
   }
 }
 

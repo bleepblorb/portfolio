@@ -1,6 +1,6 @@
 
-<div id="main-menu" class="py-2 -max--lgs">
-  <div class="container">
+<div id="main-menu" class="py-2">
+  <div class="container -max--xl">
     <div class="g__row -align-items--center">
       <div class="g__col">
         <ul class="nav">

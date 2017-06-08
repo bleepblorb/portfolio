@@ -1,21 +1,24 @@
 <template>
-  <div id="resume__intro" key="intro">
-    <div class="container -max--xl">
-      <div class="g__row -align-items--center">
-        <div class="g__col8">
-          <img src="/img/resume-builder-lg.svg" class="img-fluid" alt="">
-        </div>
-        <div class="g__col4">
-          <h5 class="c--gummy">Adam's Resumé Builder</h5>
-          <h2 class="c--late-night">Build the designer you’ve been dreaming of!<sup>*</sup></h2>
-          <h5 class="c--gray-light">*so long as its me</h5>
-          <p class="mt-4">
-            <!-- <button @click="start()" class="btn btn-primary"> Lets Go! </button> -->
-            <v-button @click="start()" color="primary" size="lg" variant="outline">Let's Go!</v-button>
-          </p>
-          <h6 class="t--sans">
-            <a href="#" class="c--gray" @click="setDefault()">I'm boring, just show me a resume <span class="i--arrow"></span></a>
-          </h6>
+  <div id="resume-intro" key="intro">
+
+    <div class="resume-intro__text -align-items--center">
+      <div class="container w-100">
+        <div class="resume-intro__illo" data-image-load data-src="/img/resume-intro-sm.svg"> </div>
+        <div class="g__row -justify-content--center t--center -max--xl">
+          <div class="g__col12 g__col8--@sm pb-6 pt-2">
+            <h5 class="c--gummy">Adam's build-a-resume®</h5>
+            <h1 class="c--jazzy">Build the perfect
+              <toggler
+                :options="['designer', 'developer', 'doodler', 'bed tester', 'ice cream taster', 'underwear model', 'underling' ]"
+              ></toggler> you’ve always wanted!<sup class="c--gray-light t--normal">*</sup></h1>
+            <h4 class="c--jean-jacket t--normal">*as long as its me, of course</h4>
+            <p class="mt-5">
+              <v-button @click.prevent="start()" color="primary" size="lg" variant="outline">Lets Go!</v-button>
+            </p>
+            <h6 class="t--sans mt-2">
+              <a href="#" class="c--gray-light" @click.prevent="setDefault()">I'm no fun. Just show me a resume</a>
+            </h6>
+          </div>
         </div>
       </div>
     </div>

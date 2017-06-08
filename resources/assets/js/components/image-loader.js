@@ -188,7 +188,6 @@
             var source = getSource(ele, options);
             var dataSrc = getAttr(ele, source) || getAttr(ele, options.src); // fallback to default 'data-src'
             if (dataSrc) {
-
                 var dataSrcSplitted = dataSrc.split(options.separator);
                 var src = dataSrcSplitted[_isRetina && dataSrcSplitted.length > 1 ? 1 : 0];
                 var srcset = getAttr(ele, options.srcset);
