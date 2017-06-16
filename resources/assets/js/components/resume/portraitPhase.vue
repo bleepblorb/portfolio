@@ -82,7 +82,7 @@
       },
 
       afterEnter() {
-        console.log('entered');
+        // console.log('entered');
         this.urls = this.urlsSwap;
         window.setTimeout( ()=> {
           window.bLazy.load(this.$refs['base'], true);
@@ -97,7 +97,7 @@
 
       let swap = this.$refs['swap'];
       swap.addEventListener('loaded', () => {
-        console.log('loaded');
+        // console.log('loaded');
         this.swapping = true;
         this.loading = false;
 

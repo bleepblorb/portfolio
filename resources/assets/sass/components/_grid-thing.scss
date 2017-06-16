@@ -1,0 +1,43 @@
+$grid-thing-border :  1px solid $gray-lighter;
+
+.grid-thing {
+  display: flex;
+  flex-wrap: wrap;
+
+  border: $grid-thing-border;
+  border-radius: $border-radius-lg;
+
+  .grid-thing__item {
+    @include make-col-ready();
+
+    @extend .g__col;
+
+    padding: 3rem !important;
+    border-bottom: $grid-thing-border;
+    border-right: $grid-thing-border;
+    margin-bottom: -1px;
+  }
+
+  .grid-thing__item {
+    @include make-col(12);
+  }
+
+
+  &.-span-2 {
+
+    .grid-thing__item {
+      @include make-col(6);
+    }
+
+    .grid-thing__item:nth-of-type(-n + 2) {
+      border-top: none;
+    }
+    .grid-thing__item:nth-of-type(2n) {
+      border-right: none;
+    }
+
+    .grid-thing__item:nth-last-of-type(-n + 2) {
+      border-bottom: none;
+    }
+  }
+}

@@ -16,11 +16,11 @@
     </transition>
 
     <transition name="edit-mode">
-      <resume-layout  v-show="state.isComplete"></resume-layout>
+      <resume-layout  v-show="!state.showIntro && state.isComplete"></resume-layout>
     </transition>
 
     <transition>
-      <div class="sidebar" v-show="!state.showIntro && !state.editMode">
+      <div class="sidebar" v-show="!state.showIntro && !state.editMode && state.isComplete">
         <popover position="right" content="Start Over" triggers="hover" :delay="800">
           <button @click="reset(true)" class="btn -link edit-btn"><icon name="delete"></icon></button>
         </popover>
@@ -81,8 +81,14 @@ store.resume.model = {
   intro : {
     introStyle : '',
     personal : [],
-    togglerPoem : 0,
-    togglerIntro : 0,
+    togglerPoem : {
+      index : 0,
+      value : ''
+    },
+    togglerIntro : {
+      index : 0,
+      value : ''
+    }
   },
   portrait : {
     expression : '',
@@ -370,6 +376,9 @@ export default {
         // this.$refs.editPopover.$emit('show::popover');
       }
     },
+    'state.isComplete' : function(val) {
+      console.log('state change', val)
+    },
     furthestAllowed() {
       this.state.furthestAllowed = this.furthestAllowed;
     },
@@ -416,12 +425,13 @@ export default {
 
       } else {
 
-        this.state.editMode = false;
 
+        if ( !this.isComplete ) {
+          this.setDefault();
+        }
+
+        this.state.editMode = false;
         window.setTimeout( () => {
-          if ( !this.isComplete ) {
-            this.setDefault();
-          }
           this.state.previewMode = false;
         }, 850)
       }
@@ -472,47 +482,48 @@ export default {
     },
 
     setDefault() {
-      axios.post('api/resume/default', {
+
+      axios.get('/api/resume/default', {
         model : this.model
       })
       .then(response => {
+        console.log(response);
         _.forEach(response.data, (item, key) => {
           store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
         });
-        console.log(store.resume.model);
+        Event.$emit('setComplete');
+        console.log('setting Default', store.resume.state);
       })
       .catch(function (error) {
         console.log(error);
       });
-
-      Event.$emit('setComplete');
-    },
-
-    sidebarEnter() {
-      console.log('sidebar enter');
-      if ( this.state.isComplete ) {
-        this.$refs.editPopover.$emit('show::popover');
-      }
     }
 
   },
 
   beforeCreate() {
-
-    axios.get('api/resume/new')
-    .then(response => {
-      _.forEach(response.data, (item, key) => {
-        store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
-      });
-
-      console.log(store.resume.model);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
   },
 
   created() {
+
+    let params = window.location.pathname.split( '/' );
+
+    if ( params[2] == 'default' ) {
+      this.state.showIntro = false;
+      this.setDefault();
+    }
+    else {
+      axios.get('/api/resume/new')
+      .then(response => {
+        _.forEach(response.data, (item, key) => {
+          store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
+        });
+        this.state.showIntro = true;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
 
     this.state.totalSteps = this.totalSteps;
 
@@ -545,9 +556,12 @@ export default {
     });
 
     Event.$on('setComplete', () => {
+      console.log('Event: setComplete');
       this.state.showIntro = false;
       this.state.isComplete = true;
       this.state.completedSteps = this.state.totalSteps;
+
+      console.log('isComplete:', this.state.isComplete);
     });
 
     Event.$on('closeEdit', (confirm = false) => {
@@ -556,7 +570,6 @@ export default {
 
     //
     // Editor Tour
-    console.log(window.Shepherd);
     this._editorTour = new Shepherd.Tour({
       defaults : {
         classes : 'popover',

@@ -440,12 +440,6 @@ body.edit {
   }
 }
 
-
-.g__row {
-  box-sizing: border-box;
-}
-
-
 // *************************
 // CONTENT
 // *************************
@@ -603,22 +597,28 @@ body.edit {
 //
 
 #resume__layout {
-  padding-top: 6rem;
-
-  transition: all 650ms;
+  padding-top: 8rem;
   opacity: 1;
+  transition: all 650ms 300ms;
 
   .edit-mode & {
     transform: translateY(48px);
     opacity: 0;
+    transition: all 650ms 0ms;
   }
 
   &.edit-mode-enter-active {
-    transition-duration: 1250ms;
+    transition: all 1250ms 600ms;
   }
 
   &.edit-mode-leave-active {
-    transition-duration: 450ms;
+    transition: all 450ms;
+  }
+
+  &.edit-mode-enter,
+  &.edit-mode-leave-to {
+    transform: translateY(48px);
+    opacity: 0;
   }
 }
 
@@ -659,6 +659,48 @@ body.edit {
   }
 }
 
+.job {
+
+  margin-bottom: 4rem;
+
+  .job__date {
+    // color: $jazzy;
+  }
+
+  .job__location {
+    color: $gray;
+    margin-left: 1rem;
+    font-weight: 400;
+  }
+}
+
+.skill-list {
+  margin-bottom: 2rem;
+
+  .card {
+    height: 100%;
+  }
+
+  .card-block {
+    padding: 2rem;
+  }
+}
+
+.section-header {
+  position: sticky;
+  top: 32px;
+}
+
+#resume-outro {
+
+  padding-bottom: 200px;
+
+
+  background: {
+    size : cover;
+    position: center top;
+  }
+}
 
 
 // random

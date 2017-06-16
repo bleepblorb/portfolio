@@ -12,8 +12,14 @@ class ResumeController extends Controller
     'intro' => [
       'introStyle' => '',
       'personal' => [],
-      'togglerPoem' => 0,
-      'togglerIntro' => 0,
+      'togglerPoem' => [
+        'index' => 0,
+        'value' => ''
+      ],
+      'togglerIntro' => [
+        'index' => 0,
+        'value' => ''
+      ],
     ],
     'portrait' => [
       'expression' => 'neutral',

@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/resume', function () {
+Route::get('/resume/{params?}', function () {
     return view('resume');
-})->name('resume');
+})->name('resume')->where('params', 'default');
 
 Route::get('/visual-summary', function () {
     return view('visual-summary');

@@ -48,7 +48,7 @@
         else {
           this.activeIndex ++;
         }
-        this.$parent.$emit('toggleUpdate', this.id, this.activeIndex);
+        this.$parent.$emit('toggleUpdate', this.id, this.activeIndex, this.options[this.activeIndex]);
       }
     }
   }

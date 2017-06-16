@@ -19,4 +19,3 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/resume/new', "ResumeController@getFresh");
 Route::get('/resume/default', "ResumeController@getDefault");
-Route::post('/resume/default', "ResumeController@getDefault");

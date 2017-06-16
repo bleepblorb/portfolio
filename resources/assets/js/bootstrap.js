@@ -41,6 +41,7 @@ require('./components/scrollspy');
     window.bLazy = new Blazy({
       selector : '[data-image-load]',
       successClass : '-loaded',
+      loadInvisible : true,
       breakpoints : [
         {
           width: 576,
