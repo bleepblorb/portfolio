@@ -24,8 +24,34 @@
   padding: 16px 24px;
   // opacity: .5;
   z-index: 999;
+  margin-right: 15px;
 
   .icon {
     width: 2em;
   }
+}
+
+.logo {
+
+  cursor: pointer;
+
+  .logo-text {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 350ms;
+    transform: translateY(-6px);
+  }
+
+  &:hover {
+    .logo-text {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+}
+
+.logo-text {
+  margin-top: 6px;
+  margin-left: 12px;
 }
