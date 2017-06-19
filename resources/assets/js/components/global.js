@@ -35,5 +35,9 @@ Vue.component('dropdown', dropdown);
 import toggler from './toggler.vue';
 Vue.component('toggler', toggler);
 
+// Toggler
+import revealer from './revealer.vue';
+Vue.component('revealer', revealer);
+
 
 export {store};

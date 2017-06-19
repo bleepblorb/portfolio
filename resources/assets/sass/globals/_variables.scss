@@ -273,7 +273,7 @@ $container-padding-widths: (
 // Font, line-height, and color for body text, headings, and more.
 
 $font-family-sans-serif: "soleil", "source-sans-pro", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
-$font-family-serif: "expo-serif-pro", Georgia, "Times New Roman", Times, serif !default;
+$font-family-serif: "source-sans-pro", "expo-serif-pro", Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:       $font-family-sans-serif;
 
@@ -300,7 +300,7 @@ $font-size-h6: typeScale(1);
 $headings-margin-bottom: ($spacer * pow($base-ratio, -2)) !default;
 $headings-font-family:   $font-family-sans-serif;
 $headings-font-weight:   700;
-$headings-line-height:   1.1;
+$headings-line-height:   1.15;
 $headings-color:         $gray-dark;
 
 $display1-size: typeScale(8);

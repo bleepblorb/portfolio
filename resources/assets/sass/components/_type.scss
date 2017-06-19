@@ -23,20 +23,20 @@ h5, .t--h5 { font-size: $font-size-h5; }
 h6, .t--h6 { font-size: $font-size-h6; }
 
 // Type display classes
-.t__display--big {
+.t--display--big {
   font-size: $display1-size;
   font-weight: $display1-weight;
   line-height: $display-line-height;
 }
-.t__display {
+.t--display {
   font-size: $display2-size;
   font-weight: $display2-weight;
   line-height: $display-line-height;
 }
 
 @include media-breakpoint-up(md) {
-  .t__display--big { font-size: typeScale(8, $base-ratio-md); }
-  .t__display { font-size: typeScale(7, $base-ratio-md); }
+  .t--display--big { font-size: typeScale(8, $base-ratio-md); }
+  .t--display { font-size: typeScale(7, $base-ratio-md); }
   h1, .t--h1 { font-size: typeScale(6, $base-ratio-md); }
   h2, .t--h2 { font-size: typeScale(5, $base-ratio-md); }
   h3, .t--h3 { font-size: typeScale(4, $base-ratio-md); }
@@ -46,8 +46,8 @@ h6, .t--h6 { font-size: $font-size-h6; }
 };
 
 @include media-breakpoint-up(lg) {
-  .t__display--big { font-size: typeScale(8, $base-ratio-lg); }
-  .t__display { font-size: typeScale(7, $base-ratio-lg); }
+  .t--display--big { font-size: typeScale(8, $base-ratio-lg); }
+  .t--display { font-size: typeScale(7, $base-ratio-lg); }
   h1, .t--h1 { font-size: typeScale(6, $base-ratio-lg); }
   h2, .t--h2 { font-size: typeScale(5, $base-ratio-lg); }
   h3, .t--h3 { font-size: typeScale(4, $base-ratio-lg); }

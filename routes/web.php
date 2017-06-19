@@ -23,6 +23,10 @@ Route::get('/visual-summary', function () {
     return view('visual-summary');
 })->name('visuals');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 // Route::get('/resume/new', "ResumeController@getFresh");
 
 Route::post('/img/portrait', 'ImageController@portrait');
