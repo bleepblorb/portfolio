@@ -184,7 +184,7 @@
 
     function loadElement(ele, force, options) {
         // if element is visible, not loaded or forced
-        if (!hasClass(ele, options.successClass) && (force || options.loadInvisible || (ele.offsetWidth > 0 && ele.offsetHeight > 0))) {
+        if ((force || options.loadInvisible || (ele.offsetWidth > 0 && ele.offsetHeight > 0))) {
             var source = getSource(ele, options);
             var dataSrc = getAttr(ele, source) || getAttr(ele, options.src); // fallback to default 'data-src'
             if (dataSrc) {
@@ -242,7 +242,8 @@
     }
 
     function itemLoaded(ele, options) {
-        // addClass(ele, options.successClass);
+        addClass(ele, options.successClass);
+
         if (options.success) options.success(ele);
 
         // cleanup markup, remove data source attributes
