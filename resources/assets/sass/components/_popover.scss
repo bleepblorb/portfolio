@@ -17,7 +17,7 @@ $popover-arrow-outer-color:           fade-in($popover-border-color, .05) !defau
 $popover-offset:                      $popover-arrow-width + 6;
 
 
-.popup {
+.popover {
   // // display: none;
   // visibility: hidden;
   //
@@ -25,6 +25,7 @@ $popover-offset:                      $popover-arrow-width + 6;
   //   // display: block;
   //   visibility: visible;
   // }
+  z-index: $zindex-popover;
 }
 
 .popover__link {
@@ -51,7 +52,7 @@ $popover-offset:                      $popover-arrow-width + 6;
   // }
 }
 
-.popover__drop {
+.popover__drop, .shepherd-step {
   position: absolute;
   z-index: $zindex-popover;
   // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
@@ -73,7 +74,7 @@ $popover-offset:                      $popover-arrow-width + 6;
       repeat: no-repeat;
     }
   }
-  .popover__drop-wrap {
+  .popover__drop-wrap, .shepherd-content {
     position: relative;
     max-width: $popover-max-width;
     padding: $popover-inner-padding;

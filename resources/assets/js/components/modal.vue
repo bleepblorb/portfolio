@@ -13,7 +13,7 @@
     >
 
       <div :class="['modal__dialog']">
-        <div class="modal__content" @click.stop="" :class="['-max--'+size]">
+        <div class="modal__content" @click.stop="" :class="['-max--'+size, '-center']">
 
           <div class="modal__header" v-if="this.$slots['modal-footer'] || this.$slots['modal-title'] || this.title">
             <slot name="modal__header">
