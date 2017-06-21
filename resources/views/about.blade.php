@@ -1,8 +1,8 @@
 @extends('base')
 
 @section('app')
-  <div id="about" class="container -max--xl">
-    <div class="spacer" style="min-height: 50vh"></div>
+  <div id="about" class="container -max--lg">
+    <div class="spacer" style="min-height: 40vh"></div>
     <div class="g__row mb-6">
 
       <div class="g__col12 -max-lg">
@@ -73,7 +73,7 @@
       </div>
     </div> --}}
 
-  <div class="container -max--xl my-6">
+  <div class="container -max--lg my-6">
     <div class="g__row -max--lg">
       <div class="g__col12  g__col4--@lg mb-3">
         <p><v-button color="primary" variant="outline">View Resume</v-button></p>

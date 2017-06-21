@@ -2,29 +2,30 @@
   <div @mousedown="setPreview(true)" class="resume__content g__col">
     <!-- <div class="preview-toggle" @click="togglePreview()"></div> -->
     <div id="resume__preview">
-      <div class="preview__phase">
-        <div class="container -max--lg">
-          <transition name="slide" mode="out-in">
-            <welcome-phase key="welcome" id="welcome" v-if="state.currentPhase == 'welcome'"></welcome-phase>
-            <intro-phase key="intro" id="intro" v-if="state.currentPhase == 0"></intro-phase>
-            <portrait-phase key="portrait" id="portrait" v-if="state.currentPhase == 1"></portrait-phase>
-          </transition>
-        </div>
+        <transition name="slide" mode="out-in">
+          <welcome-phase class="preview__phase" key="welcome" id="welcome" v-if="state.currentPhase == 'welcome'"></welcome-phase>
+
+          <intro-preview class="preview__phase" key="intro" id="intro" v-if="state.currentPhase == 0 && state.currentStep == 1"></intro-preview>
+
+          <interests-preview class="preview__phase" key="interests" id="intro" v-if="state.currentPhase == 0 && state.currentStep == 2"></interests-preview>
+
+          <portrait-phase class="preview__phase" key="portrait" id="portrait" v-if="state.currentPhase == 1"></portrait-phase>
+        </transition>
       </div>
-    </div>
   </div>
 </template>
 
 <script>
   import {store} from '../global.js';
-  import introPhase from './introPhase';
+  import introPreview from './preview__intro';
+  import interestsPreview from './preview__interests';
   import portraitPhase from './portraitPhase';
   import welcomePhase from './welcomePhase';
 
   export default {
 
     components : {
-      introPhase, portraitPhase, welcomePhase
+      introPreview, portraitPhase, welcomePhase, interestsPreview
     },
 
     props : {

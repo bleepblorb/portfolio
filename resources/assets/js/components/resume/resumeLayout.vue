@@ -1,40 +1,43 @@
 <template>
   <div id="resume__layout">
-    <div class="resume__layout-wrap">
-
+    <div class="resume__layout-wrap menu-pad">
       <!-- Intro -->
-      <div class="container py-4 -max--xl">
+      <div class="container pb-6 -max--xl">
         <div class="g__row -justify-content--center">
           <!-- Heading -->
           <div class="g__col12 g__col10--@sm g__col8--@md">
-            <div class="" v-if="introStyle == 'standard'" key="standard">
-              <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
+            <h4 class="c--jean-jacket">Adam Volkman —</h4>
+
+            <!-- standard -->
+            <div v-if="introStyle == 'standard'" key="standard">
               <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to {{model.intro.togglerIntro.value}}.</h2>
             </div>
-            <div class="" v-else-if="introStyle == 'haiku'" key="haiku">
+
+            <!-- haiku -->
+            <div v-else-if="introStyle == 'haiku'">
               <h2>
                 A maker of things. <small>(5)</small><br>
                 Design, dev, &amp; draw – you bet! <small>(7)</small><br>
                 A poet? {{model.intro.togglerPoem.value}}.
               </h2>
             </div>
-            <div class="" v-else-if="introStyle == 'value 3'" key="value2">
-              <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-              <h4>section 3</h4>
-            </div>
-            <div class="" v-else-if="introStyle == 'value 4'" key="value3">
-              <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-              <h4>section 4</h4>
-            </div>
-            <div class="" v-else-if="introStyle == 'value 5'" key="value4">
-              <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-              <h4>section 5</h4>
-            </div>
-            <div class="" v-else-if="introStyle == 'value 6'" key="value5">
-              <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-              <h4>section 6</h4>
+
+            <!-- hard to get -->
+            <div v-else-if="introStyle == 'hard'">
+              <h2>I'm a graphic designer &amp; developer currently doing my own thing. It's pretty sweet. I mean, if you need some help out, I guess I could join you.</h2>
             </div>
 
+            <!-- confident -->
+            <div v-else-if="introStyle == 'confident'">
+              <h2>I'm a pretty slick dude with skills and straight teeth. Probably the best that ever was.</h2>
+            </div>
+
+            <!-- minimal -->
+            <div v-else-if="introStyle == 'minimal'">
+              <h1>Maker of things</h1>
+            </div>
+
+            <!-- intro par -->
             <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex. To prove I'm an interesting person, I also enjoy
               <ul class="-inline-text">
                 <li v-for="item in model.intro.personal">{{item}}</li>
@@ -48,8 +51,25 @@
 
       <!-- Portrait -->
       <div class="container -max--xl my-4">
-        <portrait-phase id="portrait"></portrait-phase>
+        <div id="portrait">
+          <div class="portrait__image" data-image-load ref="portrait"
+            :data-src="model.portraitUrls.xs ? model.portraitUrls.xs : false"
+            :data-src-sm="model.portraitUrls.sm ? model.portraitUrls.sm : false"
+            :data-src-md="model.portraitUrls.md ? model.portraitUrls.md : false"
+            :data-src-lg="model.portraitUrls.lg ? model.portraitUrls.lg : false"
+            :data-src-xl="model.portraitUrls.xl ? model.portraitUrls.xl : false"
+          ></div>
+        </div>
+        <!-- <img class="img-fluid" data-image-load
+          :data-src="model.portraitUrls.xs ? model.portraitUrls.xs : false"
+          :data-src-sm="model.portraitUrls.sm ? model.portraitUrls.sm : false"
+          :data-src-md="model.portraitUrls.md ? model.portraitUrls.md : false"
+          :data-src-lg="model.portraitUrls.lg ? model.portraitUrls.lg : false"
+          :data-src-xl="model.portraitUrls.xl ? model.portraitUrls.xl : false"
+        > -->
       </div>
+
+
 
       <!-- About -->
       <div class="container py-6 -max--lg">
@@ -293,7 +313,7 @@
 
       <section id="resume-outro" data-image-load data-src="/img/resume-outro.svg">
         <div class="container py-6">
-          <div class="g__row t--center -max--md">
+          <div class="g__row t--center -max--md -center">
             <div class="g__col">
               <h3 class="mb-4 c--late-night">Think we'd work well together?</h3>
               <p>
@@ -344,12 +364,33 @@
       introStyle() {
         return this.model.intro.introStyle;
       },
+      portraitUrls() {
+        return this.model.portraitUrls;
+      }
+    },
+
+    watch : {
+      portraitUrls() {
+        this.$nextTick( ()=> {
+          window.bLazy.load(this.$refs.portrait, true);
+        })
+      }
     },
 
     methods : {
       toggle() {
         Event.$emit('toggleEditMode');
       }
+    },
+
+    created() {
+
+    },
+
+
+    mounted() {
+      this._portrait = this.$refs.portrait;
     }
+
   }
 </script>

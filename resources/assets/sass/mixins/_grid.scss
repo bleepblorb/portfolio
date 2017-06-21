@@ -3,6 +3,7 @@
 // Generate semantic grid columns with these mixins.
 
 %container {
+  box-sizing: content-box;
   position: relative;
   margin-left: auto;
   margin-right: auto;

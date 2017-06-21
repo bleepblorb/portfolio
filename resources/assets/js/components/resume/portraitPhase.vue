@@ -1,5 +1,5 @@
 <template>
-  <resume-phase :id="id">
+  <div :id="'phase__' + id">
     <div id="portrait" :class="{'-swapping' : swapping}">
         <div class="portrait__image" ref="base"
           data-image-load
@@ -26,7 +26,7 @@
           <div class="loader" v-show="loading"></div>
         </transition>
     </div>
-  </resume-phase>
+  </div>
 </template>
 
 <script>
@@ -36,7 +36,6 @@
     mixins : [ resumePhase ],
 
     components : {
-      resumePhase
     },
 
     props : {
@@ -44,14 +43,22 @@
 
     data() {
       return {
-        urls : [],
         urlsSwap : [],
         swapping : false,
         loading : true,
+
       }
     },
 
     computed : {
+      urls : {
+        get() {
+          return store.resume.model.portraitUrls;
+        },
+        set(val) {
+          store.resume.model.portraitUrls = val;
+        }
+      }
     },
 
     watch : {
@@ -65,6 +72,7 @@
 
     methods : {
       updatePortrait() {
+        console.log('update portrait', this.model);
         if (this.model) {
           axios.post('/img/portrait', this.model)
           .then(response => {
@@ -82,28 +90,26 @@
       },
 
       afterEnter() {
-        // console.log('entered');
+        console.log('entered');
         this.urls = this.urlsSwap;
         window.setTimeout( ()=> {
           window.bLazy.load(this.$refs['base'], true);
           this.swapping = false;
-          this.loading = false;
         }, 25);
       }
     },
 
     mounted() {
       this.updatePortrait();
-
       let swap = this.$refs['swap'];
+
       swap.addEventListener('loaded', () => {
-        // console.log('loaded');
         this.swapping = true;
         this.loading = false;
 
         window.setTimeout(() => {
           this.afterEnter();
-        }, 250);
+        }, 300);
       });
     },
 

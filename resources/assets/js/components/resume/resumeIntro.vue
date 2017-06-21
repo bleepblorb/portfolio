@@ -4,8 +4,8 @@
     <div class="resume-intro__text -align-items--center">
       <div class="container w-100">
         <div class="resume-intro__illo" data-image-load data-src="/img/resume-intro-sm.svg"> </div>
-        <div class="g__row -justify-content--center t--center -max--xl">
-          <div class="g__col12 g__col8--@sm pb-6 pt-2">
+        <div class="g__row -justify-content--center -max--xl -center">
+          <div class="g__col12 g__col8--@sm pb-6 pt-2 t--center">
             <h5 class="c--gummy">Adam's build-a-resume®</h5>
             <h1 class="c--jazzy">Build the perfect
               <toggler

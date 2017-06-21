@@ -2,69 +2,28 @@
 
 
 @section('app')
-  <div id="visual-summary" class="container -max--xl my-5">
+  <div id="visual-summary" class="container -max--xl menu-pad mb-6">
 
     <div class="g__row my-6">
       <div class="g__col">
-        {{-- <h3 class="c--jazzy">A Visual Summary</h3> --}}
-        <p class=""><strong>Full case studies are in the works.</strong> For now, please enjoy a smattering of my work.</p>
-      </div>
-    </div>
-{{--
-    <div class="image-grid">
-      <div class="image-grid__wrap">
-        <div class="g__row">
-          <div class="g__col image-grid__col">
-            <div class="image-grid__item" style="background-image: url('http://unsplash.it/600/400')"></div>
-          </div>
-          <div class="g__col image-grid__col">
-            <div class="image-grid__item" style="background-image: url('http://unsplash.it/600/400')"></div>
-            <div class="image-grid__item" style="background-image: url('http://unsplash.it/600/400')"></div>
-          </div>
-        </div>
+        <h4 class="c--jazzy">A Visual Summary —</h4>
+        <p class="">Full case studies are in the works. For now, please enjoy a smattering of my work.</p>
       </div>
     </div>
 
-    <div class="image-grid">
-      <div class="image-grid__wrap">
-        <div class="g__row">
-          <div class="g__col image-grid__col">
-            <div class="image-grid__item" style="background-image: url('http://unsplash.it/600/400')"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="image-grid ">
-      <div class="image-grid__wrap">
-        <div class="g__row">
-          <div class="g__col12 g__col8--@sm image-grid__col">
-            <div class="image-grid__item" style="background-image: url('http://unsplash.it/600/400')"></div>
-          </div>
-          <div class="g__col12 g__col4--@sm image-grid__col">
-            <div class="image-grid__item -c8" style="background-image: url('http://unsplash.it/600/400')"></div>
-            <div class="image-grid__item" style="background-image: url('http://unsplash.it/600/400')"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="image-grid -tall">
-      <div class="image-grid__wrap">
-        <div class="g__row">
-          <div class="g__col image-grid__col">
-            <div class="image-grid__item" style="background-image: url('http://unsplash.it/600/400')"></div>
-            <div class="image-grid__item -c8" style="background-image: url('http://unsplash.it/600/400')"></div>
-          </div>
-          <div class="g__col image-grid__col">
-            <div class="image-grid__item -c8" style="background-image: url('http://unsplash.it/600/400')"></div>
-            <div class="image-grid__item" style="background-image: url('http://unsplash.it/600/400')"></div>
-          </div>
-        </div>
+    {{-- <div class="g__row my-4">
+      <div class="g__col">
+        <ul class="nav">
+          <li class="nav-item nav-link">Filter — </li>
+          <li class="nav-item"><a href="#" class="nav-link">All</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Illustration</a></li>
+          <li><a href="#" class="nav-link">Digital</a></li>
+          <li><a href="#" class="nav-link">Environmental</a></li>
+        </ul>
       </div>
     </div> --}}
 
-    <div class="image-grid">
+    <div class="image-grid -max--xl -center">
       <div class="g__row">
         <div class="image-grid__col -half">
           <div class="image-grid__item -vert" data-image-load  data-src="{{asset('img/HRD-Banquet-Art.jpg')}}" data-src-md="{{asset('img/HRD-Banquet-Art-mock.jpg')}}">
