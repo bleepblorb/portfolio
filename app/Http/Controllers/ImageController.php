@@ -15,7 +15,7 @@ class ImageController extends Controller
 
   function portrait(Request $request) {
     $baseUrl = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix() . 'public/portrait/';
-  //
+
     $input = $request->except('_token');
 
     $defaults = [
@@ -23,7 +23,7 @@ class ImageController extends Controller
       'expression' => 'neutral',
       'background' => 'none',
       'hair' => 'defualt',
-      'hands' => 'default'
+      'hands' => 'default',
     ];
     $portrait = array_merge( $defaults, $input );
     ksort($portrait);
@@ -42,7 +42,6 @@ class ImageController extends Controller
 
     // If cached version doesnt exits, generate new image
     if(!Storage::disk('s3')->exists('public/portrait/'.$filenameXs)) {
-    // if(true) {
       // Generate Image
       $img =  Image::canvas(2400, 1350, '#f5f5f5');
 
@@ -80,6 +79,7 @@ class ImageController extends Controller
               ->first();
 
       if ( $attire ) {
+
         $portrait['hair'] = $attire->hair;
         $img->insert($baseUrl.$attire->filename, 'top-left', 248, 120);
       }
@@ -142,6 +142,8 @@ class ImageController extends Controller
       if(!Storage::disk('s3')->exists('public/portrait')) {
         Storage::disk('s3')->makeDirectory('public/portrait');
       }
+
+
       // Save generted images to storage
 
       // xs

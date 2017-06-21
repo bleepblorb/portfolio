@@ -12,6 +12,7 @@
         </div>
         <resume-editor :schema="schema"></resume-editor>
         <resume-content :schema="schema"></resume-content>
+        <div class="close-btn" @click="closeEditor(!isComplete)">close <button  v-if="editMode" class="close"></button></div>
       </div>
     </transition>
 
@@ -30,9 +31,7 @@
       </div>
     </transition>
 
-    <button @click="close(!isComplete)" v-if="editMode" class="close"></button>
-
-    <modal id="modal-close" confirmation ok-title="Yeah, Don't Care" close-title="Fine, I'll do it." size="sm" @ok="close()">
+    <modal id="modal-close" confirmation ok-title="Yeah, Don't Care" close-title="Fine, I'll do it." size="sm" @ok="closeEditor()">
       <div class="p-3">
         <h3 class="c--jazzy">But, you aren't finished yet...</h3>
         <p class="t--sans">I'll have to finish the rest of the resume for you</p>
@@ -47,6 +46,13 @@
       </div>
     </modal>
 
+    <modal id="modal-tour" confirmation ok-title="•sigh• Alright" close-title="Veto" size="sm" @ok="startTour()" @cancel="skipTour()">
+      <div class="p-3">
+        <h3 class="c--jazzy">Welcome</h3>
+        <p class="t--sans">Thank you for taking the time to create the perfect resume. Let's just take a quick tour.</p>
+      </div>
+    </modal>
+
   </div>
 </template>
 
@@ -56,6 +62,7 @@ require('../../bootstrap')
 
 
 import {store} from '../global.js';
+import {schema} from './schema.js';
 import resumeEditor from './resumeEditor';
 import resumeContent from './resumeContent';
 import resumeLayout from './resumeLayout';
@@ -70,7 +77,7 @@ store.resume.state = {
   totalSteps : 0,
   direction : '',
   isComplete : false,
-  showIntro : true,
+  showIntro : false,
   editMode : false,
   previewMode : false,
   readerMode : false,
@@ -96,7 +103,8 @@ store.resume.model = {
     attire : '',
     hands : '',
     background : '',
-  }
+  },
+  portraitUrls : {}
 };
 
 export default {
@@ -108,241 +116,7 @@ export default {
     return {
       state : store.resume.state,
       model : store.resume.model,
-      schema : {
-        phases : [
-          {
-            id : 'intro',
-            title : "Intro",
-            steps : [
-              {
-                id : "introStyle",
-                intro : "First impressions",
-                question : "You only get to pick one.",
-                type : "radial-group",
-                imageUrl : "/img/portrait-beard.png",
-                options : [
-                  {
-                    label : "Pretty Standard",
-                    value : "standard"
-                  },
-                  {
-                    label : "Poetic",
-                    value : "haiku"
-                  },
-                  {
-                    label : "option 3",
-                    value : "value 3"
-                  },
-                  {
-                    label : "option 4",
-                    value : "value 4"
-                  },
-                  {
-                    label : "option 5",
-                    value : "value 5"
-                  },
-                  {
-                    label : "option 6",
-                    value : "value 6"
-                  }
-                ]
-              },
-              {
-                id : "personal",
-                intro : "Make me interesting",
-                question : "The spot for obligitory personal interests",
-                imageUrl : "/img/portrait-beard.png",
-                type : "checkbox-group",
-                options : [
-                  {
-                    label : "Cooking",
-                    value : "making a mess in the kitchen"
-                  },
-                  {
-                    label : "Hiking",
-                    value : "pooping in the woods"
-                  },
-                  {
-                    label : "Cartoons",
-                    value : "watching cartoons"
-                  },
-                  {
-                    label : "Tennis",
-                    value : "playing tennis"
-                  },
-                  {
-                    label : "Pooping",
-                    value : "pooping"
-                  },
-                  {
-                    label : "Learning",
-                    value : "learning new skills (that killz)"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            id : "portrait",
-            title: "Portrait",
-            steps : [
-              {
-                id : "expression",
-                imageUrl : "/img/portrait-beard.png",
-                intro : "Expression",
-                question : "Choose a face",
-                type: "slider-input",
-                placeholder: "Level Of Excitement",
-                options : [
-                  {
-                    label : "All Business",
-                    value : "grump"
-                  },
-                  {
-                    label : "Robotic",
-                    value : "neutral"
-                  },
-                  {
-                    label : "Seemingly Normal",
-                    value : "smile-1"
-                  },
-                  {
-                    label : "Happy Go Lucky",
-                    value : "smile-2"
-                  },
-                  {
-                    label : "Joyful",
-                    value : "smile-3"
-                  },
-                  {
-                    label : "Sugar Buzz",
-                    value : "creepy"
-                  },
-                ]
-
-              },
-              {
-                id : "facialHair",
-                imageUrl : "/img/portrait-beard.png",
-                intro : "Facial hair",
-                question : "Put some fuzz on this peach",
-                type : "radial-group",
-                options : [
-                  {
-                    label : "Beardo weirdo",
-                    value : "beard"
-                  },
-                  {
-                    label : "Friendly Chops",
-                    value : "chops"
-                  },
-                  {
-                    label : "Goatee",
-                    value : "goatee"
-                  },
-                  {
-                    label : "Simple Stache",
-                    value : "stache"
-                  },
-                  {
-                    label : "Scruff",
-                    value : "scruff"
-                  },
-                  {
-                    label : "No Thanks",
-                    value : "clean"
-                  }
-                ]
-              },
-              {
-                id : "attire",
-                imageUrl : "/img/portrait-beard.png",
-                intro : "Dress for success",
-                question : "Dress me for the job I want, not the job I don't have",
-                type : "radial-group",
-                options : [
-                  {
-                    label : "Casual",
-                    value : "casual"
-                  },
-                  {
-                    label : "Everyday",
-                    value : "everyday"
-                  },
-                  {
-                    label : "Business",
-                    value : "business"
-                  },
-                  {
-                    label : "Outdoorsy",
-                    value : "outdoors"
-                  },
-                  {
-                    label : "Sunday Best",
-                    value : "sweater"
-                  },
-                  {
-                    label : "Work from Home",
-                    value : "home"
-                  },
-                ]
-              },
-              {
-                id : "hands",
-                intro : "Strike a pose",
-                question : "I've got one hand in my pocket, the other is...",
-                type : "multiselect",
-                options : [
-                  {
-                    label : "Giving a Thumbs Up",
-                    value : "thumbs-up"
-                  },
-                  {
-                    label : "Holding a Spot of Tea",
-                    value : "tea"
-                  },
-                  {
-                    label : "Grabbing a Craft Brew",
-                    value : "beer"
-                  },
-                  {
-                    label : "Baking Some Brownies",
-                    value : "baking"
-                  },
-                  {
-                    label : "Playing a Ukelele",
-                    value : "uke"
-                  },
-                  {
-                    label : "Suporting Local Sports Team",
-                    value : "sports"
-                  },
-                  {
-                    label : "Also in My Pocket",
-                    value : "default"
-                  }
-                ]
-              },
-              {
-                id : "background",
-                intro : "qestion 2.2",
-                question : "This is Question 2.2",
-                type : "radial-group",
-                options : [
-                  {
-                    label : "K.I.S.S.",
-                    value : "white"
-                  },
-                  {
-                    label : "Camping",
-                    value : "camping"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+      schema : schema,
     }
   },
 
@@ -387,6 +161,7 @@ export default {
 
       if ( !this.state.tourComplete ) {
         // this._editorTour.start();
+        Event.$emit( 'show::modal', 'modal-tour' );
       }
 
       this.$nextTick(() => {
@@ -396,12 +171,24 @@ export default {
           document.querySelector('body').classList.remove('edit');
         }
       })
+    },
+    model : {
+      handler() {
+        this.save();
+      },
+      deep : true
+    },
+    state : {
+      handler() {
+        this.save();
+      },
+      deep : true
     }
   },
 
   methods : {
 
-    open() {
+    openEditor() {
 
       if ( this.state.editMode ) {
         return;
@@ -413,7 +200,7 @@ export default {
       this.state.editMode = true;
     },
 
-    close(confirm = false) {
+    closeEditor(confirm = false) {
 
       if ( !this.state.editMode ) {
         return;
@@ -437,30 +224,74 @@ export default {
       }
     },
 
+    open() {
+      axios.get('/api/resume/open')
+      .then(response => {
+        console.log("opening", response )
+        _.forEach(response.data.model, (item, key) => {
+          store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
+        });
+
+        _.forEach(response.data.state, (item, key) => {
+          // store.resume.state[key] = Object.assign({}, store.resume.state[key], item );
+          store.resume.state[key] = item;
+          // console.log(item, key);
+        });
+
+        console.log('Opened Saved data', response);
+      })
+      .catch((error) => {
+        this.new();
+      });
+    },
+
+    new() {
+      axios.get('/api/resume/new')
+      .then(response => {
+        console.log('Set New', response );
+
+        _.forEach(response.data.model, (item, key) => {
+          store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
+        });
+
+        _.forEach(response.data.state, (item, key) => {
+          store.resume.state[key] = item;
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    },
+
+    save() {
+
+      clearTimeout(this._saveTimer);
+
+      this._saveTimer = window.setTimeout( () => {
+        console.log('saving', this.model, this.state);
+        axios.patch('/api/resume/', {
+          model : this.model,
+          state : this.state
+        })
+        .then(response => {
+          console.log('Saved', response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      }, 200);
+    },
+
     reset(confirm = false) {
 
       if ( confirm ) {
         Event.$emit( 'show::modal', 'modal-reset' );
       }
       else {
-
-        this.state.currentStep = 1;
-        this.state.currentPhase = 0;
-        this.state.furthestAllowed = 0;
-        this.state.completedSteps = 0;
-        this.state.isComplete = false;
-        this.state.editMode = false;
+        console.log('Resetting');
+        // window.location.pathname = '/resume';
+        this.new();
         this.state.showIntro = true;
-
-        axios.get('api/resume/new')
-        .then(response => {
-          _.forEach(response.data, (item, key) => {
-            store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
-          });
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
 
         Event.$emit('reset');
       }
@@ -481,24 +312,31 @@ export default {
       }
     },
 
-    setDefault() {
+    setDefault(data = true) {
 
-      axios.get('/api/resume/default', {
-        model : this.model
+      axios.post('/api/resume/default', {
+        model : data ? this.model : []
       })
       .then(response => {
-        console.log(response);
+        console.log('setting Default',);
         _.forEach(response.data, (item, key) => {
           store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
         });
+
         Event.$emit('setComplete');
-        console.log('setting Default', store.resume.state);
       })
       .catch(function (error) {
         console.log(error);
       });
-    }
+    },
 
+    startTour() {
+      this._editorTour.start();
+    },
+
+    skipTour() {
+      this._editorTour.complete();
+    },
   },
 
   beforeCreate() {
@@ -507,22 +345,14 @@ export default {
   created() {
 
     let params = window.location.pathname.split( '/' );
+    this._saveTimer;
 
     if ( params[2] == 'default' ) {
       this.state.showIntro = false;
-      this.setDefault();
+      this.setDefault(false);
     }
     else {
-      axios.get('/api/resume/new')
-      .then(response => {
-        _.forEach(response.data, (item, key) => {
-          store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
-        });
-        this.state.showIntro = true;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      this.open();
     }
 
     this.state.totalSteps = this.totalSteps;
@@ -533,7 +363,7 @@ export default {
     });
 
     Event.$on('toggleEditMode', () => {
-      this.state.editMode ? this.close() : this.open();
+      this.state.editMode ? this.closeEditor() : this.openEditor();
     });
 
     Event.$on('stepComplete', (step) => {
@@ -565,7 +395,8 @@ export default {
     });
 
     Event.$on('closeEdit', (confirm = false) => {
-      this.close(confirm);
+      console.log('closeEditor');
+      this.closeEditor(confirm);
     });
 
     //
@@ -574,7 +405,7 @@ export default {
       defaults : {
         classes : 'popover',
         tetherOptions : {
-          classPrefix: 'tether',
+          classPrefix: 'popup',
           optimizations: {
             // gpu: false
           }
@@ -582,19 +413,9 @@ export default {
       }
     });
 
-    this._editorTour.addStep('open', {
-      title : "Welcome",
-      text : "Thank you for taking the time to create the perfect resume. Let's just take a quick tour",
-      buttons : [
-        {
-          text : '*sigh* Alright',
-          action : this._editorTour.next
-        },
-        {
-          text : 'veto!',
-          action : this._editorTour.complete
-        }
-      ]
+    this._editorTour.addStep('editor', {
+      text : "This the editor pane. You just have to answer a few questions.",
+      attachTo : ".editor__question top"
     });
 
     this._editorTour.addStep('navigation', {
@@ -645,7 +466,7 @@ export default {
     this._editorTour.addStep('toggler', {
       title : "Get the perfect wording",
       text : "Underlied areas allow you to toggle through wording options. <strong>Try it out</strong>",
-      attachTo : ".toggler top",
+      attachTo : "#phase__intro.toggler top",
       advanceOn : {selector: '.toggler', event: 'click'},
       buttons : false
     });

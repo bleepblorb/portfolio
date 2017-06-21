@@ -18,4 +18,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::get('/resume/new', "ResumeController@getFresh");
-Route::get('/resume/default', "ResumeController@getDefault");
+Route::get('/resume/open', "ResumeController@open");
+Route::match(['get', 'post'], '/resume/default', "ResumeController@getDefault");
+Route::patch('/resume', "ResumeController@save");
