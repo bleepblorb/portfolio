@@ -31,6 +31,10 @@ let schema = {
               label : "Hard to Get",
               value : "hard"
             },
+            {
+              label : "Elevator Pitch",
+              value : "elevator"
+            },
           ]
         },
         {
@@ -225,6 +229,107 @@ let schema = {
             }
           ]
         }
+      ]
+    },
+    {
+      id : 'about',
+      title : "About",
+      steps : [
+        {
+          id : "manifesto",
+          intro : "In a nutshell",
+          question : "Thoughts on design / life.",
+          type : "checkbox-group",
+          imageUrl : "/img/portrait-beard.png",
+          options : [
+            {
+              label : "Craft",
+              value : "craft"
+            },
+            {
+              label : "Grow",
+              value : "grow"
+            },
+            {
+              label : "Beyond",
+              value : "beyond"
+            },
+            {
+              label : "Climb",
+              value : "climb"
+            },
+            {
+              label : "Balance",
+              value : "balance"
+            },
+            {
+              label : "Enjoy",
+              value : "enjoy"
+            },
+          ]
+        },
+      ]
+    },
+    {
+      id : 'past',
+      title : "The Past",
+      steps : [
+        {
+          id : "format",
+          intro : "You can't change the past",
+          question : "Just how you choose to tell it.",
+          type : "radial-group",
+          imageUrl : "/img/portrait-beard.png",
+          options : [
+            {
+              label : "Detailed",
+              value : "detail"
+            },
+            {
+              label : "Nutshell",
+              value : "nutshell"
+            },
+            {
+              label : "timeline",
+              value : "timeline"
+            },
+            {
+              label : "?",
+              value : "?"
+            },
+          ]
+        },
+      ]
+    },
+    {
+      id : 'present',
+      title : "The Present",
+      steps : [
+        {
+          id : "skills",
+          intro : "choose something...",
+          question : "What skills are you looking for?",
+          type : "checkbox-group",
+          imageUrl : "/img/portrait-beard.png",
+          options : [
+            {
+              label : "Print / Environmental",
+              value : "print"
+            },
+            {
+              label : "Digital Design",
+              value : "digital"
+            },
+            {
+              label : "Development",
+              value : "development"
+            },
+            {
+              label : "Other",
+              value : "other"
+            },
+          ]
+        },
       ]
     }
   ]

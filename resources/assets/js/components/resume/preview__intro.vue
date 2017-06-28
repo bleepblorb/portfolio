@@ -33,10 +33,16 @@
           <h2>I'm a graphic designer &amp; developer currently doing my own thing. It's pretty sweet. I mean, if you need some help out, I guess I could join you.</h2>
         </div>
 
-        <!-- other -->
-        <div class="" v-else-if="introStyle == 'value 6'" key="value5">
-          <h4 class="c--gray-light"><span class="c--gummy">Adam Volkman</span> – Maker of things</h4>
-          <h4>section 6</h4>
+        <!-- Elevator -->
+        <div class="" v-else-if="introStyle == 'elevator'" key="elevator">
+          <h4>Okay, picture this —</h4>
+          <h2>It's like
+            <toggler
+              id="togglerElevator"
+              :index="togglerElevator.index"
+              :options="togglerElevator.options"
+            ></toggler>.
+          </h2>
         </div>
 
         <!-- intro -->
@@ -99,6 +105,16 @@
           this.model.togglerIntro = value;
         }
       },
+      togglerElevator : {
+        get() {
+          if(this.model) {
+            return this.model.togglerElevator;
+          }
+        },
+        set(value) {
+          this.model.togglerElevator = value;
+        }
+      },
     },
 
     watch : {
@@ -110,6 +126,7 @@
     },
 
     created() {
+      console.log('toggler:', this.togglerElevator.options);
       this.$on('toggleUpdate', function(id, index, value) {
         this[id].index = index;
         this[id].value = value;

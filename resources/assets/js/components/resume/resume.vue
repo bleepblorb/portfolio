@@ -95,6 +95,11 @@ store.resume.model = {
     togglerIntro : {
       index : 0,
       value : ''
+    },
+    togglerElevator : {
+      index : 0,
+      value : '',
+      options : []
     }
   },
   portrait : {
@@ -104,7 +109,16 @@ store.resume.model = {
     hands : '',
     background : '',
   },
-  portraitUrls : {}
+  portraitUrls : {},
+  about : {
+    manifesto : [],
+  },
+  past : {
+    format : '',
+  },
+  present : {
+    skills : [],
+  }
 };
 
 export default {
@@ -160,9 +174,11 @@ export default {
       newVal ? Event.$emit('hideMenu') : Event.$emit('showMenu');
 
       if ( !this.state.tourComplete ) {
-        // this._editorTour.start();
         Event.$emit( 'show::modal', 'modal-tour' );
       }
+
+      history.replaceState("", document.title, '/resume');
+
 
       this.$nextTick(() => {
         if (newVal) {
@@ -219,6 +235,7 @@ export default {
 
         this.state.editMode = false;
         window.setTimeout( () => {
+          this.state.currentPhase = 'toc';
           this.state.previewMode = false;
         }, 850)
       }
@@ -257,6 +274,8 @@ export default {
         _.forEach(response.data.state, (item, key) => {
           store.resume.state[key] = item;
         });
+
+        this.state.showIntro = true;
       })
       .catch(function (error) {
         console.log(error);
@@ -289,9 +308,8 @@ export default {
       }
       else {
         console.log('Resetting');
-        // window.location.pathname = '/resume';
+        history.replaceState("", document.title, '/resume');
         this.new();
-        this.state.showIntro = true;
 
         Event.$emit('reset');
       }
@@ -313,12 +331,12 @@ export default {
     },
 
     setDefault(data = true) {
+      console.log('Set Default', data);
 
       axios.post('/api/resume/default', {
         model : data ? this.model : []
       })
       .then(response => {
-        console.log('setting Default',);
         _.forEach(response.data, (item, key) => {
           store.resume.model[key] = Object.assign({}, store.resume.model[key], item );
         });
@@ -348,7 +366,6 @@ export default {
     this._saveTimer;
 
     if ( params[2] == 'default' ) {
-      this.state.showIntro = false;
       this.setDefault(false);
     }
     else {
@@ -381,8 +398,8 @@ export default {
       this.state.previewMode = bool;
     });
 
-    Event.$on('setDefault', () => {
-      this.setDefault();
+    Event.$on('setDefault', (data) => {
+      this.setDefault(data);
     });
 
     Event.$on('setComplete', () => {

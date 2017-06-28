@@ -10,6 +10,12 @@
           <interests-preview class="preview__phase" key="interests" id="intro" v-if="state.currentPhase == 0 && state.currentStep == 2"></interests-preview>
 
           <portrait-phase class="preview__phase" key="portrait" id="portrait" v-if="state.currentPhase == 1"></portrait-phase>
+
+          <about-preview class="preview__phase" key="about" id="about" v-if="state.currentPhase == 2"></about-preview>
+
+          <past-preview class="preview__phase" key="past" id="past" v-if="state.currentPhase == 3"></past-preview>
+
+          <skills-preview class="preview__phase" key="skills" id="present" v-if="state.currentPhase == 4"></skills-preview>
         </transition>
       </div>
   </div>
@@ -19,13 +25,16 @@
   import {store} from '../global.js';
   import introPreview from './preview__intro';
   import interestsPreview from './preview__interests';
+  import pastPreview from './preview__past';
+  import aboutPreview from './preview__about';
+  import skillsPreview from './preview__skills';
   import portraitPhase from './portraitPhase';
   import welcomePhase from './welcomePhase';
 
   export default {
 
     components : {
-      introPreview, portraitPhase, welcomePhase, interestsPreview
+      introPreview, portraitPhase, welcomePhase, interestsPreview, aboutPreview, pastPreview, skillsPreview
     },
 
     props : {

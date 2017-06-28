@@ -8,7 +8,7 @@
       <div class="g__col12 -max-lg">
         <h4 class="c--gray-light">Adam Volkman —</h4>
         <h1 class="mb-0">Designer, developer, doodler.</h1>
-        <revealer class="t--h1" :options="[
+        <revealer class="t--h1 c--jazzy" :options="[
           'More attractive in-person.',
           'Looking for new skills.',
           'Thinks he\'s funny.',

@@ -7,7 +7,7 @@
             <ul class="">
               <transition-group name="slide-list">
                 <li key="header"><h5 class="c--jazzy mb-2">Personal Interests include:</h5></li>
-                <li class="t--h2 c--late-night" v-for="(item, index) in personal" :key="item"><icon name="edit" size="md"></icon> {{item}}</li>
+                <li class="t--h1 c--late-night" v-for="(item, index) in personal" :key="item"><icon name="edit" size="md"></icon> {{item}}</li>
               </transition-group>
             </ul>
           </div>

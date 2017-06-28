@@ -3,14 +3,13 @@
 @section('app')
   <div style="background-color:;">
     <div class="container -max--xl">
-      <div class="g__row menu-pad -align-items--center t--center -justify-content--center" style="min-height: 90vh;">
+      <div class="g__row -align-items--center t--center -justify-content--center" style="min-height: 90vh;">
         <div class="g__col12 g__col10--@sm">
           <div class="g__row">
             <div class="g__col py-6">
-              {{-- <img src="{{asset('/img/wd-intro.svg')}}" alt="" class="mb-2" width="62px"> --}}
-              <img src="{{asset('/img/portrait-beard.png')}}" alt="" class="mb-2" width="220px">
-              <h1 class="c--jazzy">
-                Well Done is the superflous moniker of Adam Volkman — another soggy Portland creative.
+              <img src="{{asset('img/about-illustration.jpg')}}" width="200" class="mb-2" alt="">
+              <h1 class="c--late-night pb-6">
+                Well Done is the superfluous<br class="hidden-sm-down"> moniker of Adam Volkman, another soggy Portland creative.
                 {{-- <toggler :options="[
                   'another soggy Portland creative.',
                   'a pretty nice guy',

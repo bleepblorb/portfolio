@@ -23,6 +23,16 @@ class ResumeController extends Controller
           'index' => 0,
           'value' => ''
         ],
+        'togglerElevator' => [
+          'index' => 0,
+          'value' => '',
+          'options' => [
+            'dribble, but with less drop shadows',
+            'Squarespace, but with fewer podcast ads',
+            'Yahoo for real life — but like 20 years ago Yahoo',
+            '99Designs, but not terrible',
+          ],
+        ],
       ],
       'portrait' => [
         'expression' => 'neutral',
@@ -33,6 +43,15 @@ class ResumeController extends Controller
         'hands' => 'default',
       ],
       'portraitUrls' => [
+      ],
+      'about' => [
+        'manifesto' => [],
+      ],
+      'past' => [
+        'format' => '',
+      ],
+      'present' => [
+        'skills' => '',
       ]
     ],
     'state' => [
@@ -150,6 +169,17 @@ class ResumeController extends Controller
         'lg' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-xl.jpg",
         'md' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-md.jpg",
         'xs' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-xs.jpg"
+      ],
+      'about' => [
+        'manifesto' => [
+          'craft', 'balance', 'enjoy', 'grow', 'climb', 'beyond'
+        ]
+      ],
+      'past' => [
+        'format' => 'detail'
+      ],
+      'present' => [
+        'skills' => ['print', 'digital', 'development', 'other']
       ]
     ];
 
@@ -158,9 +188,10 @@ class ResumeController extends Controller
       $object[$key] = array_replace( $this->baseModel['model'][$key], $value );
     }
 
+
     // override that with the existing user provided data
     foreach( $existing as $key => $value ) {
-      $object[$key] = array_replace( $object[$key], $value);
+      $object[$key] = array_replace( $existing[$key], $value);
     }
 
     return response()->json($object);

@@ -37,14 +37,17 @@
               <h1>Maker of things</h1>
             </div>
 
+            <!-- Elevator -->
+            <div class="" v-else-if="introStyle == 'elevator'">
+              <h2>Like {{model.intro.togglerElevator.options[model.intro.togglerElevator.index]}}.</h2>
+            </div>
+
             <!-- intro par -->
             <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex. To prove I'm an interesting person, I also enjoy
               <ul class="-inline-text">
                 <li v-for="item in model.intro.personal">{{item}}</li>
               </ul>.
             </p>
-            <p class="t--small t--sans mt-2">For more general info about me, visit the <a href="#">about page</a>.</p>
-
           </div>
         </div>
       </div>
@@ -82,29 +85,54 @@
             <p class="mb-6 t--lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute</p>
 
             <div class="grid-thing -span-2">
-              <div class="grid-thing__item">
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('craft') > -1">
+                <div class="t--center">
+                  <img src="/img/craft-icon.jpg" class="mb-1" alt="" width="100px">
+                </div>
                 <h4>Craft</h4>
-                <p>Every good idea deserves to be properly executed.</p>
+                <p>Every good idea deserves to be properly executed. (icon = tool, robot)</p>
               </div>
-              <div class="grid-thing__item">
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('grow') > -1">
+                <div class="t--center">
+                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                </div>
                 <h4>Grow</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (icon = plant, tree)</p>
               </div>
-              <div class="grid-thing__item">
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('beyond') > -1">
+                <div class="t--center">
+                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                </div>
                 <h4>Beyond</h4>
-                <p>Normal is boring. Make something better.</p>
+                <p>Normal is boring. Make something better. (icon = space, spaceship)</p>
               </div>
-              <div class="grid-thing__item">
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('climb') > -1">
+                <div class="t--center">
+                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                </div>
                 <h4>Climb</h4>
-                <p>A natural evolution of learning, but also a simple challenge to myself. Make every project better than the last – in at least one way.</p>
+                <p>A natural evolution of learning, but also a simple challenge to myself. Make every project better than the last – in at least one way. (icon = ladder, mountain)</p>
               </div>
-              <div class="grid-thing__item">
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('balance') > -1">
+                <div class="t--center">
+                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                </div>
                 <h4>Balance</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
               </div>
-              <div class="grid-thing__item">
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('enjoy') > -1">
+                <div class="t--center">
+                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                </div>
                 <h4>Enjoy</h4>
-                <p>None of this matters much if you’re a boring jerk.</p>
+                <p>None of this matters much if you’re a boring jerk. </p>
+              </div>
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('enjoy') > -1">
+                <div class="t--center">
+                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                </div>
+                <h4>Purpose</h4>
+                <p>Everything should have one. Generally, this should be more than "looks cool". (icon = target)</p>
               </div>
             </div>
           </div>
@@ -118,46 +146,7 @@
             <h4 class="c--jazzy section-header">past —</h4>
           </div>
           <div class="g__col12 g__col8--@md g__col7--@lg mb-4">
-            <div class="job">
-              <h6>
-                <span class="job__date">2008–2012</span>
-                <span class="job__location">Western Washington University</span>
-              </h6>
-              <h2 class="job__title">Grabbing a Bacholers of Arts degree in Graphic Design.</h2>
-              <p class="job__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-              <p class="t--sans t--small c--gray-light">Read More</p>
-            </div>
-
-            <div class="job">
-              <h6>
-                <span class="job__date">2009–2012</span>
-                <span class="job__location">Associated Students Publicity Center</span>
-              </h6>
-              <h2 class="job__title">Part time Graphic Designer.</h2>
-              <p class="job__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-              <p class="t--sans t--small c--gray-light">Read More</p>
-            </div>
-
-            <div class="job">
-              <h6>
-                <span class="job__date">2009–2014</span>
-                <span class="job__location">SRM Architecture and Marketing</span>
-              </h6>
-              <h2 class="job__title">Graphic Designer / Developer at a multidisciplinary design firm.</h2>
-              <p class="job__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-              <p class="t--sans t--small c--gray-light">Read More</p>
-            </div>
-
-            <div class="job">
-              <h6>
-                <span class="job__date">2014–2017</span>
-                <span class="job__location">SRM Architecture and Marketing</span>
-              </h6>
-              <h2 class="job__title">Upgrade to Lead Digital Designer.</h2>
-              <p class="job__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-              <p class="t--sans t--small c--gray-light">Read More</p>
-            </div>
-
+            <past-preview id="past"></past-preview>
           </div>
         </div>
       </div>
@@ -175,7 +164,7 @@
 
             <h4 class="mt-6 mb-3 c--gray-light t--normal">Notable Skills and Experience</h4>
             <div class="g__row mb-4">
-              <div class="g__col6 skill-list">
+              <div class="g__col6--@sm skill-list" v-if="model.present.skills.indexOf('print') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>ink —</h4>
@@ -188,7 +177,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6 skill-list">
+              <div class="g__col6--@sm skill-list" v-if="model.present.skills.indexOf('digital') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>pixels —</h4>
@@ -202,7 +191,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6 skill-list">
+              <div class="g__col6--@sm skill-list" v-if="model.present.skills.indexOf('development') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>bytes —</h4>
@@ -216,7 +205,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6 skill-list">
+              <div class="g__col6--@sm skill-list">
                 <div class="card">
                   <div class="card-block">
                     <h4>software —</h4>
@@ -229,7 +218,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6 skill-list">
+              <div class="g__col6--@sm skill-list" v-if="model.present.skills.indexOf('other') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4 class="">etc —</h4>
@@ -242,7 +231,6 @@
                 </div>
               </div>
             </div>
-
             <h4 class="mt-2">in progress / currently tinkering –</h4>
             <p>Git versioning &amp; deployment, Sketch, Photography, Vue.js, gulp, webpack, JavaScript ES6</p>
           </div>
@@ -296,10 +284,11 @@
                 </ul>
               </div>
               <div class="g__col6--@sm mb-3">
-                <h4 class="c--gray-light t--normal">Bucket List</h4>
+                <h4 class="c--gray-light t--normal">Interests</h4>
                 <h4 class="mb-3">Would Love to Work On —</h4>
                 <ul class="-relaxed">
                   <li>Application design</li>
+                  <li>Websites</li>
                   <li>Restaurant branding / signage</li>
                   <li>Menu design</li>
                   <li>Beer / Food Packaging</li>
@@ -311,10 +300,11 @@
         </div>
       </div>
 
-      <section id="resume-outro" data-image-load data-src="/img/resume-outro.svg">
+      <section id="resume-outro"  data-src="/img/resume-outro.jpg">
         <div class="container py-6">
           <div class="g__row t--center -max--md -center">
             <div class="g__col">
+              <img src="/img/about-illustration.jpg" alt="" width="200" class="mb-2">
               <h3 class="mb-4 c--late-night">Think we'd work well together?</h3>
               <p>
                 <v-button  size="lg" variant="outline" color="primary"> Get in touch </v-button>
@@ -324,11 +314,11 @@
         </div>
       </section>
 
-      <div class="bg--lightning py-6">
-        <div class="container -max--md">
+      <div class="bg--jazzy py-6">
+        <div class="container -max--lg">
           <div class="g__row">
             <div class="g__col t--center">
-              <a class="t--h2 c--jazzy" href="/visual-summary">Enough talk, show me some pictures.</a>
+              <a class="t--h2 c--white" href="/visual-summary">Enough talk, show me some pictures. </a>
             </div>
           </div>
         </div>
@@ -341,13 +331,13 @@
 <script>
 
   import {store} from '../global.js';
-  import portraitPhase from './portraitPhase';
+  import pastPreview from './preview__past';
   import resumeIntro from './resumeIntro';
 
   export default {
 
     components : {
-      portraitPhase, resumeIntro
+      pastPreview
     },
 
     props : {
