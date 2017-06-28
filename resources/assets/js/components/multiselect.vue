@@ -11,52 +11,52 @@
     @keyup.esc="deactivate()"
     :class="classList"
     tabindex="0"
-    class="multiselect"
+    class="select"
   >
     <slot name="carret">
-      <div @mousedown.prevent="toggle()" class="multiselect__select"></div>
+      <div class="select__selector"></div>
     </slot>
 
-    <div ref="tags" class="multiselect__tags">
+    <div ref="tags" class="select__tags">
       <span
         v-for="option of visibleValue"
         @keydown.enter.prevent="removeElement(option)"
         @click.prevent="removeElement(option)"
         v-text="getOptionLabel(option)"
         tabindex="1"
-        class="multiselect__tag">
+        class="select__tag">
       </span>
 
       <template v-if="internalValue && internalValue.length > limit">
         <strong v-text="limitText(internalValue.length - limit)"></strong>
       </template>
 
-      <transition name="multiselect__loading">
-        <slot name="loading"><div v-show="loading" class="multiselect__spinner"></div></slot>
+      <transition name="select__loading">
+        <slot name="loading"><div v-show="loading" class="select__spinner"></div></slot>
       </transition>
 
       <span
         v-if="(internalValue.length == 0)"
-        class="multiselect__placeholder"
+        class="select__placeholder"
         v-text="placeholder">
       </span>
 
       <span
         v-else-if="!multiple"
-        class="multiselect__single"
+        class="select__single"
         v-text="currentOptionLabel">
       </span>
     </div>
 
-    <transition name="multiselect">
-      <div class="multiselect__drop" :class="classList" ref="drop" v-show="isOpen">
-        <div class="multiselect__drop-wrap" :style="style">
-          <ul ref="list" class="multiselect__content">
+    <transition name="select">
+      <div class="select__drop" :class="classList" ref="drop" v-show="isOpen">
+        <div class="select__drop-wrap" :style="style">
+          <ul ref="list" class="select__content">
 
             <slot name="beforeList"></slot>
 
             <li v-if="multiple && max === internalValue.length">
-              <span class="multiselect__option">
+              <span class="select__option">
                 <slot name="maxElements">
                   Maximum of {{ max }} options selected. First remove a selected option to select another.
                 </slot>
@@ -68,14 +68,14 @@
                 v-for="(option, index) of filteredOptions"
                 :key="index"
                 :class="optionHighlight(index, option)"
-                class="multiselect__element"
+                class="select__element"
               >
                 <span
                   tabindex="0"
                   @mousedown.prevent=""
                   @mouseup.prevent="select(option)"
                   @mouseenter="pointerSetIndex(index)"
-                  class="multiselect__option">
+                  class="select__option">
                     <slot name="option" :option="option">
                       {{ getOptionLabel(option) }}
                     </slot>

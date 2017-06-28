@@ -5,49 +5,207 @@
 // https://useiconic.com/open
 
 
+//
+// Variables
+//
+
+// selects
+$custom-select-padding-x:             1.5rem;
+$custom-select-padding-y:             .5rem;
+$custom-select-indicator-padding:     1.75rem !default; // Extra padding to account for the presence of the background-image based indicator
+$custom-select-line-height:           $input-line-height !default;
+$custom-select-color:                 $input-color !default;
+$custom-select-disabled-color:        lighten($custom-select-color, 30%);
+$custom-select-bg:                    $white !default;
+$custom-select-disabled-bg:           $custom-select-bg;
+$custom-select-bg-size:               8px 10px !default; // In pixels because image dimensions
+$custom-select-indicator-color:       #333 !default;
+
+$custom-select-indicator:              str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='#{$custom-select-indicator-color}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+$custom-select-selected-indicator-color:       $jean-jacket;
+$custom-select-selected-indicator:              str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$custom-select-selected-indicator-color}' d='M6.41 0l-.69.72-2.78 2.78-.81-.78-.72-.72-1.41 1.41.72.72 1.5 1.5.69.72.72-.72 3.5-3.5.72-.72-1.44-1.41z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+
+$custom-select-border-width:          $input-btn-border-width !default;
+$custom-select-border-color:          $jean-jacket;
+$custom-select-border-radius:         $border-radius !default;
+
+$custom-select-focus-border-color:    $jazzy;
+$custom-select-focus-box-shadow:       inset 0 1px 2px rgba($black, .075), 0 0 5px rgba($custom-select-focus-border-color, .5) !default;
+
+$custom-select-sm-padding-y:          .2rem !default;
+$custom-select-sm-font-size:          75% !default;
+
+
+// checkboxes / radials
+
+$custom-control-gutter:   1rem;
+$custom-control-spacer-x: 1rem !default;
+$custom-control-spacer-y: .25rem !default;
+
+$custom-control-indicator-size:       1rem !default;
+$custom-control-indicator-margin-y:   (($line-height-base * 1rem) - $custom-control-indicator-size) / -2 !default;
+$custom-control-indicator-border-width: 2px;
+$custom-control-indicator-border-color: $jean-jacket;
+$custom-control-indicator-bg:         transparent;
+$custom-control-indicator-bg-size:    50% 50% !default;
+$custom-control-indicator-box-shadow: inset 0 .25rem .25rem rgba($black,.1) !default;
+
+$custom-control-disabled-cursor:             $cursor-disabled !default;
+$custom-control-disabled-indicator-bg:       $custom-control-indicator-bg;
+$custom-control-disabled-description-color:  $gray-light !default;
+$custom-control-disabled-border-color:       $gray-lighter !default;
+
+$custom-control-checked-indicator-color:      $white !default;
+$custom-control-checked-indicator-bg:         $gummy;
+$custom-control-checked-border-color:         $gummy;
+$custom-control-checked-indicator-box-shadow: none !default;
+
+$custom-control-focus-indicator-box-shadow: none;
+
+$custom-control-active-indicator-color:      $white !default;
+$custom-control-active-indicator-bg:         $ice-cube;
+$custom-control-active-indicator-box-shadow: none !default;
+
+$custom-checkbox-radius: $border-radius !default;
+$custom-checkbox-checked-icon: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$custom-control-checked-indicator-color}' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+$custom-checkbox-indeterminate-bg: $brand-primary !default;
+$custom-checkbox-indeterminate-indicator-color: $custom-control-checked-indicator-color !default;
+$custom-checkbox-indeterminate-icon: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3E%3Cpath stroke='#{$custom-checkbox-indeterminate-indicator-color}' d='M0 2h4'/%3E%3C/svg%3E"), "#", "%23") !default;
+$custom-checkbox-indeterminate-box-shadow: none !default;
+
+$custom-radio-radius: 50% !default;
+$custom-radio-checked-icon: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='#{$custom-control-checked-indicator-color}'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+
+// file updload
+
+$custom-file-height:           2.5rem !default;
+$custom-file-width:            14rem !default;
+$custom-file-focus-box-shadow: 0 0 0 .075rem $white, 0 0 0 .2rem $brand-primary !default;
+
+$custom-file-padding-x:     .5rem !default;
+$custom-file-padding-y:     1rem !default;
+$custom-file-line-height:   1.5 !default;
+$custom-file-color:         $gray !default;
+$custom-file-bg:            $white !default;
+$custom-file-border-width:  $border-width !default;
+$custom-file-border-color:  $input-border-color !default;
+$custom-file-border-radius: $border-radius !default;
+$custom-file-box-shadow:    inset 0 .2rem .4rem rgba($black,.05) !default;
+$custom-file-button-color:  $custom-file-color !default;
+$custom-file-button-bg:     $gray-lighter !default;
+$custom-file-text: (
+  placeholder: (
+    en: "Choose file..."
+  ),
+  button-label: (
+    en: "Browse"
+  )
+) !default;
+
+
+
 // Checkboxes and radios
 //
 // Base class takes care of all the key behavioral aspects.
 
-.custom-control {
+.form-check, .form-radio {
   position: relative;
   display: inline-flex;
   min-height: (1rem * $line-height-base);
-  padding-left: $custom-control-gutter;
   margin-right: $custom-control-spacer-x;
   cursor: pointer;
+  align-items: center;
 }
 
-.custom-control-input {
+.form-check__description, .form-radio__description {
+  font-weight: $font-weight-base;
+  padding-left: $custom-control-gutter;
+}
+
+.form-check__input {
   position: absolute;
   z-index: -1; // Put the input behind the label so it doesn't overlay text
   opacity: 0;
 
-  &:checked ~ .custom-control-indicator {
+  &:checked ~ .form-check__indicator {
     color: $custom-control-checked-indicator-color;
     background-color: $custom-control-checked-indicator-bg;
+    border-color: $custom-control-checked-border-color;
     background-position: center 50%;
     @include box-shadow($custom-control-checked-indicator-box-shadow);
+    background-image: $custom-checkbox-checked-icon;
+    transition: background-position 250ms 50ms cubic-bezier(0.240, 0.260, 0.245, 1.4), background-color 150ms 0ms ease-in-out, border 150ms 0ms ease-in-out;
   }
 
-  &:focus ~ .custom-control-indicator {
+  &:indeterminate ~ .form-check__indicator {
+    background-color: $custom-checkbox-indeterminate-bg;
+    background-image: $custom-checkbox-indeterminate-icon;
+    @include box-shadow($custom-checkbox-indeterminate-box-shadow);
+  }
+
+  &:focus ~ .form-check__indicator {
     // the mixin is not used here to make sure there is feedback
     box-shadow: $custom-control-focus-indicator-box-shadow;
   }
 
-  &:active ~ .custom-control-indicator {
+  &:active ~ .form-check__indicator {
     color: $custom-control-active-indicator-color;
     // background-color: $custom-control-active-indicator-bg;
     @include box-shadow($custom-control-active-indicator-box-shadow);
   }
 
   &:disabled {
-    ~ .custom-control-indicator {
+    ~ .form-check__indicator {
+      cursor: $custom-control-disabled-cursor;
+      background-color: $custom-control-disabled-indicator-bg;
+      border-color: $custom-control-disabled-border-color;
+    }
+
+    ~ .form-check__description, {
+      color: $custom-control-disabled-description-color;
+      cursor: $custom-control-disabled-cursor;
+    }
+  }
+}
+
+// radials
+
+.form-radio__input {
+  position: absolute;
+  z-index: -1; // Put the input behind the label so it doesn't overlay text
+  opacity: 0;
+
+  &:checked ~ .form-radio__indicator {
+    color: $custom-control-checked-indicator-color;
+    background-color: $custom-control-checked-indicator-bg;
+    border-color: $custom-control-checked-border-color;
+    background-position: center center;
+    background-size: 70% 70%;
+    @include box-shadow($custom-control-checked-indicator-box-shadow);
+  }
+
+  &:focus ~ .form-radio__indicator {
+    // the mixin is not used here to make sure there is feedback
+    box-shadow: $custom-control-focus-indicator-box-shadow;
+  }
+
+  &:active ~ .form-radio__indicator {
+    color: $custom-control-active-indicator-color;
+    // background-color: $custom-control-active-indicator-bg;
+    @include box-shadow($custom-control-active-indicator-box-shadow);
+  }
+
+  &:disabled {
+    ~ .form-radio__indicator {
       cursor: $custom-control-disabled-cursor;
       background-color: $custom-control-disabled-indicator-bg;
     }
 
-    ~ .custom-control-description {
+    ~ .form-radio__description, {
       color: $custom-control-disabled-description-color;
       cursor: $custom-control-disabled-cursor;
     }
@@ -58,11 +216,9 @@
 //
 // Generates a shadow element to create our makeshift checkbox/radio background.
 
-.custom-control-indicator {
-  position: absolute;
-  top: (($line-height-base - $custom-control-indicator-size) / 2);
-  left: 0;
-  display: block;
+.form-check__indicator, .form-radio__indicator {
+  display: inline-block;
+  flex: 0 0 auto;
   width: $custom-control-indicator-size;
   height: $custom-control-indicator-size;
   pointer-events: none;
@@ -71,31 +227,19 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: $custom-control-indicator-bg-size;
-  border: 1px solid $brand-primary;
-
+  border: $custom-control-indicator-border-width solid $custom-control-indicator-border-color;
 }
 
 // Checkboxes
 //
 // Tweak just a few things for checkboxes.
 
-.custom-checkbox {
-  .custom-control-indicator {
+.form-check {
+  .form-check__indicator {
     @include border-radius($custom-checkbox-radius);
     background-image: $custom-checkbox-checked-icon;
     background-position: center -100%;
-    transition: background-position 0ms 150ms, background-color 150ms 0ms ease-in-out;
-  }
-
-  .custom-control-input:checked ~ .custom-control-indicator {
-    background-image: $custom-checkbox-checked-icon;
-    transition: background-position 250ms 150ms, background-color 150ms 0ms ease-in-out;
-  }
-
-  .custom-control-input:indeterminate ~ .custom-control-indicator {
-    background-color: $custom-checkbox-indeterminate-bg;
-    background-image: $custom-checkbox-indeterminate-icon;
-    @include box-shadow($custom-checkbox-indeterminate-box-shadow);
+    transition: background-position 0ms 150ms, background-color 150ms 0ms ease-in-out, border 150ms 0ms ease-in-out;
   }
 }
 
@@ -103,13 +247,16 @@
 //
 // Tweak just a few things for radios.
 
-.custom-radio {
-  .custom-control-indicator {
+.form-radio {
+  .form-radio__indicator {
+    background-image: $custom-radio-checked-icon;
     border-radius: $custom-radio-radius;
+    background-size: 0 0;
+    transition: background-color 200ms, border 200ms, background-size 200ms 50ms ease-out;
   }
 
-  .custom-control-input:checked ~ .custom-control-indicator {
-    background-image: $custom-radio-checked-icon;
+  .form-radio__input:checked ~ .form-radio__indicator {
+
   }
 }
 
@@ -119,14 +266,14 @@
 // By default radios and checkboxes are `inline-block` with no additional spacing
 // set. Use these optional classes to tweak the layout.
 
-.custom-controls-stacked {
+.radio-stack, .check-stack {
   display: flex;
   flex-direction: column;
 
-  .custom-control {
+  .form-check, .form-radio {
     margin-bottom: $custom-control-spacer-y;
 
-    + .custom-control {
+    + .form-check, .form-radio {
       margin-left: 0;
     }
   }
@@ -139,61 +286,422 @@
 // http://primercss.io.
 //
 
-.custom-select {
+
+fieldset[disabled] .select {
+  pointer-events: none;
+}
+
+.select,
+.select__single {
+  font-family: $font-family-sans-serif;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.select {
   display: inline-block;
+  position: relative;
   max-width: 100%;
-  $select-border-width: ($border-width * 2);
-  height: calc(#{$input-height} + #{$select-border-width});
+  min-width: 100px;
   padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) $custom-select-padding-y $custom-select-padding-x;
   line-height: $custom-select-line-height;
   color: $custom-select-color;
   vertical-align: middle;
-  background: $custom-select-bg $custom-select-indicator no-repeat right $custom-select-padding-x center;
-  background-size: $custom-select-bg-size;
   border: $custom-select-border-width solid $custom-select-border-color;
   @include border-radius($custom-select-border-radius);
-  // Use vendor prefixes as `appearance` isn't part of the CSS spec.
-  -moz-appearance: none;
-  -webkit-appearance: none;
+
+  &.-block {
+    display: block;
+  }
+
+  // ** Select states
+  &:hover {
+    border-color: lighten($custom-select-focus-border-color, 20%);
+  }
 
   &:focus {
     border-color: $custom-select-focus-border-color;
     outline: none;
-    @include box-shadow($custom-select-focus-box-shadow);
+  }
 
-    &::-ms-value {
-      // For visual consistency with other platforms/browsers,
-      // supress the default white text on blue background highlight given to
-      // the selected option text when the (still closed) <select> receives focus
-      // in IE and (under certain conditions) Edge.
-      // See https://github.com/twbs/bootstrap/issues/19398.
-      color: $input-color;
-      background-color: $input-bg;
+  // active
+  &.-active {
+    .select__selector:before {
+      transform: rotateZ(180deg);
     }
   }
 
-  &:disabled {
+  // disabled state
+  &:disabled, &.-disabled {
     color: $custom-select-disabled-color;
     cursor: $cursor-disabled;
     background-color: $custom-select-disabled-bg;
+
+    pointer-events: none;
+    border-color: $gray-lighter;
+    color: $custom-select-disabled-color;
+
+    .select__selector {
+      color: lighten($custom-select-color, 10%);
+    }
+
+    .select__placeholder {
+      color: $custom-select-disabled-color;
+    }
   }
 
-  // Hides the default caret in IE11
-  &::-ms-expand {
+  // ** sizes
+
+  &.-sm {
+    padding-top: $custom-select-padding-y;
+    padding-bottom: $custom-select-padding-y;
+    font-size: $custom-select-sm-font-size;
+  }
+
+  // **  placeholder text
+  .select__placeholder {
+    color: $input-color-placeholder;
+  }
+
+  // ••  Select Toggle
+
+  .select__selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: $custom-select-indicator-padding;
+    height: 100%;
+    right: 0px;
+    top: 0px;
+    padding: 0 $custom-select-padding-x 0 0;
+    margin: 0;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      color: $gray-lighter;
+      border-style: solid;
+      border-width: 4px 4px 0 4px;
+      margin-top: -2px;
+      border-color: $gray-lighter transparent transparent transparent;
+      transition: all 250ms ease;
+    }
+  }
+}
+
+// ** Placeholder / Text
+.select__single,
+.select__placeholder {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: default;
+  user-select: none;
+
+  mask-image: linear-gradient( to right, rgba(0, 0, 0, 1.0) 80%, transparent);
+  mask-position: top left;
+  mask-size: cover;
+  mask-repeat: no-repeat;
+}
+
+
+//
+// Tags
+//
+
+.select__tags {
+  display: block;
+  margin-bottom: -6px;
+
+  > * {
+    margin-bottom: 6px;
+  }
+}
+
+.select__tag {
+  position: relative;
+  display: inline-block;
+  padding: 0 1rem;
+  height: 20px;
+  margin-right: 6px;
+  border-radius: $border-radius-sm;
+  color: $white;
+  font-size: $font-size-xs;
+  line-height: 20px;
+  background-color: $jazzy;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 350ms ease;
+
+  &:after {
+    content: "×";
+    color: lighten($grover, 15%);
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
     opacity: 0;
+    font-weight: 700;
+    font-style: initial;
+    width: 6px;
+    text-align: center;
+    line-height: 20px;
+    vertical-align: middle;
+    border-radius: $border-radius-sm;
+    transition: all 200ms ease;
+  }
+
+  &:hover, &:focus {
+    padding: 0 1.5rem 0 .5rem;
+    outline: none;
+    background-color: $grover;
+
+    &:after {
+      opacity: 1;
+      width: 22px;
+      transition: all 400ms 50ms ease;
+    }
+  }
+
+  &:focus {
+    box-shadow: 0px 0px 5px fade-out($grover, .5);
   }
 }
 
-.custom-select-sm {
-  padding-top: $custom-select-padding-y;
-  padding-bottom: $custom-select-padding-y;
-  font-size: $custom-select-sm-font-size;
 
-  // &:not([multiple]) {
-  //   height: 26px;
-  //   min-height: 26px;
-  // }
+//
+// Select Dropdown
+//
+
+.select__drop {
+  position: absolute;
+  display: block;
+  left: 0px;
+  top: 0%;
+  z-index: $zindex-dropdown;
+
+
+  .select__drop-wrap {
+    position: relative;
+    overflow-x: hidden;
+    background-color: $white;
+    border-radius: $custom-select-border-radius;
+    border: $custom-select-border-width solid $custom-select-border-color;
+    font-family: $font-family-sans-serif;
+    box-shadow: 0px 6px 28px -6px fade-out($grover, .75);
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 0px;
+      width: 100%;
+      height: 0rem;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 250ms, background 250ms, height 0ms 250ms;
+    }
+
+    // overflow
+
+    &:before {
+      top: 0px;
+      background-image: url('../img/UI/chevron-up.svg'), linear-gradient(to bottom, $white, fade-out($white, 1));
+      background-position: left 50% top 0%, center;
+    }
+
+    &:after {
+      bottom: 0px;
+      background-image: url('../img/UI/chevron-down.svg'), linear-gradient(to top, $white, fade-out($white, 1));
+      background-position: left 50% bottom 0%, center;
+    }
+  }
+
+  .select__content {
+    list-style: none;
+    max-height: 90vh;
+    overflow-y: scroll;
+    padding-right: 50px;
+    margin-right: -50px;
+  }
+
+  // ** Overflow States
+  &.-overflow-top .multiselect__drop-wrap:before,
+  &.-overflow-btm .multiselect__drop-wrap:after {
+    opacity: 1;
+    height: 2rem;
+    transition: opacity 550ms, background 250ms, height 0ms;
+  }
+
+  &.-overflow-top .multiselect__drop-wrap:before {
+    background-position: left 50% top 25%, center;
+  }
+
+  &.-overflow-btm .multiselect__drop-wrap:after {
+    background-position: left 50% bottom 25%, center;
+  }
+
 }
+
+
+// ** Select Option Items
+
+.select__option {
+  display: block;
+  padding: .75rem 2rem;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  position: relative;
+  white-space: nowrap;
+  border-bottom: 1px solid $ice-cube;
+  cursor: default;
+  user-select: none;
+}
+
+.select__element {
+  display: block;
+
+  &:last-of-type {
+
+    // remove border from last item
+    .select__option {
+      border-bottom: none;
+    }
+  }
+
+  .select__option:after {
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    width: 36px;
+  }
+
+  &.-selected {
+    .select__option {
+      background: fade-out($ice-cube, .7);
+      color: $jazzy;
+      font-weight: bold;
+
+      &:after {
+        content: '';
+        background: {
+          image: $custom-select-selected-indicator;
+          size: 12px auto;
+          repeat: no-repeat;
+          position: center center;
+        }
+      }
+    }
+  }
+
+  &.-highlighted {
+    .select__option {
+      background: $jazzy;
+      color: $white;
+      outline: none;
+    }
+  }
+
+  &.-disabled {
+    .select__option {
+      color: $gray-lighter;
+      pointer-events: none;
+    }
+  }
+
+  &.-disabled.-highlight {
+    .select__option {
+      color: $gray-lighter;
+      background-color: transparent;
+    }
+  }
+}
+
+
+// ** Transitions
+
+.select-enter-active,
+.select-leave-active {
+  transition-property: none;
+  transition-duration: 350ms;
+
+  .select__drop-wrap {
+    transition: all 350ms;
+  }
+}
+
+.select-enter,
+.select-leave-active {
+  .select__drop-wrap {
+    opacity: 0;
+    transform: scale(.8);
+  }
+}
+
+
+.select__spinner {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  width: 48px;
+  height: 35px;
+  background: #fff;
+  display: block;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    border-color: #41B883 transparent transparent;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: 0 0 0 1px transparent;
+  }
+
+  &:before {
+    animation: spinning 2.4s cubic-bezier(0.41, 0.26, 0.2, 0.62);
+    animation-iteration-count: infinite;
+  }
+
+  &:after {
+    animation: spinning 2.4s cubic-bezier(0.51, 0.09, 0.21, 0.8);
+    animation-iteration-count: infinite;
+  }
+}
+
+.multiselect__loading-enter-active,
+.multiselect__loading-leave-active {
+  transition: opacity 0.4s ease-in-out;
+  opacity: 1;
+}
+
+.multiselect__loading-enter,
+.multiselect__loading-leave-active {
+  opacity: 0;
+}
+
+
+@keyframes spinning {
+  from { transform:rotate(0) }
+  to { transform:rotate(2turn) }
+}
+
+
+
 
 
 // File

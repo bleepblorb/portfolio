@@ -2,10 +2,10 @@
 <template>
   <div class="g__row checkbox-group">
     <div v-for="option in options" class="checkbox-group__item">
-      <label class="custom-control custom-checkbox" >
-        <input type="checkbox" class="custom-control-input" :value="option.value" v-model="internalValue">
-        <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">{{option.label}}</span>
+      <label class="form-check" >
+        <input type="checkbox" class="form-check__input" :value="option.value" v-model="internalValue">
+        <span class="form-check__indicator"></span>
+        <span class="form-check__description">{{option.label}}</span>
       </label>
     </div>
     <!-- <div class="g__col12">

@@ -31,7 +31,7 @@ body.edit {
   height: 100vh;
   display: flex;
   flex-wrap: nowrap;
-  z-index: $zindex-navbar;
+  z-index: $zindex-fixed;
   transition: transform 450ms;
 
   // transitions
@@ -735,6 +735,7 @@ body.edit {
 
 .checkbox-group {
   text-align: center;
+  align-items: center;
 
   .checkbox-group__item {
     @include make-col-ready();
@@ -742,28 +743,21 @@ body.edit {
     margin: .5rem 0 2rem;
   }
 
-  .custom-control {
-    display: inline-block;
-    padding: 0;
+  .form-check {
     margin: 0;
+    align-content: center;
 
     &:hover {
-      .custom-control-description {
+      .form-check__description {
         color: $jazzy;
       }
     }
-  }
 
-  .custom-checkbox {
-    text-align: center;
-
-    .custom-control-indicator {
-      position: static;
-      width: 1.5rem;
-      height: 1.5rem;
-      margin: 0 auto .5rem;
+    .form-check__indicator {
+      width: 1.25rem;
+      height: 1.25rem;
     }
-    .custom-control-description {
+    .form-check__description {
       display: inline-block;
       font-family: $font-family-sans-serif;
     }

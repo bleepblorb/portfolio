@@ -1,5 +1,70 @@
 // scss-lint:disable QualifyingElement
 
+
+
+// Variables
+
+$input-padding-x:                .75rem !default;
+$input-padding-y:                .5rem !default;
+$input-line-height:              1.25 !default;
+
+$input-bg:                       transparent;
+$input-bg-disabled:              $input-bg;
+
+$input-color:                    $gray !default;
+$input-border-color:             $jean-jacket;
+$input-btn-border-width:         $border-width; // For form controls and buttons
+$input-box-shadow:               inset 0 1px 1px rgba($black,.075) !default;
+
+$input-border-radius:            $border-radius !default;
+$input-border-radius-lg:         $border-radius-lg !default;
+$input-border-radius-sm:         $border-radius-sm !default;
+
+$input-bg-focus:                 $input-bg !default;
+$input-border-focus:             $jazzy;
+$input-box-shadow-focus:         $input-box-shadow, rgba($input-border-focus, .6) !default;
+$input-color-focus:              $input-color !default;
+
+$input-color-placeholder:        $gray-light !default;
+
+$input-padding-x-sm:             .5rem !default;
+$input-padding-y-sm:             .25rem !default;
+
+$input-padding-x-lg:             1.5rem !default;
+$input-padding-y-lg:             .75rem !default;
+
+$input-height:                   (($font-size-base * $input-line-height) + ($input-padding-y * 2));
+$input-height-lg:                (($font-size-lg * $line-height-lg) + ($input-padding-y-lg * 2)) ;
+$input-height-sm:                (($font-size-sm * $line-height-sm) + ($input-padding-y-sm * 2)) ;
+
+$input-transition:               border-color ease-in-out .15s, box-shadow ease-in-out .15s !default;
+
+$form-text-margin-top:     .25rem !default;
+$form-feedback-margin-top: $form-text-margin-top !default;
+
+$form-check-margin-bottom:  .5rem !default;
+$form-check-input-gutter:   1.25rem !default;
+$form-check-input-margin-y: .25rem !default;
+$form-check-input-margin-x: .25rem !default;
+
+$form-check-inline-margin-x: .75rem !default;
+
+$form-group-margin-bottom:       $spacer-y !default;
+
+
+
+// Form validation icons
+$form-icon-success-color: $brand-success !default;
+$form-icon-success: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$form-icon-success-color}' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+$form-icon-warning-color: $brand-warning !default;
+$form-icon-warning: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$form-icon-warning-color}' d='M4.4 5.324h-.8v-2.46h.8zm0 1.42h-.8V5.89h.8zM3.76.63L.04 7.075c-.115.2.016.425.26.426h7.397c.242 0 .372-.226.258-.426C6.726 4.924 5.47 2.79 4.253.63c-.113-.174-.39-.174-.494 0z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+$form-icon-danger-color: $brand-danger !default;
+$form-icon-danger: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$form-icon-danger-color}' viewBox='-2 -2 7 7'%3E%3Cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3E%3Ccircle r='.5'/%3E%3Ccircle cx='3' r='.5'/%3E%3Ccircle cy='3' r='.5'/%3E%3Ccircle cx='3' cy='3' r='.5'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+
+
 //
 // Textual form controls
 //
@@ -18,6 +83,7 @@
   background-image: none;
   background-clip: padding-box;
   border: $input-btn-border-width solid $input-border-color;
+  font-family: $font-family-sans-serif;
 
   // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
   @if $enable-rounded {
@@ -28,8 +94,7 @@
     border-radius: 0;
   }
 
-  @include box-shadow($input-box-shadow);
-  @include transition($input-transition);
+  transition: $input-transition;
 
   // Unstyle the caret on `<select>`s in IE10+.
   &::-ms-expand {
@@ -92,6 +157,12 @@ select.form-control {
 // Labels
 //
 
+
+label {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-sm;
+}
+
 // For use with horizontal and inline forms, when you need the label text to
 // align with the form controls.
 .col-form-label {
@@ -100,13 +171,13 @@ select.form-control {
   margin-bottom: 0; // Override the `<label>` default
 }
 
-.col-form-label-lg {
+.col-form-label.-lg {
   padding-top: calc(#{$input-padding-y-lg} - #{$input-btn-border-width} * 2);
   padding-bottom: calc(#{$input-padding-y-lg} - #{$input-btn-border-width} * 2);
   font-size: $font-size-lg;
 }
 
-.col-form-label-sm {
+.col-form-label.-sm {
   padding-top: calc(#{$input-padding-y-sm} - #{$input-btn-border-width} * 2);
   padding-bottom: calc(#{$input-padding-y-sm} - #{$input-btn-border-width} * 2);
   font-size: $font-size-sm;
@@ -132,7 +203,7 @@ select.form-control {
 // Apply class to an element to make any string of text align with labels in a
 // horizontal form layout.
 
-.form-control-static {
+.form-control.-static {
   padding-top: $input-padding-y;
   padding-bottom: $input-padding-y;
   margin-bottom: 0; // match inputs if this class comes on inputs with default margins
@@ -140,8 +211,8 @@ select.form-control {
   border: solid transparent;
   border-width: $input-btn-border-width 0;
 
-  &.form-control-sm,
-  &.form-control-lg {
+  &.-sm,
+  &.-lg {
     padding-right: 0;
     padding-left: 0;
   }
@@ -156,27 +227,29 @@ select.form-control {
 // The `.form-group-* form-control` variations are sadly duplicated to avoid the
 // issue documented in https://github.com/twbs/bootstrap/issues/15074.
 
-.form-control-sm {
+.form-control.-sm {
   padding: $input-padding-y-sm $input-padding-x-sm;
   font-size: $font-size-sm;
+  // height: $input-height-sm;
   @include border-radius($input-border-radius-sm);
 }
 
-select.form-control-sm {
+select.form-control.-sm {
   &:not([size]):not([multiple]) {
-    height: $input-height-sm;
+    // height: $input-height-sm;
   }
 }
 
-.form-control-lg {
+.form-control.-lg {
   padding: $input-padding-y-lg $input-padding-x-lg;
   font-size: $font-size-lg;
+  // height: $input-height-lg;
   @include border-radius($input-border-radius-lg);
 }
 
-select.form-control-lg {
+select.form-control.-lg {
   &:not([size]):not([multiple]) {
-    height: $input-height-lg;
+    // height: $input-height-lg;
   }
 }
 
@@ -200,44 +273,44 @@ select.form-control-lg {
 //
 // Indent the labels to position radios/checkboxes as hanging controls.
 
-.form-check {
-  position: relative;
-  display: block;
-  margin-bottom: $form-check-margin-bottom;
-
-  &.disabled {
-    .form-check-label {
-      color: $text-muted;
-      cursor: $cursor-disabled;
-    }
-  }
-}
-
-.form-check-label {
-  padding-left: $form-check-input-gutter;
-  margin-bottom: 0; // Override default `<label>` bottom margin
-  cursor: pointer;
-}
-
-.form-check-input {
-  position: absolute;
-  margin-top: $form-check-input-margin-y;
-  margin-left: -$form-check-input-gutter;
-
-  &:only-child {
-    position: static;
-  }
-}
+// .form-check {
+//   position: relative;
+//   display: block;
+//   margin-bottom: $form-check-margin-bottom;
+//
+//   &.disabled {
+//     .form-check__label {
+//       color: $text-muted;
+//       cursor: $cursor-disabled;
+//     }
+//   }
+// }
+//
+// .form-check__label {
+//   padding-left: $form-check-input-gutter;
+//   margin-bottom: 0; // Override default `<label>` bottom margin
+//   cursor: pointer;
+// }
+//
+// .form-check__input {
+//   position: absolute;
+//   margin-top: $form-check-input-margin-y;
+//   margin-left: -$form-check-input-gutter;
+//
+//   &:only-child {
+//     position: static;
+//   }
+// }
 
 // Radios and checkboxes on same line
-.form-check-inline {
+.form-check.-inline {
   display: inline-block;
 
-  .form-check-label {
+  .form-check__label {
     vertical-align: middle;
   }
 
-  + .form-check-inline {
+  + .form-check.-inline {
     margin-left: $form-check-inline-margin-x;
   }
 }
@@ -247,17 +320,19 @@ select.form-control-lg {
 //
 // Apply contextual and semantic states to individual form controls.
 
-.form-control-feedback {
+.form-control__feedback {
   margin-top: $form-feedback-margin-top;
 }
 
-.form-control-success,
-.form-control-warning,
-.form-control-danger {
-  padding-right: ($input-padding-x * 3);
-  background-repeat: no-repeat;
-  background-position: center right ($input-height / 4);
-  background-size: ($input-height / 2) ($input-height / 2);
+.form-control {
+  &.-success,
+  &.-warning,
+  &.-danger {
+    padding-right: ($input-padding-x * 3);
+    background-repeat: no-repeat;
+    background-position: center right ($input-height / 4);
+    background-size: ($input-height / 2) ($input-height / 2);
+  }
 }
 
 // Form validation states
