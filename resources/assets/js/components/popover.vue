@@ -1,24 +1,25 @@
 <template>
-  <span class="popover">
-    <span ref="target" class="popover__link" @click="onClick">
+  <span :class="type">
+    <span ref="target" :class="type +'__link'" @click="onClick">
       <slot></slot>
     </span>
           <popup
-            class="popover__drop"
+            :class="type + '__drop'"
             :show="showState"
             :target="target"
             :position="position"
             :delay="delayEdited"
+            :timer="timer"
             ref="menu"
             arrow="nub"
             @focus="$emit('focus')"
             @blur="$emit('blur')"
           >
-            <div class="popover__drop-wrap">
+            <div :class="type + '__drop-wrap'">
               <div class="nub"></div>
-              <button type="button" name="close" class="close" @click="hidePopover()" v-if="triggers == 'click'"></button>
-              <h5 class="popover__title" v-if="title" v-html="title"></h5>
-              <div class="popover__content">
+              <button type="button" name="close" class="close" @click="hidePopover()" v-if="triggers == 'click' || triggers == false"></button>
+              <h5 :class="type + '__title'" v-if="title" v-html="title"></h5>
+              <div :class="type + '__content'">
                 <div v-html="content"></div>
               </div>
             </div>
@@ -42,6 +43,10 @@
       components : { popup },
       mixins : [clickout],
       props: {
+        type : {
+          type: String,
+          default: 'popover'
+        },
         placement: {
           type: String,
           default: 'top',
@@ -112,6 +117,11 @@
               }
               return false;
             }
+        },
+
+        timer : {
+          type : [Number],
+          default : 0
         },
 
         popoverStyle: {
@@ -224,12 +234,9 @@
       const hub = this.$root;
 
       hub.$on('hide::popover', () => {
-          this.showState = false;
+          this.hidePopover();
       });
 
-      hub.$on('hide::modal', () => {
-          this.cleanup();
-      });
 
       this.$on('show::popover', () => {
         this.showPopover();

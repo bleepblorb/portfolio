@@ -86,9 +86,14 @@
     computed : {
       style() {
         return {
-          'max-height' : this.maxHeight ? this.maxHeight + 'px' : false
+          'max-height' : this.maxHeight ? this.maxHeight + 'px' : false,
         }
       },
+      // popupStyle() {
+      //   return {
+      //     'min-width' :  this.$refs.target.clientWidth - 16 + 'px'
+      //   }
+      // },
 
       classList () {
         return {

@@ -37,7 +37,7 @@
             <slot name="modal-footer"></slot>
           </div>
 
-          <button type="button" class="close" aria-label="Close" @click="hide()"></button>
+          <button type="button" class="close" aria-label="Close" @click="hide()" v-if="closeOnBackdrop"></button>
 
         </div>
       </div>
@@ -90,6 +90,10 @@
                 type: Boolean,
                 default: true
             },
+            closeOnEscape: {
+                type: Boolean,
+                default: true
+            },
             hideHeader: {
                 type: Boolean,
                 default: false
@@ -129,6 +133,7 @@
             },
             onClickOut(e) {
                 // If backdrop clicked, hide modal
+                console.log('clicked out')
                 if (this.closeOnBackdrop) {
                   this.hide();
                 }
@@ -141,7 +146,7 @@
 
                 // Support for esc key press
                 const key = e.which || e.keyCode;
-                if (key === 27) { // 27 is esc
+                if (key === 27 && this.closeOnEscape) { // 27 is esc
                     this.hide();
                 }
             },

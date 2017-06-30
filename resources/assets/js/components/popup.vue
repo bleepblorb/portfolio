@@ -82,6 +82,10 @@
         type : [Number, Array],
         default : 0
       },
+      timer : {
+        type : [Number],
+        default : 0
+      },
     },
 
     data () {
@@ -212,8 +216,6 @@
 
         if ( (this.isOpen && this.isActive) || this.disabled) return
 
-        this.$el.style.minWidth = (this.target.clientWidth - 16) + 'px';
-
         this._timeout = setTimeout( ()=> {
           this.isOpen = true;
 
@@ -223,12 +225,14 @@
             this.isActive = true;
           });
 
-          // setTimeout( () => {
-          //   this._tether.enable();
-          //   this.adjustPosition();
-          // }, 10);
-
           this.$emit('open', this.id);
+
+          if(this.timer > 0) {
+            window.setTimeout(() => {
+              this.deactivate();
+            }, this.timer);
+          }
+
         }, this.delayIn );
 
       },
@@ -240,11 +244,12 @@
         clearTimeout(this._timeout);
 
         if (!this.isOpen) return
-          this._timeout = setTimeout( ()=> {
 
+        this._timeout = setTimeout( ()=> {
           this.$el.blur();
           this._tether.disable();
           this.isActive = false;
+
 
           // Check to see if element has transition duraton property;
           if ( window.getComputedStyle(this.$el, null)[getTransitionProperty(this.$el) + 'Duration'] == '0s') {

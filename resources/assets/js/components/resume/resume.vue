@@ -20,17 +20,32 @@
       <resume-layout  v-show="!state.showIntro && state.isComplete"></resume-layout>
     </transition>
 
+    <!-- Sidebar -->
     <transition>
       <div class="sidebar" v-show="!state.showIntro && !state.editMode && state.isComplete">
-        <popover position="right" content="Start Over" triggers="hover" :delay="800">
-          <button @click="reset(true)" class="btn -link edit-btn"><icon name="delete"></icon></button>
+        <popover
+          type="tooltip"
+          position="right"
+          content="Start Over"
+          :delay="[800,0]"
+          >
+          <div @click="reset(true)" class="sidebar-btn"><icon name="delete"></icon></div>
         </popover>
-        <popover ref="editPopover" position="right" title="Instant Regret?" content="I can’t give you back all the time you’ve just wasted, but you can go back and make edits anytime!" :closeOnClickOff="false" :trigger="false">
-          <button @click="toggle()" class="edit-btn btn -link"><icon name="edit"></icon></button>
+        <popover
+          ref="editPopover"
+          position="right"
+          title="Instant Regret?"
+          content="I can’t give you back all the time you’ve just wasted, but you can go back and make edits anytime!"
+          :closeOnClickOff="false"
+          :triggers="false"
+          :timer="8000"
+          >
+          <div @click="toggle()" class="sidebar-btn"><icon name="edit"></icon></div>
         </popover>
       </div>
     </transition>
 
+    <!-- Modals -->
     <modal id="modal-close" confirmation ok-title="Yeah, Don't Care" close-title="Fine, I'll do it." size="sm" @ok="closeEditor()">
       <div class="p-3">
         <h3 class="c--jazzy">But, you aren't finished yet...</h3>
@@ -46,7 +61,7 @@
       </div>
     </modal>
 
-    <modal id="modal-tour" confirmation ok-title="•sigh• Alright" close-title="Veto" size="sm" @ok="startTour()" @cancel="skipTour()">
+    <modal id="modal-tour" confirmation ok-title="•sigh• Alright" close-title="Veto" size="sm" @ok="startTour()" @cancel="skipTour()" :closeOnBackdrop="false">
       <div class="p-3">
         <h3 class="c--jazzy">Welcome</h3>
         <p class="t--sans">Thank you for taking the time to create the perfect resume. Let's just take a quick tour.</p>
@@ -156,13 +171,19 @@ export default {
   },
 
   watch : {
-    isComplete(newVal) {
+    isComplete(newVal, oldVal) {
       this.state.isComplete = newVal;
 
-      if ( newVal ) {
-        console.log('iscompleteChange');
-        // this.$refs.editPopover.$emit('show::popover');
-      }
+      this.$nextTick( ()=> {
+        if ( newVal && newVal !== oldVal && !this.state.editMode ) {
+          console.log('iscompleteChange');
+
+          // Show edit hint
+          window.setTimeout(() => {
+            this.$refs.editPopover.$emit('show::popover');
+          }, 1600);
+        }
+      })
     },
     'state.isComplete' : function(val) {
       console.log('state change', val)

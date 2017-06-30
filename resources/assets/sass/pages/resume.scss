@@ -383,6 +383,7 @@ body.edit {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  padding-bottom: 16px;
 
   // .edit-mode & {
   //   transform: translateX(-100%);
@@ -404,9 +405,9 @@ body.edit {
   }
 
 
-  .edit-btn {
+  .sidebar-btn {
     flex: 0 0 auto;
-    margin-bottom: 15px;
+    margin: 6px;
     color: $gray;
     opacity: .5;
 
