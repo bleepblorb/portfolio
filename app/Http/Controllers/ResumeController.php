@@ -17,20 +17,29 @@ class ResumeController extends Controller
         'personal' => [],
         'togglerPoem' => [
           'index' => 0,
-          'value' => ''
+          'options' => [
+            'oh yeah',
+            'why not',
+            'uh, meh',
+            'no way'
+          ]
         ],
         'togglerIntro' => [
           'index' => 0,
-          'value' => ''
+          'value' => '',
+          'options' => [
+            'create things with value',
+            'make cool shit',
+            'get paid for doing something I love'
+          ],
         ],
         'togglerElevator' => [
           'index' => 0,
-          'value' => '',
           'options' => [
             'dribble, but with less drop shadows',
             'Squarespace, but with fewer podcast ads',
-            'Yahoo for real life — but like 20 years ago Yahoo',
             '99Designs, but not terrible',
+            'Yahoo for real life — but like 20 years ago Yahoo',
           ],
         ],
       ],
@@ -51,7 +60,7 @@ class ResumeController extends Controller
         'format' => '',
       ],
       'present' => [
-        'skills' => '',
+        'skills' => [],
       ]
     ],
     'state' => [
@@ -143,8 +152,6 @@ class ResumeController extends Controller
     $existing = [];
 
     // return array with items that are differrent from the base
-
-
     if($request->model) {
       $baseModel = $this->baseModel['model'];
 
@@ -183,6 +190,8 @@ class ResumeController extends Controller
       ]
     ];
 
+    $object = [];
+
     // override base object with default options
     foreach( $defaults as $key => $value ) {
       $object[$key] = array_replace( $this->baseModel['model'][$key], $value );
@@ -191,7 +200,7 @@ class ResumeController extends Controller
 
     // override that with the existing user provided data
     foreach( $existing as $key => $value ) {
-      $object[$key] = array_replace( $existing[$key], $value);
+      $object[$key] = array_replace( $object[$key], $value);
     }
 
     return response()->json($object);

@@ -5,7 +5,7 @@
       <div v-if="state.currentStep == 1" class="-max--md -center">
         <!-- standard -->
         <div class="" v-if="introStyle == 'standard'" key="standard">
-          <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to <toggler :active="state.editMode" id="togglerIntro" :index="togglerIntro.index" :options="['create things with value', 'make cool shit', 'get paid for doing something I love']"></toggler>.</h2>
+          <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to <toggler :active="state.editMode" id="togglerIntro" :index="togglerIntro.index" :options="togglerIntro.options"></toggler>.</h2>
         </div>
 
         <!-- poetic -->
@@ -13,7 +13,7 @@
           <h2>
             A maker of things. <small>(5)</small><br>
             Design, dev, &amp; draw – you bet! <small>(7)</small><br>
-            A poet? <toggler :active="state.editMode" id="togglerPoem" :index="togglerPoem.index" :options="['oh yeah', 'why not', 'uh, meh', 'no way']"></toggler>.<popover class="c--gray-light" content="<b>Hint.</b> It's a haiku"><icon name="delete" size="sm"></icon></popover>
+            A poet? <toggler :active="state.editMode" id="togglerPoem" :index="togglerPoem.index" :options="toggerlPoem.options"></toggler>.<popover class="c--gray-light" content="<b>Hint.</b> It's a haiku"><icon name="delete" size="sm"></icon></popover>
           </h2>
           <h6 class="c--gray-light mt-2">— Adam Volkman, 2017</h6>
         </div>

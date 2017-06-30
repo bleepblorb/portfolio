@@ -10,7 +10,7 @@
 
             <!-- standard -->
             <div v-if="introStyle == 'standard'" key="standard">
-              <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to {{model.intro.togglerIntro.value}}.</h2>
+              <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to {{model.intro.togglerIntro.options[model.intro.togglerIntro.index]}}.</h2>
             </div>
 
             <!-- haiku -->
@@ -18,7 +18,7 @@
               <h2>
                 A maker of things. <small>(5)</small><br>
                 Design, dev, &amp; draw – you bet! <small>(7)</small><br>
-                A poet? {{model.intro.togglerPoem.value}}.
+                A poet? {{model.intro.togglerPoem.options[model.intro.togglerPoiem.index]}}.
               </h2>
             </div>
 
