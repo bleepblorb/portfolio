@@ -5,7 +5,7 @@
       <div class="container pb-6 -max--xl">
         <div class="g__row -justify-content--center">
           <!-- Heading -->
-          <div class="g__col12 g__col10--@sm g__col8--@md">
+          <div class="g__col12 g__col10--@sm g__col8--@md enter__fade-in-up" data-spy-in>
             <h4 class="c--jean-jacket">Adam Volkman —</h4>
 
             <!-- standard -->
@@ -54,7 +54,7 @@
 
       <!-- Portrait -->
       <div class="container -max--xl my-4">
-        <div id="portrait">
+        <div id="portrait" class="enter__fade-in-up" data-spy-in>
           <div class="portrait__image" data-image-load ref="portrait"
             :data-src="model.portraitUrls.xs ? model.portraitUrls.xs : false"
             :data-src-sm="model.portraitUrls.sm ? model.portraitUrls.sm : false"
@@ -81,58 +81,73 @@
             <h4 class="c--grover section-header">about —</h4>
           </div>
           <div class="g__col12 g__col9--@md">
-            <h2 class="">It's not really what you do that matters, but how you do it.</h2>
-            <p class="mb-6 t--lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute</p>
-
-            <div class="grid-thing -span-2">
+            <div class="enter__fade-in-up" data-spy-in>
+              <h2 class="">It's not really what you do that matters, but how you do it.</h2>
+              <p class="mb-6 t--lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute</p>
+            </div>
+            <div class="grid-thing -span-2" data-spy-in  data-spy="target: .enter__fade-in-up; delay: 250">
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('craft') > -1">
-                <div class="t--center">
-                  <img src="/img/craft-icon.jpg" class="mb-1" alt="" width="100px">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/craft-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Craft</h4>
+                  <p>Every good idea deserves to be properly executed. (icon = tool, robot)</p>
                 </div>
-                <h4>Craft</h4>
-                <p>Every good idea deserves to be properly executed. (icon = tool, robot)</p>
               </div>
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('grow') > -1">
-                <div class="t--center">
-                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Grow</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (icon = plant, tree)</p>
                 </div>
-                <h4>Grow</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (icon = plant, tree)</p>
               </div>
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('beyond') > -1">
-                <div class="t--center">
-                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Beyond</h4>
+                  <p>Normal is boring. Make something better. (icon = space, spaceship)</p>
                 </div>
-                <h4>Beyond</h4>
-                <p>Normal is boring. Make something better. (icon = space, spaceship)</p>
               </div>
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('climb') > -1">
-                <div class="t--center">
-                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Climb</h4>
+                  <p>A natural evolution of learning, but also a simple challenge to myself. Make every project better than the last – in at least one way. (icon = ladder, mountain)</p>
                 </div>
-                <h4>Climb</h4>
-                <p>A natural evolution of learning, but also a simple challenge to myself. Make every project better than the last – in at least one way. (icon = ladder, mountain)</p>
               </div>
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('balance') > -1">
-                <div class="t--center">
-                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Balance</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
                 </div>
-                <h4>Balance</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
               </div>
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('enjoy') > -1">
-                <div class="t--center">
-                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Enjoy</h4>
+                  <p>None of this matters much if you’re a boring jerk. </p>
                 </div>
-                <h4>Enjoy</h4>
-                <p>None of this matters much if you’re a boring jerk. </p>
               </div>
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('enjoy') > -1">
-                <div class="t--center">
-                  <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Purpose</h4>
+                  <p>Everything should have one. Generally, this should be more than "looks cool". (icon = target)</p>
                 </div>
-                <h4>Purpose</h4>
-                <p>Everything should have one. Generally, this should be more than "looks cool". (icon = target)</p>
               </div>
             </div>
           </div>
@@ -163,8 +178,8 @@
             <h5 class="c--gray">... hopefully that's why you're here.</h5>
 
             <h4 class="mt-6 mb-3 c--gray-light t--normal">Notable Skills and Experience</h4>
-            <div class="g__row mb-4">
-              <div class="g__col6--@sm skill-list" v-if="model.present.skills.indexOf('print') > -1">
+            <div class="g__row mb-4" data-spy-in  data-spy="target: .enter__fade-in-up; delay: 250">
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.present.skills.indexOf('print') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>ink —</h4>
@@ -177,7 +192,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6--@sm skill-list" v-if="model.present.skills.indexOf('digital') > -1">
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.present.skills.indexOf('digital') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>pixels —</h4>
@@ -191,7 +206,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6--@sm skill-list" v-if="model.present.skills.indexOf('development') > -1">
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.present.skills.indexOf('development') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>bytes —</h4>
@@ -205,7 +220,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6--@sm skill-list">
+              <div class="g__col6--@sm skill-list enter__fade-in-up">
                 <div class="card">
                   <div class="card-block">
                     <h4>software —</h4>
@@ -218,7 +233,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6--@sm skill-list" v-if="model.present.skills.indexOf('other') > -1">
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.present.skills.indexOf('other') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4 class="">etc —</h4>
@@ -303,7 +318,7 @@
       <section id="resume-outro"  data-src="/img/resume-outro.jpg">
         <div class="container py-6">
           <div class="g__row t--center -max--md -center">
-            <div class="g__col">
+            <div class="g__col enter__fade-in-up" data-spy-in>
               <img src="/img/about-illustration.jpg" alt="" width="200" class="mb-2">
               <h3 class="mb-4 c--late-night">Think we'd work well together?</h3>
               <p>

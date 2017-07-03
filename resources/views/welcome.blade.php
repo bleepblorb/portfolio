@@ -7,34 +7,12 @@
         <div class="g__col12 g__col10--@sm">
           <div class="g__row">
             <div class="g__col py-6">
-              <img src="{{asset('img/about-illustration.jpg')}}" width="200" class="mb-2" alt="">
-              <h1 class="c--late-night pb-6">
-                Well Done is the superfluous<br class="hidden-sm-down"> moniker of Adam Volkman, another soggy Portland creative.
-                {{-- <toggler :options="[
-                  'another soggy Portland creative.',
-                  'a pretty nice guy',
-                  'a design dude'
-                ]"></toggler> --}}
+              <img src="{{asset('img/about-illustration.jpg')}}" width="200" class="mb-2 enter__fade-in" alt="" data-spy-in data-spy="delay: 900">
+              <h1 class="c--late-night enter__fade-in-up pb-6" data-spy-in >
+                Well Done is the superfluous<br class="hidden-sm-down"> moniker of <a href="{{route('about')}}">Adam Volkman</a>, another soggy Portland <a href="{{route('visuals')}}">creative</a>.
               </h1>
             </div>
           </div>
-          {{-- <div class="g__row -max--md t--center">
-            <div class="g__col4--@md mb-3">
-              <h6 class="c--gray-light">Currently</h6>
-              <p>Looking for full time work. <a href="{{route('resume')}}">View my resume!</a></p>
-            </div>
-
-            <div class="g__col4--@md mb-3">
-              <h6 class="c--gray-light">Location</h6>
-              <p>Portland, Oregon</p>
-            </div>
-
-            <div class="g__col4--@md mb-3">
-              <h6 class="c--gray-light">Contact</h6>
-              <p>adam.volkman@gmail.com</p>
-            </div>
-          </div> --}}
-
         </div>
       </div>
     </div>
