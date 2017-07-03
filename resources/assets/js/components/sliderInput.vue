@@ -3,9 +3,9 @@
   <div>
     <h4 class="t--center c--gummy">{{text}}</h4>
     <div class="slider-input__bar">
-      <label v-for="(option, index) in options" class="slider-input__item custom-control custom-radio custom-con">
-        <input :id="id+'_'+index" :name="id" type="radio" class="custom-control-input" :value="option.value" v-model="updatedValue">
-        <span class="custom-control-indicator"></span>
+      <label v-for="(option, index) in options" class="slider-input__item form-radio">
+        <input :id="id+'_'+index" :name="id" type="radio" class="form-radio__input" :value="option.value" v-model="updatedValue">
+        <span class="form-radio__indicator"></span>
       </label>
     </div>
     <h6 v-if="placeholder" class="t--center c--grover t--normal">{{placeholder}}</h6>
@@ -43,7 +43,7 @@
         let active =  _.find(this.options, item => {
           return item.value == this.value;
         });
-        
+
         if (active) {
           return active.label;
         }

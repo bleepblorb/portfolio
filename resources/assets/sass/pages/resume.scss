@@ -764,39 +764,3 @@ body.edit {
     }
   }
 }
-
-// sliderInput
-
-.slider-input {
-  padding: 2rem 0;
-}
-
-.slider-input__bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 4px;
-  border-radius: 4px;
-  background-image: linear-gradient(to right, $jean-jacket, $jazzy);
-  margin: 2em 0;
-}
-
-.slider-input__item {
-  padding: 0;
-  margin: 0;
-  min-height: auto;
-
-  .custom-control-indicator {
-    position: relative;
-    top: auto;
-    left: auto;
-    background-color: $jean-jacket;
-    border: 2px solid $ice-cube;
-    transition: all 250ms;
-  }
-
-  .custom-control-input:checked ~ .custom-control-indicator {
-    transform: scale(1.5);
-    background-image: none;
-  }
-}

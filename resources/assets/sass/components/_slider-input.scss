@@ -1,0 +1,43 @@
+
+// sliderInput
+
+.slider-input {
+  padding: 2rem 0;
+}
+
+.slider-input__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4px;
+  border-radius: 4px;
+  background-image: linear-gradient(to right, $jean-jacket, $jazzy);
+  margin: 2em 0;
+}
+
+.slider-input__item {
+  padding: 0;
+  margin: 0;
+  min-height: auto;
+
+  .form-radio__indicator {
+    position: relative;
+    top: auto;
+    left: auto;
+    background-color: $jean-jacket;
+    border: 2px solid $ice-cube;
+    transition: all 250ms;
+    background-image: none;
+  }
+
+  &:hover {
+
+    .form-radio__indicator {
+      transform: scale(1.2);
+    }
+  }
+
+  .form-radio__input:checked ~ .form-radio__indicator {
+    transform: scale(1.25);
+  }
+}
