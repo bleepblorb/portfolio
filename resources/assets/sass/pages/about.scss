@@ -1,0 +1,55 @@
+
+.revealer {
+  position: relative;
+  display: block;
+  margin-bottom: 32px;
+
+  > ul {
+    margin: 0;
+  }
+
+  .revealer__item {
+    transition-property: color, padding;
+    transition-duration: 600ms;
+    transition-timing-function: cubic-bezier(.64,.25,.36,.96);
+    padding-top: .5rem;
+
+
+    &:last-of-type() {
+      color: $jazzy;
+    }
+
+    &.list-enter-active,
+    &.list-leave-active {
+      transition: all 700ms 50ms cubic-bezier(.64,.25,.36,.96);
+    }
+
+    &.list-enter {
+      transform: translateY(32px);
+      opacity: 0 !important;
+    }
+
+    &.list-move {
+      transition: all 600ms cubic-bezier(.64,.25,.36,.96);
+    }
+  }
+
+}
+
+.revealer__clicker {
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  margin: 0;
+  padding-top: 1rem;
+  cursor: pointer;
+  color: $gray-light;
+
+  &:hover {
+    color: $lightning;
+  }
+
+  &.list-move {
+    transition: all 300ms linear;
+  }
+}

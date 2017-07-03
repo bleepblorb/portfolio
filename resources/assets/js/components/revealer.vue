@@ -1,8 +1,10 @@
 <template>
-  <ul class="revealer">
-    <li class="revealer__item" v-for="n in activeIndex" :style="{'opacity': (1 - ((n - 1) / length)) }">{{randomOptions[n-1]}}</li>
-    <li @click.prevent="reveal" v-if="activeIndex < length" class="t--h5 c--lightning revealer__clicker">+ More</li>
-  </ul>
+  <div class="revealer" ref="revealer">
+    <transition-group name="list" tag="ul">
+      <li class="revealer__item" v-for="(n, index) in randomOptions" :key="n" :style="" v-if="index < activeIndex">{{n}}</li>
+    </transition-group>
+    <div @click.prevent="reveal" key="more" ref="more" v-if="activeIndex < length" class="t--h5 revealer__clicker">+ more</div>
+  </div>
 </template>
 
 <script>
@@ -31,6 +33,7 @@
     data() {
       return {
         activeIndex : this.index,
+        containerHeight : 0,
       }
     },
 
@@ -49,15 +52,44 @@
 
         if ( this.activeIndex < this.length ) {
           this.activeIndex ++;
-        }
-        this.$parent.$emit('toggleUpdate', this.id, this.activeIndex, this.options[this.activeIndex]);
 
-        window.scrollBy(0,57);
+          this.$nextTick( () => {
+            this.setHeight();
+
+            let items = this.$refs.revealer.querySelectorAll('.revealer__item');
+            let scroll = items[items.length - 1].clientHeight;
+
+            let curScrollTop = window.pageYOffset;
+
+            Velocity( document.body ,"scroll", { duration: 600, offset: window.pageYOffset + scroll, mobileHA: false }, "linear");
+          });
+        }
+      },
+
+      reverse(index) {
+        return this.randomOptions.slice(0, index);
+      },
+
+      setHeight(dur = 600) {
+        let height = 0;
+
+        Array.from(this.$el.children).forEach( item => {
+          height += item.clientHeight;
+        });
+
+        Velocity( this.$refs.revealer, {height: height}, { duration: dur, }, "linear");
       }
+
     },
 
     created() {
+    },
 
+    mounted() {
+      this.setHeight();
+      window.addEventListener('resize', () => {
+        this.setHeight(0);
+      });
     }
   }
 
