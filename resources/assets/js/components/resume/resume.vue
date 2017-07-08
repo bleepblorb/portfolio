@@ -85,8 +85,8 @@ import resumeIntro from './resumeIntro';
 import modal from '../modal.vue';
 
 store.resume.state = {
-  currentStep : 1,
-  currentPhase: 0,
+  currentStep : -1,
+  currentPhase: 'welcome',
   furthestAllowed : 0,
   completedSteps : 0,
   totalSteps : 0,
@@ -100,7 +100,10 @@ store.resume.state = {
 };
 
 store.resume.model = {
-  intro : {
+  tour : {
+    value : ''
+  },
+  about : {
     introStyle : '',
     personal : [],
     togglerPoem : {
@@ -115,7 +118,8 @@ store.resume.model = {
       index : 0,
       value : '',
       options : []
-    }
+    },
+    manifesto : [],
   },
   portrait : {
     expression : '',
@@ -125,13 +129,8 @@ store.resume.model = {
     background : '',
   },
   portraitUrls : {},
-  about : {
-    manifesto : [],
-  },
-  past : {
-    format : '',
-  },
-  present : {
+  experience : {
+    past : '',
     skills : [],
   }
 };
@@ -151,6 +150,7 @@ export default {
 
   computed :{
     isComplete() {
+      this.state.isComplete = this.state.completedSteps == this.state.totalSteps ? true : false;
       return this.state.completedSteps == this.state.totalSteps ? true : false;
     },
     totalSteps() {
@@ -159,11 +159,15 @@ export default {
       _.forEach(this.schema.phases, (phase) => {
         count += phase.steps.length;
       });
+      this.state.totalSteps = count;
 
       return count;
     },
     furthestAllowed() {
-      return _.min([this.state.completedSteps + 1, this.state.totalSteps]);
+      let furthest = _.min([this.state.completedSteps + 1, this.state.totalSteps]);
+
+      this.state.furthestAllowed = furthest;
+      return furthest;
     },
     editMode() {
       return this.state.editMode;
@@ -173,21 +177,8 @@ export default {
   watch : {
     isComplete(newVal, oldVal) {
       this.state.isComplete = newVal;
-
-      this.$nextTick( ()=> {
-        if ( newVal && newVal !== oldVal && !this.state.editMode ) {
-          console.log('iscompleteChange');
-
-          // Show edit hint
-          window.setTimeout(() => {
-            this.$refs.editPopover.$emit('show::popover');
-          }, 1600);
-        }
-      })
     },
-    'state.isComplete' : function(val) {
-      console.log('state change', val)
-    },
+
     furthestAllowed() {
       this.state.furthestAllowed = this.furthestAllowed;
     },
@@ -199,7 +190,6 @@ export default {
       }
 
       history.replaceState("", document.title, '/resume');
-
 
       this.$nextTick(() => {
         if (newVal) {
@@ -220,6 +210,10 @@ export default {
         this.save();
       },
       deep : true
+    },
+    'state.completedSteps' : function(val) {
+      console.log('completed Steps changed to: ', val, this.state.completedSteps);
+
     }
   },
 
@@ -252,6 +246,15 @@ export default {
 
         if ( !this.isComplete ) {
           this.setDefault();
+        }
+
+        // Show edit hint first time editor is closed
+        if(!this._shownHint) {
+          this._shownHint = true;
+
+          window.setTimeout(() => {
+            this.$refs.editPopover.$emit('show::popover');
+          }, 1600);
         }
 
         this.state.editMode = false;
@@ -370,11 +373,13 @@ export default {
     },
 
     startTour() {
+      this.state.currentPhase = 'welcome';
+      this.state.currentStep = -1;
       this._editorTour.start();
     },
 
     skipTour() {
-      this._editorTour.complete();
+      this._editorTour.cancel();
     },
   },
 
@@ -393,7 +398,6 @@ export default {
       this.open();
     }
 
-    this.state.totalSteps = this.totalSteps;
 
     Event.$on('updateModel', (phase, step, value) => {
       this.$set(this.model[phase], step, value);
@@ -405,8 +409,8 @@ export default {
     });
 
     Event.$on('stepComplete', (step) => {
-      console.log(step, this.state.completedSteps);
       if ( step > this.state.completedSteps ) {
+        console.log( "Setting state.completedSteps:", step);
         this.state.completedSteps = step;
       }
     });
@@ -426,8 +430,7 @@ export default {
     Event.$on('setComplete', () => {
       console.log('Event: setComplete');
       this.state.showIntro = false;
-      this.state.isComplete = true;
-      this.state.completedSteps = this.state.totalSteps;
+      this.state.completedSteps = this.totalSteps;
 
       console.log('isComplete:', this.state.isComplete);
     });
@@ -436,12 +439,23 @@ export default {
       console.log('closeEditor');
       this.closeEditor(confirm);
     });
+  },
 
+  mounted() {
     //
     // Editor Tour
     this._editorTour = new Shepherd.Tour({
       defaults : {
         classes : 'popover',
+        buttons : {
+          classes : 'next-btn btn -reverse -outline -rounded -sm',
+          text : 'Next',
+          events : {
+            'click' : function() {
+              return Shepherd.activeTour.next();
+            }
+          }
+        },
         tetherOptions : {
           classPrefix: 'popup',
           optimizations: {
@@ -452,41 +466,45 @@ export default {
     });
 
     this._editorTour.addStep('editor', {
-      text : "This the editor pane. You just have to answer a few questions.",
-      attachTo : ".editor__question top"
-    });
-
-    this._editorTour.addStep('navigation', {
-      text : "This is the nav",
-      attachTo : ".editor__nav top"
-    });
-
-    this._editorTour.addStep('moreNav', {
-      text : "This is also some nav",
-      attachTo : ".editor__phase__dots bottom",
-    });
-
-    this._editorTour.addStep('preview-toggle', {
-      title : "Preview Toggle",
-      text : "This button will toggle the preview mode (on smaller screens)",
-      attachTo : ".preview-toggle__btn left",
+      title : "Editor Pane",
+      text : "This is where you make your choices.",
+      attachTo : ".welcome-step .editor__question top",
       when : {
-        'before-show' : function() {
-          let toggle = document.querySelector('.preview-toggle__btn');
-          toggle.style.display = 'flex';
-          toggle.style.opacity = '1';
+        'before-show' : () => {
+          this.state.previewMode = false;
+          // let element = document.createElement('div');
+          // element.classList.add('modal-backdrop');
+          // document.body.insertBefore(element, null);
         },
-        hide : function() {
-          let toggle = document.querySelector('.preview-toggle__btn');
-          toggle.style = '';
+        hide : () => {
+          // document.querySelector('.modal-backdrop').style.display = 'block';
+        }
+      },
+    });
+
+    this._editorTour.addStep('editor-choose', {
+      text: "Go ahead and <strong>pick an option<strong>",
+      attachTo : ".welcome-step .radial-group top",
+      buttons : false,
+    });
+
+    this._editorTour.addStep('editor-response', {
+      title : "Nice pick!",
+      attachTo : ".welcome-step .radial-group top",
+      buttons : false,
+      when : {
+        show : function() {
+          window.setTimeout( () => {
+            Shepherd.activeTour.next();
+          }, 1200)
         }
       }
     });
 
     this._editorTour.addStep('preview', {
       title : "Preview Area",
-      text : "This is the preview area. You can preview your answers, and sometimes make further edits.",
-      attachTo : ".preview__phase top",
+      text : "Here you can preview your answers, and sometimes make further edits.",
+      attachTo : ".preview__phase .example-result top",
       when : {
         'before-show' : function() {
           Event.$emit('setPreviewMode', true);
@@ -502,28 +520,94 @@ export default {
     });
 
     this._editorTour.addStep('toggler', {
-      title : "Get the perfect wording",
-      text : "Underlied areas allow you to toggle through wording options. <strong>Try it out</strong>",
-      attachTo : "#phase__intro.toggler top",
-      advanceOn : {selector: '.toggler', event: 'click'},
-      buttons : false
+      title : "The perfect wording",
+      text : "Underlined areas allow you to toggle through wording options. <strong>Try it out</strong> by clicking on the underline below.",
+      attachTo : ".example-toggle top",
+      advanceOn : {selector: '.example-toggle', event: 'click'},
+      buttons : false,
+      when : {
+        'before-show' : () => {
+          // document.querySelector('.modal-backdrop').style.display = 'none';
+        },
+        hide : () => {
+          // document.querySelector('.modal-backdrop').style.display = 'block';
+        }
+      },
     });
 
     this._editorTour.addStep('toggler-response', {
-      title : "Sweet, looking good",
-      attachTo : ".toggler top",
+      title : "Looking good!",
+      attachTo : ".example-toggle top",
+      buttons : false,
       when : {
-        hide : function() {
-          Event.$emit('setPreviewMode', false);
+        show : function() {
+          window.setTimeout( () => {
+            Shepherd.activeTour.next();
+          }, 1800);
         }
       }
     });
 
+    this._editorTour.addStep('preview-toggle', {
+      title : "Preview Toggle",
+      text : "This button will toggle between the preview and editor views (on smaller screens)",
+      attachTo : ".preview-toggle__btn right",
+      when : {
+        'before-show' : function() {
+          let toggle = document.querySelector('.preview-toggle__btn');
+          toggle.style.display = 'flex';
+          toggle.style.opacity = '1';
+        },
+        hide : function() {
+          let toggle = document.querySelector('.preview-toggle__btn');
+          toggle.style.display = '';
+          toggle.style.opacity = '';
+        }
+      }
+    });
+
+    this._editorTour.addStep('navigation', {
+      title : "Navigation",
+      text : "This is how you move about. Go ahead and <strong>click to the next step</strong>.",
+      attachTo : ".editor__nav top",
+      advanceOn : '.editor__next-btn click',
+      buttons : false,
+      when : {
+        'before-show' : function() {
+          Event.$emit('setPreviewMode', false);
+        },
+        show : function() {
+          this.el.classList.remove('shepherd-open');
+          window.setTimeout(()=> {
+            this.el.classList.add('shepherd-open');
+            this.tether.position();
+            Event.$emit('showPrompt', 'Lets Go');
+          }, 650);
+        },
+        hide : function() {
+          Event.$emit('setPhase', 0, 0);
+        }
+      }
+    });
+
+    this._editorTour.addStep('moreNav', {
+      title : 'Header',
+      text : "This area will keep track of your progress. You can also jump to different sections here (once completed)",
+      attachTo : ".editor__phase__dots bottom",
+    });
+
+    this._editorTour.addStep('close', {
+      title : 'Cancel',
+      text : "If for some reason you change your mind, you can close the editor here.",
+      attachTo : "#resume .close-btn bottom",
+    });
+
+
     this._editorTour.addStep('done', {
-      title : "Done",
-      text : "I think you are ready to tackle it on your own, young padawan",
+      title : "That's it! You are ready to tackle it on your own",
       buttons : [
         {
+          classes : 'finish-btn btn -reverse -outline -rounded -sm',
           text : 'Finish',
           action : this._editorTour.complete
         }
@@ -531,6 +615,19 @@ export default {
     });
 
     this._editorTour.on('complete', () => {
+      let backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      };
+      this.state.tourComplete = true;
+    });
+
+    this._editorTour.on('cancel', () => {
+      let backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      };
+      Event.$emit('setPhase', 0, 0);
       this.state.tourComplete = true;
     });
   }

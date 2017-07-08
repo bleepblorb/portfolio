@@ -4,7 +4,11 @@
     <div v-for="option in options" class="g__col6">
       <v-button
         @click="setValue(option.value)"
-        :class="{'-selected' : isActive(option.value)}">
+        variant="outline"
+        size="lg"
+        :class="{'-selected' : isActive(option.value)}"
+        block
+        >
         {{option.label}}
       </v-button>
     </div>

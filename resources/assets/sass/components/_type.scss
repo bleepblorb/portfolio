@@ -13,6 +13,16 @@ h1, h2, h3, h4, h5, h6,
   strong {
     font-weight: 700;
   }
+
+  a {
+    @extend %underline;
+    color: inherit;
+
+  &:hover, &:focus {
+      text-decoration: none;
+      color: $gummy;
+    }
+  }
 }
 
 h1, .t--h1 { font-size: $font-size-h1; }

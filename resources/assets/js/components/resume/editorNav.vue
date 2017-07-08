@@ -27,7 +27,7 @@
     </transition>
     <transition name="nav-btn">
       <div
-        v-if="showDone"
+        v-if="this.isComplete"
         class="editor__next-btn -active -done"
         @click="close()"
         >
@@ -72,7 +72,6 @@
       isComplete() {
         if ( this.isComplete ) {
           this.showPrompt = false;
-          this.showDone = this.isComplete;
         }
       }
     },
@@ -97,28 +96,13 @@
 
     created() {
       Event.$on('showPrompt', (text = "next") => {
+        console.log('ShowPrompt Recieved');
+        this.promptText = text;
         this.showPrompt = true;
-        let promptOptions = [
-          "Next", "Onward", "This Way", "More"
-        ]
-
-        this.promptText = promptOptions[_.random(0, promptOptions.length - 1)];
       });
 
       Event.$on('hidePrompt', () => {
         this.showPrompt = false;
-      });
-
-      Event.$on('disablePrev', () => {
-        this.disablePrev = true;
-      });
-
-      Event.$on('enablePrev', () => {
-        this.disablePrev = false;
-      });
-
-      Event.$on('reset', () => {
-        this.showDone = false;
       });
     }
   }

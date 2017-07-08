@@ -1,15 +1,23 @@
 let schema = {
   phases : [
     {
-      id : 'intro',
-      title : "Intro",
+      id : 'about',
+      title : "About",
       steps : [
+        {
+          id : "intro",
+          intro : "About Me",
+          question : "First let's pull together a captivating overview of me.",
+          type : "intro",
+          imageUrl : "/img/editor-intro.png",
+        },
         {
           id : "introStyle",
           intro : "First impressions",
           question : "You only get to pick one.",
+          desc : "Choose your preferred introduction style.",
           type : "radial-group",
-          imageUrl : "/img/portrait-beard.png",
+          imageUrl : "/img/editor-intro.png",
           options : [
             {
               label : "Pretty Standard",
@@ -25,7 +33,7 @@ let schema = {
             },
             {
               label : "Poetic",
-              value : "haiku"
+              value : "poetic"
             },
             {
               label : "Hard to Get",
@@ -39,43 +47,91 @@ let schema = {
         },
         {
           id : "personal",
-          intro : "Make me interesting",
-          question : "The spot for obligitory personal interests",
-          imageUrl : "/img/portrait-beard.png",
+          intro : "Personal Interests",
+          question : "Make me interesting by picking a few fun hobbies",
+          desc : "Pick as many as you'd like.",
           type : "checkbox-group",
           options : [
             {
               label : "Cooking",
-              value : "making a mess in the kitchen"
+              value : "cooking"
             },
             {
               label : "Hiking",
-              value : "pooping in the woods"
+              value : "hiking"
             },
             {
-              label : "Cartoons",
-              value : "watching cartoons"
+              label : "Television",
+              value : "television"
             },
             {
               label : "Tennis",
-              value : "playing tennis"
+              value : "tennis"
             },
             {
-              label : "Pooping",
-              value : "pooping"
+              label : "Crafts",
+              value : "crafts"
             },
             {
               label : "Learning",
-              value : "learning new skills (that killz)"
+              value : "learn"
             }
           ]
-        }
+        },
+        {
+          id : "manifesto",
+          intro : "Not quite manifesto",
+          question : "Thoughts on design / life.",
+          type : "checkbox-group",
+          imageUrl : "/img/portrait-beard.png",
+          options : [
+            {
+              label : "Craft",
+              value : "craft"
+            },
+            {
+              label : "Care",
+              value : "care"
+            },
+            {
+              label : "Purpose",
+              value : "purpose"
+            },
+            {
+              label : "Beyond",
+              value : "beyond"
+            },
+            {
+              label : "Grow",
+              value : "grow"
+            },
+            {
+              label : "Climb",
+              value : "climb"
+            },
+            {
+              label : "Balance",
+              value : "balance"
+            },
+            {
+              label : "Enjoy",
+              value : "enjoy"
+            },
+          ]
+        },
       ]
     },
     {
       id : "portrait",
       title: "Portrait",
       steps : [
+        {
+          id : "desc",
+          intro : "Portrait",
+          question : "They say you shouldn't judge a book by its cover, but that doesnt mean we cant still make it look good.",
+          type : "intro",
+          imageUrl : "/img/portrait-beard.png",
+        },
         {
           id : "expression",
           imageUrl : "/img/portrait-beard.png",
@@ -180,7 +236,7 @@ let schema = {
         {
           id : "hands",
           intro : "Strike a pose",
-          question : "I've got one hand in my pocket, the other is...",
+          question : "I've got one hand in my pocket, and the other one is...",
           type : "multiselect",
           options : [
             {
@@ -215,8 +271,8 @@ let schema = {
         },
         {
           id : "background",
-          intro : "qestion 2.2",
-          question : "This is Question 2.2",
+          intro : "Setting",
+          question : "Pick a backdrop.",
           type : "radial-group",
           options : [
             {
@@ -232,83 +288,13 @@ let schema = {
       ]
     },
     {
-      id : 'about',
-      title : "About",
-      steps : [
-        {
-          id : "manifesto",
-          intro : "In a nutshell",
-          question : "Thoughts on design / life.",
-          type : "checkbox-group",
-          imageUrl : "/img/portrait-beard.png",
-          options : [
-            {
-              label : "Craft",
-              value : "craft"
-            },
-            {
-              label : "Grow",
-              value : "grow"
-            },
-            {
-              label : "Beyond",
-              value : "beyond"
-            },
-            {
-              label : "Climb",
-              value : "climb"
-            },
-            {
-              label : "Balance",
-              value : "balance"
-            },
-            {
-              label : "Enjoy",
-              value : "enjoy"
-            },
-          ]
-        },
-      ]
-    },
-    {
-      id : 'past',
-      title : "The Past",
-      steps : [
-        {
-          id : "format",
-          intro : "You can't change the past",
-          question : "Just how you choose to tell it.",
-          type : "radial-group",
-          imageUrl : "/img/portrait-beard.png",
-          options : [
-            {
-              label : "Detailed",
-              value : "detail"
-            },
-            {
-              label : "Nutshell",
-              value : "nutshell"
-            },
-            {
-              label : "timeline",
-              value : "timeline"
-            },
-            {
-              label : "?",
-              value : "?"
-            },
-          ]
-        },
-      ]
-    },
-    {
-      id : 'present',
-      title : "The Present",
+      id : 'experience',
+      title : "Skills / Experience",
       steps : [
         {
           id : "skills",
-          intro : "choose something...",
-          question : "What skills are you looking for?",
+          intro : "Skills / Experience",
+          question : "Choose the skills you are looking for",
           type : "checkbox-group",
           imageUrl : "/img/portrait-beard.png",
           options : [
@@ -329,6 +315,30 @@ let schema = {
               value : "other"
             },
           ]
+        },
+        {
+          id : "past",
+          intro : "Past experience",
+          question : "You can't change the past. Just how you choose to tell it.",
+          type : "radial-group",
+          imageUrl : "/img/portrait-beard.png",
+          options : [
+            {
+              label : "Detailed",
+              value : "detail"
+            },
+            {
+              label : "Nutshell",
+              value : "nutshell"
+            }
+          ]
+        },
+        {
+          id : "finish",
+          intro : "Congrats!",
+          question : "You've created one purdy resume. Now go give it a read through and hire this guy!",
+          type : "intro",
+          imageUrl : "/img/portrait-beard.png",
         },
       ]
     }

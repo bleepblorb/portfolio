@@ -113,7 +113,7 @@
 }
 
 .editor__input {
-  .multiselect {
+  .select {
     @include make-col-ready();
   }
 }
@@ -122,13 +122,10 @@
   .btn {
     padding: 16px;
     font-size: $font-size-xs;
-    cursor: pointer;
-    background: transparent;
-    border-color: $jean-jacket;
-    width: 100%;
     position: relative;
-    border-radius: 8px;
     margin-bottom: 16px;
+    border-color: $jean-jacket;
+    background-color: transparent;
 
     &:after {
       content: "";
@@ -145,9 +142,15 @@
       opacity: 0;
     }
 
+    &:active, &:focus {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
     &:hover {
       background-color: transparent;
       border-color: $jazzy;
+      box-shadow: none;
       color: $jazzy;
     }
 

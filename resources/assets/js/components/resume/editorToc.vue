@@ -8,7 +8,7 @@
           </div>
 
           <div class="editor__question">
-            <h4 class="c--gummy">Sections</h4>
+            <h4 class="c--gummy">Table of Contents</h4>
           </div>
 
           <div class="editor__input -condensed">
@@ -24,13 +24,12 @@
           <div class="editor__input -standard">
             <div class="radial-group g__row">
               <div v-for="option in options" class="g__col12">
-                <button
-                  type="button"
-                  class="btn"
+                <v-button
                   @click="phaseSelect(option)"
+                  block
                 >
                   {{option}}
-                </button>
+                </v-button>
               </div>
             </div>
           </div>

@@ -1,8 +1,12 @@
+.tester {
+  position: relative;
+}
 
 .revealer {
   position: relative;
   display: block;
   margin-bottom: 32px;
+  will-change: height;
 
   > ul {
     margin: 0;
@@ -40,6 +44,7 @@
   position: absolute;
   bottom: 0px;
   left: 0%;
+
   margin: 0;
   padding-top: 1rem;
   cursor: pointer;

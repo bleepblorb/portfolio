@@ -10,15 +10,15 @@
 
             <!-- standard -->
             <div v-if="introStyle == 'standard'" key="standard">
-              <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to {{model.intro.togglerIntro.options[model.intro.togglerIntro.index]}}.</h2>
+              <h2>A Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to {{model.about.togglerIntro.options[model.about.togglerIntro.index]}}.</h2>
             </div>
 
             <!-- haiku -->
-            <div v-else-if="introStyle == 'haiku'">
+            <div v-else-if="introStyle == 'poetic'">
               <h2>
-                A maker of things. <small>(5)</small><br>
-                Design, dev, &amp; draw – you bet! <small>(7)</small><br>
-                A poet? {{model.intro.togglerPoem.options[model.intro.togglerPoiem.index]}}.
+                A maker of things.<br>
+                Design, dev, &amp; draw – you bet!<br>
+                A poet? {{model.about.togglerPoem.options[model.about.togglerPoem.index]}}.
               </h2>
             </div>
 
@@ -29,7 +29,7 @@
 
             <!-- confident -->
             <div v-else-if="introStyle == 'confident'">
-              <h2>I'm a pretty slick dude with skills and straight teeth. Probably the best that ever was.</h2>
+              <h2>A pretty slick dude with sweet skills, a good attitude, and straight teeth. A true triple threat.</h2>
             </div>
 
             <!-- minimal -->
@@ -39,13 +39,31 @@
 
             <!-- Elevator -->
             <div class="" v-else-if="introStyle == 'elevator'">
-              <h2>Like {{model.intro.togglerElevator.options[model.intro.togglerElevator.index]}}.</h2>
+              <h2>Like {{model.about.togglerElevator.options[model.about.togglerElevator.index]}}.</h2>
             </div>
 
             <!-- intro par -->
-            <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex. To prove I'm an interesting person, I also enjoy
+            <p class="mt-4">
+              I'm a multidisciplinary graphic designer who works on all substrates, surfaces, and screens. I also do web development, illustration, and whatever else I can to get the job done. My approach tends to be simple and functional, yet I'm a sucker for hand lettering and illustrations.
+            </p>
+            <p>
+              Creating is my greatest passion, but to show I'm an interesting person, I also enjoy
               <ul class="-inline-text">
-                <li v-for="item in model.intro.personal">{{item}}</li>
+                <!-- cooking -->
+                <li v-if="model.about.personal.indexOf('cooking') > -1" key="cook">baking treats</li> <!-- hiking -->
+                <li v-if="model.about.personal.indexOf('hiking') > -1" key="hike">hiking through the mountains</li>
+
+                <!-- telivision -->
+                <li v-if="model.about.personal.indexOf('television') > -1" key="tv">binging on television</li>
+
+                <!-- tennis -->
+                <li v-if="model.about.personal.indexOf('tennis') > -1" key="tennis">playing tennis</li>
+
+                <!-- crafts -->
+                <li v-if="model.about.personal.indexOf('crafts') > -1" key="crafts">crafting</li>
+
+                <!-- learning -->
+                <li v-if="model.about.personal.indexOf('learn') > -1" key="learn">learning new skills</li>
               </ul>.
             </p>
           </div>
@@ -63,13 +81,6 @@
             :data-src-xl="model.portraitUrls.xl ? model.portraitUrls.xl : false"
           ></div>
         </div>
-        <!-- <img class="img-fluid" data-image-load
-          :data-src="model.portraitUrls.xs ? model.portraitUrls.xs : false"
-          :data-src-sm="model.portraitUrls.sm ? model.portraitUrls.sm : false"
-          :data-src-md="model.portraitUrls.md ? model.portraitUrls.md : false"
-          :data-src-lg="model.portraitUrls.lg ? model.portraitUrls.lg : false"
-          :data-src-xl="model.portraitUrls.xl ? model.portraitUrls.xl : false"
-        > -->
       </div>
 
 
@@ -82,55 +93,88 @@
           </div>
           <div class="g__col12 g__col9--@md">
             <div class="enter__fade-in-up" data-spy-in>
-              <h2 class="">It's not really what you do that matters, but how you do it.</h2>
-              <p class="mb-6 t--lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute</p>
+              <h2 class="">It's not just what you do that matters, but how you do it.</h2>
+              <p class="mb-6 t--lead">Below is a collection of some of my views on how I approach design — or perhaps something greater. However cliché some may be, I think its a good way to sum up what to expect from me as a designer / human being.</p>
             </div>
             <div class="grid-thing -span-2" data-spy-in  data-spy="target: .enter__fade-in-up; delay: 250">
+              <!-- care -->
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('craft') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
                     <img src="/img/craft-icon.jpg" class="mb-1" alt="" width="100px">
                   </div>
                   <h4>Craft</h4>
-                  <p>Every good idea deserves to be properly executed. (icon = tool, robot)</p>
+                  <p>Every good idea deserves to be properly executed. I take pride in honing my technical abilities and executing designs the right way.</p>
                 </div>
               </div>
-              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('grow') > -1">
+
+              <!-- care -->
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('care') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
                     <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
                   </div>
-                  <h4>Grow</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. (icon = plant, tree)</p>
+                  <h4>Care</h4>
+                  <p>Care about what you do. If it's not worth doing right, it's not worth doing at all. <span class="c--gray-lighter">#ClicheButCorrect</span></p>
                 </div>
               </div>
+
+              <!-- purpose -->
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('purpose') > -1">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Purpose</h4>
+                  <p>Everything should have one. When it comes to design, this is important. In life, probably even more so.</p>
+                </div>
+              </div>
+
+              <!-- beyond -->
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('beyond') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
                     <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
                   </div>
                   <h4>Beyond</h4>
-                  <p>Normal is boring. Make something better. (icon = space, spaceship)</p>
+                  <p>Normal is boring, make something better. I shoot to deliver above expectations.</p>
                 </div>
               </div>
+
+              <!-- grow -->
+              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('grow') > -1">
+                <div class="enter__fade-in-up">
+                  <div class="t--center">
+                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                  </div>
+                  <h4>Grow</h4>
+                  <p>Seek opportunities to learn and expand. Continued education is important... and fun!</p>
+                </div>
+              </div>
+
+              <!-- climb -->
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('climb') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
                     <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
                   </div>
                   <h4>Climb</h4>
-                  <p>A natural evolution of learning, but also a simple challenge to myself. Make every project better than the last – in at least one way. (icon = ladder, mountain)</p>
+                  <p>A simple challenge to myself — Make every project better than the last, in at least one way.</p>
                 </div>
               </div>
+
+              <!-- balance -->
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('balance') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
                     <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
                   </div>
                   <h4>Balance</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
+                  <p>A more generic concept, but I think finding balance is important in most aspects of life. </p>
                 </div>
               </div>
+
+              <!-- enjoy -->
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('enjoy') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
@@ -138,15 +182,6 @@
                   </div>
                   <h4>Enjoy</h4>
                   <p>None of this matters much if you’re a boring jerk. </p>
-                </div>
-              </div>
-              <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('enjoy') > -1">
-                <div class="enter__fade-in-up">
-                  <div class="t--center">
-                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
-                  </div>
-                  <h4>Purpose</h4>
-                  <p>Everything should have one. Generally, this should be more than "looks cool". (icon = target)</p>
                 </div>
               </div>
             </div>
@@ -161,7 +196,7 @@
             <h4 class="c--jazzy section-header">past —</h4>
           </div>
           <div class="g__col12 g__col8--@md g__col7--@lg mb-4">
-            <past-preview id="past"></past-preview>
+            <past-preview id="experience"></past-preview>
           </div>
         </div>
       </div>
@@ -179,7 +214,7 @@
 
             <h4 class="mt-6 mb-3 c--gray-light t--normal">Notable Skills and Experience</h4>
             <div class="g__row mb-4" data-spy-in  data-spy="target: .enter__fade-in-up; delay: 250">
-              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.present.skills.indexOf('print') > -1">
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.experience.skills.indexOf('print') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>ink —</h4>
@@ -192,7 +227,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.present.skills.indexOf('digital') > -1">
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.experience.skills.indexOf('digital') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>pixels —</h4>
@@ -206,7 +241,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.present.skills.indexOf('development') > -1">
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.experience.skills.indexOf('development') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4>bytes —</h4>
@@ -233,7 +268,7 @@
                   </div>
                 </div>
               </div>
-              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.present.skills.indexOf('other') > -1">
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.experience.skills.indexOf('other') > -1">
                 <div class="card">
                   <div class="card-block">
                     <h4 class="">etc —</h4>
@@ -252,7 +287,6 @@
         </div>
       </div>
 
-
       <!-- Future -->
       <div class="container py-6 -max--lg">
         <div class="g__row ">
@@ -261,28 +295,9 @@
           </div>
           <div class="g__col12 g__col9--@md mb-4">
             <h4 class="c--gray-light t--normal">Looking for</h4>
-            <h2>Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit Sed D </h2>
-            <p class="t--lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-
-            <!-- <div class="g__row mt-4">
-              <div class="g__col6 mb-3">
-                <h5>Collabortive</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-              </div>
-              <div class="g__col6 mb-3">
-                <h5>Invested</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-              </div>
-              <div class="g__col6 mb-3">
-                <h5>Opinionated</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-              </div>
-              <div class="g__col6 mb-3">
-                <h5>Opinionated</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-              </div>
-            </div> -->
+            <!-- <h2>Seeking a team with new opportunities and challenges to push my work to the next level.</h2> -->
+            <h2>A team that can benefit from my diverse set of skills and push me to my fullest potential.</h2>
+            <p class="mt-3">I'm looking for a team who values quality, collaboration, and personal / professional growth. A team that inspires and pushes me on a continual basis. In return I can offer hard work, commitment, and the occasional homemade pie. That and all the design stuff, of course.</p>
 
             <div class="g__row mt-5">
               <div class="g__col6--@sm mb-3">
@@ -367,7 +382,7 @@
 
     computed : {
       introStyle() {
-        return this.model.intro.introStyle;
+        return this.model.about.introStyle;
       },
       portraitUrls() {
         return this.model.portraitUrls;

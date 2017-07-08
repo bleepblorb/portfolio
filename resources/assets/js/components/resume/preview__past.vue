@@ -10,8 +10,7 @@
             <span class="job__location">Western Washington University</span>
           </h6>
           <h2 class="job__title">Grabbing a Bacholers of Arts degree in Graphic Design.</h2>
-          <p class="job__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-          <p class="t--sans t--small c--gray-light">Read More</p>
+          <p class="job__desc">The graphic design program at WWU not only taught me the traditional design process, but provided me with a technical foundation for producing designs for the real world. My senior year focus was in print production.</p>
         </div>
 
         <div class="job">
@@ -20,18 +19,16 @@
             <span class="job__location">Associated Students Publicity Center</span>
           </h6>
           <h2 class="job__title">Part time Graphic Designer.</h2>
-          <p class="job__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-          <p class="t--sans t--small c--gray-light">Read More</p>
+          <p class="job__desc">While going to university I worked part-time at the school run graphic design office. I worked mainly with campus clubs and organizations to produce promotional materials in various formats — including posters, handbills, digital signage, t-shirts, logos, and banners.</p>
         </div>
 
         <div class="job">
           <h6>
-            <span class="job__date">2009–2014</span>
+            <span class="job__date">2012–2014</span>
             <span class="job__location">SRM Architecture and Marketing</span>
           </h6>
           <h2 class="job__title">Graphic Designer / Developer at a multidisciplinary design firm.</h2>
-          <p class="job__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-          <p class="t--sans t--small c--gray-light">Read More</p>
+          <p class="job__desc">Worked with a great team of graphic designers, interior designers, and architects on projects big and small. Being a part of such a diverse firm allowed me to to work on a large range of projects — including websites, print materials, brand experiences, interior graphics, and environmental signage.</p>
         </div>
 
         <div class="job">
@@ -40,8 +37,9 @@
             <span class="job__location">SRM Architecture and Marketing</span>
           </h6>
           <h2 class="job__title">Upgrade to Lead Digital Designer.</h2>
-          <p class="job__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-          <p class="t--sans t--small c--gray-light">Read More</p>
+          <p class="job__desc">
+            On all digital projects I took on the lead design role and was more active with creative direction, project management and client communication responsibilities. Projects were typically websites and interactive displays.
+            </p>
         </div>
       </div>
 
@@ -70,7 +68,7 @@
     computed : {
       format() {
         if ( this.model ) {
-          return this.model.format;
+          return this.model.past;
         }
       }
     },

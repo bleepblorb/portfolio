@@ -1,19 +1,33 @@
 <template>
   <div class="editor__phase">
     <transition name="slide-next">
-      <div class="editor__step" v-if="state.currentStep == -1">
+      <div class="editor__step welcome-step" v-if="state.currentStep == -1">
         <div class="editor__content">
-          <div class="intro-photo">
-            <!-- <img src="blank.jpg" alt=""> -->
-          </div>
+          <!-- <div class="intro-photo">
+            <img src="blank.jpg" alt="">
+          </div> -->
 
           <div class="editor__question">
             <h4 class="c--gummy">Welcome</h4>
-            <h5>Thank you for taking the time to craft the perfect resume for me that will delight and impress you.</h5>
-            <p>
-              Read over the info in the Preview Pane to get a quick overview.
-            </p>
-            <p><button type="button" class="btn btn-primary" @click="begin()">Get Started Already</button></p>
+            <h3 class="c--late-night">How pumped are you to begin?</h3>
+          </div>
+          <div class="editor__input -condensed">
+            <multiselect
+              v-model="value"
+              :options="options"
+              placeholder="Select"
+              :allow-empty="false"
+              >
+            </multiselect>
+          </div>
+
+          <div class="editor__input -standard">
+            <radial-group
+              :options="options"
+              id="welcome"
+              v-model="value"
+              >
+            </radial-group>
           </div>
         </div>
       </div>
@@ -26,23 +40,50 @@
 
   import {store} from '../global';
   import multiselect from '../multiselect';
+  import radialGroup from '../radialGroup';
 
   export default {
 
     components : {
-      multiselect
+      multiselect, radialGroup
     },
 
     data() {
       return {
-        state : store.resume.state
+        state : store.resume.state,
+        model : store.resume.model.tour,
+        options: [
+          { label : "Totally", value : 'totally'},
+          { label : "Completely", value : 'completely'},
+          { label : "110%", value : 'overly'},
+          { label : "Meh", value : 'lying about being'},
+        ]
+      }
+    },
+
+    computed : {
+      value : {
+        get() {
+          return store.resume.model.tour.value;
+        },
+        set(val) {
+          store.resume.model.tour.value = val;
+        }
+      }
+    },
+
+    watch : {
+      value (newVal, oldVal) {
+        console.log('new val');
+        if (oldVal === '') {
+          if(Shepherd.activeTour) {
+            Shepherd.activeTour.next();
+          }
+        }
       }
     },
 
     props : {
-      options : {
-        type : Array
-      }
     },
 
     methods : {

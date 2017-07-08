@@ -5,29 +5,26 @@
     <div class="spacer" style="min-height: 40vh"></div>
     <div class="g__row mb-6">
 
-      <div class="g__col12 enter__fade-in-up" data-spy-in data-spy="class: -inview">
+      <div class="g__col12 enter__fade-in-up tester" data-spy-in data-spy="class: -inview">
         <h4 class="c--gray-light">Adam Volkman —</h4>
         <h1 class="mb-0">Designer, developer, doodler.</h1>
         <revealer class="t--h1" :options="[
           'More attractive in-person.',
-          'Looking for new skills.',
           'Thinks he\'s funny.',
           'Bakes pies and shares.',
           'Telivision addict.',
-          'Eats healthy or terrible.',
-          'Fond of ___________.',
-          'Wishes ________.',
           'Thinks mad libs are ___(adj)____.',
           'Feared by houseplants.',
-          'Walks in / around nature.',
+          'Hikes around the outdoors.',
           'Photographs food, but doesn\'t post online.',
-          'Usually listening to music.',
-          'Pretty good guy.',
-          'Would rather talk about you.',
-          'Bless him, he tries.',
+          'Always has music playing.',
+          'Big fan of breakfast.',
+          'Pretty nice guy.',
           'Sits a lot, but active at times.',
           'Dances when nobody\'s watching.',
           'Always an advocate of alliteration.',
+          'Not fond of parties.',
+          'Not much on first impression.',
         ]"></revealer>
       </div>
     </div>

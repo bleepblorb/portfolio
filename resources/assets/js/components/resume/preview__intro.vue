@@ -2,18 +2,18 @@
     <div :id="'phase__' + id">
 
       <!-- Intro Heading -->
-      <div v-if="state.currentStep == 1" class="-max--md -center">
+      <div class="-max--md -center">
         <!-- standard -->
         <div class="" v-if="introStyle == 'standard'" key="standard">
-          <h2>I’m a multidisciplinary Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to <toggler :active="state.editMode" id="togglerIntro" :index="togglerIntro.index" :options="togglerIntro.options"></toggler>.</h2>
+          <h2>A Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal <toggler :active="state.editMode" id="togglerIntro" :index="togglerIntro.index" :options="togglerIntro.options"></toggler>.</h2>
         </div>
 
         <!-- poetic -->
-        <div class="" v-else-if="introStyle == 'haiku'" key="haiku">
+        <div class="" v-else-if="introStyle == 'poetic'" key="poetic">
           <h2>
             A maker of things. <small>(5)</small><br>
             Design, dev, &amp; draw – you bet! <small>(7)</small><br>
-            A poet? <toggler :active="state.editMode" id="togglerPoem" :index="togglerPoem.index" :options="toggerlPoem.options"></toggler>.<popover class="c--gray-light" content="<b>Hint.</b> It's a haiku"><icon name="delete" size="sm"></icon></popover>
+            A poet? <toggler :active="state.editMode" id="togglerPoem" :index="togglerPoem.index" :options="togglerPoem.options"></toggler>.<popover class="c--gray-light" content="<b>Hint.</b> It's a haiku"><icon name="delete" size="sm"></icon></popover>
           </h2>
           <h6 class="c--gray-light mt-2">— Adam Volkman, 2017</h6>
         </div>
@@ -25,12 +25,12 @@
 
         <!-- confident -->
         <div class="" v-else-if="introStyle == 'confident'" key="confident">
-          <h2>I'm a pretty slick dude with skills and straight teeth. Probably the best that ever was.</h2>
+          <h2>A pretty slick dude with sweet skills, a good attitude, and straight teeth. A true triple threat.</h2>
         </div>
 
         <!-- hard to get -->
         <div class="" v-else-if="introStyle == 'hard'" key="hard">
-          <h2>I'm a graphic designer &amp; developer currently doing my own thing. It's pretty sweet. I mean, if you need some help out, I guess I could join you.</h2>
+          <h2>I'm a graphic designer and developer currently doing my own thing. It's pretty sweet. I mean, I could maybe help you out if you need me.</h2>
         </div>
 
         <!-- Elevator -->
@@ -48,7 +48,7 @@
         <!-- intro -->
         <div v-else >
           <div class="alert -info -max--sm -center">
-            <p class="t--sans c--jazzy"><strong>Remember —</strong> Your first impression is very important. It sets the tone for the whole resume and everyone will decide instantly whether they hate you or not. <strong>Good Luck!</strong>
+            <p class="t--sans c--jazzy"><strong>Remember —</strong> The first impression is very important. It sets the tone for the whole resume and you will decide instantly whether you hate me or not.
             </p>
           </div>
         </div>

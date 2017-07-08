@@ -39,10 +39,13 @@
 
     computed : {
       length() {
-        return this.options.length;
+        return this.randomOptions.length;
       },
       randomOptions() {
-        return _.shuffle(this.options);
+        let opts = _.shuffle(this.options);
+        opts.push("Thats about it...");
+
+        return opts;
       }
     },
 
@@ -54,14 +57,18 @@
           this.activeIndex ++;
 
           this.$nextTick( () => {
-            this.setHeight();
+            let container = document.querySelector('.tester');
 
             let items = this.$refs.revealer.querySelectorAll('.revealer__item');
             let scroll = items[items.length - 1].clientHeight;
 
+            this.setHeight();
+            // window.setTimeout( () => {
+            //   window.scrollBy(0, scroll);
+            // }, 600);
             let curScrollTop = window.pageYOffset;
 
-            Velocity( document.body ,"scroll", { duration: 600, offset: window.pageYOffset + scroll, mobileHA: false }, "linear");
+            Velocity( document.body ,"scroll", { duration: 450, offset: window.pageYOffset + scroll, mobileHA: false }, "linear");
           });
         }
       },
@@ -70,14 +77,20 @@
         return this.randomOptions.slice(0, index);
       },
 
-      setHeight(dur = 600) {
+      setHeight(dur = 450) {
         let height = 0;
+        let container = this.$refs.revealer;
 
-        Array.from(this.$el.children).forEach( item => {
+        Array.from(container.children).forEach( item => {
           height += item.clientHeight;
         });
 
-        Velocity( this.$refs.revealer, {height: height}, { duration: dur, }, "linear");
+        Velocity( container, {height: height}, { duration: dur, }, "linear");
+
+        document.querySelector('body').style.overflow = 'hidden';
+        window.setTimeout( () => {
+          document.querySelector('body').style.overflow = '';
+        }, dur);
       }
 
     },

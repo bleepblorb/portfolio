@@ -29,8 +29,8 @@
 
           <div class="modal__footer" v-if="confirmation">
             <slot name="modal-footer">
-              <button class="btn btn-link -align-self--start"  @click="hide(false)">{{closeTitle}}</button>
-              <button class="btn btn-primary" @click="hide(true)">{{okTitle}}</button>
+              <v-button variant="outline" color="primary" class="-align-self--start"  @click="hide(false)">{{closeTitle}}</v-button>
+              <v-button color="secondary" @click="hide(true)">{{okTitle}}</v-button>
             </slot>
           </div>
           <div class="modal__footer" v-else-if="this.$slots['modal-footer']">

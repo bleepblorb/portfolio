@@ -22,11 +22,14 @@ class ImageController extends Controller
       'facialHair' => 'clean',
       'expression' => 'neutral',
       'background' => 'none',
-      'hair' => 'defualt',
+      'hair' => 'standard',
       'hands' => 'default',
     ];
-    $portrait = array_merge( $defaults, $input );
+
+    // array_filter strips any blank values so that they dont overwrite the defaults
+    $portrait = array_merge( $defaults, array_filter($input, 'strval') );
     ksort($portrait);
+
 
     // convert array to hash
     $decode = json_encode($portrait);

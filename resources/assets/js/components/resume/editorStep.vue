@@ -6,11 +6,14 @@
       </div>
 
       <div class="editor__question">
-        <h4 class="c--gummy">{{intro}}</h4>
+        <h4 class="c--gummy mb-1">{{intro}}</h4>
         <h3 class="c--late-night">{{question}}</h3>
+        <p class="c--gray mt-3" v-if="description">{{description}}</p>
       </div>
 
-      <div class="editor__input -condensed">
+      <div
+        class="editor__input -condensed"
+        v-if="this.inputType !== 'intro'">
         <multiselect
           v-model="value"
           :options="options"
@@ -18,11 +21,13 @@
           :multiple="this.inputType === 'checkbox-group'"
           :close-on-select="this.inputType !== 'checkbox-group'"
           :allow-empty="false"
-          class="g__col">
+          >
         </multiselect>
       </div>
 
-      <div class="editor__input -standard">
+      <div
+        class="editor__input -standard"
+        v-if="this.inputType !== 'intro'">
         <component :is="inputType"
           :options="options"
           :id="id"
@@ -71,12 +76,14 @@
       question : {
         type : String
       },
+      description : {
+        type : String
+      },
       inputType : {
         type : String
       },
       options : {
         type: Array,
-        required : true
       },
       imageUrl : {
         type : String
@@ -111,11 +118,11 @@
           return this.model[this.id];
         },
         set(newValue) {
-          this.model[this.id] = newValue;
+          this.model[this.id] = newValue ;
         }
       },
       isSet() {
-        return !this.isEmpty(this.value);
+        return !this.isEmpty(this.value) || this.inputType == 'intro';
       }
     },
 

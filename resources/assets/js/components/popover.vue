@@ -106,17 +106,6 @@
         delay: {
             type: [Number, Array],
             default: null,
-            validator(value) {
-              if (typeof value === 'number') {
-                return value >= 0;
-              } else if (value !== null && typeof value === 'array') {
-                return typeof value[0] === 'number' &&
-                  typeof value[1] === 'number' &&
-                  value[0] >= 0 &&
-                  value[1] >= 0;
-              }
-              return false;
-            }
         },
 
         timer : {

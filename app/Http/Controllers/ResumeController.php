@@ -12,7 +12,10 @@ class ResumeController extends Controller
 
   protected $baseModel = [
     'model' => [
-      'intro' => [
+      'tour' => [
+        'value' => '',
+      ],
+      'about' => [
         'introStyle' => '',
         'personal' => [],
         'togglerPoem' => [
@@ -30,18 +33,18 @@ class ResumeController extends Controller
           'options' => [
             'create things with value',
             'make cool shit',
-            'get paid for doing something I love'
           ],
         ],
         'togglerElevator' => [
           'index' => 0,
           'options' => [
             'dribble, but with less drop shadows',
-            'Squarespace, but with fewer podcast ads',
+            'Squarespace, but with fewer promo codes',
             '99Designs, but not terrible',
-            'Yahoo for real life — but like 20 years ago Yahoo',
+            'Fiverr, but much more expensive for some reason',
           ],
         ],
+        'manifesto' => [],
       ],
       'portrait' => [
         'expression' => 'neutral',
@@ -49,23 +52,18 @@ class ResumeController extends Controller
         'hair' => 'standard',
         'background' => '',
         'attire' => 'base',
-        'hands' => 'default',
+        'hands' => '',
       ],
       'portraitUrls' => [
       ],
-      'about' => [
-        'manifesto' => [],
-      ],
-      'past' => [
-        'format' => '',
-      ],
-      'present' => [
+      'experience' => [
+        'past' => '',
         'skills' => [],
       ]
     ],
     'state' => [
-      'currentStep' => 1,
-      'currentPhase'=> 0,
+      'currentStep' => -1,
+      'currentPhase'=> 'welcome',
       'furthestAllowed' => 0,
       'completedSteps' => 0,
       'isComplete' => false,
@@ -76,26 +74,27 @@ class ResumeController extends Controller
     ]
   ];
 
-  protected function createCookie() {
+  protected function createCookie($id = false) {
     $name = "resume_data";
     $minutes = 20;
-    $id = Uuid::generate()->string;
+    $key = $id;
     $data = json_encode($this->baseModel);
 
+    if( !$key ) {
+      $key = Uuid::generate()->string;
+      // Generate Database storage for user
+      DB::table('user_cookies')->insert([
+        'id' => $key,
+        'resume_data' => $data,
+        'last_visited' => Carbon::now(),
+      ]);
+    }
 
-    // Generate Database storage for user
-    DB::table('user_cookies')->insert([
-      'id' => $id,
-      'resume_data' => $data,
-      'last_visited' => Carbon::now(),
-    ]);
-
-    return cookie($name, $id , $minutes);
+    return cookie($name, $key , $minutes);
   }
 
   // Get fresh Resume object
   public function getFresh(Request $request) {
-
 
     $cookie = $request->cookie('resume_data');
 
@@ -103,10 +102,16 @@ class ResumeController extends Controller
       $data = DB::table('user_cookies')
         ->where('id', '=', $cookie)
         ->update(['resume_data' => json_encode($this->baseModel)]);
+
+      // does not exist in database, generate new cookie
+      if ( !$data ) {
+        $cookie = $this->createCookie();
+      }
     }
     else {
       $cookie = $this->createCookie();
     }
+
     return response()->json($this->baseModel)->cookie($cookie);
   }
 
@@ -114,14 +119,24 @@ class ResumeController extends Controller
     // Generate Database storage for user
 
     $cookie = $request->cookie('resume_data');
-    // return $request->cookie('resume_data');
+
     if ( $cookie ) {
 
       $data = DB::table('user_cookies')
         ->where('id', '=', $cookie)
         ->value('resume_data');
 
-        return response()->json(json_decode($data));
+      if( $data ) {
+        DB::table('user_cookies')
+          ->where('id', '=', $cookie)
+          ->update(['last_visited' => Carbon::now()]);
+
+        return response()->json(json_decode($data))->cookie($this->createCookie($cookie));
+      }
+      else {
+        return response()->json(['error' => 'No saved file found'], 412);
+      }
+
     } else {
       return response()->json(['error' => 'No saved file found'], 412);
     }
@@ -162,9 +177,15 @@ class ResumeController extends Controller
 
 
     $defaults = [
-      'intro' => [
+      'tour' => [
+        'value' => ''
+      ],
+      'about' => [
         'introStyle' => 'standard',
-        'personal' => ["making a mess in the kitchen", "pooping in the woods", "watching cartoons", "learning new skills (that killz)", "playing tennis"],
+        'personal' => ['cooking', 'tennis', 'hiking', 'learn', 'crafts', 'television'],
+        'manifesto' => [
+          'craft', 'balance', 'enjoy', 'grow', 'climb', 'beyond', 'care', 'purpose'
+        ]
       ],
       'portrait' => [
         'facialHair' => 'scruff',
@@ -177,15 +198,8 @@ class ResumeController extends Controller
         'md' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-md.jpg",
         'xs' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-xs.jpg"
       ],
-      'about' => [
-        'manifesto' => [
-          'craft', 'balance', 'enjoy', 'grow', 'climb', 'beyond'
-        ]
-      ],
-      'past' => [
-        'format' => 'detail'
-      ],
-      'present' => [
+      'experience' => [
+        'past' => 'detail',
         'skills' => ['print', 'digital', 'development', 'other']
       ]
     ];

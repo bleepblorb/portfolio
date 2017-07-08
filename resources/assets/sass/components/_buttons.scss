@@ -173,6 +173,14 @@ fieldset[disabled] a.btn {
       @include button-outline-variant($btn-danger-bg);
     }
   }
+
+  &.-reverse {
+    @include button-variant($white, $white, $white);
+
+    &.-outline {
+      @include button-outline-variant($white, $gray);
+    }
+  }
 }
 
 //

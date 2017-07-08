@@ -10,6 +10,7 @@
           :imageUrl="step.imageUrl"
           :intro="step.intro"
           :question="step.question"
+          :description="step.desc"
           :inputType="step.type"
           :options="step.options"
           :placeholder="step.placeholder || ''"
@@ -93,19 +94,6 @@
       }
     },
 
-    created() {
-      Event.$on('nextStep', this.nextStep);
-      Event.$on('prevStep', this.prevStep);
-      Event.$on('setStep', this.setStep);
-      Event.$on('setComplete', () => {
-        this.completed = this.lastStep;
-      });
-      Event.$on('reset', () => {
-        this.currentStep = 0;
-        this.completed = -1;
-      });
-    },
-
     methods : {
 
       enter(el) {
@@ -177,6 +165,19 @@
           console.log('already completed');
         }
       }
-    }
+    },
+
+    created() {
+      Event.$on('nextStep', this.nextStep);
+      Event.$on('prevStep', this.prevStep);
+      Event.$on('setStep', this.setStep);
+      Event.$on('setComplete', () => {
+        this.completed = this.lastStep;
+      });
+      Event.$on('reset', () => {
+        this.currentStep = 0;
+        this.completed = -1;
+      });
+    },
   }
 </script>

@@ -5,17 +5,18 @@
         <transition name="slide" mode="out-in">
           <welcome-phase class="preview__phase" key="welcome" id="welcome" v-if="state.currentPhase == 'welcome'"></welcome-phase>
 
-          <intro-preview class="preview__phase" key="intro" id="intro" v-if="state.currentPhase == 0 && state.currentStep == 1"></intro-preview>
+          <intro-preview class="preview__phase" key="intro" id="about" v-if="state.currentPhase == 0 && state.currentStep == 2"></intro-preview>
 
-          <interests-preview class="preview__phase" key="interests" id="intro" v-if="state.currentPhase == 0 && state.currentStep == 2"></interests-preview>
+          <interests-preview class="preview__phase" key="interests" id="about" v-if="state.currentPhase == 0 && state.currentStep == 3"></interests-preview>
+
+          <about-preview class="preview__phase" key="about" id="about" v-if="state.currentPhase == 0 && state.currentStep == 4"></about-preview>
 
           <portrait-phase class="preview__phase" key="portrait" id="portrait" v-if="state.currentPhase == 1"></portrait-phase>
 
-          <about-preview class="preview__phase" key="about" id="about" v-if="state.currentPhase == 2"></about-preview>
+          <skills-preview class="preview__phase" key="skills" id="experience" v-if="state.currentPhase == 2 && state.currentStep == 11"></skills-preview>
 
-          <past-preview class="preview__phase" key="past" id="past" v-if="state.currentPhase == 3"></past-preview>
+          <past-preview class="preview__phase" key="past" id="experience" v-if="state.currentPhase == 2 && state.currentStep == 12"></past-preview>
 
-          <skills-preview class="preview__phase" key="skills" id="present" v-if="state.currentPhase == 4"></skills-preview>
         </transition>
       </div>
   </div>
