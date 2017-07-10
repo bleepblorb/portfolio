@@ -142,46 +142,48 @@ export default {
 
   data() {
     return {
+      schema : schema,
       state : store.resume.state,
       model : store.resume.model,
-      schema : schema,
     }
   },
 
   computed :{
+
     isComplete() {
-      this.state.isComplete = this.state.completedSteps == this.state.totalSteps ? true : false;
-      return this.state.completedSteps == this.state.totalSteps ? true : false;
+      let val = this.state.completedSteps == this.state.totalSteps ? true : false;
+      
+      store.resume.state.isComplete = val;
+      return val;
     },
+
     totalSteps() {
       let count = 0;
 
       _.forEach(this.schema.phases, (phase) => {
         count += phase.steps.length;
       });
-      this.state.totalSteps = count;
+
+      store.resume.state.totalSteps = count;
 
       return count;
     },
+
     furthestAllowed() {
       let furthest = _.min([this.state.completedSteps + 1, this.state.totalSteps]);
 
-      this.state.furthestAllowed = furthest;
+
+      store.resume.state.furthestAllowed = furthest;
       return furthest;
     },
+
     editMode() {
       return this.state.editMode;
     }
   },
 
   watch : {
-    isComplete(newVal, oldVal) {
-      this.state.isComplete = newVal;
-    },
 
-    furthestAllowed() {
-      this.state.furthestAllowed = this.furthestAllowed;
-    },
     editMode(newVal) {
       newVal ? Event.$emit('hideMenu') : Event.$emit('showMenu');
 
@@ -199,18 +201,21 @@ export default {
         }
       })
     },
+
     model : {
       handler() {
         this.save();
       },
       deep : true
     },
+
     state : {
       handler() {
         this.save();
       },
       deep : true
     },
+
     'state.completedSteps' : function(val) {
       console.log('completed Steps changed to: ', val, this.state.completedSteps);
 
@@ -225,10 +230,10 @@ export default {
         return;
       }
 
-      this.state.currentPhase = 'toc';
-      this.state.currentStep = -1;
-      this.state.direction = 'next';
-      this.state.editMode = true;
+      store.resume.state.currentPhase = 'toc';
+      store.resume.state.currentStep = -1;
+      store.resume.state.direction = 'next';
+      store.resume.state.editMode = true;
     },
 
     closeEditor(confirm = false) {
@@ -257,10 +262,10 @@ export default {
           }, 1600);
         }
 
-        this.state.editMode = false;
+        store.resume.state.editMode = false;
         window.setTimeout( () => {
-          this.state.currentPhase = 'toc';
-          this.state.previewMode = false;
+          store.resume.state.currentPhase = 'toc';
+          store.resume.state.previewMode = false;
         }, 850)
       }
     },
@@ -299,7 +304,8 @@ export default {
           store.resume.state[key] = item;
         });
 
-        this.state.showIntro = true;
+        // store.resume.state.showIntro = true;
+        this.$set(store.resume.state, 'showIntro', true);
       })
       .catch(function (error) {
         console.log(error);
@@ -373,9 +379,9 @@ export default {
     },
 
     startTour() {
-      this.state.currentPhase = 'welcome';
-      this.state.currentStep = -1;
-      this._editorTour.start();
+      store.resume.state.currentPhase = 'welcome';
+      store.resume.state.currentStep = -1;
+      store.resume._editorTour.start();
     },
 
     skipTour() {
@@ -400,7 +406,7 @@ export default {
 
 
     Event.$on('updateModel', (phase, step, value) => {
-      this.$set(this.model[phase], step, value);
+      this.$set(store.resume.model[phase], step, value);
       console.log("updating " + phase +"->" + step + " to " + value);
     });
 
@@ -411,16 +417,16 @@ export default {
     Event.$on('stepComplete', (step) => {
       if ( step > this.state.completedSteps ) {
         console.log( "Setting state.completedSteps:", step);
-        this.state.completedSteps = step;
+        store.resume.state.completedSteps = step;
       }
     });
 
     Event.$on('togglePreviewMode', () => {
-      this.state.previewMode = !this.state.previewMode;
+      store.resume.state.previewMode = !this.state.previewMode;
     });
 
     Event.$on('setPreviewMode', (bool) => {
-      this.state.previewMode = bool;
+      store.resume.state.previewMode = bool;
     });
 
     Event.$on('setDefault', (data) => {
@@ -429,8 +435,8 @@ export default {
 
     Event.$on('setComplete', () => {
       console.log('Event: setComplete');
-      this.state.showIntro = false;
-      this.state.completedSteps = this.totalSteps;
+      store.resume.state.showIntro = false;
+      store.resume.state.completedSteps = this.totalSteps;
 
       console.log('isComplete:', this.state.isComplete);
     });
@@ -471,7 +477,7 @@ export default {
       attachTo : ".welcome-step .editor__question top",
       when : {
         'before-show' : () => {
-          this.state.previewMode = false;
+          store.resume.state.previewMode = false;
           // let element = document.createElement('div');
           // element.classList.add('modal-backdrop');
           // document.body.insertBefore(element, null);
@@ -619,7 +625,7 @@ export default {
       if (backdrop) {
         backdrop.remove();
       };
-      this.state.tourComplete = true;
+      store.reusme.state.tourComplete = true;
     });
 
     this._editorTour.on('cancel', () => {
@@ -628,7 +634,7 @@ export default {
         backdrop.remove();
       };
       Event.$emit('setPhase', 0, 0);
-      this.state.tourComplete = true;
+      store.resume.state.tourComplete = true;
     });
   }
 }
