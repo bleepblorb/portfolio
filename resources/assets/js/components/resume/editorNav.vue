@@ -78,7 +78,7 @@
 
     methods : {
       nextStep() {
-        if ( this.state.currentStep < this.state.furthestAllowed ) {
+        if ( this.state.currentStep < this.state.furthestAllowed  && this.state.currentStep >= 0) {
           Event.$emit('nextStep');
         }
       },
