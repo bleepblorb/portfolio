@@ -28,7 +28,8 @@ body.edit {
   left: 0;
   width: 100%;
   overflow: hidden;
-  height: 100vh;
+  // height: 100vh;
+  bottom: 0px;
   display: flex;
   flex-wrap: nowrap;
   z-index: $zindex-fixed;
@@ -109,6 +110,7 @@ body.edit {
       max-width: 640px;
     }
   };
+
 }
 
 .resume__editor-wrap {
@@ -127,9 +129,6 @@ body.edit {
   transform: translateX(0px);
   transition: opacity 650ms;
 
-  // .edit-mode & {
-  //   transform: translateX(-350px);
-  // }
 
   @include media-breakpoint-down(lg){
     .preview-mode & {
@@ -162,9 +161,6 @@ body.edit {
     transform: translateX(25%);
   }
 }
-
-
-
 
 
 
@@ -372,23 +368,27 @@ body.edit {
 
 .sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50px;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 50px;
   transform: translateX(0%);
-  transition: all 350ms 650ms;
   z-index: 99;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  padding-bottom: 16px;
+  padding: 8px 16px;
+  background-color: rgba($white, .85);
 
-  // .edit-mode & {
-  //   transform: translateX(-100%);
-  //   transition: all 350ms 0ms;
-  // }
+
+  @include media-breakpoint-up(md) {
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    width: 50px;
+    background-color: transparent;
+  }
 
   &.v-enter-active,
   &.v-leave-active {
@@ -433,6 +433,7 @@ body.edit {
   background-color: $white;
   transform: translateX(0%);
   transition: all 650ms, height 1ms;
+  -webkit-overflow-scrolling: touch;
 
   // transitions
   .edit-mode-enter-active &,
@@ -645,6 +646,11 @@ body.edit {
     transform: translateY(48px);
     opacity: 0;
   }
+
+  // fallback since overflow trick does not prevent scrolling on ios (not sure aobut other mobile, so just including it)
+  .ua-mobile .edit & {
+    display: none;
+  } 
 }
 
 .resume__layout-wrap {

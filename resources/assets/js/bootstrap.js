@@ -4,6 +4,8 @@ window.Tether = require('tether');
 window.Shepherd = require('tether-shepherd');
 window.Velocity = require('velocity-animate');
 
+require('cssuseragent');
+
 // window.Shepherd = require('./components/shepherd.js');
 
 /**
