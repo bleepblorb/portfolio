@@ -13,9 +13,9 @@
 
           <portrait-phase class="preview__phase" key="portrait" id="portrait" v-if="state.currentPhase == 1"></portrait-phase>
 
-          <skills-preview class="preview__phase" key="skills" id="experience" v-if="state.currentPhase == 2 && state.currentStep == 11"></skills-preview>
+          <skills-preview class="preview__phase" key="skills" id="experience" v-if="state.currentPhase == 2 && state.currentStep == 12"></skills-preview>
 
-          <past-preview class="preview__phase" key="past" id="experience" v-if="state.currentPhase == 2 && state.currentStep == 12"></past-preview>
+          <past-preview class="preview__phase" key="past" id="experience" v-if="state.currentPhase == 2 && state.currentStep == 13"></past-preview>
 
         </transition>
       </div>

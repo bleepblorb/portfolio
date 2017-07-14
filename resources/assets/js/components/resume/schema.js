@@ -128,7 +128,7 @@ let schema = {
         {
           id : "desc",
           intro : "Portrait",
-          question : "They say you shouldn't judge a book by its cover, but that doesnt mean we cant still make it look good.",
+          question : "Pick out the look that just shouts \"employable\".",
           type : "intro",
           imageUrl : "/img/portrait-beard.png",
         },
@@ -291,10 +291,17 @@ let schema = {
       id : 'experience',
       title : "Skills / Experience",
       steps : [
+       {
+          id : "intro",
+          intro : "Skills / Experience",
+          question : "On to the important stuff",
+          type : "intro",
+          imageUrl : "/img/portrait-beard.png",
+        },
         {
           id : "skills",
-          intro : "Skills / Experience",
-          question : "Choose the skills you are looking for",
+          intro : "Skillz that killz",
+          question : "Select the skills you are looking for",
           type : "checkbox-group",
           imageUrl : "/img/portrait-beard.png",
           options : [
