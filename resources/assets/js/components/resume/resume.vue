@@ -89,6 +89,7 @@ store.resume.state = {
   currentPhase: 'welcome',
   furthestAllowed : 0,
   completedSteps : 0,
+  completedPhases : -1,
   totalSteps : 0,
   direction : '',
   isComplete : false,

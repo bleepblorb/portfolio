@@ -3,10 +3,11 @@
   <div class="resume__editor g__col" @mousedown="setPreview(false)">
 
     <div class="resume__editor-wrap">
+
       <!-- Header -->
       <div class="editor__header">
         <div class="progress editor__progress">
-          <div class="progress-bar" role="progressbar" :aria-valuenow="percentComplete" aria-valuemin="0" aria-valuemax="100" :style="{width : percentComplete + '%'}"></div>
+          <div class="progress-bar" role="progressbar" :aria-valuenow="percentComplete" aria-valuemin="0" aria-valuemax="100" :style="{width : percentComplete + '%'}" ></div>
         </div>
         <h5 class="editor__phase-heading">{{ schema.phases[currentPhase] ? schema.phases[currentPhase].title : '...'}}</h5>
         <ul class="editor__phase__dots">
@@ -20,7 +21,7 @@
       </div>
 
       <!-- Slot Content -->
-      <transition-group name="v" tag="div" class="editor_phases">
+      <transition-group tag="div" class="editor_phases">
         <editor-toc
           key="toc"
           :options="phaseList"
@@ -77,7 +78,6 @@
     data() {
       return {
         state : store.resume.state,
-        completed: -1,
       }
     },
 
@@ -99,6 +99,7 @@
       totalPhases() {
         return this.schema.phases.length;
       },
+
       totalSteps() {
         let count = 0;
 
@@ -108,18 +109,20 @@
 
         return count;
       },
+
       lastPhase() {
         return this.totalPhases - 1;
       },
+
       furthestAllowed() {
-        return _.min([this.completed + 1, this.lastPhase]);
+        return _.min([this.state.completedPhases + 1, this.lastPhase]);
       },
-      isComplete() {
-        return this.completed == this.lastPhase;
-      },
+
+
       isLastPhase() {
         return this.currentPhase == this.lastPhase;
       },
+
       percentComplete() {
         return (this.state.completedSteps / this.totalSteps) * 100;
       }
@@ -181,7 +184,7 @@
 
           this.$nextTick(function () {
             if( step != null ) {
-              console.log('emitting step from setPhase()');
+
               Event.$emit('setStep', step, index);
             }
           });
@@ -190,8 +193,8 @@
 
       phaseComplete(index) {
         console.log('Phase Completed:', index);
-        if ( index > this.completed && index <= this.lastPhase ) {
-          this.completed = index;
+        if ( index > this.state.completedPhases && index <= this.lastPhase ) {
+          this.state.completedPhases = index;
         }
       }
     },
@@ -201,11 +204,11 @@
       Event.$on('prevPhase', this.prevPhase);
       Event.$on('setPhase', this.setPhase);
       Event.$on('setComplete', () => {
-        this.completed = this.lastPhase;
+        this.state.completedPhases = this.lastPhase;
       });
       Event.$on('reset', () => {
         this.currentPhase = 0;
-        this.completed = -1;
+        this.state.completedPhases = -1;
       });
     },
 

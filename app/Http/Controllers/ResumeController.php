@@ -66,6 +66,7 @@ class ResumeController extends Controller
       'currentPhase'=> 'welcome',
       'furthestAllowed' => 0,
       'completedSteps' => 0,
+      'completedPhases' => -1,
       'isComplete' => false,
       'editMode' => false,
       'previewMode' => false,

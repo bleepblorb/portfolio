@@ -37,18 +37,22 @@
         type : String,
         required : true
       },
+
       steps : {
         type : Array,
         required : true
       },
+
       stepOffset : {
         type : Number,
         required : true
       },
+
       phaseIndex : {
         type : Number,
         required : true
       },
+
       isActive : {
         type : Boolean,
         default : false
@@ -88,7 +92,7 @@
         }
       },
       furthestAllowed(val, oldVal) {
-        if ( val > oldVal ) {
+        if ( val > oldVal && !this.state.isComplete) {
           Event.$emit('showPrompt');
         }
       }
@@ -96,16 +100,7 @@
 
     methods : {
 
-      enter(el) {
-        console.log("enter", el);
-      },
-
-      leave(el) {
-        console.log("leave", el);
-      },
-
       nextStep() {
-        // this.animation = "slide-next";
         if ( this.state.currentPhase !== this.phaseIndex ) { return; }
 
         if ( !this.isLastStep ) {
@@ -121,7 +116,6 @@
       },
 
       prevStep() {
-        // this.animation = "slide-prev";
         if ( this.state.currentPhase !== this.phaseIndex ) { return; }
 
         if ( this.currentStep > 0 ) {
