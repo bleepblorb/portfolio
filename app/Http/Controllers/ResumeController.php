@@ -77,7 +77,7 @@ class ResumeController extends Controller
 
   protected function createCookie($id = false) {
     $name = "resume_data";
-    $minutes = 20;
+    $minutes = 1440 * 30; // 30 days
     $key = $id;
     $data = json_encode($this->baseModel);
 
