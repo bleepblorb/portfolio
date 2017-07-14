@@ -84,7 +84,12 @@
     computed : {
       phaseList() {
         console.log(this.schema.phases, _.map(this.schema.phases, 'title'));
-        return _.map(this.schema.phases, 'title');
+        return _.map(this.schema.phases, function(item) {
+          return {
+            label: item.title,
+            value: item.id
+          }
+        });
       },
 
       currentPhase() {

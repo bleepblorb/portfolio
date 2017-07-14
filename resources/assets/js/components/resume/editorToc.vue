@@ -16,7 +16,7 @@
               :options="options"
               placeholder="Go To..."
               :allow-empty="false"
-              @input="phaseSelect()"
+              @input="phaseSelect"
               class="g__col">
             </multiselect>
           </div>
@@ -25,10 +25,10 @@
             <div class="radial-group g__row">
               <div v-for="option in options" class="g__col12">
                 <v-button
-                  @click="phaseSelect(option)"
+                  @click="phaseSelect(option.value)"
                   block
                 >
-                  {{option}}
+                  {{option.label}}
                 </v-button>
               </div>
             </div>
@@ -65,8 +65,11 @@
 
     methods : {
       phaseSelect(value) {
-        let index = this.options.indexOf(value)
-        Event.$emit('setPhase', index, 0);
+
+        let index = _.findIndex(this.options, ['value', value]);
+        if ( index > -1 ) {
+          Event.$emit('setPhase', index, 0);
+        }
       }
     }
 
