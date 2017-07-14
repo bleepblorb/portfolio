@@ -13,7 +13,10 @@ const { mix } = require('laravel-mix');
 
   // compile sass
   mix.sass('resources/assets/sass/app.scss', 'public/css')
-    .js('resources/assets/js/app.js', 'public/js');
+    .js('resources/assets/js/app.js', 'public/js')
+    .options({
+      processCssUrls: false
+   });
 
   if (mix.config.inProduction) {
     mix.version();

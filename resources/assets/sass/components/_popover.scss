@@ -68,7 +68,7 @@ $popover-offset:                      $popover-arrow-width + 6;
     width : $popover-arrow-outer-width;
     height: $popover-arrow-height + 4;
     background: {
-      image: url('../img/UI/popover-nub-left.svg');
+      image: url('/img/UI/popover-nub-left.svg');
       position: center center;
       repeat: no-repeat;
     }
@@ -99,7 +99,7 @@ $popover-offset:                      $popover-arrow-width + 6;
       height: $popover-arrow-outer-width;
       width: $popover-arrow-height;
       background: {
-        image: url('../img/UI/popover-nub-bottom.svg');
+        image: url('/img/UI/popover-nub-bottom.svg');
         position: top center;
         repeat: no-repeat;
       }
@@ -116,7 +116,7 @@ $popover-offset:                      $popover-arrow-width + 6;
       width : $popover-arrow-outer-width;
       height: $popover-arrow-height + 4;
       background: {
-        image: url('../img/UI/popover-nub-left.svg');
+        image: url('/img/UI/popover-nub-left.svg');
         position: center center;
         repeat: no-repeat;
       }
@@ -133,7 +133,7 @@ $popover-offset:                      $popover-arrow-width + 6;
       height: $popover-arrow-outer-width;
       width: $popover-arrow-height;
       background: {
-        image: url('../img/UI/popover-nub-top.svg');
+        image: url('/img/UI/popover-nub-top.svg');
         position: top center;
         repeat: no-repeat;
       }
@@ -150,7 +150,7 @@ $popover-offset:                      $popover-arrow-width + 6;
       width: $popover-arrow-outer-width;
       height: $popover-arrow-height;
       background: {
-        image: url('../img/UI/popover-nub-right.svg');
+        image: url('/img/UI/popover-nub-right.svg');
         position: right center;
         repeat: no-repeat;
       }
