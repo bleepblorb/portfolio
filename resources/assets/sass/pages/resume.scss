@@ -471,7 +471,7 @@ body.edit {
 #resume__preview {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 
   position: absolute;
@@ -516,20 +516,24 @@ body.edit {
 
 // Transitions
 .preview__phase {
-  &.slide-enter-active,
+  &.slide-enter-active {
+    transition: all 700ms 600ms;
+  }
+
   &.slide-leave-active {
     transition: all 700ms;
+    position: absolute;
   }
 
   &.slide-enter {
     opacity: 0;
-    transform: translateY(50%);
+    transform: translateY(32px);
   }
 
   &.slide-leave-to {
     opacity: 0;
-    transform: translateY(-50%);
-}
+    transform: translateY(-84px);
+  }
 }
 
 .slide-list-enter-active,
