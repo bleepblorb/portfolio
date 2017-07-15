@@ -62,24 +62,36 @@
     data() {
       return {
         state : store.resume.state,
-        currentStep : 0,
-        completed : -1,
       }
     },
 
     computed : {
+
+      completed() {
+        // console.log("get completedStep for " + this.id + ":", this.stepOffset, _.clamp(this.state.completedSteps - this.stepOffset, -1, this.lastStep));
+        return  _.clamp(this.state.completedSteps - this.stepOffset, -1, this.lastStep);
+      },
+
+      currentStep() {
+        return  _.clamp(this.state.currentStep - this.stepOffset, 0, this.lastStep);
+      },
+
       totalSteps() {
         return this.steps.length;
       },
+
       lastStep() {
         return this.totalSteps - 1;
       },
+
       furthestAllowed() {
         return _.min([this.completed + 1, this.lastStep]);
       },
+
       isComplete() {
         return this.completed == this.lastStep;
       },
+
       isLastStep() {
         return this.currentStep == this.lastStep;
       },
@@ -91,11 +103,12 @@
           this.$emit('phaseComplete', this.phaseIndex);
         }
       },
+
       furthestAllowed(val, oldVal) {
         if ( val > oldVal && !this.state.isComplete) {
           Event.$emit('showPrompt');
         }
-      }
+      },
     },
 
     methods : {
@@ -131,7 +144,8 @@
         }
       },
 
-      setStep( step, phase = this.phaseIndex ) {
+      setStep( step, phase = this.state.currentPhase ) {
+        console.log('setStep Called')
         if ( phase !== this.phaseIndex ) { return; }
 
         let index = step === "last" ? this.lastStep : step;
@@ -140,11 +154,9 @@
           console.log('Step Set to:', index, this.id);
 
           this.state.direction =  this.stepOffset + index > this.state.currentStep ? 'next' : 'prev';
-          console.log(this.stepOffset + index, this.state.currentStep, this.state.direction)
 
           this.$nextTick(function() {
             this.state.currentStep = this.stepOffset + index;
-            this.currentStep = index;
             Event.$emit('hidePrompt');
           });
         }
@@ -153,7 +165,6 @@
       completedStep(index) {
         if ( index > this.completed && index <= this.lastStep ) {
           console.log('completed step:', index);
-          this.completed = index;
         }
         else {
           console.log('already completed');
@@ -162,15 +173,13 @@
     },
 
     created() {
+
       Event.$on('nextStep', this.nextStep);
       Event.$on('prevStep', this.prevStep);
       Event.$on('setStep', this.setStep);
       Event.$on('setComplete', () => {
-        this.completed = this.lastStep;
       });
       Event.$on('reset', () => {
-        this.currentStep = 0;
-        this.completed = -1;
       });
     },
   }
