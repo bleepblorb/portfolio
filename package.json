@@ -13,6 +13,8 @@
   "devDependencies": {
     "axios": "^0.15.3",
     "bootstrap-sass": "^3.3.7",
+    "browser-sync": "^2.18.12",
+    "browser-sync-webpack-plugin": "^1.2.0",
     "cssuseragent": "^2.1.31",
     "gulp": "^3.9.1",
     "gulp-svg-symbols": "^2.0.2",

@@ -18,8 +18,8 @@ const { mix } = require('laravel-mix');
       processCssUrls: false
    });
 
-  if (mix.config.inProduction) {
-    mix.version();
-  } else {
+  mix.version();
+
+  if (!mix.inProduction()) {
     mix.browserSync('well-done.dev');
   }
