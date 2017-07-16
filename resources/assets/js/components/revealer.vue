@@ -1,9 +1,15 @@
 <template>
   <div class="revealer" ref="revealer">
-    <transition-group name="list" tag="ul">
+    <div>
+      <h4 class="c--gray-light">Adam Volkman —</h4>
+      <h1 class="mb-0">Designer, developer, doodler.</h1>
+    </div>
+
+    <transition-group  name="list" tag="ul" class="t--h1">
       <li class="revealer__item" v-for="(n, index) in randomOptions" :key="n" :style="" v-if="index < activeIndex">{{n}}</li>
     </transition-group>
-    <div @click.prevent="reveal" key="more" ref="more" v-if="activeIndex < length" class="t--h5 revealer__clicker">+ more</div>
+
+    <div @click.prevent="reveal" key="more" ref="more" class="revealer__clicker" :class="{ '-no-show' : activeIndex >= length}">+ more</div>
   </div>
 </template>
 
@@ -57,18 +63,22 @@
           this.activeIndex ++;
 
           this.$nextTick( () => {
-            let container = document.querySelector('.tester');
 
-            let items = this.$refs.revealer.querySelectorAll('.revealer__item');
+            let items = this.$el.querySelectorAll('.revealer__item');
             let scroll = items[items.length - 1].clientHeight;
+            
+            this.setHeight(this.$el, 450);
 
-            this.setHeight();
-            // window.setTimeout( () => {
-            //   window.scrollBy(0, scroll);
-            // }, 600);
             let curScrollTop = window.pageYOffset;
 
-            Velocity( document.body ,"scroll", { duration: 450, offset: window.pageYOffset + scroll, mobileHA: false }, "linear");
+            window.setTimeout( () => {
+
+              this.setHeight(this._container);
+              // Velocity( document.body ,"scroll", { duration: 50, offset: window.pageYOffset + scroll, mobileHA: false }, "linear");
+              window.scrollBy(0, scroll);
+
+            }, 460)
+
           });
         }
       },
@@ -77,15 +87,21 @@
         return this.randomOptions.slice(0, index);
       },
 
-      setHeight(dur = 450) {
+      setHeight(el, dur = 0) {
         let height = 0;
-        let container = this.$refs.revealer;
+        console.log(el);
 
-        Array.from(container.children).forEach( item => {
+        Array.from(el.children).forEach( item => {
+          console.log(item, item.clientHeight);
           height += item.clientHeight;
         });
 
-        Velocity( container, {height: height}, { duration: dur, }, "linear");
+        if(dur > 0) {
+          Velocity( el, {height: height}, { duration: dur, easing: "ease" });
+        }
+        else {
+          el.style.height = height + 'px';
+        }
 
         document.querySelector('body').style.overflow = 'hidden';
         window.setTimeout( () => {
@@ -99,9 +115,14 @@
     },
 
     mounted() {
-      this.setHeight();
+      this._container = document.querySelector('.about__intro');
+
+      this.setHeight(this.$el);
+      this.setHeight(this._container);
+
       window.addEventListener('resize', () => {
-        this.setHeight(0);
+        this.setHeight(this._container);
+        this.setHeight(this.$el);
       });
     }
   }

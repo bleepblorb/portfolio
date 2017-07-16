@@ -14,7 +14,6 @@
     "axios": "^0.15.3",
     "cross-env": "^5.0.1",
     "laravel-mix": "^1.2.2",
-
     "cssuseragent": "^2.1.31",
     "gulp": "^3.9.1",
     "gulp-svg-symbols": "^2.0.2",

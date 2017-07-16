@@ -1,11 +1,14 @@
-.tester {
+.about__intro {
   position: relative;
+  will-change: height;
 }
 
 .revealer {
-  position: relative;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
   display: block;
-  margin-bottom: 32px;
   will-change: height;
 
   > ul {
@@ -42,13 +45,18 @@
 
 .revealer__clicker {
   position: absolute;
-  bottom: 0px;
+  bottom: 0%;
   left: 0%;
-
   margin: 0;
   padding-top: 1rem;
   cursor: pointer;
   color: $gray-light;
+  transition: all 250ms;
+
+  &.-no-show {
+    visibility: hidden;
+    opacity: 0;
+  }
 
   &:hover {
     color: $lightning;

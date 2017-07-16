@@ -4,11 +4,8 @@
   <div id="about" class="container -max--lg">
     <div class="spacer" style="min-height: 40vh"></div>
     <div class="g__row mb-6">
-
-      <div class="g__col12 enter__fade-in-up tester" data-spy-in data-spy="class: -inview">
-        <h4 class="c--gray-light">Adam Volkman —</h4>
-        <h1 class="mb-0">Designer, developer, doodler.</h1>
-        <revealer class="t--h1" :options="[
+      <div class="about__intro g__col12 enter__fade-in-up" data-spy-in data-spy="class: -inview">
+        <revealer :options="[
           'More attractive in-person.',
           'Thinks he\'s funny.',
           'Bakes pies and shares.',
