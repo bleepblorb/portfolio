@@ -27,15 +27,17 @@ $grid-thing-border :  1px solid $gray-lighter;
 
   &.-span-2 {
 
-    .grid-thing__item {
-      @include make-col(6);
-    }
-
-    .grid-thing__item:nth-child(-n + 2) {
-      border-top: none;
-    }
-    .grid-thing__item:nth-child(2n) {
-      border-right: none;
-    }
+    @include media-breakpoint-up(sm) {
+      .grid-thing__item {
+        @include make-col(6);
+      }
+  
+      .grid-thing__item:nth-child(-n + 2) {
+        border-top: none;
+      }
+      .grid-thing__item:nth-child(2n) {
+        border-right: none;
+      }
+    };
   }
 }

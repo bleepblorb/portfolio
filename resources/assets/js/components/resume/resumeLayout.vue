@@ -195,7 +195,7 @@
           <div class="g__col12 g__col3--@md mb-4">
             <h4 class="c--jazzy section-header">past —</h4>
           </div>
-          <div class="g__col12 g__col8--@md g__col7--@lg mb-4">
+          <div class="g__col12 g__col9--@md mb-4">
             <past-preview id="experience"></past-preview>
           </div>
         </div>
@@ -208,9 +208,18 @@
             <h4 class="c--lightning section-header">present —</h4>
           </div>
           <div class="g__col12 g__col9--@md mb-4">
-            <h4 class="c--gray-light t--normal">Currently</h4>
+            <!-- <h4 class="c--gray-light t--normal">Currently</h4>
             <h2>Seeking new full-time or contract opportunities.</h2>
-            <h5 class="c--gray">... hopefully that's why you're here.</h5>
+            <h5 class="c--gray">... hopefully that's why you're here.</h5> -->
+
+            <div class="job">
+              <h6>
+                <span class="job__date">2017–Now</span>
+                <span class="job__location">Well Done</span>
+              </h6>
+              <h2 class="job__title">Currently working select freelance projects.</h2>
+              <p class="job__desc">I've been lucky enough to keep busy working on an assortment of freelance projects while I look for the right next step.</p>
+            </div>
 
             <h4 class="mt-6 mb-3 c--gray-light t--normal">Notable Skills and Experience</h4>
             <div class="g__row mb-4" data-spy-in  data-spy="target: .enter__fade-in-up; delay: 250">
@@ -219,8 +228,9 @@
                   <div class="card-block">
                     <h4>ink —</h4>
                     <ul class="-relaxed">
-                      <li>Print Design & Production</li>
-                      <li>Environmental Graphics & Signage</li>
+                      <li>Print Design &amp; Production</li>
+                      <li>Environmental Graphics</li>
+                      <li>Signage &amp; Wayfinding</li>
                       <li>Screen Printing</li>
                       <li>Letterpress Printing</li>
                     </ul>
@@ -246,7 +256,7 @@
                   <div class="card-block">
                     <h4>bytes —</h4>
                     <ul class="-relaxed">
-                      <li>HTML, CSS, LESS, SCSS, jQuery, PHP</li>
+                      <li>HTML, LESS, SCSS, jQuery, PHP</li>
                       <li>Bootstrap, UIkit</li>
                       <li>Laravel, CraftCMS, Wordpress</li>
                       <li>Composer, NPM</li>
@@ -274,15 +284,33 @@
                     <h4 class="">etc —</h4>
                     <ul class="-relaxed">
                       <li>Baked goods</li>
+                      <li>Book binding</li>
                       <li>Unicycling</li>
                       <li>Spoon carving</li>
+                      <li>Entry level Ukelele skills</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="g__col6--@sm skill-list enter__fade-in-up" v-if="model.experience.skills.indexOf('other') > -1">
+                <div class="card">
+                  <div class="card-block">
+                    <h4 class="">in progress —</h4>
+                    <ul class="-relaxed">
+                      <li>Git versioning &amp; deployment</li>
+                      <li>Sketch</li>
+                      <li>Photography</li>
+                      <li>Vue.js</li>
+                      <li>gulp</li>
+                      <li>webpack</li>
+                      <li>JavaScript ES6</li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
-            <h4 class="mt-2">in progress / currently tinkering –</h4>
-            <p>Git versioning &amp; deployment, Sketch, Photography, Vue.js, gulp, webpack, JavaScript ES6</p>
+            <!-- <h4 class="mt-2">in progress / currently tinkering –</h4>
+            <p>Git versioning &amp; deployment, Sketch, Photography, Vue.js, gulp, webpack, JavaScript ES6</p> -->
           </div>
         </div>
       </div>
@@ -294,10 +322,9 @@
             <h4 class="c--gummy section-header">future —</h4>
           </div>
           <div class="g__col12 g__col9--@md mb-4">
-            <h4 class="c--gray-light t--normal">Looking for</h4>
-            <!-- <h2>Seeking a team with new opportunities and challenges to push my work to the next level.</h2> -->
-            <h2>A team that can benefit from my diverse set of skills and push me to my fullest potential.</h2>
-            <p class="mt-3">I'm looking for a team who values quality, collaboration, and personal / professional growth. A team that inspires and pushes me on a continual basis. In return I can offer hard work, commitment, and the occasional homemade pie. That and all the design stuff, of course.</p>
+            <h4 class="c--gray-light t--normal">Seeking new full-time or contract work.</h4>
+            <h2>I'm looking for a team that can benefit from my diverse set of skills and push me to my fullest potential.</h2>
+            <p class="mt-3">A team who values quality, collaboration, and personal / professional growth. Who inspires and challenges me on a continual basis. In return I will strive to do the same. I can also offer hard work, commitment, and the occasional homemade pie. That and the design stuff, of course.</p>
 
             <div class="g__row mt-5">
               <div class="g__col6--@sm mb-3">
@@ -306,6 +333,7 @@
                 <ul class="-relaxed">
                   <li>React / node / Too many web things</li>
                   <li>After Effects / Motion Graphics</li>
+                  <li>Web prototyping (Framer, or similar)</li>
                   <li>Font Design</li>
                   <li>App Development</li>
                   <li>Calligraphy / lettering</li>
@@ -337,7 +365,7 @@
               <img src="/img/about-illustration.jpg" alt="" width="200" class="mb-2">
               <h3 class="mb-4 c--late-night">Think we'd work well together?</h3>
               <p>
-                <v-button  size="lg" variant="outline" color="primary"> Get in touch </v-button>
+                <v-button  href="mailto:adam.volkman@gmail.com?subject=I saw your resume and didnt hate you" size="lg" variant="outline" color="primary"> Get in touch </v-button>
               </p>
             </div>
           </div>
@@ -393,7 +421,7 @@
       portraitUrls() {
         this.$nextTick( ()=> {
           window.bLazy.load(this.$refs.portrait, true);
-        })
+        });
       }
     },
 

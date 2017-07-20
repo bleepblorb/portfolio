@@ -24,6 +24,7 @@ class ImageController extends Controller
       'background' => 'none',
       'hair' => 'standard',
       'hands' => 'default',
+      'attire' => 'base',
     ];
 
     // array_filter strips any blank values so that they dont overwrite the defaults

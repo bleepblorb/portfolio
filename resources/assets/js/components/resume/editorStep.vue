@@ -6,9 +6,9 @@
       </div>
 
       <div class="editor__question">
-        <h4 class="c--gummy mb-1">{{intro}}</h4>
+        <h4 class="c--gummy">{{intro}}</h4>
         <h3 class="c--late-night">{{question}}</h3>
-        <p class="c--gray mt-3" v-if="description">{{description}}</p>
+        <p class="c--gray mt-2" v-if="description">{{description}}</p>
       </div>
 
       <div

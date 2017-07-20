@@ -7,15 +7,16 @@ let schema = {
         {
           id : "intro",
           intro : "About Me",
-          question : "First let's pull together a captivating overview of me.",
+          question : "Every good story has a lovable protaganist.",
+          desc : "Let's pull together a captivating overview.",
           type : "intro",
           imageUrl : "/img/editor-intro.png",
         },
         {
           id : "introStyle",
           intro : "First impressions",
-          question : "You only get to pick one.",
-          desc : "Choose your preferred introduction style.",
+          question : "You only get to pick one. Make it count.",
+          desc : "Choose an introduction style that will make a splash.",
           type : "radial-group",
           imageUrl : "/img/editor-intro.png",
           options : [
@@ -24,7 +25,7 @@ let schema = {
               value : "standard"
             },
             {
-              label : "Minimalism",
+              label : "Minimal",
               value : "minimal"
             },
             {
@@ -48,8 +49,9 @@ let schema = {
         {
           id : "personal",
           intro : "Personal Interests",
-          question : "Make me interesting by picking a few fun hobbies",
-          desc : "Pick as many as you'd like.",
+          question : "An easy way to be interesting and relatable",
+          desc : "Add some light-hearted hobbies",
+          imageUrl : "/img/editor-intro.png",
           type : "checkbox-group",
           options : [
             {
@@ -80,8 +82,9 @@ let schema = {
         },
         {
           id : "manifesto",
-          intro : "Not quite manifesto",
-          question : "Thoughts on design / life.",
+          intro : "Mini manifesto",
+          question : "Go deeper with some thoughts on design / life.",
+          desc : "The more you add, the smarter I'll seem",
           type : "checkbox-group",
           imageUrl : "/img/portrait-beard.png",
           options : [
@@ -128,7 +131,8 @@ let schema = {
         {
           id : "desc",
           intro : "Portrait",
-          question : "Pick out the look that just shouts \"employable\".",
+          question : "Looking good isn\'t important, but it can\'t hurt.",
+          desc : "Craft a look that just screams \"employable\".",
           type : "intro",
           imageUrl : "/img/portrait-beard.png",
         },
@@ -136,7 +140,8 @@ let schema = {
           id : "expression",
           imageUrl : "/img/portrait-beard.png",
           intro : "Expression",
-          question : "Choose a face",
+          question : "Set the right tone with the perfect facial expression",
+          desc : "Select the appropriate level of excitment",
           type: "slider-input",
           placeholder: "Level Of Excitement",
           options : [
@@ -172,6 +177,7 @@ let schema = {
           imageUrl : "/img/portrait-beard.png",
           intro : "Facial hair",
           question : "Put some fuzz on this peach",
+          desc : "Select your preffered trendy face fur.",
           type : "radial-group",
           options : [
             {
@@ -187,11 +193,11 @@ let schema = {
               value : "goatee"
             },
             {
-              label : "Simple Stache",
+              label : "Teen Stache",
               value : "stache"
             },
             {
-              label : "Scruff",
+              label : "Scruffy",
               value : "scruff"
             },
             {
@@ -205,6 +211,7 @@ let schema = {
           imageUrl : "/img/portrait-beard.png",
           intro : "Dress for success",
           question : "Dress me for the job I want, not the job I don't have",
+          desc : "Select fitting attire for your office environment",
           type : "radial-group",
           options : [
             {
@@ -271,8 +278,9 @@ let schema = {
         },
         {
           id : "background",
-          intro : "Setting",
-          question : "Pick a backdrop.",
+          intro : "Backdrop",
+          question : "Location is everything",
+          desc : "Select an appropriate backdrop.",
           type : "radial-group",
           options : [
             {
@@ -280,8 +288,16 @@ let schema = {
               value : "white"
             },
             {
-              label : "Camping",
+              label : "Nature",
               value : "camping"
+            },
+            {
+              label : "Artsy",
+              value : "artsy"
+            },
+            {
+              label : "Studio",
+              value : "studio"
             }
           ]
         }
@@ -293,24 +309,26 @@ let schema = {
       steps : [
        {
           id : "intro",
-          intro : "Skills / Experience",
-          question : "On to the important stuff",
+          intro : "Skills & Experience",
+          question : "The important stuff to justify asking for all that money",
+          desc : "Prove I've got what it takes to get the job done",
           type : "intro",
           imageUrl : "/img/portrait-beard.png",
         },
         {
           id : "skills",
-          intro : "Skillz that killz",
-          question : "Select the skills you are looking for",
+          intro : "Skillz",
+          question : "No time for modesty, show off those skills",
+          desc : "Select the skills you are looking for.",
           type : "checkbox-group",
           imageUrl : "/img/portrait-beard.png",
           options : [
             {
-              label : "Print / Environmental",
+              label : "Print",
               value : "print"
             },
             {
-              label : "Digital Design",
+              label : "Digital",
               value : "digital"
             },
             {
@@ -327,6 +345,7 @@ let schema = {
           id : "past",
           intro : "Past experience",
           question : "You can't change the past. Just how you choose to tell it.",
+          desc : "Select your preferred presentation style.",
           type : "radial-group",
           imageUrl : "/img/portrait-beard.png",
           options : [
@@ -343,7 +362,8 @@ let schema = {
         {
           id : "finish",
           intro : "Congrats!",
-          question : "You've created one purdy resume. Now go give it a read through and hire this guy!",
+          question : "You've created the perfect resume.",
+          desc : "Seems like the only thing left to do is hire this guy already!",
           type : "intro",
           imageUrl : "/img/portrait-beard.png",
         },

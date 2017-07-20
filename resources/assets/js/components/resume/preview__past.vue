@@ -45,7 +45,7 @@
 
       <!-- Overview -->
       <div v-if="format == 'nutshell'">
-        <h2>I attended <u>Western Washington University</u> and graduated with a BA in Graphic Design. Previously I worked at <u>SRM Architecture and Marketing</u> as a graphic designer & developer on a wide variety of projects.</h2>
+        <h2>Previously I worked at <u>SRM Architecture and Marketing</u> as a graphic designer & developer on a wide variety of projects. I attended <u>Western Washington University</u> and graduated with a BA in Graphic Design. </h2>
       </div>
 
     </div>

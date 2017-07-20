@@ -378,7 +378,7 @@ body.edit {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding: 8px 16px;
+  padding: 16px 16px;
   background-color: rgba($white, .85);
 
 
@@ -654,7 +654,7 @@ body.edit {
   // fallback since overflow trick does not prevent scrolling on ios (not sure aobut other mobile, so just including it)
   .ua-mobile .edit & {
     display: none;
-  } 
+  }
 }
 
 .resume__layout-wrap {

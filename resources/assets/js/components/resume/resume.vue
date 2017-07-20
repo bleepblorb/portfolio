@@ -53,7 +53,7 @@
       </div>
     </modal>
 
-    <modal id="modal-reset" confirmation ok-title="Yes, please" close-title="Nevermind" size="sm" @ok="reset()">
+    <modal id="modal-reset" confirmation ok-title="Yeah" close-title="Nevermind" size="sm" @ok="reset()">
       <div class="p-3">
         <h3 class="c--jazzy">Are you sure?</h3>
         <p class="t--sans">Just checking, because this will erase all the things.</p>
@@ -61,10 +61,11 @@
       </div>
     </modal>
 
-    <modal id="modal-tour" confirmation ok-title="•sigh• Alright" close-title="Veto" size="sm" @ok="startTour()" @cancel="skipTour()" :closeOnBackdrop="false">
-      <div class="p-3">
+    <modal id="modal-tour" confirmation ok-title="*sigh* Alright" close-title="Veto" size="sm" @ok="startTour()" @cancel="skipTour()" :closeOnBackdrop="false">
+      <div class="p-3 t--center">
         <h3 class="c--jazzy">Welcome</h3>
-        <p class="t--sans">Thank you for taking the time to create the perfect resume. Let's just take a quick tour.</p>
+        <p class="t--sans">Thank you for taking the time to create the perfect resume.</p>
+        <p class="t--bold">Let's just take a quick tour!</p>
       </div>
     </modal>
 
@@ -180,7 +181,7 @@ export default {
       let furthest = _.min([this.state.completedSteps + 1, this.state.totalSteps]);
 
       this.state.furthestAllowed = furthest;
-      
+
       this.state.isComplete = this.state.completedSteps == this.state.totalSteps ? true : false;
     },
 
@@ -388,7 +389,7 @@ export default {
       this._blocker = document.createElement('div');
       this._blocker.classList.add('modal-backdrop');
       document.body.insertBefore(this._blocker, null);
-      
+
       window.setTimeout( () => {
         this._editorTour.start();
       }, 650);
@@ -541,8 +542,8 @@ export default {
     });
 
     this._editorTour.addStep('toggler', {
-      title : "The perfect wording",
-      text : "Underlined areas allow you to toggle through wording options. <strong>Try it out</strong> by clicking on the underline below.",
+      title : "Perfect wording",
+      text : "Underlined areas allow you to toggle through wording options. Try it out by <strong>clicking on the underline below</strong>.",
       attachTo : ".example-toggle top",
       advanceOn : {selector: '.example-toggle', event: 'click'},
       buttons : false,

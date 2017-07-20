@@ -70,10 +70,6 @@
 
     data() {
       return {
-        togglerTest : {
-          index : 0,
-          value : ''
-        }
       }
     },
 
