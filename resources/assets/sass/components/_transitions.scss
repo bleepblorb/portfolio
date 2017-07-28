@@ -50,3 +50,25 @@ tbody {
 .scale-in-leave {
   transform: scale(1);
 }
+
+// Fade up
+
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: all 450ms ease;
+}
+
+.fade-up-enter {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(-32px);
+}
+
+// .fade-up-enter-to,
+// .fade-up-leave {
+//   transform: translateY(0);
+// }

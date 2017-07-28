@@ -2,6 +2,10 @@
 // Headings
 //
 
+
+$checklist-icon-color:       $gray-lighter;
+$checklist-icon:              str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$checklist-icon-color}' d='M6.41 0l-.69.72-2.78 2.78-.81-.78-.72-.72-1.41 1.41.72.72 1.5 1.5.69.72.72-.72 3.5-3.5.72-.72-1.44-1.41z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
 h1, h2, h3, h4, h5, h6,
 .t--h1, .t--h2, .t--h3, .t--h4, .t--h5, .t--h6 {
   margin-bottom: $headings-margin-bottom;
@@ -89,17 +93,22 @@ ul {
 
 ol {
   list-style: none;
+  padding-left: 0;
   counter-reset: li;
 
   li {
     counter-increment: li;
+    padding-left: 2.25em;
+    position: relative;
 
     &:before {
       content: counter(li);
-      width: 2rem;
-      margin-left: -2rem;
       display: inline-block;
-      color: $gray;
+      margin-left: -2.25em;
+      width: 2em;
+      margin-right: 0px;
+      color: currentColor;
+      opacity: .5;
       text-align: center;
       font-weight: $font-weight-bold;
       font-size: .75em;
@@ -190,6 +199,28 @@ ul {
     }
   }
 
+  &.-checklist {
+
+    li.-checked {
+      position: relative;
+      padding-left: 1.25em;
+
+      &:after {
+        content: '';
+        top: 0;
+        left: 0;
+        position: absolute;
+        height: 1em;
+        width: 1em;
+        background: {
+          image: $checklist-icon;
+          size: 60% auto;
+          repeat: no-repeat;
+          position: center 95%;
+        }
+      }
+    }
+  }
 }
 
 

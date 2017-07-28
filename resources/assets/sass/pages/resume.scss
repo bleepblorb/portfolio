@@ -505,25 +505,20 @@ body.edit {
     margin-bottom: 4em;
   }
 
-  .phase__title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 2em 0;
-  }
-}
-
-// Transitions
-.preview__phase {
+  // Transitions
   &.slide-enter-active {
-    transition: all 700ms 600ms;
+    transition: all 700ms;
   }
 
   &.slide-leave-active {
     transition: all 700ms;
-    position: absolute;
   }
+
+  // &.slide-leave {
+  //   position: absolute;
+  //   top: 50%;
+  //   transform: translateY(-50%);
+  // }
 
   &.slide-enter {
     opacity: 0;
@@ -543,7 +538,7 @@ body.edit {
 }
 
 .slide-list-leave-active {
-  position: absolute;
+  position: absolute !important;
 }
 
 .slide-list-enter {
