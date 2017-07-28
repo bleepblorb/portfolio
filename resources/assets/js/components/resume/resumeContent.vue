@@ -1,22 +1,25 @@
 <template>
   <div @mousedown="setPreview(true)" class="resume__content g__col">
-    <!-- <div class="preview-toggle" @click="togglePreview()"></div> -->
-      <transition-group name="slide" mode="" tag="div" id="resume__preview">
-        <welcome-phase class="preview__phase" key="welcome" id="welcome" v-show="state.currentPhase == 'welcome'"></welcome-phase>
+    <div id="resume__preview">
+      <transition name="slide" mode="out-in">
+        <welcome-phase class="preview__phase" key="welcome" id="welcome" v-if="state.currentPhase == 'welcome'"></welcome-phase>
 
-        <intro-preview class="preview__phase" key="intro" id="about" v-show="state.currentPhase == 0 && state.currentStep == 2"></intro-preview>
+        <intro-preview class="preview__phase" key="intro" id="about" v-else-if="state.currentPhase == 0 && state.currentStep == 2"></intro-preview>
 
-        <interests-preview class="preview__phase" key="interests" id="about" v-show="state.currentPhase == 0 && state.currentStep == 3"></interests-preview>
+        <interests-preview class="preview__phase" key="interests" id="about" v-else-if="state.currentPhase == 0 && state.currentStep == 3"></interests-preview>
 
-        <about-preview class="preview__phase" key="about" id="about" v-show="state.currentPhase == 0 && state.currentStep == 4"></about-preview>
+        <about-preview class="preview__phase" key="about" id="about" v-else-if="state.currentPhase == 0 && state.currentStep == 4"></about-preview>
 
-        <portrait-phase class="preview__phase" key="portrait" id="portrait" v-show="state.currentPhase == 1"></portrait-phase>
+        <portrait-phase class="preview__phase" key="portrait" id="portrait" v-else-if="state.currentPhase == 1"></portrait-phase>
 
-        <skills-preview class="preview__phase" key="skills" id="experience" v-show="state.currentPhase == 2 && state.currentStep == 12"></skills-preview>
+        <skills-preview class="preview__phase" key="skills" id="experience" v-else-if="state.currentPhase == 2 && state.currentStep == 12"></skills-preview>
 
-        <past-preview class="preview__phase" key="past" id="experience" v-show="state.currentPhase == 2 && state.currentStep == 13"></past-preview>
+        <past-preview class="preview__phase" key="past" id="experience" v-else-if="state.currentPhase == 2 && state.currentStep == 13"></past-preview>
+        <!-- Fix: Keeps transitions from jumping when switching phases -->
+        <div class="preview__phase" v-else></div>
 
-      </transition-group>
+      </transition>
+    </div>
   </div>
 </template>
 

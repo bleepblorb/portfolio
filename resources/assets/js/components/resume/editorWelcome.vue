@@ -3,9 +3,9 @@
     <transition name="slide-next">
       <div class="editor__step welcome-step" v-if="state.currentStep == -1">
         <div class="editor__content">
-          <!-- <div class="intro-photo">
-            <img src="blank.jpg" alt="">
-          </div> -->
+          <div class="intro-photo">
+            <img src="/img/editor-intro.png" alt="">
+          </div>
 
           <div class="editor__question">
             <h4 class="c--gummy">Welcome</h4>
@@ -55,7 +55,7 @@
         options: [
           { label : "Totally", value : 'totally'},
           { label : "Completely", value : 'completely'},
-          { label : "110%", value : 'overly'},
+          { label : "110%", value : 'impossibly'},
           { label : "Meh", value : 'lying about being'},
         ]
       }

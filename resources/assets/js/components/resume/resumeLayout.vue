@@ -101,7 +101,7 @@
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('craft') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
-                    <img src="/img/craft-icon.jpg" class="mb-1" alt="" width="100px">
+                    <img src="/img/manifesto-craft.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Craft</h4>
                   <p>Every good idea deserves to be properly executed. I take pride in honing my technical abilities and executing designs the right way.</p>
@@ -112,7 +112,7 @@
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('care') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
-                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                    <img src="/img/manifesto-care.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Care</h4>
                   <p>Care about what you do. If it's not worth doing right, it's not worth doing at all. <span class="c--gray-lighter">#ClicheButCorrect</span></p>
@@ -123,7 +123,7 @@
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('purpose') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
-                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                    <img src="/img/manifesto-purpose.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Purpose</h4>
                   <p>Everything should have one. When it comes to design, this is important. In life, probably even more so.</p>
@@ -134,7 +134,7 @@
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('beyond') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
-                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                    <img src="/img/manifesto-beyond.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Beyond</h4>
                   <p>Normal is boring, make something better. I shoot to deliver above expectations.</p>
@@ -145,10 +145,10 @@
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('grow') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
-                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                    <img src="/img/manifesto-grow.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Grow</h4>
-                  <p>Seek opportunities to learn and expand. Continued education is important... and fun!</p>
+                  <p>Seek opportunities to learn and grow. Continued education is important and something I enjoy.</p>
                 </div>
               </div>
 
@@ -156,7 +156,7 @@
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('climb') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
-                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                    <img src="/img/manifesto-climb.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Climb</h4>
                   <p>A simple challenge to myself — Make every project better than the last, in at least one way.</p>
@@ -167,7 +167,7 @@
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('balance') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
-                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                    <img src="/img/manifesto-balance.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Balance</h4>
                   <p>A more generic concept, but I think finding balance is important in most aspects of life. </p>
@@ -178,7 +178,7 @@
               <div class="grid-thing__item" v-if="model.about.manifesto.indexOf('enjoy') > -1">
                 <div class="enter__fade-in-up">
                   <div class="t--center">
-                    <img src="/img/grow-icon.jpg" class="mb-1" alt="" width="100px">
+                    <img src="/img/manifesto-enjoy.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Enjoy</h4>
                   <p>None of this matters much if you’re a boring jerk. </p>
@@ -208,10 +208,6 @@
             <h4 class="c--lightning section-header">present —</h4>
           </div>
           <div class="g__col12 g__col9--@md mb-4">
-            <!-- <h4 class="c--gray-light t--normal">Currently</h4>
-            <h2>Seeking new full-time or contract opportunities.</h2>
-            <h5 class="c--gray">... hopefully that's why you're here.</h5> -->
-
             <div class="job">
               <h6>
                 <span class="job__date">2017–Now</span>

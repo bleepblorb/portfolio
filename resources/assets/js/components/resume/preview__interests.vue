@@ -3,47 +3,42 @@
       <!-- More overview / Interests -->
       <div v-if="personal.length > 0" class="g__row mt-3">
         <div class="g__col">
-          <ul class="">
-            <transition-group name="slide-list">
+            <transition-group name="slide-list" tag="ul" class="-checklist">
               <li key="header"><h5 class="c--jazzy mb-2">Personal Interests include:</h5></li>
 
-              <!-- cooking -->
-              <li class="t--h1 c--late-night" v-if="model.personal.indexOf('cooking') > -1" key="cook">
-                <icon name="check" size="lg" class="c--gray-light"></icon>
-                Creating dirty dishes
-              </li>
+              <li v-for="interest in model.personal" :key="interest" class="t--h2 c--late-night -checked">
+                <!-- cooking -->
+                <span v-if="interest == 'cooking'">
+                  Creating dirty dishes
+                </span>
 
-              <!-- hiking -->
-              <li class="t--h1 c--late-night" v-if="model.personal.indexOf('hiking') > -1" key="hike">
-                <icon name="check" size="lg" class="c--gray-light"></icon>
-                Sleeping outside
-              </li>
+                <!-- hiking -->
+                <span v-if="interest === 'hiking'">
+                  Sleeping outside
+                </span>
 
-              <!-- telivision -->
-              <li class="t--h1 c--late-night" v-if="model.personal.indexOf('television') > -1" key="tv">
-                <icon name="check" size="lg" class="c--gray-light"></icon>
-                Watching Cartoons
-              </li>
+                <!-- telivision -->
+                <span v-if="interest === 'television'">
+                  Watching Cartoons
+                </span>
 
-              <!-- tennis -->
-              <li class="t--h1 c--late-night" v-if="model.personal.indexOf('tennis') > -1" key="tennis">
-                <icon name="check" size="lg" class="c--gray-light"></icon>
-                Pretending I'm Federer
-              </li>
+                <!-- tennis -->
+                <span v-if="interest === 'tennis'">
+                  Pretending I'm Federer
+                </span>
 
-              <!-- crafts -->
-              <li class="t--h1 c--late-night" v-if="model.personal.indexOf('crafts') > -1" key="crafts">
-                <icon name="check" size="lg" class="c--gray-light"></icon>
-                Making stuff for twice the price of just buying it
-              </li>
+                <!-- crafts -->
+                <span v-if="interest === 'crafts'">
+                  Making stuff for twice the price of just buying it
+                </span>
 
-              <!-- learning -->
-              <li class="t--h1 c--late-night" v-if="model.personal.indexOf('learn') > -1" key="learn">
-                <icon name="check" size="lg" class="c--gray-light"></icon>
-                Google-ing everything
+                <!-- learning -->
+                <span v-if="interest === 'learn'">
+                  Google-ing everything
+                </span>
+
               </li>
             </transition-group>
-          </ul>
         </div>
       </div>
       <div v-else class="alert -info -max--sm -center my-4">

@@ -4,17 +4,17 @@
   <div id="about" class="container -max--lg">
     <div class="spacer" style="min-height: 40vh"></div>
     <div class="g__row mb-6">
-      <div class="about__intro g__col12 enter__fade-in-up" data-spy-in data-spy="class: -inview">
+      <div class="about__intro g__col12  enter__fade-in-up" data-spy-in data-spy="class: -inview">
         <revealer :options="[
           'More attractive in-person.',
           'Thinks he\'s funny.',
           'Bakes pies and shares.',
-          'Telivision addict.',
+          'Television addict.',
           'Thinks mad libs are ___(adj)____.',
           'Feared by houseplants.',
           'Hikes around the outdoors.',
           'Photographs food, but doesn\'t post online.',
-          'Always has music playing.',
+          'Always has background music playing.',
           'Big fan of breakfast.',
           'Pretty nice guy.',
           'Sits a lot, but active at times.',

@@ -1,7 +1,10 @@
 <template>
   <div :id="'phase__' + id">
-    <h4 v-if="stoked">Yeah! I am <strong class="c--jazzy example-result">{{stoked}}</strong> pumped to get started!</h4>
-    <h2 v-if="stoked">This has been an <toggler id="exampleToggle" :index="exampleToggle" :options="['wonderful', 'tedious']" class="example-toggle"></toggler> start!</h2>
+    <div v-if="stoked" class="enter__fade-in-up -inview">
+      <h4>I am <strong class="c--jazzy example-result">{{stoked}}</strong> pumped to get started!</h4>
+      <h2>This has been a <toggler id="exampleToggle" :index="exampleToggle" :options="['wonderful', 'tedious']" class="example-toggle"></toggler> start!</h2>
+
+    </div>
   </div>
 </template>
 
