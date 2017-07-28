@@ -45,7 +45,7 @@
       return {
         urlsSwap : [],
         swapping : false,
-        loading : true,
+        loading : false,
 
       }
     },
@@ -73,13 +73,13 @@
     methods : {
       updatePortrait() {
         console.log('update portrait', this.model);
+        this.swapping = true;
         if (this.model) {
           axios.post('/img/portrait', this.model)
           .then(response => {
-            let swap = this.$refs['swap'];
             this.urlsSwap = response.data;
             this.$nextTick(() => {
-              window.bLazy.load(swap, true);
+              this.loadImage(this._swap);
             })
           })
           .catch(function (error) {
@@ -93,18 +93,21 @@
         console.log('entered');
         this.urls = this.urlsSwap;
         window.setTimeout( ()=> {
-          window.bLazy.load(this.$refs['base'], true);
-          this.swapping = false;
+          this.loadImage(this.$refs['base']);
         }, 25);
+      },
+
+      loadImage(el) {
+        window.bLazy.load(el, true);
       }
     },
 
     mounted() {
-      this.updatePortrait();
-      let swap = this.$refs['swap'];
+      this.loadImage(this.$refs['base']);
+      this._swap = this.$refs['swap'];
 
-      swap.addEventListener('loaded', () => {
-        this.swapping = true;
+      this._swap.addEventListener('loaded', () => {
+        this.swapping = false;
         this.loading = false;
 
         window.setTimeout(() => {
