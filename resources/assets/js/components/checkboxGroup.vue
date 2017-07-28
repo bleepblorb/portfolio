@@ -10,7 +10,6 @@
     </div>
     <div class="g__col12">
       <p class="t--small c--gray-light t--left t--sans mb-0 t--center">
-        <!-- <v-button @click.prevent="selectAll" variant="" color="info" size="sm">Select All</v-button> -->
        or just  <a @click.prevent="selectAll" href="#">Select All</a>
       </p>
     </div>
@@ -68,7 +67,14 @@
 
     methods : {
       selectAll() {
-        this.internalValue = this.allItems;
+        // this.internalValue = this.allItems;
+
+        let newVals = _.difference(this.allItems, this.internalValue)
+        // add remaining values in order.
+        this.internalValue = this.internalValue.concat(newVals);
+        console.log(this.internalValue, newVals);
+
+
       }
     }
   }

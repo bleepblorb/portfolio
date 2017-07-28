@@ -341,7 +341,6 @@ export default {
     },
     'value' (value) {
       this.internalValue = this.getInternalValue(value)
-
     }
   },
   methods: {
@@ -404,7 +403,7 @@ export default {
      */
     getValue () {
       let curValue = _.map( this.internalValue, this.trackBy );
-
+      console.log('get select value', curValue, this.internalValue);
       return this.multiple
         ? curValue
         : curValue.length === 0
@@ -415,12 +414,22 @@ export default {
      * Converts the external value to the internal value
      * @returns {Array} returns the internal value
      */
-    getInternalValue (value) {
+    getInternalValue (values) {
       let internalValue = [];
 
-      internalValue = _.filter(this.options, (object) => {
-        return _.includes(value, object[this.trackBy] )
-      });
+      console.log('values', values);
+      // maintain order of passed in values.
+      let trackBy = this.trackBy;
+
+      for (var i=0; i < values.length; i++){
+        let found = _.find(this.options, [trackBy, values[i]]);
+        if (found) {
+          internalValue.push(found);
+        }
+      };
+
+      console.log('returning internalValue', internalValue);
+
       return internalValue;
     },
     /**
@@ -544,7 +553,9 @@ export default {
         this.internalValue = [option]
       }
 
-      this.$emit('select', _.cloneDeep(option), this.id)
+      console.log('direct select value', this.internalValue);
+
+      // this.$emit('select', _.cloneDeep(option), this.id)
       this.$emit('input', this.getValue(), this.id)
 
       if (this.closeOnSelect) this.deactivate()
