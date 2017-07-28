@@ -8,11 +8,12 @@
         <span class="form-check__description">{{option.label}}</span>
       </label>
     </div>
-    <!-- <div class="g__col12">
-      <p class="t--small c--gray-light t--left t--sans mb-2 t--center">
-        <a @click.prevent="selectAll" href="#" class="btn btn-sm btn-secondary">Select All</a>
+    <div class="g__col12">
+      <p class="t--small c--gray-light t--left t--sans mb-0 t--center">
+        <!-- <v-button @click.prevent="selectAll" variant="" color="info" size="sm">Select All</v-button> -->
+       or just  <a @click.prevent="selectAll" href="#">Select All</a>
       </p>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -67,7 +68,7 @@
 
     methods : {
       selectAll() {
-        this.updatedValue = this.allItems;
+        this.internalValue = this.allItems;
       }
     }
   }

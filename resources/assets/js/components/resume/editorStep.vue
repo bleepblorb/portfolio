@@ -19,6 +19,7 @@
           :options="options"
           :placeholder="placeholder || 'Select'"
           :multiple="this.inputType === 'checkbox-group'"
+          :addSelectAll="this.inputType === 'checkbox-group'"
           :close-on-select="this.inputType !== 'checkbox-group'"
           :allow-empty="false"
           >

@@ -81,6 +81,13 @@
                     </slot>
                 </span>
               </li>
+              <li
+                v-if="multiple && addSelectAll"
+                @mousedown.prevent=""
+                @mouseup.prevent="selectAll()"
+              >
+                <span class="select__option">Select All</span>
+              </li>
             </template>
 
             <slot name="afterList"></slot>

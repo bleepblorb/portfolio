@@ -221,6 +221,16 @@ export default {
       default () {
         return []
       }
+    },
+
+    /**
+     * Should there be a 'select all' option
+     * Will only show up if multiple is true
+     * @type {Boolean}
+    */
+    addSelectAll: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -518,9 +528,10 @@ export default {
      */
     select (option, key) {
 
-      if (this.blockKeys.indexOf(key) !== -1 || this.disabled || option.$isLabel || !this.isSelectable) return
+      if (this.blockKeys.indexOf(key) !== -1 || this.disabled || !this.isSelectable) return
 
       if (this.max && this.multiple && this.internalValue.length === this.max) return
+
 
       const isSelected = this.isSelected(option)
 
@@ -681,6 +692,15 @@ export default {
 
       this.tether.offset.top = this.offsets.y + 'px';
       this.tether.position();
+    },
+
+    selectAll() {
+      this.options.forEach( option => {
+        if( !this.isSelected(option) ) {
+          this.select(option);
+        }
+      });
+      this.deactivate();
     }
   }
 }
