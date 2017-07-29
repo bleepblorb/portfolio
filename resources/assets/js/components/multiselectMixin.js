@@ -421,6 +421,11 @@ export default {
       // maintain order of passed in values.
       let trackBy = this.trackBy;
 
+      // convert to array if string
+      if ( typeof values === 'string') {
+        values = [values];
+      }
+
       for (var i=0; i < values.length; i++){
         let found = _.find(this.options, [trackBy, values[i]]);
         if (found) {
