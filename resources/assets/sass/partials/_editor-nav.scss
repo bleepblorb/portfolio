@@ -3,6 +3,10 @@
  * Editor Navigation
  */
 
+
+$nav-transition-dur : 650ms;
+
+
 .editor__nav {
   display: flex;
   align-items: center;
@@ -35,17 +39,19 @@
     background-color: $jazzy;
   }
 
-  .i--arrow {
+  .arrow-wrap {
     flex: 0 0 auto;
-    background : {
-      position: center right;
-      repeat: no-repeat;
-      size: auto 8px;
-    }
+    height: 24px;
     width: 16px;
-    height: 10px;
     margin: 0 9px;
-    transition: all 350ms;
+    padding-top: 1px;
+    overflow: hidden;
+    transition: all ($nav-transition-dur * .5);
+
+
+    .icon {
+      height: 24px;
+    }
   }
 
   span.editor-btn__text {
@@ -54,57 +60,54 @@
     opacity: 1;
     overflow: hidden;
   }
-}
-
-.editor__back-btn {
-
-  .i--arrow {
-    background-image: url('../img/UI/arrow-left-lighter.svg');
-    background-position: center left;
-  }
 
   &[disabled] {
     background-color: transparent;
     cursor: default;
 
-    .i--arrow {
-      background-image: url('../img/UI/arrow-left-light.svg');
+    .arrow-wrap {
+      color: $jean-jacket;
     }
   }
+}
+
+.editor__back-btn {
+
+  .arrow-wrap {
+    .icon {
+      float: left;
+    }
+  }
+
+  
 }
 
 .editor__next-btn {
   flex-wrap: nowrap;
 
-  .i--arrow {
-    background-image: url('../img/UI/arrow-right-lighter.svg');
-    background-position: center right;
-  }
-
-  &[disabled] {
-    background-color: transparent;
-    cursor: default;
-
-    .i--arrow {
-      background-image: url('../img/UI/arrow-right-light.svg');
+  .arrow-wrap {
+    .icon {
+      float: right;
     }
   }
+
 
   &.-active {
     height: 46px;
     width: 200px;
     border-radius: 46px;
 
-    .i--arrow {
+    .arrow-wrap {
       width: 36px;
-      transition: width 250ms;
+      transition: width ($nav-transition-dur * .4);
       margin: 0 15px;
     }
 
     &:hover {
       background-color: $grover;
-      .i--arrow {
-        width: 48px;
+
+      .arrow-wrap {
+        width: 46px;
         transition: width 200ms ease-out;
       }
     }
@@ -114,35 +117,41 @@
 
       span.editor-btn__text {
         opacity: 0;
-        transform: translateY(36px);
+        transform: translateY(8px);
       }
 
-      .i--arrow {
-        width: 16px;
-        background-image: url('../img/UI/arrow-right-light.svg');
-        margin: 0 9px;
+      .arrow-wrap {
+          width: 16px;
+          color: $jean-jacket;
+          margin: 0 9px;  
       }
     }
 
     &.nav-btn-enter-active {
+      transition-duration: $nav-transition-dur;
 
-      .i--arrow {
-        transition: width 250ms 250ms, margin 260ms;
+      .arrow-wrap {
+        transition: width ($nav-transition-dur * .4) ($nav-transition-dur * .5), margin ($nav-transition-dur * .5);
       }
 
+      // .i--arrow {
+      //   transition: width 250ms 250ms, margin 260ms;
+      // }
+
       span.editor-btn__text {
-        transition: all 450ms 200ms ease;
+        transition: all ($nav-transition-dur * .3) ($nav-transition-dur * .7) ease;
       }
     }
 
     &.nav-btn-leave-active {
+      transition-duration: $nav-transition-dur;
 
-      .i--arrow {
-        transition: all 250ms 250ms;
+      .arrow-wrap {
+        transition: all ($nav-transition-dur * .4) ($nav-transition-dur * .4);
       }
 
       span.editor-btn__text {
-        transition: all 0ms 650ms ease;
+        transition: all 0ms $nav-transition-dur ease, opacity ($nav-transition-dur * .5) ($nav-transition-dur * .5) ease;
       }
     }
   }
@@ -156,11 +165,11 @@
     }
 
     &.nav-btn-enter-active {
-      animation: next-btn-active 650ms normal;
+      animation: next-btn-active $nav-transition-dur normal;
     }
 
     &.nav-btn-leave-active {
-      animation: next-btn-close 650ms;
+      animation: next-btn-close $nav-transition-dur;
     }
   }
 
@@ -174,11 +183,11 @@
     }
 
     &.nav-btn-enter-active {
-      animation: done-btn-active 650ms normal;
+      animation: done-btn-active $nav-transition-dur normal;
     }
 
     &.nav-btn-leave-active {
-      animation: next-btn-close 650ms;
+      animation: next-btn-close $nav-transition-dur;
     }
   }
 }

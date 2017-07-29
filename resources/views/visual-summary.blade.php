@@ -188,7 +188,7 @@
     <div class="container">
       <div class="g__row">
         <div class="g__col t--center">
-          <a href="{{route('about')}}" class="c--white t--h2">Meet the man to blame for this. </a>
+          <a href="{{route('about')}}" class="c--white t--h2">Meet the man to blame for this. <icon name="arrow__right-lg"></icon></a>
         </div>
       </div>
     </div>

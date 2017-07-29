@@ -4,7 +4,9 @@
       class="editor__back-btn"
       :disabled="disablePrev"
       @click="prevStep()" >
-      <span class="i--arrow"></span>
+      <div class="arrow-wrap">
+        <icon name="arrow__left-xl"></icon>
+      </div>
     </div>
 
     <transition name="nav-btn" mode="out-in">
@@ -14,7 +16,9 @@
         @click="nextStep()"
         :key="2" >
         <span class="editor-btn__text">{{promptText}}</span>
-        <span class="i--arrow"></span>
+        <div class="arrow-wrap">
+          <icon name="arrow__right-xl"></icon>
+        </div>
       </div>
       <div
         v-if="!showPrompt"
@@ -22,7 +26,9 @@
         :disabled="disableNext"
         :key="3"
         @click="nextStep()" >
-        <span class="i--arrow"></span>
+        <div class="arrow-wrap">
+          <icon name="arrow__right-xl"></icon>
+        </div>
       </div>
     </transition>
     <transition name="nav-btn">
