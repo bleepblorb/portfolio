@@ -29,7 +29,7 @@
           content="Start Over"
           :delay="[800,0]"
           >
-          <div @click="reset(true)" class="sidebar-btn"><icon name="delete"></icon></div>
+          <div @click="reset(true)" class="sidebar-btn"><icon name="trash" size="md"></icon> <span class="hidden-sm-up">restart</span></div>
         </popover>
         <popover
           ref="editPopover"
@@ -40,7 +40,7 @@
           :triggers="false"
           :timer="6000"
           >
-          <div @click="toggle()" class="sidebar-btn"><icon name="edit"></icon></div>
+          <div @click="toggle()" class="sidebar-btn"><icon name="edit" size="md"></icon> <span class="hidden-sm-up">edit</span></div>
         </popover>
       </div>
     </transition>

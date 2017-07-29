@@ -1,7 +1,7 @@
 
 <a href="/" class="logo">
-  <icon class="c--gray-lighter" name="logo__mark" style="width: 2rem"></icon>
-  <icon class="logo-text c--gray"  name="logo__text" style="width: 3.5rem"></icon>
+  <icon class="c--gray-lighter" name="logo__mark" style="height: 2rem"></icon>
+  <icon class="logo-text c--gray"  name="logo__text" style="height: 1.25rem"></icon>
 </a>
 
 <div id="main-menu" class="py-2">

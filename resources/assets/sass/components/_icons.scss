@@ -1,27 +1,27 @@
 .icon {
   fill: currentColor;
   display: inline-block;
-  width: 1em;
+  height: 1em;
   vertical-align: middle;
 
   // -- Size Variations
   &.-xs {
-    width: .5rem;
+    height: .5rem;
   }
 
   &.-sm {
-    width: .75rem;
+    height: .75rem;
   }
 
   &.-md {
-    width: 1rem;
+    height: 1.25rem;
   }
 
   &.-lg {
-    width: 1.5rem;
+    height: 1.5rem;
   }
 
   &.-xl {
-    width: 2.5rem;
+    height: 2.5rem;
   }
 }
