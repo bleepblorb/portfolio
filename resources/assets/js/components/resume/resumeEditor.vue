@@ -179,7 +179,6 @@
       setPhase(index, step = null) {
         console.log('Phase Set to:', index);
         if (index <= this.furthestAllowed) {
-          this.currentPhase = index;
           this.state.currentPhase = index;
 
           this.$nextTick(function () {
@@ -207,7 +206,7 @@
         this.state.completedPhases = this.lastPhase;
       });
       Event.$on('reset', () => {
-        this.currentPhase = 0;
+        this.state.currentPhase = 0;
         this.state.completedPhases = -1;
       });
     },
