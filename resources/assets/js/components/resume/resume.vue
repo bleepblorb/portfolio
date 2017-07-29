@@ -12,7 +12,7 @@
         </div>
         <resume-editor :schema="schema"></resume-editor>
         <resume-content :schema="schema"></resume-content>
-        <div class="close-btn" @click="closeEditor(!state.isComplete)" v-if="state.editMode && state.tourComplete">close <button class="close"></button></div>
+        <v-button class="close-btn -rounded" variant="outline" size="sm" color="info" @click="closeEditor(!state.isComplete)" v-if="state.editMode && state.tourComplete">close</v-button>
       </div>
     </transition>
 
