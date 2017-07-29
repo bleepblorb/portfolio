@@ -55,6 +55,9 @@ class ResumeController extends Controller
         'hands' => '',
       ],
       'portraitUrls' => [
+        'lg' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-base-xl.jpg",
+        'md' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-base-md.jpg",
+        'xs' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-base-xs.jpg"
       ],
       'experience' => [
         'past' => '',
