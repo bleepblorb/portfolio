@@ -294,7 +294,40 @@ let schema = {
               value : "studio"
             }
           ]
-        }
+        },
+        // {
+        //   id : "filter",
+        //   intro : "Filter",
+        //   question : "Get creative with a trendy filter",
+        //   desc : "You know, like all those other apps.",
+        //   type : "radial-group",
+        //   options : [
+        //     {
+        //       label : "B & W",
+        //       value : "bw"
+        //     },
+        //     {
+        //       label : "insta-cool",
+        //       value : "retro"
+        //     },
+        //     {
+        //       label : "LSD",
+        //       value : "lsd"
+        //     },
+        //     {
+        //       label : "#nofilter",
+        //       value : "nada"
+        //     },
+        //     {
+        //       label : "Ice Ice Baby",
+        //       value : "ice"
+        //     },
+        //     {
+        //       label : "Gloss",
+        //       value : "gloss"
+        //     },
+        //   ]
+        // }
       ]
     },
     {

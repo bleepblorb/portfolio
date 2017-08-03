@@ -129,6 +129,7 @@ store.resume.model = {
     attire : '',
     hands : '',
     background : '',
+    filter : '',
   },
   portraitUrls : {},
   experience : {

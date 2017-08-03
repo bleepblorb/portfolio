@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Filters\BlackWhite;
+use App\Filters\RetroFilter;
+use App\Filters\ColorToneFilter;
+use App\Filters\LsdFilter;
+use App\Filters\IceFilter;
+use App\Filters\GlossFilter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -25,6 +31,7 @@ class ImageController extends Controller
       'hair' => 'standard',
       'hands' => 'default',
       'attire' => 'base',
+      'filter' => 'nada',
     ];
 
     // array_filter strips any blank values so that they dont overwrite the defaults
@@ -46,7 +53,8 @@ class ImageController extends Controller
 
     // If cached version doesnt exits, generate new image
     if(!Storage::disk('s3')->exists('public/portrait/'.$filenameXs)) {
-      // Generate Image
+
+      // Generate Image Base
       $img =  Image::canvas(2400, 1350, '#f5f5f5');
 
       // Background
@@ -122,14 +130,6 @@ class ImageController extends Controller
         $img->insert($baseUrl.$mainHand->filename, 'top-left', 248, 120);
       }
 
-      $secondaryHand = DB::table('portrait_hands')
-              ->where([
-                ['attire', $portrait['attire']],
-                ['position', 'default'],
-                ['position', 'default']
-              ])
-              ->get()
-              ->first();
 
       // Facial Hair
       $facialHair = DB::table('portrait_beards')
@@ -142,6 +142,32 @@ class ImageController extends Controller
       if ( $facialHair ) {
         $img->insert($baseUrl.$facialHair, 'top-left', 828, 0);
       }
+
+      
+      // ** Filters
+
+      switch ($portrait['filter']) {
+        case "bw" :
+          $img->filter(new BlackWhite());
+          break;
+      
+        case "retro" :
+          $img->filter(new RetroFilter());
+          break;
+
+        case "lsd" :
+          $img->filter(new LsdFilter());
+          break;
+
+        case "ice" :
+          $img->filter(new IceFilter());
+          break;
+
+        case "gloss" :
+          $img->filter(new GlossFilter());
+          break;
+      }
+
 
       if(!Storage::disk('s3')->exists('public/portrait')) {
         Storage::disk('s3')->makeDirectory('public/portrait');

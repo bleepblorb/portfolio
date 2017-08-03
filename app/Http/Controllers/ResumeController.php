@@ -53,6 +53,7 @@ class ResumeController extends Controller
         'background' => '',
         'attire' => 'base',
         'hands' => '',
+        'filter' => '',
       ],
       'portraitUrls' => [
         'lg' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-base-xl.jpg",
@@ -196,6 +197,7 @@ class ResumeController extends Controller
         'attire' => 'casual',
         'expression' => 'smile-2',
         'background' => 'white',
+        'filter' => 'nada',
       ],
       'portraitUrls' => [
         'lg' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-xl.jpg",
