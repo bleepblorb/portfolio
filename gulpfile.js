@@ -3,13 +3,6 @@ var gulp       = require('gulp'),
 
 gulp.task('sprites', function () {
     return gulp.src( './resources/assets/icons/**/*.svg' )
-    //   .pipe(
-    //     svgSymbols({
-    //       title: '%f icon',
-    //       templates: ['default-svg']
-    //     })
-    //   )
-    //   .pipe(gulp.dest('./public/img/UI'))
       .pipe(
         svgSymbols({
           title: '%f icon',
@@ -19,9 +12,6 @@ gulp.task('sprites', function () {
       .pipe(gulp.dest('./resources/assets/js/components'));
 });
 
-gulp.task('dev', ['sprites'], function() {
-});
-
-gulp.task('watch', ['dev'], function() {
-
+gulp.task('build', ['sprites'], function() {
+  console.log('pooper');
 });
