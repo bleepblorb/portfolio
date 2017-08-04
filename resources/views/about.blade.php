@@ -4,7 +4,7 @@
   <div id="about" class="container -max--lg">
     <div class="spacer" style="min-height: 40vh"></div>
     <div class="g__row mb-6">
-      <div class="about__intro g__col12  enter__fade-in-up" data-spy-in data-spy="class: -inview">
+      <div class="about__intro g__col12  enter__fade-in-up" data-spy-in>
         <revealer :options="[
           'More attractive in-person.',
           'Thinks he\'s funny.',
@@ -29,8 +29,8 @@
 
   <div class="container -max--xl" >
     <div class="g__row pt-4">
-      <div class="g__col enter__fade-in-up" data-spy-in data-spy="class: -inview">
-        <img data-image-load src="/img/blank.png" data-src="{{asset('img/about-portrait.jpg')}}" data-src-md="{{asset('img/about-portrait-2.jpg')}}" alt="" class="img-fluid">
+      <div class="g__col enter__fade-in-up" data-spy-in>
+        <img data-image-load data-src="{{asset('img/about-portrait-sm.jpg')}}" data-src-sm="{{asset('img/about-portrait-lg.jpg')}}" alt="" class="-fill">
       </div>
     </div>
   </div>
