@@ -21,7 +21,7 @@
     'use strict';
 
     //private vars
-    var _source, _viewport, _isRetina, _supportClosest, _attrSrc = 'src', _attrSrcset = 'srcset';
+    var _source, _viewport, _isRetina, _supportClosest, _attrSrc = 'src', _attrSrcset = 'srcset', _currentBreakpoint;
 
     // constructor
     return function Blazy(options) {
@@ -54,6 +54,7 @@
         _viewport = {};
         _viewport.top = 0 - scope.options.offset;
         _viewport.left = 0 - scope.options.offset;
+        _currentBreakpoint = scope.options.breakpoints[0] || false;
 
 
         /* public functions
@@ -91,6 +92,16 @@
             validate(scope);
         }, scope.options.validateDelay, scope);
 
+        util.resizeT = throttle(function() {
+            let freshBreakpoint = getCurrentBreakpoint(scope.options.breakpoints);
+
+            if ( freshBreakpoint !== _currentBreakpoint ) {
+                _currentBreakpoint = freshBreakpoint;
+                validate(scope, true);
+            }
+
+        }, scope.options.validateDelay, scope);
+
         util.saveViewportOffsetT = throttle(function() {
             saveViewportOffset(scope.options.offset);
         }, scope.options.saveViewportOffsetDelay, scope);
@@ -121,18 +132,18 @@
                 });
             }
             bindEvent(window, 'resize', util.saveViewportOffsetT);
-            bindEvent(window, 'resize', util.validateT);
+            bindEvent(window, 'resize', util.resizeT);
             bindEvent(window, 'scroll', util.validateT);
         }
         // And finally, we start to lazy load.
         validate(self);
     }
 
-    function validate(self) {
+    function validate(self, force) {
         var util = self._util;
         each(util.elements, function(element) {
             if (elementInView(element, self.options) || hasClass(element, self.options.successClass)) {
-                self.load(element);
+                self.load(element, force);
                 // util.elements.splice(i, 1);
                 // util.count--;
                 // i--;
@@ -184,7 +195,7 @@
 
     function loadElement(ele, force, options) {
         // if element is visible, not loaded or forced
-        if ((force || options.loadInvisible || (ele.offsetWidth > 0 && ele.offsetHeight > 0))) {
+        if ( (!hasClass(ele, options.successClass) && (options.loadInvisible || (ele.offsetWidth > 0 && ele.offsetHeight > 0))) || force ) {
             var source = getSource(ele, options);
             var dataSrc = getAttr(ele, source) || getAttr(ele, options.src); // fallback to default 'data-src'
             if (dataSrc) {
@@ -195,7 +206,14 @@
                 var parent = ele.parentNode;
                 var isPicture = parent && equal(parent, 'picture');
                 // Image or background image
+
+
                 if (isImage || ele.src === undefined) {
+                    
+                    if ( (isImage && ele.src === src) || (ele.style.backgroundImage.slice(4,-1).replace(/"/g, '') === src) ) {
+                        return;
+                    }
+
                     var img = new Image();
                     // using EventListener instead of onerror and onload
                     // due to bug introduced in chrome v50
@@ -242,6 +260,7 @@
     }
 
     function itemLoaded(ele, options) {
+
         addClass(ele, options.successClass);
 
         if (options.success) options.success(ele);
@@ -362,5 +381,18 @@
             lastCall = now;
             fn.apply(scope, arguments);
         };
+    }
+
+    function getCurrentBreakpoint(breakpoints) {
+        let windowWidth = window.innerWidth;
+        let breakpoint = 'data-src';
+
+        each(breakpoints, function(option) {
+          if ( option.width <= windowWidth) {
+            breakpoint = option.src;
+          }
+        });
+
+        return breakpoint;
     }
 });
