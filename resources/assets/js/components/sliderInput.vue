@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="slider-input">
     <h4 class="t--center c--gummy">{{text}}</h4>
     <div class="slider-input__bar">
       <label v-for="(option, index) in options" class="slider-input__item form-radio">
@@ -8,7 +8,6 @@
         <span class="form-radio__indicator"></span>
       </label>
     </div>
-    <h6 v-if="placeholder" class="t--center c--grover t--normal">{{placeholder}}</h6>
   </div>
 </template>
 

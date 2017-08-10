@@ -485,14 +485,8 @@ body.edit {
 #resume__preview {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
-  position: absolute;
-  width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
   min-width: 91.667vw;
   transition: min-width 400ms;
 
@@ -506,18 +500,15 @@ body.edit {
 }
 
 .preview__phase {
-  max-height: 100vh;
   overflow: visible;
-  padding-top: 4em;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
   padding-left: $grid-gutter-width-base;
   padding-right: $grid-gutter-width-base;
   margin: auto;
   width: 100%;
   max-width: map-get($container-max-widths, md);
 
-  > *:last-child {
-    margin-bottom: 4em;
-  }
 
   // Transitions
   &.slide-enter-active {
@@ -527,12 +518,6 @@ body.edit {
   &.slide-leave-active {
     transition: all 700ms;
   }
-
-  // &.slide-leave {
-  //   position: absolute;
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  // }
 
   &.slide-enter {
     opacity: 0;
@@ -720,9 +705,11 @@ body.edit {
 
 .skill-list {
   margin-bottom: 2rem;
+  display: flex;
 
   .card {
-    height: 100%;
+    width: 100%;
+    max-width: 100%;
   }
 
   .card-block {

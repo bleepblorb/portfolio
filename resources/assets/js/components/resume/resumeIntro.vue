@@ -21,7 +21,7 @@
               <v-button @click.prevent="start()" color="primary" size="lg" variant="outline">Lets Go!</v-button>
             </p>
             <p class="mt-2">
-              <a href="#" class=" t--h6 c--gray-light" @click.prevent="setDefault()">I'm no fun. Just show me a resume</a>
+              <a href="#" class=" t--h6 c--gray-light" @click.prevent="setDefault()">I'm no fun. Just show me a resume <icon name="arrow__right-sm" size="md"></icon></a>
             </p>
           </div>
         </div>

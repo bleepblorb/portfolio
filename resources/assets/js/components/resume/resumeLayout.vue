@@ -10,7 +10,7 @@
 
             <!-- standard -->
             <div v-if="introStyle == 'standard'" key="standard">
-              <h2>A Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal to {{model.about.togglerIntro.options[model.about.togglerIntro.index]}}.</h2>
+              <h2>A graphic designer, web developer, and illustrator using all the tools at my disposal to {{model.about.togglerIntro.options[model.about.togglerIntro.index]}}.</h2>
             </div>
 
             <!-- haiku -->
@@ -29,12 +29,12 @@
 
             <!-- confident -->
             <div v-else-if="introStyle == 'confident'">
-              <h2>A pretty slick dude with sweet skills, a good attitude, and straight teeth. A true triple threat.</h2>
+              <h2>A pretty slick dude with sweet skills, a good attitude, and {{model.about.togglerConfident.options[model.about.togglerConfident.index]}}. A true triple threat.</h2>
             </div>
 
             <!-- minimal -->
             <div v-else-if="introStyle == 'minimal'">
-              <h1>Maker of things</h1>
+              <h1>A {{model.about.togglerMinimal.options[model.about.togglerMinimal.index]}}</h1>
             </div>
 
             <!-- Elevator -->
@@ -60,7 +60,7 @@
                 <li v-if="model.about.personal.indexOf('tennis') > -1" key="tennis">playing tennis</li>
 
                 <!-- crafts -->
-                <li v-if="model.about.personal.indexOf('crafts') > -1" key="crafts">crafting</li>
+                <li v-if="model.about.personal.indexOf('crafts') > -1" key="crafts">getting crafty</li>
 
                 <!-- learning -->
                 <li v-if="model.about.personal.indexOf('learn') > -1" key="learn">learning new skills</li>
@@ -115,7 +115,7 @@
                     <img src="/img/manifesto-care.png" class="mb-1" alt="" height="80px">
                   </div>
                   <h4>Care</h4>
-                  <p>Care about what you do. If it's not worth doing right, it's not worth doing at all. <span class="c--gray-lighter">#ClicheButCorrect</span></p>
+                  <p>Care about what you do. If it's not worth doing right, it's not worth doing at all.</p>
                 </div>
               </div>
 
@@ -208,13 +208,17 @@
             <h4 class="c--lightning section-header">present —</h4>
           </div>
           <div class="g__col12 g__col9--@md mb-4">
-            <div class="job">
+            <div class="job" v-if="model.experience.past === 'detail'">
               <h6>
                 <span class="job__date">2017–Now</span>
                 <span class="job__location">Well Done</span>
               </h6>
               <h2 class="job__title">Currently working select freelance projects.</h2>
               <p class="job__desc">I've been lucky enough to keep busy working on an assortment of freelance projects while I look for the right next step.</p>
+            </div>
+            <div v-if="model.experience.past === 'nutshell'">
+              <h2>I'm Currently working select freelance projects.</h2>
+              <p class="t--lead">I've been lucky enough to keep busy working on an assortment of freelance projects while I look for the right next step.</p>
             </div>
 
             <h4 class="mt-6 mb-3 c--gray-light t--normal">Notable Skills and Experience</h4>
@@ -320,7 +324,7 @@
           <div class="g__col12 g__col9--@md mb-4">
             <h4 class="c--gray-light t--normal">Seeking new full-time or contract work.</h4>
             <h2>I'm looking for a team that can benefit from my diverse set of skills and push me to my fullest potential.</h2>
-            <p class="mt-3">A team who values quality, collaboration, and personal / professional growth. Who inspires and challenges me on a continual basis. In return I will strive to do the same. I can also offer hard work, commitment, and the occasional homemade pie. That and the design stuff, of course.</p>
+            <p class="mt-3">A team who values quality, collaboration, and personal / professional growth. Who inspires and challenges me on a continual basis. In return I will strive to do the same. I can also offer hard work, commitment, and the occasional homemade pie. That and all the design stuff, of course.</p>
 
             <div class="g__row mt-5">
               <div class="g__col6--@sm mb-3">
@@ -346,6 +350,7 @@
                   <li>Restaurant branding / signage</li>
                   <li>Menu design</li>
                   <li>Beer / Food Packaging</li>
+                  <li>...Something new</li>
                 </ul>
               </div>
             </div>

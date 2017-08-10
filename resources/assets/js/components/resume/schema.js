@@ -7,7 +7,7 @@ let schema = {
         {
           id : "intro",
           intro : "About Me",
-          question : "Every good story has a lovable protaganist.",
+          question : "Every good story has a lovable protagonist.",
           desc : "Let's pull together a captivating overview.",
           type : "intro",
           imageUrl : "/img/editor-about.png",
@@ -20,7 +20,7 @@ let schema = {
           type : "radial-group",
           options : [
             {
-              label : "Pretty Standard",
+              label : "Standard",
               value : "standard"
             },
             {
@@ -49,7 +49,7 @@ let schema = {
           id : "personal",
           intro : "Personal Interests",
           question : "A quick way to be interesting and relatable",
-          desc : "Add some light-hearted hobbies",
+          desc : "Add some generic hobbies.",
           type : "checkbox-group",
           options : [
             {
@@ -81,8 +81,8 @@ let schema = {
         {
           id : "manifesto",
           intro : "Build character",
-          question : "Go deeper with some thoughts on design / life.",
-          desc : "The more you add, the smarter I'll seem",
+          question : "Go deeper with some thoughts on design / life",
+          desc : "Select some agreeable opinions.",
           type : "checkbox-group",
           options : [
             {
@@ -128,8 +128,8 @@ let schema = {
         {
           id : "desc",
           intro : "Portrait",
-          question : "Looking good isn\'t important, but it can\'t hurt.",
-          desc : "Craft a look that just screams \"employable\".",
+          question : "Looking good isn\'t important, but it can\'t hurt",
+          desc : "Craft a look that says \"employable\".",
           type : "intro",
           imageUrl : "/img/editor-portrait.png",
         },
@@ -137,7 +137,7 @@ let schema = {
           id : "expression",
           intro : "Expression",
           question : "Set the right tone with the perfect facial expression",
-          desc : "Select the appropriate level of excitment",
+          desc : "Select the appropriate level of excitement.",
           type: "slider-input",
           placeholder: "Level Of Excitement",
           options : [
@@ -154,11 +154,11 @@ let schema = {
               value : "smile-1"
             },
             {
-              label : "Happy Go Lucky",
+              label : "Good Mood",
               value : "smile-2"
             },
             {
-              label : "Joyful",
+              label : "Happy Go Lucky",
               value : "smile-3"
             },
             {
@@ -172,7 +172,7 @@ let schema = {
           id : "facialHair",
           intro : "Facial hair",
           question : "Put some fuzz on this peach",
-          desc : "Select your preffered trendy face fur.",
+          desc : "Select your preferred facial fur style.",
           type : "radial-group",
           options : [
             {
@@ -205,7 +205,7 @@ let schema = {
           id : "attire",
           intro : "Dress for success",
           question : "Dress me for the job I want, not the job I don't have",
-          desc : "Select fitting attire for your office environment",
+          desc : "Select fitting attire for your office environment.",
           type : "radial-group",
           options : [
             {
@@ -278,8 +278,8 @@ let schema = {
           type : "radial-group",
           options : [
             {
-              label : "K.I.S.S.",
-              value : "white"
+              label : "Studio",
+              value : "studio"
             },
             {
               label : "Nature",
@@ -289,10 +289,11 @@ let schema = {
               label : "Artsy",
               value : "artsy"
             },
+
             {
-              label : "Studio",
-              value : "studio"
-            }
+              label : "K.I.S.S.",
+              value : "white"
+            },
           ]
         },
         // {
@@ -338,14 +339,14 @@ let schema = {
           id : "intro",
           intro : "Skills & Experience",
           question : "The important stuff to justify asking for all that money",
-          desc : "Prove I've got what it takes to get the job done",
+          desc : "Prove I've got what it takes to get the job done.",
           type : "intro",
           imageUrl : "/img/editor-skills.png",
         },
         {
           id : "skills",
           intro : "Skillz",
-          question : "No time for modesty, show off those skills",
+          question : "No time for modesty, show 'em what I got",
           desc : "Select the skills you are looking for.",
           type : "checkbox-group",
           options : [
@@ -370,7 +371,7 @@ let schema = {
         {
           id : "past",
           intro : "Past experience",
-          question : "You can't change the past. Just how you choose to tell it.",
+          question : "You can't change the past– just how you share it",
           desc : "Select your preferred presentation style.",
           type : "radial-group",
           options : [
@@ -387,7 +388,7 @@ let schema = {
         {
           id : "finish",
           intro : "Congrats!",
-          question : "You've created the perfect resume.",
+          question : "You've just created the perfect resume",
           desc : "There's still plenty to discover, so please take a read through your creation.",
           type : "intro",
           imageUrl : "/img/editor-finish.png",

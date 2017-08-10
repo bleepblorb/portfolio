@@ -9,7 +9,7 @@
         <div class="progress editor__progress">
           <div class="progress-bar" role="progressbar" :aria-valuenow="percentComplete" aria-valuemin="0" aria-valuemax="100" :style="{width : percentComplete + '%'}" ></div>
         </div>
-        <h5 class="editor__phase-heading">{{ schema.phases[currentPhase] ? schema.phases[currentPhase].title : '...'}}</h5>
+        <h5 class="editor__phase-heading">{{ schema.phases[currentPhase] ? schema.phases[currentPhase].title : '&nbsp;'}}</h5>
         <ul class="editor__phase__dots">
           <li v-for="(phase, index) in schema.phases"
           :class="{'-active' : currentPhase == index, '-disabled' : furthestAllowed < index}"

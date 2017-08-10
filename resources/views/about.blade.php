@@ -10,18 +10,19 @@
           'Thinks he\'s funny.',
           'Bakes pies and shares.',
           'Television addict.',
-          'Thinks mad libs are ___(adj)____.',
+          'A little different, like everyone else.',
           'Feared by houseplants.',
           'Hikes around the outdoors.',
           'Photographs food, but doesn\'t post online.',
-          'Always has background music playing.',
+          'Requires background music.',
           'Big fan of breakfast.',
           'Pretty nice guy.',
           'Sits a lot, but active at times.',
-          'Dances when nobody\'s watching.',
+          'Dances when alone.',
           'Always an advocate of alliteration.',
           'Not fond of parties.',
-          'Not much on first impression.',
+          'Constantly learning something new.',
+          'Enjoys a good glass of water.'
         ]"></revealer>
       </div>
     </div>

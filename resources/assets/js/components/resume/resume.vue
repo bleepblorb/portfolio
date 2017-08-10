@@ -118,7 +118,14 @@ store.resume.model = {
     },
     togglerElevator : {
       index : 0,
-      value : '',
+      options : []
+    },
+    togglerMinimal : {
+      index : 0,
+      options : []
+    },
+    togglerConfident : {
+      index : 0,
       options : []
     },
     manifesto : [],
@@ -488,7 +495,7 @@ export default {
 
     this._editorTour.addStep('editor', {
       title : "Editor Pane",
-      text : "This is where you make your choices.",
+      text : "This is where you will make your selections.",
       attachTo : ".welcome-step .editor__question top",
       when : {
         'before-show' : () => {
@@ -505,8 +512,11 @@ export default {
       attachTo : ".welcome-step .editor__content bottom",
       buttons : false,
       when : {
-        'show' : () => {
+        'before-show' : () => {
           this._blocker.style.display = 'none';
+        },
+        hide : () => {
+          this._blocker.style.display = 'block';
         }
       }
     });
@@ -526,8 +536,8 @@ export default {
 
     this._editorTour.addStep('preview', {
       title : "Preview Area",
-      text : "Here you can preview your answers, and sometimes make further edits.",
-      attachTo : ".preview__phase .example-result top",
+      text : "Here you can preview the results of your selections and (sometimes) make further edits.",
+      attachTo : ".preview__phase top",
       when : {
         'before-show' : () => {
           Event.$emit('setPreviewMode', true);
@@ -619,14 +629,15 @@ export default {
     });
 
     this._editorTour.addStep('moreNav', {
-      title : 'Header',
-      text : "This area will keep track of your progress. You can also jump to different sections here (once completed)",
+      title : 'Progress',
+      text : "This area shows your progress. You can also jump to different sections here (once completed).",
       attachTo : ".editor__phase__dots bottom",
     });
 
 
     this._editorTour.addStep('done', {
       title : "That's it! You are ready to tackle it on your own",
+      text: "Don\'t worry, it wont take long.",
       buttons : [
         {
           classes : 'finish-btn btn -reverse -outline -rounded -sm',

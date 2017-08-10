@@ -38,11 +38,28 @@ class ResumeController extends Controller
         'togglerElevator' => [
           'index' => 0,
           'options' => [
-            'dribble, but with less drop shadows',
+            'dribble, but with less gradients',
             'Squarespace, but with fewer promo codes',
             '99Designs, but not terrible',
-            'Fiverr, but much more expensive for some reason',
-          ],
+            'Fiverr, but much more expensive... and also not terrible',
+          ]
+        ],
+        'togglerMinimal' => [
+          'index' => 0,
+          'options' => [
+            'maker of things',
+            'maker',
+            'human',
+            'collection of atoms',
+          ]
+        ],
+        'togglerConfident' => [
+          'index' => 0,
+          'options' => [
+            'a bit of wit',
+            'selective intellegence',
+            'straight teeth',
+          ]
         ],
         'manifesto' => [],
       ],

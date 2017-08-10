@@ -1,7 +1,7 @@
 <template>
   <div :id="'phase__'+ id">
     <!-- More overview / Interests -->
-    <div class="g__row">
+    <div class="g__row" v-if="model.skills.length > 0">
     <!-- Skill Lists  -->
       <div class="g__col6--@sm skill-list" v-if="model.skills.indexOf('print') > -1">
         <div class="card">
@@ -58,6 +58,11 @@
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="g__row" v-else>
+      <div class="alert -info -max--md -center">
+        <strong>Pro Tip! —</strong> Even if you don't need a skill now, it may come in handy in the future... you never know.
       </div>
     </div>
   </div>

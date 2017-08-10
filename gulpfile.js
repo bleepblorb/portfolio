@@ -13,5 +13,4 @@ gulp.task('sprites', function () {
 });
 
 gulp.task('build', ['sprites'], function() {
-  console.log('pooper');
 });

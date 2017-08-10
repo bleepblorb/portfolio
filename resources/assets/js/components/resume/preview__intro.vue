@@ -5,7 +5,7 @@
     <div class="-max--md -center">
       <!-- standard -->
       <div class="" v-if="introStyle == 'standard'" key="standard">
-        <h2>A Graphic Designer, Web Developer, and Illustrator using all the tools at my disposal <toggler :active="state.editMode" id="togglerIntro" :index="togglerIntro.index" :options="togglerIntro.options"></toggler>.</h2>
+        <h2>A graphic designer, web developer, and illustrator using all the tools at my disposal to <toggler :active="state.editMode" id="togglerIntro" :index="togglerIntro.index" :options="togglerIntro.options"></toggler>.</h2>
       </div>
 
       <!-- poetic -->
@@ -20,12 +20,13 @@
 
       <!-- Minimal -->
       <div class="" v-else-if="introStyle == 'minimal'" key="minimal">
-        <h3 class="">Adam Volkman:</h3><h1>Maker of things</h1>
+        <h3 class="">Adam Volkman:</h3>
+        <h1>A <toggler :active="state.editMode" id="togglerMinimal" :index="togglerMinimal.index" :options="togglerMinimal.options"></toggler>.</h1>
       </div>
 
       <!-- confident -->
       <div class="" v-else-if="introStyle == 'confident'" key="confident">
-        <h2>A pretty slick dude with sweet skills, a good attitude, and straight teeth. A true triple threat.</h2>
+        <h2>A pretty slick dude with sweet skills, a good attitude, and <toggler id="togglerConfident" :index="togglerConfident.index" :options="togglerConfident.options"></toggler>. A true triple threat.</h2>
       </div>
 
       <!-- hard to get -->
@@ -109,6 +110,28 @@
         },
         set(value) {
           this.model.togglerElevator = value;
+        }
+      },
+
+      togglerMinimal : {
+        get() {
+          if(this.model) {
+            return this.model.togglerMinimal;
+          }
+        },
+        set(value) {
+          this.model.togglerMinimal = value;
+        }
+      },
+
+      togglerConfident : {
+        get() {
+          if(this.model) {
+            return this.model.togglerConfident;
+          }
+        },
+        set(value) {
+          this.model.togglerConfident = value;
         }
       },
     },
