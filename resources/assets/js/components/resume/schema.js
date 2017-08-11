@@ -286,6 +286,14 @@ let schema = {
               value : "camping"
             },
             {
+              label : "On The Street",
+              value : "street"
+            },
+            {
+              label : "Typical",
+              value : "couch"
+            },
+            {
               label : "Artsy",
               value : "artsy"
             },
