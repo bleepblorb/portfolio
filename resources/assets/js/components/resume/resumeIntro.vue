@@ -15,7 +15,7 @@
             <h1 class="c--late-night">Get the
               <toggler
                 :options="['designer', 'developer', 'doodler', 'bed tester', 'ice cream taster', 'underwear model', 'underling' ]"
-              ></toggler><sup class="c--gray-light"><icon name="delete" size="sm"></icon></sup> you’ve always wanted!<sup class="c--jean-jacket t--normal">*</sup></h1>
+              ></toggler> <sup class="c--gray-light"><icon name="refresh" size="md"></icon></sup> you’ve always wanted!<sup class="c--jean-jacket t--normal">*</sup></h1>
             <h5 class="c--jean-jacket t--normal">*as long as its me, of course</h5>
             <p class="mt-5">
               <v-button @click.prevent="start()" color="primary" size="lg" variant="outline">Lets Go!</v-button>

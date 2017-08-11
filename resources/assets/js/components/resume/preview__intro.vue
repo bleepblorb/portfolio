@@ -13,7 +13,7 @@
         <h2>
           A maker of things.<br>
           Design, dev, &amp; draw – you bet!<br>
-          A poet? <toggler :active="state.editMode" id="togglerPoem" :index="togglerPoem.index" :options="togglerPoem.options"></toggler>.<popover class="c--gray-light" type="tooltip" content="<b>Hint.</b> It's a haiku"><sup><icon name="delete" size="sm"></icon></sup></popover>
+          A poet? <toggler :active="state.editMode" id="togglerPoem" :index="togglerPoem.index" :options="togglerPoem.options"></toggler>.<popover class="c--gray-light" type="tooltip" content="<b>Hint.</b> It's a haiku"><sup><icon name="info" size="md"></icon></sup></popover>
         </h2>
         <h6 class="c--gray-light mt-2">— Adam Volkman, 2017</h6>
       </div>
