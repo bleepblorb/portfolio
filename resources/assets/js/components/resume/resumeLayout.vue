@@ -363,7 +363,7 @@
         <div class="container py-6">
           <div class="g__row t--center -max--md -center">
             <div class="g__col enter__fade-in-up" data-spy-in>
-              <img src="/img/about-illustration.jpg" alt="" width="200" class="mb-2">
+              <img src="/img/resume-cta-trio.jpg" alt="" width="200" class="mb-2">
               <h3 class="mb-4 c--late-night">Think we'd work well together?</h3>
               <p>
                 <v-button  href="mailto:adam.volkman@gmail.com?subject=I saw your resume and didnt hate you" size="lg" variant="outline" color="primary"> Get in touch </v-button>
