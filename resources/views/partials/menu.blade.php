@@ -1,13 +1,14 @@
 
-<a href="/" class="logo">
-  <icon class="c--gray-lighter" name="logo__mark" style="height: 2rem"></icon>
-  <icon class="logo-text c--gray"  name="logo__text" style="height: 1.25rem"></icon>
-</a>
-
-<div id="main-menu" class="py-2">
+<div id="main-menu" class="py-4">
 
   <div class="container">
-    <div class="g__row -align-items--e">
+    <div class="g__row -align-items--center">
+      <div class="g__col">
+        <a href="/" class="logo">
+          <div class="logo-mark"></div>
+          <div class="logo-text"  name="logo__text"></div>
+        </a>
+      </div>
       <div class="g__col">
         <ul class="nav -justify-content--end">
           <li class="nav-item">

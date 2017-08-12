@@ -9,6 +9,10 @@
 
   .nav-link {
     color: $gray-light;
+
+    &:hover, .-active {
+      color: $gummy;
+    }
   }
 }
 
@@ -18,41 +22,69 @@
   transition: all 650ms;
 }
 
-.logo {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  padding: 16px 24px;
-  opacity: .8;
-  z-index: $zindex-navbar + 1;
-  margin-right: 15px;
-  transition: all 650ms 450ms;
+// .logo {
 
-  &:hover {
-    opacity: 1;
-  }
-}
+//   z-index: $zindex-navbar + 1;
+//   margin-right: 15px;
+//   transition: all 650ms 450ms;
+
+//   &:hover {
+//     opacity: 1;
+// //   }
+// }
 
 .logo {
   display: inline-block;
+  position: relative;
   cursor: pointer;
   text-decoration: none;
 
+  .logo-mark {
+    display: inline-block;
+    height: 2.5rem;
+    width: 2.25rem;
+    color: $gray-light;
+
+    background: {
+      image: url('/img/UI/logo-mark.svg');
+      position: center center;
+      size: auto 100%;
+      repeat: no-repeat;
+    }
+  }
+
   .logo-text {
-    visibility: hidden;
+    position: absolute;
+    left: 2.5rem;
+    top: .125rem;
+    height: 1.6rem;
+    width: 4.5rem;
+    transition: all 350ms 0ms;
+    pointer-events: none;
+    background: {
+      image: url('/img/UI/logo-text.svg');
+      position: left center;
+      size: auto 100%;
+      repeat: no-repeat;
+    }
     opacity: 0;
-    transition: all 350ms;
-    transform: translateY(-6px);
+    visibility: hidden;
+    transform: translateX(-6px);
   }
 
   &:hover {
     cursor: pointer;
     text-decoration: none;
 
+    .logo-mark {
+      background-image: url('/img/UI/logo-mark-color.svg');
+      color: $jean-jacket;
+    }
+
     .logo-text {
       visibility: visible;
       opacity: 1;
-      transform: translateY(0px);
+      transform: translateX(0px);
     }
   }
 }
