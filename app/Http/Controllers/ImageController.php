@@ -20,7 +20,7 @@ class ImageController extends Controller
 {
 
   function portrait(Request $request) {
-    $baseUrl = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix() . 'public/portrait/';
+    $baseUrl = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix() . 'portrait/';
 
     $input = $request->except('_token');
 
@@ -72,7 +72,7 @@ class ImageController extends Controller
       $img->insert($baseUrl.'body_base.png', 'top-left', 248, 120);
 
       // Base Head
-      $img->insert($baseUrl.'head_base.png', 'top-left', 828, 0);
+      $img->insert($baseUrl.'head_base.png', 'top-left', 828, 32);
 
       // Facial Expression
       $expression = DB::table('portrait_faces')
@@ -80,7 +80,7 @@ class ImageController extends Controller
               ->value('filename');
 
       if($expression) {
-        $img->insert($baseUrl.$expression, 'top-left', 828, 0);
+        $img->insert($baseUrl.$expression, 'top-left', 828, 38);
       }
 
 
@@ -102,7 +102,7 @@ class ImageController extends Controller
               ->value('filename');
 
       if($hair) {
-        $img->insert($baseUrl.$hair, 'top-left', 828, 0);
+        $img->insert($baseUrl.$hair, 'top-left', 828, 38);
       }
 
 
@@ -140,7 +140,7 @@ class ImageController extends Controller
               ->value('filename');
 
       if ( $facialHair ) {
-        $img->insert($baseUrl.$facialHair, 'top-left', 828, 0);
+        $img->insert($baseUrl.$facialHair, 'top-left', 828, 38);
       }
 
       
