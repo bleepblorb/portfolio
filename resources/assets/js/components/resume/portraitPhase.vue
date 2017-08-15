@@ -105,6 +105,7 @@
     mounted() {
       this.loadImage(this.$refs['base']);
       this._swap = this.$refs['swap'];
+      this.updatePortrait();
 
       this._swap.addEventListener('loaded', () => {
         this.swapping = false;
