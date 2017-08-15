@@ -72,7 +72,7 @@ class ImageController extends Controller
       $img->insert($baseUrl.'body_base.png', 'top-left', 248, 120);
 
       // Base Head
-      $img->insert($baseUrl.'head_base.png', 'top-left', 828, 32);
+      $img->insert($baseUrl.'head_base.png', 'top-left', 828, 38);
 
       // Facial Expression
       $expression = DB::table('portrait_faces')
