@@ -136,7 +136,7 @@
         data-src-md="{{asset('img/bt-spread.jpg')}}"
         >
       <div class="container -max--wumbo">
-        <p class="t--small c--gray-light">A collection marketing materials for <strong>Beaverton Toyota</strong>.</p>
+        <p class="t--small c--gray-light">A collection of marketing materials for <strong>Beaverton Toyota</strong></p>
       </div>
     </div>
 
@@ -159,7 +159,7 @@
               data-image-load
               data-src="{{asset('img/adair-web-plan.jpg')}}"
             >
-              <div class="caption"><strong>Adair Homes</strong> – Plan Detail Page</div>
+              <div class="caption"><strong>Adair Homes</strong> – Plan detail page</div>
             </div>
 
           </div>
@@ -178,7 +178,7 @@
               data-image-load
               data-src="{{asset('img/wtc-dashboard.jpg')}}"
             >
-              <div class="caption"> <strong>World Trade Center</strong> – Lobby Dashboard</div>
+              <div class="caption"> <strong>World Trade Center</strong> – Lobby dashboard</div>
             </div>
 
           </div>
@@ -195,7 +195,7 @@
               data-src-md="{{asset('img/nr-seattle-office.jpg')}}"
               >
               <div class="caption">
-                <strong>New Relic Seattle</strong> – Office Signage</div>
+                <strong>New Relic Seattle</strong> – Office signage</div>
             </div>
 
           </div>
@@ -212,7 +212,7 @@
         data-src="{{asset('img/adair-ui-sm.jpg')}}"
         data-src-md="{{asset('img/adair-ui.jpg')}}"
         >
-      <p class="container -max--wumbo t--small c--gray-light">Website redesign and development for <strong>Adair Homes</strong>.</p>
+      <p class="container -max--wumbo t--small c--gray-light">Website redesign and development for <strong>Adair Homes</strong></p>
     </div>
 
     <div class="container -max--wumbo">
@@ -241,7 +241,7 @@
               data-image-load
               data-src="{{asset('img/nr-breakroom-graphic.jpg')}}"
             >
-              <div class="caption"><strong>New Relic Seattle</strong> – Breakroom graphic</div>
+              <div class="caption"><strong>New Relic Seattle</strong> – Break room graphic</div>
             </div>
           </div>
           <div class="image-grid__col -half">
@@ -325,7 +325,7 @@
               data-image-load
               data-src="{{asset('img/hrd-distilling.jpg')}}"
             >
-              <div class="caption -light"><strong>Hood River Distillers</strong> — Process Illustration</div>
+              <div class="caption -light"><strong>Hood River Distillers</strong> — Process illustration</div>
             </div>
 
             <!-- Face It -->
@@ -334,7 +334,7 @@
               data-image-load
               data-src="{{asset('img/face-it.jpg')}}"
             >
-              <div class="caption"><strong>Face-Its</strong> — Personal Project</div>
+              <div class="caption"><strong>Face-Its</strong> — Personal project</div>
             </div>
           </div>
           <div class="image-grid__col -half">

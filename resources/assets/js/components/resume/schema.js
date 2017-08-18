@@ -257,11 +257,11 @@ let schema = {
               value : "baking"
             },
             {
-              label : "Playing a Ukelele",
+              label : "Playing a Ukulele",
               value : "uke"
             },
             {
-              label : "Suporting Local Sports Team",
+              label : "Supporting Local Sports Team",
               value : "sports"
             },
             {
@@ -278,7 +278,7 @@ let schema = {
           type : "radial-group",
           options : [
             {
-              label : "Studio",
+              label : "Hip Studio",
               value : "studio"
             },
             {
@@ -286,11 +286,11 @@ let schema = {
               value : "camping"
             },
             {
-              label : "On The Street",
+              label : "The Streets",
               value : "street"
             },
             {
-              label : "Typical",
+              label : "Home",
               value : "couch"
             },
             {
