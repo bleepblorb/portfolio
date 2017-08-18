@@ -156,36 +156,46 @@ $enable-print-styles:       true !default;
 $spacer:   1rem !default;
 $spacer-x: $spacer !default;
 $spacer-y: $spacer !default;
+
+$spacer-ratios: (
+  xs: $base-ratio,
+  sm: $base-ratio,
+  md: $base-ratio-md,
+  lg: $base-ratio-lg,
+  xl: $base-ratio-lg
+);
+
 $spacers: (
-  0: (
+  1: (
+    x: -2,
+    y: -2
+  ),
+  2: (
     x: 0,
     y: 0
   ),
-  1: (
-    x: ($spacer-x * pow($base-ratio, -2)),
-    y: ($spacer-y * pow($base-ratio, -2))
-  ),
-  2: (
-    x: ($spacer-x),
-    y: ($spacer-y)
-  ),
   3: (
-    x: ($spacer-x * pow($base-ratio, 2)),
-    y: ($spacer-y * pow($base-ratio, 2))
+    x: 1,
+    y: 1
   ),
   4: (
-    x: ($spacer-x * pow($base-ratio, 4)),
-    y: ($spacer-y * pow($base-ratio, 4))
+    x: 2,
+    y: 2
   ),
   5: (
-    x: ($spacer-x * pow($base-ratio, 6)),
-    y: ($spacer-y * pow($base-ratio, 6))
+    x: 4,
+    y: 4
   ),
   6: (
-    x: ($spacer-x * pow($base-ratio, 8)),
-    y: ($spacer-y * pow($base-ratio, 8))
+    x: 6,
+    y: 6
+  ),
+  7: (
+    x: 8,
+    y: 8
   )
-) !default;
+);
+
 $border-width: 2px;
 
 // This variable affects the `.h-*` and `.w-*` classes.

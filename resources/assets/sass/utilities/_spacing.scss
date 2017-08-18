@@ -1,28 +1,42 @@
 // Margin and Padding
 
+@mixin setSpacing($size, $infix, $length-y, $length-x) {
+  @each $prop, $abbrev in (margin: m, padding: p) {
+    .#{$abbrev}-#{$size}#{$infix}  { #{$prop}:        $length-y $length-x  !important;}
+    .#{$abbrev}r-#{$size}#{$infix} { #{$prop}-right:  $length-x !important; }
+    .#{$abbrev}l-#{$size}#{$infix} { #{$prop}-left:   $length-x !important; }
+    .#{$abbrev}t-#{$size}#{$infix} { #{$prop}-top:    $length-y !important; }
+    .#{$abbrev}b-#{$size}#{$infix} { #{$prop}-bottom: $length-y !important; }
+    
+    .#{$abbrev}x-#{$size}#{$infix} {
+      #{$prop}-right: $length-x !important;
+      #{$prop}-left:  $length-x !important;
+    }
+    .#{$abbrev}y-#{$size}#{$infix} {
+      #{$prop}-top:    $length-y !important;
+      #{$prop}-bottom: $length-y !important;
+    }
+  }
+}
+
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    @each $prop, $abbrev in (margin: m, padding: p) {
+    
       @each $size, $lengths in $spacers {
         $length-x: map-get($lengths, x);
         $length-y: map-get($lengths, y);
+        $ratio: map-get($spacer-ratios, $breakpoint);
 
-        .#{$abbrev}#{$infix}-#{$size}  { #{$prop}:        $length-y $length-x !important; }
-        .#{$abbrev}t#{$infix}-#{$size} { #{$prop}-top:    $length-y !important; }
-        .#{$abbrev}r#{$infix}-#{$size} { #{$prop}-right:  $length-x !important; }
-        .#{$abbrev}b#{$infix}-#{$size} { #{$prop}-bottom: $length-y !important; }
-        .#{$abbrev}l#{$infix}-#{$size} { #{$prop}-left:   $length-x !important; }
-        .#{$abbrev}x#{$infix}-#{$size} {
-          #{$prop}-right: $length-x !important;
-          #{$prop}-left:  $length-x !important;
-        }
-        .#{$abbrev}y#{$infix}-#{$size} {
-          #{$prop}-top:    $length-y !important;
-          #{$prop}-bottom: $length-y !important;
-        }
-      }
+        @include setSpacing($size, '', ($spacer-y * pow($ratio, $length-y)), ($spacer-x * pow($ratio, $length-x)));
+
+        // beakpoint specifics
+        @include setSpacing($size, $infix, ($spacer-y * pow($ratio, $length-y)), ($spacer-x * pow($ratio, $length-x)));
+      
+
+      // beakpoint specifics
+      // @include setSpacing($abbrev, '0', $infix, $prop, 0, 0);
     }
 
     // Some special margin utils
@@ -41,3 +55,17 @@
     }
   }
 }
+
+// resets for 0 
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @include setSpacing('0', $infix, 0, 0);
+  }
+}
+
+
+
+
+
