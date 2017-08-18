@@ -373,8 +373,8 @@
         </div>
       </section>
 
-      <div class="bg--jazzy py-6">
-        <div class="container -max--lg">
+      <div class="bg--jazzy py-7">
+        <div class="container -max--lg mb-6 mb-0--@md">
           <div class="g__row">
             <div class="g__col t--center">
               <a class="t--h2 c--white" href="/visual-summary">Enough talk, show me some pictures. <icon name="arrow__right-lg"></icon></a>

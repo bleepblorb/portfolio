@@ -1,9 +1,11 @@
 @extends('base')
 
+@section('title', 'Hello')
+
 @section('app')
   <div style="background-color:;">
     <div class="container -max--xl">
-      <div class="g__row -align-items--center t--center -justify-content--center" style="min-height: 90vh;">
+      <div class="g__row -align-items--center t--center -justify-content--center" style="min-height: 100vh;">
         <div class="g__col12 g__col10--@sm">
           <div class="g__row">
             <div class="g__col py-6">

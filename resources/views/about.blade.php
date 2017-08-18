@@ -1,5 +1,7 @@
 @extends('base')
 
+@section('title', 'Adam Volkman is')
+
 @section('app')
   <div id="about" class="container -max--lg">
     <div class="spacer" style="min-height: 40vh"></div>
