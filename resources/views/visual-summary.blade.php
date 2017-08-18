@@ -1,5 +1,7 @@
 @extends('base')
 
+@section('title', 'Visual Summary')
+
 
 @section('app')
 
@@ -24,7 +26,8 @@
             <div class="image-grid__item -vert enter__fade-in-up" data-spy-in
               data-image-load
               data-src="{{asset('img/hrd-banquet-art.jpg')}}"
-            ></div>
+            >
+            </div>
           </div>
           <!-- D + H -->
           <div class="image-grid__col -half">
@@ -32,13 +35,19 @@
               data-spy-in
               data-image-load
               data-src="{{asset('img/dh-concrete.jpg')}}"
-            ></div>
+            >
+              <div class="caption">
+                <strong>D + H Financial</strong> – Office graphics
+              </div>
+            </div>
             <!-- life.gif -->
             <div class="image-grid__item enter__fade-in-up -horz"
               data-spy-in
               data-image-load
               data-src="{{asset('img/life.gif')}}"
-            ></div>
+            >
+              <div class="caption -light"><strong>Life</strong>: Animated</div>
+            </div>
           </div>
         </div>
       </div>
@@ -47,9 +56,13 @@
     <!-- AQS UI fill -->
     <div class="my-6">
       <div class="enter__fade-in-up" data-spy-in>
-        <img class="-fill mb-2" data-image-load data-src="{{asset('img/aqs-ui.jpg')}}" >
+        <img class="-fill mb-2"
+          data-image-load
+          data-src="{{asset('img/aqs-ui-sm.jpg')}}"
+          data-src-md="{{asset('img/aqs-ui.jpg')}}"
+          >
         <div class="container -max--wumbo">
-          <p class="t--small c--gray-light -center"><strong>Anderson Quality Spring </strong>- Website redesign.</p>
+          <p class="t--small c--gray-light">Website redesign and development for <strong>Anderson Quality Spring </strong>.</p>
         </div>
       </div>
     </div>
@@ -63,7 +76,8 @@
             <div class="image-grid__item enter__fade-in-up"
               data-spy-in
               data-image-load
-              data-src="{{asset('img/nlb-menu-board.jpg')}}"
+              data-src="{{asset('img/nlb-menu-board-sm.jpg')}}"
+              data-src-md="{{asset('img/nlb-menu-board.jpg')}}"
             >
               <div class="copyright">
                 <popover type="tooltip" content="© SRM Architecture &amp; Marketing">©</popover>
@@ -81,7 +95,9 @@
               data-spy-in 
               data-image-load
               data-src="{{asset('img/aqs-icons.png')}}"
-            ></div>
+            >
+              <div class="caption -light"><strong>AQS</strong> – Custom icon set</div>
+            </div>
           </div>
 
           <div class="image-grid__col -half" >
@@ -89,7 +105,9 @@
             <div class="image-grid__item -horz enter__fade-in-up"
               data-spy-in
               data-image-load
-              data-src="{{asset('img/wtc-dash-grid.jpg')}}">
+              data-src="{{asset('img/wtc-dash-grid.jpg')}}"
+            >
+              <div class="caption"><strong>World Trade Center</strong> – Interactive dashboard</div>
             </div>
           </div>
         </div>
@@ -99,9 +117,9 @@
             <!-- Edge Menu -->
             <div class="image-grid__item"
               data-image-load
-              data-image-load
-              data-src="{{asset('img/edge-menu-all.jpg')}}"
-            >
+              data-src="{{asset('img/edge-menu-sm.jpg')}}"
+              data-src-md="{{asset('img/edge-menu-all.jpg')}}"
+              >
               <div class="caption"><strong>Edge Coffee</strong> - Menu design</div>
             </div>
           </div>
@@ -112,8 +130,14 @@
 
     <!-- Beaverton Toyota Collage -->
     <div class="py-6 enter__fade-in-up" data-spy-in>
-      <img data-image-load data-src="{{asset('img/bt-spread.jpg')}}" class="-fill mb-2" >
-      <p class="-max--xl -center t--small c--gray-light">A collection of work for Beaverton Toyota.</p>
+      <img class="-fill mb-2"
+        data-image-load
+        data-src="{{asset('img/bt-spread-sm.jpg')}}"
+        data-src-md="{{asset('img/bt-spread.jpg')}}"
+        >
+      <div class="container -max--wumbo">
+        <p class="t--small c--gray-light">A collection marketing materials for <strong>Beaverton Toyota</strong>.</p>
+      </div>
     </div>
 
     <div class="container -max--wumbo">
@@ -125,14 +149,18 @@
               data-spy-in
               data-image-load
               data-src="{{asset('img/nlb-mural-detail.jpg')}}"
-            ></div>
+            >
+              <div class="caption"><strong>Next Level Burger</strong> – Graphic detail</div>
+            </div>
 
             <!-- Adair web page -->
             <div class="image-grid__item -vert enter__fade-in-up"
               data-spy-in
               data-image-load
               data-src="{{asset('img/adair-web-plan.jpg')}}"
-            ></div>
+            >
+              <div class="caption"><strong>Adair Homes</strong> – Plan Detail Page</div>
+            </div>
 
           </div>
           <div class="image-grid__col -half">
@@ -140,7 +168,8 @@
             <div class="image-grid__item -vert enter__fade-in-up"
               data-spy-in
               data-image-load
-              data-src="{{asset('img/olivia-invite.jpg')}}"
+              data-src="{{asset('img/olivia-invite-xs.jpg')}}"
+              data-src-sm="{{asset('img/olivia-invite.jpg')}}"
             ></div>
 
             <!-- WTC Dash Photo -->
@@ -162,7 +191,8 @@
             <div class="image-grid__item enter__fade-in-up"
               data-spy-in
               data-image-load
-              data-src="{{asset('img/NR_Seattle_8338.jpg')}}"
+              data-src="{{asset('img/nr-seattle-office-sm.jpg')}}"
+              data-src-md="{{asset('img/nr-seattle-office.jpg')}}"
               >
               <div class="caption">
                 <strong>New Relic Seattle</strong> – Office Signage</div>
@@ -177,12 +207,31 @@
 
     <!-- Adair UI Fill -->
     <div class="py-6 enter__fade-in-up" data-spy-in>
-      <img data-image-load data-src="{{asset('img/adair-ui.jpg')}}" class="-fill mb-2" >
-      <p class="container -max--wumbo t--small c--gray-light"><strong>Adair Homes</strong> – Website redesign.</p>
+      <img class="-fill mb-2"
+        data-image-load
+        data-src="{{asset('img/adair-ui-sm.jpg')}}"
+        data-src-md="{{asset('img/adair-ui.jpg')}}"
+        >
+      <p class="container -max--wumbo t--small c--gray-light">Website redesign and development for <strong>Adair Homes</strong>.</p>
     </div>
 
     <div class="container -max--wumbo">
       <div class="image-grid">
+
+        <!-- Creatures Book -->
+        <div class="g__row">
+          <div class="image-grid__col">
+            <div class="image-grid__item enter__fade-in-up"
+              data-spy-in
+              data-image-load
+              data-src="{{asset('img/creatures-sm.jpg')}}"
+              data-src-md="{{asset('img/creatures-xl.jpg')}}"
+            >
+              <div class="caption -light"><strong>Creatures of the World, Unite!</strong> – Personal project</div>
+            </div>
+          </div>
+        </div>
+
         <div class="g__row">
           <div class="image-grid__col -half">
             
@@ -191,7 +240,9 @@
               data-spy-in
               data-image-load
               data-src="{{asset('img/nr-breakroom-graphic.jpg')}}"
-            ></div>
+            >
+              <div class="caption"><strong>New Relic Seattle</strong> – Breakroom graphic</div>
+            </div>
           </div>
           <div class="image-grid__col -half">
 
@@ -200,7 +251,9 @@
               data-spy-in
               data-image-load
               data-src="{{asset('img/nr-icons.png')}}"
-            ></div>
+            >
+              <div class="caption -light"><strong>New Relic Portland</strong> – Custom icons</div>
+            </div>
           </div>
         </div>
 
@@ -210,7 +263,8 @@
             <div class="image-grid__item enter__fade-in-up"
               data-spy-in 
               data-image-load 
-              data-src="{{asset('img/rockwood-healthy.jpg')}}"
+              data-src="{{asset('img/rockwood-healthy-sm.jpg')}}"
+              data-src-md="{{asset('img/rockwood-healthy.jpg')}}"
             ></div>
           </div>
         </div>
@@ -223,7 +277,9 @@
               data-spy-in
               data-image-load
               data-src="{{asset('img/aqs-web-home.jpg')}}"
-            ></div>
+            >
+              <div class="caption"><strong>AQS</strong> – Home page</div>
+            </div>
           </div>
           <div class="image-grid__col -half">
             <!-- New Relic PDX Signs -->
@@ -231,14 +287,18 @@
               data-spy-in
               data-image-load
               data-src="{{asset('img/nr-hall-of-justice.jpg')}}"
-            ></div>
+            >
+              <div class="caption"><strong>New Relic Portland</strong> – Office graphics</div>
+            </div>
 
             <!-- HRD Timeline Wall -->
             <div class="image-grid__item -horz enter__fade-in-up"
               data-spy-in
               data-image-load
               data-src="{{asset('img/hrd-timeline.jpg')}}"
-            ></div>
+            >
+              <div class="caption"><strong>Hood River Distillers</strong> – Tasting room graphics</div>
+            </div>
           </div>
         </div>
       </div>
@@ -256,6 +316,7 @@
 
     <div class="container -max--wumbo">
       <div class="image-grid">
+        
         <div class="g__row">
           <div class="image-grid__col -half">
             <!-- HRD Distilling Illu -->
@@ -263,14 +324,18 @@
               data-spy-in
               data-image-load
               data-src="{{asset('img/hrd-distilling.jpg')}}"
-            ></div>
+            >
+              <div class="caption -light"><strong>Hood River Distillers</strong> — Process Illustration</div>
+            </div>
 
             <!-- Face It -->
             <div class="image-grid__item -horz enter__fade-in-up"
               data-spy-in
               data-image-load
               data-src="{{asset('img/face-it.jpg')}}"
-            ></div>
+            >
+              <div class="caption"><strong>Face-Its</strong> — Personal Project</div>
+            </div>
           </div>
           <div class="image-grid__col -half">
             <!-- Walker gif -->
@@ -278,7 +343,9 @@
               data-spy-in 
               data-image-load
               data-src="{{asset('img/walker.gif')}}"
-            ></div>
+            >
+              <div class="caption -light">Random nonsense</div>
+            </div>
           </div>
         </div>
 
@@ -286,7 +353,7 @@
     </div>
   </div>
 
-  <div class="bg--jazzy py-6">
+  <div class="bg--jazzy py-7">
     <div class="container">
       <div class="g__row">
         <div class="g__col t--center">

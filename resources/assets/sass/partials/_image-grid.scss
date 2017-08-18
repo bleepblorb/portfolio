@@ -60,19 +60,19 @@
     position: absolute;
     left: $grid-gutter-width-base / 4;
     bottom: $grid-gutter-width-base / 4;
-    // width: 100%;
     border-radius: $border-radius-sm;
     padding: $grid-gutter-width-base / 4;
     font-size: $font-size-sm;
-    // opacity: 0;
-    // transform: translateY(20%);
+    font-family: $font-family-serif;
     transition: all 350ms;
-    // text-shadow: 0px 0px 5px rgba($gray-dark, .6);
-    background-color: rgba($white, .9);
-    color: $gray;
+    // background-color: rgba($gray-dark, .3);
+    color: $white;
 
-    &.-reverse {
-      color: $white;
+    opacity: 0;
+    transform: translateY(20%);
+
+    &.-light {
+      color: $gray;
     }
   }
 
