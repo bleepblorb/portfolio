@@ -2,10 +2,10 @@
 # well-done.us
 Adam Volkman's design portfolio and playground for new tech.
 
-*__Note:__ I like to make my work available in case others are curious about what I've done. While I strive to do things as best as possible– keep in mind that I've used technology that is mostly new to me, so odds are some methods may not be considered "best practice". Dont judge too hard.*
+*__Note:__ I like to make my work available in case others are curious about what I've done. While I strive to do things as best as possible– keep in mind that I've used technology that is mostly new to me, so odds are some methods may not be considered "best practice". Don't judge too hard.*
 
-## Developement Stuff
-Frameworks / plugins / tools / etc. that I've used, modified, or generally been inspired by for this project. Many thanks to the following:
+## Development Stuff
+Frameworks / plug-ins / tools / etc. that I've used, modified, or generally been inspired by for this project. Many thanks to the following:
 
 ##### Frameworks
 - **Laravel** – http://laravel.com
@@ -42,4 +42,4 @@ Frameworks / plugins / tools / etc. that I've used, modified, or generally been 
 - Jean Jacket: #a9daf4
 - Ice Cube: #eaf8f8
 
-All artwork & photography copyright Adam Volkman, unless otherwise noted. Be cool, dont steal.
+All artwork & photography copyright Adam Volkman, unless otherwise noted. Be cool, don't steal.
