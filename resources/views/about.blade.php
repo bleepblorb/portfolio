@@ -41,7 +41,7 @@
   <div class="container -max--lg my-6">
     <div class="g__row" data-spy-in data-spy="target: child; delay: 200">
       <div class="g__col12  g__col5--@lg mb-6 enter__fade-in-up">
-          <p class="">For information on me that is actually useful you'll want to take a peep at my resume. If you're interested in the tech/design behind the website you can take a look <a href="#">here.</a></p>
+          <p class="">For information on me that is actually useful you'll want to take a peep at my resume. If you're interested in the tech/design behind the website you can take a look <a href="https://bitbucket.org/adam_volkman/well-done">here.</a></p>
           <p>Thanks for stopping by</p>
 
         <p class="mt-4"><v-button color="primary" href="{{route('resume')}}" variant="outline">View Resume</v-button></p>
