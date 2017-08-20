@@ -1,4 +1,3 @@
-
 <template>
   <div class="radial-group g__row">
     <div v-for="option in options" class="g__col6">
@@ -8,7 +7,7 @@
         size="lg"
         :class="{'-selected' : isActive(option.value)}"
         block
-        >
+      >
         {{option.label}}
       </v-button>
     </div>
@@ -30,7 +29,6 @@
 
     data() {
       return {
-
       }
     },
 
@@ -41,6 +39,7 @@
       setValue : function(newValue) {
         this.$emit('input', newValue);
       },
+
       isActive : function(value) {
         return this.value === value;
       }

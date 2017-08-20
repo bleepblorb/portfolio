@@ -9,7 +9,7 @@
       </label>
     </div>
     <div class="g__col12">
-      <p class="t--small c--gray-light t--left t--sans mb-0 t--center">
+      <p class="t--small c--gray-light t--sans t--center mb-0">
        or just  <a @click.prevent="selectAll" href="#">Select All</a>
       </p>
     </div>
@@ -19,10 +19,19 @@
 <script>
   export default {
     props : {
+      /**
+       * List of checkbox options
+       * @type {array}
+       */
       options : {
         type : Array,
         required : true
       },
+
+      /**
+       * Initial value
+       * @type {array}
+       */
       value : {
         type: Array,
         default: []
@@ -36,6 +45,10 @@
     },
 
     computed : {
+      /**
+       * list of all option values
+       * @returns {array}
+       */
       allItems() {
         let values = [];
 
@@ -67,14 +80,11 @@
 
     methods : {
       selectAll() {
-        // this.internalValue = this.allItems;
+        // find all unselected values
+        let newVals = _.difference(this.allItems, this.internalValue);
 
-        let newVals = _.difference(this.allItems, this.internalValue)
         // add remaining values in order.
         this.internalValue = this.internalValue.concat(newVals);
-        console.log(this.internalValue, newVals);
-
-
       }
     }
   }

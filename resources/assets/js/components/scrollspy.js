@@ -1,14 +1,35 @@
+/**
+ *  ScrollSpy
+ *  ---------
+ *  Will monitor DOM elements with the 'data-spy-*' attribute and watch for them to
+ *  enter / exit. Settings can be passed using the 'data-spy' attribute;
+ *
+ *  Settings:
+ *  - @param {string} class Will add/remove given class. Can provide multiple divided by a space.
+ *  - @param {integer} delay Will delay adding class for given milliseconds
+ *  - @param {selector} target will act on given targets that are children of object instead
+ *
+ *  Settings format example: data-spy="class: in-view; delay: 500"
+ *
+ */
+
+
+// Load in in-veiw plugin
 window.inView = require('in-view');
 
+/**
+ * Converts option string into usable data object
+ * @param  {string} opts Options string
+ * @return {object}      Options as an object
+ */
 function convertOptions(opts) {
   if ( !typeof opts === 'string' ) {
     return;
   }
 
-  let options = {}
+  let options = {};
 
   let items = opts.split(';')
-
   items.forEach( (item) => {
     let newItem = item.split(':');
     let key =  newItem[0] ? newItem[0].trim().replace(' ', '-') : '';
@@ -20,7 +41,14 @@ function convertOptions(opts) {
   return options;
 }
 
+/**
+ * Updates element based on based on settings
+ * @param  {DOM} el       DOM element
+ * @param  {string} type 'enter' or 'exit' depending on action of item
+ * @return {boolean}      True on success
+ */
 function updateSpyElm(el, type) {
+
   let options = el.getAttribute('data-spy');
   let classes = ['-inview'];
   let data;
@@ -61,16 +89,15 @@ function updateSpyElm(el, type) {
       el.classList.remove(cls);
     })
   }
+
+  return true;
 }
 
 // Setup inVeiew defaults
 inView.offset(100);
 
+// watch elements for enter / exit and call updateSpyElm()
 document.addEventListener('DOMContentLoaded',function(){
-
-  Array.from(document.querySelectorAll('[data-spy-in]')).forEach( item => {
-    item.style.visiblity = 'hidden';
-  })
 
   inView('[data-spy-in]').on( 'enter', el => {
     updateSpyElm(el, 'enter');

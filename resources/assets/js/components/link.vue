@@ -1,16 +1,15 @@
 <template>
-    <!-- Fallback mode -->
-    <a v-else
-       :disabled="disabled"
-       :aria-disabled="disabled ? 'true' : 'false'"
-       :href="_href"
-       :target="target || null"
-       :rel="computedRel"
-       :class="linkClassObject"
-       @click="linkClick"
-    >
-        <slot></slot>
-    </a>
+  <a
+    :disabled="disabled"
+    :aria-disabled="disabled ? 'true' : 'false'"
+    :href="_href"
+    :target="target || null"
+    :rel="computedRel"
+    :class="linkClassObject"
+    @click="linkClick"
+  >
+    <slot></slot>
+  </a>
 </template>
 
 <script>
@@ -108,6 +107,3 @@
     }
   };
 </script>
-
-<style lang="css">
-</style>

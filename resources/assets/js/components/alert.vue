@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <transition>
     <div class="alert" :class="classList" role="alert" v-if="visible">
       <button
@@ -14,13 +14,27 @@
 <script>
   export default {
     props : {
+      /**
+       * whether alert is shown initially
+       * @type {boolean}
+       */
       show : {
         type : Boolean,
         default : true
       },
+
+      /**
+       * stylistic variant (applies class)
+       * @type {string}
+       */
       variant : {
         type : String
       },
+
+      /**
+       * whether alert can be dismissed
+       * @type {boolean}
+       */
       dismissable : {
         type : Boolean,
         default : false
@@ -34,6 +48,11 @@
     },
 
     computed : {
+
+      /**
+       * list of classes
+       * @returns {object}
+       */
       classList() {
         return {
           '-info' : this.variant == 'info',
@@ -45,6 +64,9 @@
     },
 
     methods : {
+      /**
+       * closes the alert
+       */
       close() {
         this.visible = false;
       }

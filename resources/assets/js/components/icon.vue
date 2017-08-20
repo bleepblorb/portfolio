@@ -1,9 +1,3 @@
-<!-- <template lang="html">
-  <svg role="presentation" class="icon" :class="sizeClass">
-    <use :xlink:href="sprite+'#'+name"></use>
-  </svg>
-</template> -->
-
 <template lang="html">
   <svg role="presentation" class="icon" :class="sizeClass" :viewBox="icon.viewBox" v-html="icon.content" v-once>
   </svg>
@@ -24,7 +18,7 @@
       size : {
         type : String,
         validator (val) {
-          return val === 'xs' || val === 'sm' || val === 'md' || val === 'lg' || val === 'xl'
+          return ['xs', 'sm', 'md', 'lg', 'xl'].indexOf(val) > -1;
         },
       }
     },

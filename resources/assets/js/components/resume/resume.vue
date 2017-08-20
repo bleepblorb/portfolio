@@ -83,7 +83,6 @@ import resumeEditor from './resumeEditor';
 import resumeContent from './resumeContent';
 import resumeLayout from './resumeLayout';
 import resumeIntro from './resumeIntro';
-import modal from '../modal.vue';
 
 store.resume.state = {
   currentStep : -1,
@@ -147,7 +146,7 @@ store.resume.model = {
 
 export default {
   components : {
-    resumeEditor, resumeContent, resumeLayout, resumeIntro, modal
+    resumeEditor, resumeContent, resumeLayout, resumeIntro
   },
 
   data() {

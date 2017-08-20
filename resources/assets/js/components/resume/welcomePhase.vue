@@ -11,13 +11,8 @@
 <script>
 
   import {store} from '../global';
-  import toggler from '../toggler';
 
   export default {
-
-    components : {
-      toggler
-    },
 
     props : {
       id : {

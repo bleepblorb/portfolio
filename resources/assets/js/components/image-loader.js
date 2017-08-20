@@ -1,11 +1,13 @@
-/*!
-  A modified Versions of:
-  [be]Lazy.js - v1.8.2 - 2016.10.25
-  A fast, small and dependency free lazy load script (https://github.com/dinbror/blazy)
-  (c) Bjoern Klinggaard - @bklinggaard - http://dinbror.dk/blazy
-*/
-;
+/**
+*  A modified Versions of:
+*  -----------------------
+*
+*  [be]Lazy.js - v1.8.2 - 2016.10.25
+*  A fast, small and dependency free lazy load script (https://github.com/dinbror/blazy)
+*  (c) Bjoern Klinggaard - @bklinggaard - http://dinbror.dk/blazy
+**/
 
+;
 (function(root, blazy) {
     // Browser globals. Register bLazy on window
     window.Blazy = blazy();
@@ -201,7 +203,7 @@
 
 
                 if (isImage || ele.src === undefined) {
-                    
+
                     if ( (isImage && ele.src === src) || (ele.style.backgroundImage.slice(4,-1).replace(/"/g, '') === src) ) {
                         return;
                     }
@@ -389,7 +391,7 @@
     }
 });
 
-/* 
+/*
  * Initialize Blazy object for our Image Loader
 */
 
@@ -419,5 +421,5 @@
 
       ]
     });
-    
+
 })();

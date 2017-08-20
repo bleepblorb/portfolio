@@ -33,18 +33,34 @@
     },
 
     props : {
+      /**
+       * position of popup - 'top', 'bottom', 'left', 'right'
+       */
       position : {
         type : String,
         default : 'bottom'
       },
+
+      /**
+       * max height of the dropdown
+       */
       maxHeight : {
         type : Number,
         default : null
       },
+
+
+      /**
+       * disables dropdown link
+       */
       disabled : {
         type : Boolean,
         default : false
       },
+
+      /**
+       * event triggers for dropdown
+       */
       trigger : {
         type : String,
         default : 'click',
@@ -52,19 +68,17 @@
           return val == 'click' || val == 'hover';
         }
       },
+
       /**
        * Should the dropdown close when user clicks off of dropdown
-       * @type {Boolean}
-       * @default {True}
        */
       closeOnClickOff : {
         type : Boolean,
         default : true
       },
+
       /**
        * Should the dropdown close when user clicks on the dropdown
-       * @type {Boolean}
-       * @default {True}
        */
       closeOnSelect : {
         type : Boolean,
@@ -89,11 +103,6 @@
           'max-height' : this.maxHeight ? this.maxHeight + 'px' : false,
         }
       },
-      // popupStyle() {
-      //   return {
-      //     'min-width' :  this.$refs.target.clientWidth - 16 + 'px'
-      //   }
-      // },
 
       classList () {
         return {
@@ -103,21 +112,17 @@
         }
       }
     },
+
     watch : {
-    },
-    created() {
-    },
-    mounted() {
-      this.target = this.getTarget();
-      this.$refs.content.addEventListener("scroll", _.throttle(this.checkOverflow, 15));
-      window.addEventListener("resize", _.debounce(this.close, 200, {
-        'leading': true,
-        'trailing': false
-      }));
     },
 
     methods : {
 
+      /**
+       * determines if content overflows dropdown container.
+       * If so, will add '-overflow-top' or '-overflow-btm' classes to element
+       *
+       */
       checkOverflow () {
         let el = this.$refs.content;
         let menu = this.$refs.menu.$el;
@@ -135,9 +140,14 @@
         }
       },
 
+      /**
+       * retrieves the dropdown target element
+       * @returns {DOM}
+       */
       getTarget() {
         return this.$refs.target;
       },
+
 
       onHover() {
         if ( this.trigger == 'hover' ) {
@@ -151,17 +161,22 @@
         }
       },
 
+      /**
+       * toggle dropdown visibility
+       */
       toggle() {
         this.isOpen ? this.close() : this.open();
       },
 
+      /**
+       * handle when user clicks away from dropdown
+       */
       _clickOutListener(e) {
-          if ( !this.$el.contains(e.target) && (!this.$refs.content.contains(e.target) || this.closeOnSelect) ) {
-              if (this.clickOutListener) {
-
-                  this.clickOutListener();
-              }
+        if ( !this.$el.contains(e.target) && (!this.$refs.content.contains(e.target) || this.closeOnSelect) ) {
+          if ( this.clickOutListener ) {
+            this.clickOutListener();
           }
+        }
       },
 
       clickOutListener() {
@@ -183,6 +198,18 @@
           this.checkOverflow();
         }, 10);
       }
-    }
+    },
+
+    created() {
+    },
+
+    mounted() {
+      this.target = this.getTarget();
+      this.$refs.content.addEventListener("scroll", _.throttle(this.checkOverflow, 15));
+      window.addEventListener("resize", _.debounce(this.close, 200, {
+        'leading': true,
+        'trailing': false
+      }));
+    },
   }
 </script>

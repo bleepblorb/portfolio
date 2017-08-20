@@ -53,7 +53,7 @@
 
 <script>
   import resumePhase from './resumePhase';
-    import {store} from '../global';
+  import {store} from '../global';
 
   export default {
     mixins : [ resumePhase ],
