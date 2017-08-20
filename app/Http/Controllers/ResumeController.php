@@ -217,9 +217,9 @@ class ResumeController extends Controller
         'filter' => 'nada',
       ],
       'portraitUrls' => [
-        'lg' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-xl.jpg",
-        'md' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-md.jpg",
-        'xs' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-e5bc3456ca38304630f4d3bc1850b991-xs.jpg"
+        'lg' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-ac2cd116a5c58873168491e3ed09f26a-xl.jpg",
+        'md' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-ac2cd116a5c58873168491e3ed09f26a-md.jpg",
+        'xs' => "https://s3-us-west-2.amazonaws.com/well-done/public/portrait/portrait-ac2cd116a5c58873168491e3ed09f26a-xs.jpg"
       ],
       'experience' => [
         'past' => 'detail',
