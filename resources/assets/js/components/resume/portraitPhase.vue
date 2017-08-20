@@ -98,7 +98,7 @@
       },
 
       loadImage(el) {
-        window.bLazy.load(el, true);
+        window.imageLoader.load(el, true);
       }
     },
 

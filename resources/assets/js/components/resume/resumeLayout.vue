@@ -421,7 +421,7 @@
     watch : {
       portraitUrls() {
         this.$nextTick( ()=> {
-          window.bLazy.load(this.$refs.portrait, true);
+          window.imageLoader.load(this.$refs.portrait, true);
         });
       }
     },

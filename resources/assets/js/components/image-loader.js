@@ -1,22 +1,14 @@
 /*!
-  hey, [be]Lazy.js - v1.8.2 - 2016.10.25
+  A modified Versions of:
+  [be]Lazy.js - v1.8.2 - 2016.10.25
   A fast, small and dependency free lazy load script (https://github.com/dinbror/blazy)
   (c) Bjoern Klinggaard - @bklinggaard - http://dinbror.dk/blazy
 */
 ;
+
 (function(root, blazy) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register bLazy as an anonymous module
-        define(blazy);
-    } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        module.exports = blazy();
-    } else {
-        // Browser globals. Register bLazy on window
-        root.Blazy = blazy();
-    }
+    // Browser globals. Register bLazy on window
+    window.Blazy = blazy();
 })(this, function() {
     'use strict';
 
@@ -396,3 +388,36 @@
         return breakpoint;
     }
 });
+
+/* 
+ * Initialize Blazy object for our Image Loader
+*/
+
+
+(function() {
+    window.imageLoader = new Blazy({
+      selector : '[data-image-load]',
+      successClass : '-loaded',
+      loadInvisible : true,
+      breakpoints : [
+        {
+          width: 576,
+          src: 'data-src-sm'
+        },
+        {
+          width: 768,
+          src: 'data-src-md'
+        },
+        {
+          width: 992,
+          src: 'data-src-lg'
+        },
+        {
+          width: 1200,
+          src: 'data-src-xl'
+        },
+
+      ]
+    });
+    
+})();
