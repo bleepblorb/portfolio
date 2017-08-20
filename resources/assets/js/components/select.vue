@@ -101,12 +101,11 @@
 </template>
 
 <script>
-  import multiselectMixin from './multiselectMixin'
+  import selectMixin from './selectMixin'
   import pointerMixin from './pointerMixin'
 
   export default {
-    name: 'vue-multiselect',
-    mixins: [multiselectMixin, pointerMixin],
+    mixins: [selectMixin, pointerMixin],
     props: {
 
       /**

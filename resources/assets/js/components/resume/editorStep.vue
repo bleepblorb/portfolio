@@ -14,7 +14,7 @@
       <div
         class="editor__input -condensed"
         v-if="this.inputType !== 'intro'">
-        <multiselect
+        <v-select
           v-model="value"
           :options="options"
           :placeholder="placeholder || 'Select'"
@@ -23,7 +23,7 @@
           :close-on-select="this.inputType !== 'checkbox-group'"
           :allow-empty="false"
           >
-        </multiselect>
+        </v-select>
       </div>
 
       <div
@@ -47,16 +47,8 @@
 
 <script>
   import {store} from '../global';
-  import radialGroup from '../radialGroup';
-  import checkboxGroup from '../checkboxGroup';
-  import sliderInput from '../sliderInput';
-  import multiselect from '../multiselect';
 
   export default {
-
-    components : {
-      radialGroup, checkboxGroup, sliderInput, multiselect
-    },
 
     props : {
       id : {

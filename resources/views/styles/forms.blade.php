@@ -171,7 +171,7 @@
   <div class="g__row mb-4">
     <div class="g__col6">
       <label for="">Auto width</label>
-      <multiselect
+      <v-select
         :options="[
           {label : 'Homer', value : '1' },
           {label : 'Marge', value : '2'},
@@ -182,10 +182,10 @@
           track-by="value"
           label="label"
           placeholder="Select Option"
-          ></multiselect>
+          ></v-select>
     </div>
     <div class="g__col6">
-      <multiselect
+      <v-select
         :options="[
           {label : 'option one', value : '1' },
           {label : 'option two', value : '2'},
@@ -194,14 +194,14 @@
           placeholder="Disabled Select"
           disabled
           class="-block"
-          ></multiselect>
+          ></v-select>
     </div>
   </div>
 
   <div class="g__row">
     <div class="g__col6">
       <p><code>.-block</code></p>
-      <multiselect
+      <v-select
         :options="[
           {label : 'Option one', value : '1' },
           {label : 'option two', value : '2'},
@@ -223,7 +223,7 @@
           :close-on-select="false"
           placeholder="Select Multiple"
           class="-block"
-          ></multiselect>
+          ></v-select>
     </div>
   </div>
 </section>

@@ -531,18 +531,18 @@ fieldset[disabled] .select {
   }
 
   // ** Overflow States
-  &.-overflow-top .multiselect__drop-wrap:before,
-  &.-overflow-btm .multiselect__drop-wrap:after {
+  &.-overflow-top .select__drop-wrap:before,
+  &.-overflow-btm .select__drop-wrap:after {
     opacity: 1;
     height: 2rem;
     transition: opacity 550ms, background 250ms, height 0ms;
   }
 
-  &.-overflow-top .multiselect__drop-wrap:before {
+  &.-overflow-top .select__drop-wrap:before {
     background-position: left 50% top 25%, center;
   }
 
-  &.-overflow-btm .multiselect__drop-wrap:after {
+  &.-overflow-btm .select__drop-wrap:after {
     background-position: left 50% bottom 25%, center;
   }
 
@@ -683,14 +683,14 @@ fieldset[disabled] .select {
   }
 }
 
-.multiselect__loading-enter-active,
-.multiselect__loading-leave-active {
+.select__loading-enter-active,
+.select__loading-leave-active {
   transition: opacity 0.4s ease-in-out;
   opacity: 1;
 }
 
-.multiselect__loading-enter,
-.multiselect__loading-leave-active {
+.select__loading-enter,
+.select__loading-leave-active {
   opacity: 0;
 }
 

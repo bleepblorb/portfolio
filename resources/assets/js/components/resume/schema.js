@@ -238,7 +238,7 @@ let schema = {
           id : "hands",
           intro : "Strike a pose",
           question : "I've got one hand in my pocket, and the other one is...",
-          type : "multiselect",
+          type : "v-select",
           options : [
             {
               label : "Giving a Thumbs Up",

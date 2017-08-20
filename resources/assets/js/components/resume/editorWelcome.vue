@@ -12,13 +12,13 @@
             <h3 class="c--late-night">How pumped are you to begin?</h3>
           </div>
           <div class="editor__input -condensed">
-            <multiselect
+            <v-select
               v-model="value"
               :options="options"
               placeholder="Select"
               :allow-empty="false"
               >
-            </multiselect>
+            </v-select>
           </div>
 
           <div class="editor__input -standard">
@@ -39,14 +39,8 @@
 <script>
 
   import {store} from '../global';
-  import multiselect from '../multiselect';
-  import radialGroup from '../radialGroup';
 
   export default {
-
-    components : {
-      multiselect, radialGroup
-    },
 
     data() {
       return {

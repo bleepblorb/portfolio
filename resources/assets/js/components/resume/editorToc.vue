@@ -12,13 +12,13 @@
           </div>
 
           <div class="editor__input -condensed">
-            <multiselect
+            <v-select
               :options="options"
               placeholder="Go To..."
               :allow-empty="false"
               @input="phaseSelect"
               class="g__col">
-            </multiselect>
+            </v-select>
           </div>
 
           <div class="editor__input -standard">
@@ -43,12 +43,10 @@
 <script>
 
   import {store} from '../global';
-  import multiselect from '../multiselect';
 
   export default {
 
     components : {
-      multiselect
     },
 
     data() {
