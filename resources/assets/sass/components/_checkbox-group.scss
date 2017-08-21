@@ -1,0 +1,31 @@
+// checkboxGroup
+
+.checkbox-group {
+  align-items: center;
+
+  .checkbox-group__item {
+    @include make-col-ready();
+    @include make-col(4);
+    margin: .5rem 0 2rem;
+  }
+
+  .form-check {
+    margin: 0;
+    align-content: center;
+
+    &:hover {
+      .form-check__description {
+        color: $jazzy;
+      }
+    }
+
+    .form-check__indicator {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .form-check__description {
+      display: inline-block;
+      font-family: $font-family-sans-serif;
+    }
+  }
+}

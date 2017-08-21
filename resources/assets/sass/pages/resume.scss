@@ -4,6 +4,10 @@ body.edit {
   overflow: hidden;
 }
 
+//
+// Resume
+//
+
 #resume {
 
   width: 100%;
@@ -17,6 +21,71 @@ body.edit {
     z-index: 99;
   }
 }
+
+
+//
+//  Resume Intro
+//
+
+#resume-intro {
+  position: relative;
+
+  // ** Transition
+  &.intro-enter-active {
+    transition: all 800ms ease-out;
+  }
+
+  &.intro-leave-active {
+    transition: all 600ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+
+  &.intro-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  &.intro-leave-to {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  .resume-intro__text {
+    display: flex;
+    position: relative;
+    min-height: 100vh;
+    padding-top: 64px;
+    padding-bottom: 100px;
+    overflow: hidden;
+  }
+
+  .resume-intro__illo {
+    position: absolute;
+    top: 70%;
+    height: 55vh;
+    min-height: 300px;
+    left: 0px;
+    right: 0px;
+    background : {
+      size: cover;
+      repeat: no-repeat;
+      position: top center;
+    }
+
+    @include media-breakpoint-up(sm){
+      top: 60%;
+    }
+
+    @include media-breakpoint-up(lg){
+      top: 50%;
+    }
+    @include media-breakpoint-up(xl){
+      top: 40%;
+      height: 65vh;
+    }
+
+  }
+}
+
 
 //
 // Resume Editor
@@ -110,9 +179,9 @@ body.edit {
       max-width: 640px;
     }
   };
-
 }
 
+// ** Editor Wrap
 .resume__editor-wrap {
   position: absolute;
   top: 0px;
@@ -163,13 +232,7 @@ body.edit {
 }
 
 
-
-.editor__header, .editor__footer {
-  // max-width: 400px;
-}
-
-
-// Editor Header
+//** Editor Header
 
 .editor__header {
   position: absolute;
@@ -280,6 +343,9 @@ body.edit {
   }
 }
 
+
+//** Editor Footer
+
 .editor__footer {
   position: absolute;
   bottom: 0;
@@ -319,6 +385,9 @@ body.edit {
     max-width: 620px;
   }
 }
+
+
+//** preview Toggle Button
 
 .preview-toggle__btn {
   position: absolute;
@@ -365,6 +434,10 @@ body.edit {
       }
 }
 
+
+//
+// Resume Sidebar
+//
 
 .sidebar {
   position: fixed;
@@ -432,13 +505,9 @@ body.edit {
   }
 }
 
-// *************************
-// CONTENT
-// *************************
-
-
-
-// ** resume Content
+//
+// Resume Content
+//
 
 .resume__content {
   flex: 0 0 1;
@@ -481,6 +550,8 @@ body.edit {
     }
   }
 }
+
+// ** Resume Preview
 
 #resume__preview {
   display: flex;
@@ -553,70 +624,6 @@ body.edit {
 
 
 //
-//  Resume intro Style
-//
-
-#resume-intro {
-  position: relative;
-
-  // ** Transition
-  &.intro-enter-active {
-    transition: all 800ms ease-out;
-  }
-
-  &.intro-leave-active {
-    transition: all 600ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
-  }
-
-  &.intro-enter {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  &.intro-leave-to {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-
-  .resume-intro__text {
-    display: flex;
-    position: relative;
-    min-height: 100vh;
-    padding-top: 64px;
-    padding-bottom: 100px;
-    overflow: hidden;
-  }
-
-  .resume-intro__illo {
-    position: absolute;
-    top: 70%;
-    height: 55vh;
-    min-height: 300px;
-    left: 0px;
-    right: 0px;
-    background : {
-      size: cover;
-      repeat: no-repeat;
-      position: top center;
-    }
-
-    @include media-breakpoint-up(sm){
-      top: 60%;
-    }
-
-    @include media-breakpoint-up(lg){
-      top: 50%;
-    }
-    @include media-breakpoint-up(xl){
-      top: 40%;
-      height: 65vh;
-    }
-
-  }
-}
-
-
-//
 // Resume Layout
 //
 
@@ -651,50 +658,9 @@ body.edit {
   }
 }
 
-.resume__layout-wrap {
-
-
-
-  // .edit-mode-enter-active & {
-  //   transition: all 650ms 400ms ease;
-  // }
-  //
-  // .edit-mode-leave-active & {
-  //   transition: all 450ms ease-out;
-  // }
-  //
-  // .edit-mode-enter & {
-  //   transform: translateY(48px);
-  //   opacity: 0;
-  // }
-  //
-  // .edit-mode-leave-to & {
-  //   opacity: 0;
-  //   transform: translateY(100px);
-  // }
-}
-
-.i--arrow {
-  display: inline-block;
-  width: 16px;
-  height: 10px;
-  margin: 0 9px;
-
-  background : {
-    position: center right;
-    repeat: no-repeat;
-    size: auto 8px;
-    image : url('../img/UI/arrow-right-light.svg');
-  }
-}
-
+// ** job block
 .job {
-
   margin-bottom: 4rem;
-
-  .job__date {
-    // color: $jazzy;
-  }
 
   .job__location {
     color: $gray;
@@ -722,50 +688,7 @@ body.edit {
   top: 32px;
 }
 
+// ** Outro section
 #resume-outro {
-
   padding-bottom: 200px;
-
-
-  background: {
-    size : cover;
-    position: center top;
-  }
-}
-
-
-// random
-//
-
-
-// checkboxGroup
-
-.checkbox-group {
-  align-items: center;
-
-  .checkbox-group__item {
-    @include make-col-ready();
-    @include make-col(4);
-    margin: .5rem 0 2rem;
-  }
-
-  .form-check {
-    margin: 0;
-    align-content: center;
-
-    &:hover {
-      .form-check__description {
-        color: $jazzy;
-      }
-    }
-
-    .form-check__indicator {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-    .form-check__description {
-      display: inline-block;
-      font-family: $font-family-sans-serif;
-    }
-  }
 }

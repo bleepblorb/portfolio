@@ -24,7 +24,6 @@
     }
 
     #grid-view .g__col {
-      /*background-image: linear-gradient(to right, rgba(0,150,250, .15) 1px, transparent 1px, transparent 16px, rgba(100,150,250, .07) 16px, rgba(100,150,250, .07) calc(100% - 16px), transparent calc(100% - 16px));*/
       border-right: 1px solid #eee;
       height: 100%;
     }
@@ -67,7 +66,7 @@
 @endsection
 
 @section('app')
-  <div class="container">
+  <div class="container menu-pad">
     <div class="g__row">
       @include('styles._menu')
       <div id="examples" class="g__col8--@sm g__col9--@md g__col10--@lg">
