@@ -393,23 +393,24 @@ body.edit {
   position: absolute;
   display: flex;
   top: 25vh;
-  right: -16px;
-  width: 32px;
-  height: 32px;
-  background-color: $jean-jacket;
+  right: -22px;
+  width: 44px;
+  height: 44px;
+  background-color: $white;
+  border: 2px solid $jean-jacket;
   border-radius: 50%;
   transition: all 250ms 0ms, top 1ms;
   opacity: 0;
   align-items: center;
   justify-content: center;
+  color: $jean-jacket;
 
-  .i--arrow {
+  .icon {
     margin: 0;
-    background-image: url('../img/UI/arrow-right-lighter.svg');
   }
 
   .preview-mode & {
-    .i--arrow {
+    .icon {
       transform: rotate(180deg);
     }
   }

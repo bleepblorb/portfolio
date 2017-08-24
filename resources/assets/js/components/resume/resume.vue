@@ -7,7 +7,7 @@
       <div v-show="state.editMode" class="resume__editor-mode">
         <div class="preview-toggle">
           <div class="preview-toggle__btn" @click="togglePreview()">
-            <span class="i--arrow"></span>
+            <icon name="arrow__right-sm" size="md"></icon>
           </div>
         </div>
         <resume-editor :schema="schema"></resume-editor>
@@ -16,6 +16,7 @@
       </div>
     </transition>
 
+    <!-- resume layout -->
     <transition name="edit-mode">
       <resume-layout  v-show="!state.showIntro && state.isComplete"></resume-layout>
     </transition>
