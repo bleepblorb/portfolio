@@ -38,6 +38,19 @@
     <div id="app" :class="{'-hide-menu' : !state.showMenu}" v-cloak >
       @include('partials.menu')
       @yield('app')
+      <modal id="globalMessage" size="sm">
+        <div class="p-4">
+          <h5 class="mb-0 c--jean-jacket">bummer...</h5>
+          <h3 class="c--jazzy">looks like you've got an older browser.</h3>
+          <p class="">
+            In order for things to look / function as intended, please <a href="https://whatbrowser.org" target="_blank">update your browser</a>. Thanks!
+          </p>
+         <!--  <p class="t--small c--gray-light">
+            This site uses new technology in order to keep things fast, simple, and generally better (and more fun for me) which requires a current browser.
+          </p> -->
+          
+        </div>
+      </modal>
     </div>
   </body>
 

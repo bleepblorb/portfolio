@@ -34,6 +34,12 @@ window.Shepherd = require('tether-shepherd');
 window.Velocity = require('velocity-animate');
 
 
+/** 
+ * Custom Modernizr Build
+ */
+require('./modernizr.min.js');
+
+
 /**
  * axios HTTP library.This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.

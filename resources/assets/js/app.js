@@ -32,6 +32,35 @@ const app = new Vue ({
     Event.$on('showMenu', () => {
       this.state.showMenu = true;
     });
+
+    // ** Old browser Warning
+    // set an initial sessionstorage value if one is already set
+    if(Modernizr.sessionstorage && !sessionStorage.getItem('warningHidden')){
+      sessionStorage.setItem('warningHidden', false);
+    }
+    // set value to true once dismissed
+    Event.$on('hidden::modal', (id) => {
+      if ( id == 'globalMessage' ) {
+        sessionStorage.setItem('warningHidden', true);   
+      }
+    });
+  },
+  mounted() {
+    
+    // Launching Old browser Warning
+    let failed = false;
+
+    _.forEach(Modernizr, (test) => {
+      if( test == true ) {
+        failed = true;
+      }
+    });
+
+    console.log();
+
+    if( failed && (sessionStorage.getItem('warningHidden') == 'false')) {
+      Event.$emit('show::modal', 'globalMessage');
+    }
   }
 });
 
@@ -42,4 +71,5 @@ const app = new Vue ({
  */
  require('./components/scrollspy');
  require('./components/image-loader');
+
 
