@@ -51,7 +51,7 @@ const app = new Vue ({
     let failed = false;
 
     _.forEach(Modernizr, (test) => {
-      if( test == true ) {
+      if( test == false ) {
         failed = true;
       }
     });
