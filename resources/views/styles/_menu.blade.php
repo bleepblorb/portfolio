@@ -11,5 +11,6 @@
     <li><a href="{{route('style', 'popovers')}}">Popovers</a></li>
     <li><a href="{{route('style', 'modal')}}">Modals</a></li>
     <li><a href="{{route('style', 'forms')}}">Forms</a></li>
+    <li><a href="{{route('style', 'carousel')}}">Carousel</a></li>
   </ul>
 </div>

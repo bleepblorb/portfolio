@@ -55,5 +55,7 @@ Vue.component('slider-input', sliderInput);
 import toggler from './toggler.vue';
 Vue.component('toggler', toggler);
 
+// Carousel
+Vue.component('carousel', require('./carousel'));
 
 export {store};

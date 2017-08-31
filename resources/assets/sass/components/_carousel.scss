@@ -1,107 +1,119 @@
+
+// Carousel
+
+$carousel-control-color:                      $jazzy;
+$carousel-control-width:                      70% !default;
+$carousel-control-opacity:                    0;
+
+$carousel-indicator-width:                    48px;
+$carousel-indicator-height:                   48px;
+$carousel-indicator-spacer:                   3px !default;
+$carousel-indicator-active-bg:                $white !default;
+
+$carousel-caption-width:                      70% !default;
+$carousel-caption-color:                      $white !default;
+
+$carousel-control-icon-width:                 32px !default;
+$carousel-control-icon-width-lg:              48px !default;
+
+$carousel-control-prev-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$carousel-control-color}' viewBox='0 0 8 8'%3E%3Cpath d='M4 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"), "#", "%23") !default;
+$carousel-control-next-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$carousel-control-color}' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E"), "#", "%23") !default;
+
+$carousel-transition:           transform .6s ease-in-out !default;
+
 // Wrapper for the slide container and indicators
-.carousel {
-  position: relative;
-}
-
-.carousel-inner {
+.carousel, .carousel__content {
   position: relative;
   width: 100%;
-  overflow: hidden;
 }
 
-.carousel-item {
-  position: relative;
-  display: none;
+.carousel__item {
   width: 100%;
+  // margin-right: $grid-gutter-width-base;
 
   @include if-supports-3d-transforms() {
-    @include transition($carousel-transition);
     backface-visibility: hidden;
     perspective: 1000px;
   }
 }
 
-.carousel-item.active,
-.carousel-item-next,
-.carousel-item-prev {
-  display: flex;
+.carousel__image {
+  width: 100%;
 }
-
-.carousel-item-next,
-.carousel-item-prev {
-  position: absolute;
-  top: 0;
-}
-
-// CSS3 transforms when supported by the browser
-@include if-supports-3d-transforms() {
-  .carousel-item-next.carousel-item-left,
-  .carousel-item-prev.carousel-item-right {
-    transform: translate3d(0, 0, 0);
-  }
-
-  .carousel-item-next,
-  .active.carousel-item-right {
-    transform: translate3d(100%, 0, 0);
-  }
-
-  .carousel-item-prev,
-  .active.carousel-item-left {
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
 
 //
 // Left/right controls for nav
 //
 
-.carousel-control-prev,
-.carousel-control-next {
+.carousel__control-prev,
+.carousel__control-next {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 0%;
+  bottom: 0%;
   // Use flex for alignment (1-3)
-  display: flex; // 1. allow flex styles
   align-items: center; // 2. vertically center contents
-  justify-content: center; // 3. horizontally center contents
-  width: $carousel-control-width;
   color: $carousel-control-color;
-  text-align: center;
   opacity: $carousel-control-opacity;
-  // We can't have a transition here because WebKit cancels the carousel
-  // animation if you trip this while in the middle of another animation.
+  z-index: 10;
+  display: none;
+  cursor: pointer;
+  transition: opacity 250ms;
+
+  @media (pointer: fine) {
+    display: flex; // 1. allow flex styles
+  }
 
   // Hover/focus state
   @include hover-focus {
     color: $carousel-control-color;
     text-decoration: none;
     outline: 0;
-    opacity: .9;
+    opacity: 1;
+  }
+
+  &:active {
+    .carousel__control-prev-icon, .carousel__control-next-icon {
+      transform: scale(1.2);
+    }
   }
 }
-.carousel-control-prev {
+.carousel__control-prev {
   left: 0;
+  justify-content: flex-start;
+  width: 100% - $carousel-control-width;
+  padding-left: 5%;
 }
-.carousel-control-next {
+.carousel__control-next {
   right: 0;
+  justify-content: flex-end;
+  width: $carousel-control-width;
+  padding-right: 5%;
 }
 
 // Icons for within
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  display: inline-block;
+.carousel__control-prev-icon,
+.carousel__control-next-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: $carousel-control-icon-width;
   height: $carousel-control-icon-width;
-  background: transparent no-repeat center center;
-  background-size: 100% 100%;
+  border-radius: 50%;
+  background-color: $ice-cube;
+  font-size: 1.5rem;
+  transition: all 250ms;
+
+  @include media-breakpoint-up(md) {
+    width: $carousel-control-icon-width-lg;
+    height: $carousel-control-icon-width-lg;
+  };
 }
-.carousel-control-prev-icon {
-  background-image: $carousel-control-prev-icon-bg;
-}
-.carousel-control-next-icon {
-  background-image: $carousel-control-next-icon-bg;
-}
+// .carousel__control-prev-icon {
+//   background-image: $carousel-control-prev-icon-bg;
+// }
+// .carousel__control-next-icon {
+//   background-image: $carousel-control-next-icon-bg;
+// }
 
 
 // Optional indicator pips
@@ -160,19 +172,77 @@
   }
 }
 
+.carousel__footer {
+  @include make-row();
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.carousel__caption,
+.carousel__counter {
+  width: 100%;
+  @include make-col-ready();
+}
+
+.carousel__counter {
+  @include make-col(3);
+  text-align: right;
+}
+
 
 // Optional captions
 //
 //
 
-.carousel-caption {
+.carousel__caption {
+  @include make-col(9);
+  color: $gray-light;
+  text-align: left;
+  font-size: $font-size-sm;
+}
+
+/*! Flickity v2.0.9
+http://flickity.metafizzy.co
+---------------------------------------------- */
+
+.flickity-enabled {
+  position: relative;
+}
+
+.flickity-enabled:focus { outline: none; }
+
+.flickity-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.flickity-slider {
   position: absolute;
-  right: ((100% - $carousel-caption-width) / 2);
-  bottom: 20px;
-  left: ((100% - $carousel-caption-width) / 2);
-  z-index: 10;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: $carousel-caption-color;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* draggable */
+
+.flickity-enabled.is-draggable {
+  -webkit-tap-highlight-color: transparent;
+          tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }

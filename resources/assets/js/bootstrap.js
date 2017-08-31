@@ -34,7 +34,12 @@ window.Shepherd = require('tether-shepherd');
 window.Velocity = require('velocity-animate');
 
 
-/** 
+/**
+ * Flickity Carousel plugin
+ */
+window.Flickity = require('flickity-imagesloaded');
+
+/**
  * Custom Modernizr Build
  */
 require('./modernizr.min.js');
