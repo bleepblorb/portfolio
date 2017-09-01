@@ -5,7 +5,7 @@
 @section('heading', 'Anderson Quality Spring')
 @section('desc')
   <p class="">
-    Anderson Quality Spring is a local custom spring manufacturer with a globl client base. They came to SRM to update their existing website to reflect their global presense and emphasize their comitment to quality product and top notch customer service.
+    Anderson Quality Spring is a local custom spring manufacturer with a global client base. They came to SRM to update their existing website to reflect their global presence and emphasize their commitment to quality product and top notch customer service.
   </p>
 @endsection
 
@@ -19,7 +19,7 @@
   <div class="container -max--md">
     <div class="g__row mt-7 -align-items--center">
       <div class="g__col12">
-          <p class="t--lead">The existing site and brand had little to offer, so with the exception of the logo, we basically started from scratch on the brand. The site was custom built on Craft CMS, allowing a lot of the content to be managed by the client.</p>
+          <p class="t--lead">The existing site and brand had little to offer, so with the exception of the logo, we basically started from scratch. The site was custom built on Craft CMS, allowing a lot of the content to be managed by the client.</p>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
     <div class="g__row -max--md -center my-6">
       <div class="g__col">
         <h4 class="t--normal t--center">
-          The product photography was shot in-house. I helped determine the photographic style and was on-site during the shoot to help manage the shots and spring arrangments. I also helped with some of the final image touch-ups.
+          The product photography for the site was shot in-house. I helped determine the photographic style and was on-site during the shoot to help manage the shots and spring arrangements. I also helped with some of the final image touch-ups.
         </h4>
       </div>
     </div>
@@ -102,7 +102,6 @@
   <div class="credit-col">
     <h5>Role</h5>
     <ul>
-      <li>Site Map / Wireframing</li>
       <li>Site Design</li>
       <li>Development</li>
       <li>Iconography</li>
@@ -120,5 +119,5 @@
 @endsection
 
 @section('next-link')
-  <a href="{{route('projects')}}/nlb" class="t--h1 c--white">Next Level Burger</a>
+  <a href="{{route('projects')}}/next-level-burger" class="t--h1 c--white">Next Level Burger</a>
 @endsection

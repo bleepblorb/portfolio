@@ -15,13 +15,6 @@
     <img src="{{asset('img/projects/nlb/nlb-mural-detail.jpg')}}" alt="" class="-fill">
   </div>
 
-  {{-- <div class="container -max--lg mt-7">
-    <div class="g__row -max--sm">
-      <div class="g__col">
-        <p class="mb-6 t--lead">The client wanted the space have the feeling of a classic burger joint while still resonating with their core demographic of healthy eaters and vegans. We worked to create areas of large impactful graphics and incorporate fun 'brand experiences' throughout the space.</p>
-      </div>
-    </div>
-  </div> --}}
   <div class="container -max--xl">
     <div class="g__row mt-7 -align-items--center">
       <div class="g__col12 g__col6--@md">
@@ -106,13 +99,13 @@
     <h5>Team</h5>
     <ul>
       <li><a href="http://cargocollective.com/mrfishyfish">John Fisher</a>, Creative Director</li>
-      <li>Nathan Shigeta, design</li>
-      <li><a href="http://dreshad.com">Dre Williams</a>, design</li>
+      <li>Nathan Shigeta, Designer</li>
+      <li><a href="http://dreshad.com">Dre Williams</a>, Designer</li>
     </ul>
   </div>
 
 @endsection
 
 @section('next-link')
-  <a href="{{route('projects')}}/anderson-quality-spring" class="t--h1 c--white">Anderson Quality Spring</a>
+  <a href="{{route('projects')}}/beaverton-toyota" class="t--h1 c--white">Beaverton Toyota</a>
 @endsection
