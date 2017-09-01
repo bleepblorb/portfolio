@@ -23,16 +23,26 @@
         <a href="{{route('projects')}}/anderson-quality-spring" class="t--h1 project-list__title">Anderson Quality Spring</a>
         <ul class="project-list__cats mt-2">
           <li>Web Design</li>
-          <li>Developent</li>
+          <li>Development</li>
         </ul>
       </div>
 
       {{-- Next Level Burger --}}
       <div class="project-list__item py-5">
-        <a href="{{route('projects')}}/nlb" class="t--h1 project-list__title">Next Level Burger</a>
+        <a href="{{route('projects')}}/next-level-burger" class="t--h1 project-list__title">Next Level Burger</a>
         <ul class="project-list__cats mt-2">
           <li>Interior Graphics</li>
           <li>Signage</li>
+        </ul>
+      </div>
+
+      {{-- Beaverton Toyota --}}
+      <div class="project-list__item py-5">
+        <a href="{{route('projects')}}/beaverton-toyota" class="t--h1 project-list__title">Beaverton Toyota</a>
+        <ul class="project-list__cats mt-2">
+          <li>Interior Graphics</li>
+          <li>Signage</li>
+          <li>Marketing Materials</li>
         </ul>
       </div>
 
@@ -66,18 +76,6 @@
           <li>Signage</li>
         </ul>
       </div>
-
-      {{-- Beaverton Toyota --}}
-      <div class="project-list__item py-5">
-        <h5 class="c--jazzy">Some Day</h5>
-        <h1 class="t--h1 project-list__title c--gray-light">Beaverton Toyota</h1>
-        <ul class="project-list__cats mt-2">
-          <li>Interior Graphics</li>
-          <li>Signage</li>
-          <li>Marketing Materials</li>
-        </ul>
-      </div>
-
 
     </div>
   </div>
