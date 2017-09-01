@@ -31,6 +31,20 @@ Route::get('/about', function () {
 
 Route::post('/img/portrait', 'ImageController@portrait');
 
+// projects
+Route::get('/projects', function () {
+  return view('project-index');
+})->name('projects');
+
+Route::get('/projects/{project}', function ($project) {
+      $data = compact('style');
+      if (View::exists('projects.'.$project)) {
+        return view('projects.'.$project);
+      }
+      else {
+        abort(404);
+      }
+});
 
 // Style Guide
 

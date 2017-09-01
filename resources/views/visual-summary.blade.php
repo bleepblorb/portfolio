@@ -8,15 +8,15 @@
   <div id="visual-summary" class="menu-pad pb-6">
 
   <!-- Intro -->
-    <div class="container -max--xl ">
-      <div class="g__row my-6">
-        <div class="g__col">
-          <h4 class="c--jazzy">A Visual Summary —</h4>
-          <p class="">Full case studies are in the works. For now, please enjoy a smattering of my work.</p>
+    @include('partials.pictures-menu', ['active' => 'visuals'])
+
+    <div class="container mb-6">
+      <div class="g__row">
+        <div class="g__col t--center">
+          <p>A smattering of my work from here and there.</p>
         </div>
       </div>
     </div>
-
 
     <div class="container">
       <div class="image-grid -max--wumbo -center">
@@ -71,7 +71,7 @@
       <div class="image-grid -max--wumbo -center">
         <div class="g__row">
           <div class="image-grid__col -full" >
-           
+
             <!-- NLB Singage -->
             <div class="image-grid__item enter__fade-in-up"
               data-spy-in
@@ -91,8 +91,8 @@
         <div class="g__row">
           <div class="image-grid__col -half" >
             <!-- AQS Icons -->
-            <div class="image-grid__item -horz enter__fade-in-up" 
-              data-spy-in 
+            <div class="image-grid__item -horz enter__fade-in-up"
+              data-spy-in
               data-image-load
               data-src="{{asset('img/aqs-icons.png')}}"
             >
@@ -234,7 +234,7 @@
 
         <div class="g__row">
           <div class="image-grid__col -half">
-            
+
             <!-- New Relic Seattle Break Room -->
             <div class="image-grid__item -horz enter__fade-in-up"
               data-spy-in
@@ -261,8 +261,8 @@
           <div class="image-grid__col -full">
             <!-- Healthy Rockwood -->
             <div class="image-grid__item enter__fade-in-up"
-              data-spy-in 
-              data-image-load 
+              data-spy-in
+              data-image-load
               data-src="{{asset('img/rockwood-healthy-sm.jpg')}}"
               data-src-md="{{asset('img/rockwood-healthy.jpg')}}"
             ></div>
@@ -316,7 +316,7 @@
 
     <div class="container -max--wumbo">
       <div class="image-grid">
-        
+
         <div class="g__row">
           <div class="image-grid__col -half">
             <!-- HRD Distilling Illu -->
@@ -340,7 +340,7 @@
           <div class="image-grid__col -half">
             <!-- Walker gif -->
             <div class="image-grid__item -vert enter__fade-in-up"
-              data-spy-in 
+              data-spy-in
               data-image-load
               data-src="{{asset('img/walker.gif')}}"
             >
