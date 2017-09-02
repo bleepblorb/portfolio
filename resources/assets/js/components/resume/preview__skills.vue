@@ -36,7 +36,7 @@
           <div class="card-block">
             <h4>bytes —</h4>
             <ul class="-relaxed">
-              <li>HTML, LESS, SCSS, jQuery, PHP</li>
+              <li>HTML, LESS, SCSS, Javascript, PHP</li>
               <li>Bootstrap, UIkit</li>
               <li>Laravel, CraftCMS, Wordpress</li>
               <li>Composer, NPM</li>

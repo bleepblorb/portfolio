@@ -146,19 +146,11 @@ ul, ol {
     li {
       display: inline;
 
-      &:after {
-        content: ',';
+      &:nth-of-type(n+2):after {
+        content: ', ';
       }
 
-      &:nth-of-type(2):before {
-        content: ', '
-      }
-
-      &:before {
-        content: ' ';
-      }
-
-      &:last-of-type:before {
+      &:last-of-type:not(:first-of-type):before {
         content: ' and ';
       }
 
@@ -166,17 +158,9 @@ ul, ol {
         content: '';
       }
 
-      &:first-of-type:after {
-        content: '';
+      &:first-of-type():nth-last-child(n+3):after {
+        content: ', ';
       }
-
-      &:first-of-type:before {
-        content: '';
-      }
-
-      // &:nth-last-of-type(2):before {
-      //   content: ' and ';
-      // }
     }
   }
 }
