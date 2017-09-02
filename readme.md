@@ -2,7 +2,7 @@
 # well-done.us
 Adam Volkman's design portfolio and playground for new tech.
 
-*__Note:__ I like to make my work available in case others are curious about what I've done. While I strive to do things as best as possible– keep in mind that I've used technology that is mostly new to me, so odds are some methods may not be considered "best practice". Don't judge too hard.*
+*__Note:__ I like to make my work available in case others are curious about what I've done. While I strive to do things as best as possible– keep in mind that I've used technology that is mostly new to me, so odds are some methods may not be considered "best practice". Don't judge too hard.* 😇
 
 ## Development Stuff
 Frameworks / plug-ins / tools / etc. that I've used, modified, or generally been inspired by for this project. Many thanks to the following:
@@ -15,6 +15,7 @@ Frameworks / plug-ins / tools / etc. that I've used, modified, or generally been
 ##### Tools / plugins / etc.
 - **Axios** – https://github.com/mzabriskie/axios
 - **blazy.js** - http://dinbror.dk/blazy/
+- **Flickity** - https://flickity.metafizzy.co
 - **Gulp** – https://gulpjs.com
 - **gulp-svg-symbols** – https://github.com/Hiswe/gulp-svg-symbols
 - **in-view.js** - https://camwiegert.github.io/in-view/
@@ -22,7 +23,7 @@ Frameworks / plug-ins / tools / etc. that I've used, modified, or generally been
 - **Sass** - http://sass-lang.com
 - **Shepherd** – http://github.hubspot.com/shepherd/docs/welcome/
 - **Tether** – http://tether.io
-- **Typkit** – https://typekit.com
+- **Typekit** – https://typekit.com
 - **vue-multiselect** – http://monterail.github.io/vue-multiselect/
 - **Vuestrap** – https://yuche.github.io/vue-strap/
  
