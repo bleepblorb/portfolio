@@ -5,7 +5,7 @@
 @section('heading', 'Anderson Quality Spring')
 @section('desc')
   <p class="">
-    Anderson Quality Spring is a local custom spring manufacturer with a global client base. They came to SRM to update their existing website to reflect their global presence and emphasize their commitment to quality product and top notch customer service.
+    Anderson Quality Spring is a local custom spring manufacturer with a global client base. While working at SRM, we updated their existing website to reflect their global presence and emphasize their commitment to quality products and top notch customer service.
   </p>
 @endsection
 
@@ -15,11 +15,12 @@
     <img src="{{asset('img/projects/aqs/aqs-intro.jpg')}}" alt="" class="-fill">
   </div>
 
-
   <div class="container -max--md">
     <div class="g__row mt-7 -align-items--center">
       <div class="g__col12">
-          <p class="t--lead">The existing site and brand had little to offer, so with the exception of the logo, we basically started from scratch. The site was custom built on Craft CMS, allowing a lot of the content to be managed by the client.</p>
+        <p class="t--lead">
+          The existing site and brand had little to offer, so with the exception of the logo, we decided to start from scratch. While a full brand exploration was not in the scope, we developed a signature color palette, typography, icons, and photographic style. I built the custom site on the Craft CMS framework, allowing the content to be managed by the client.
+        </p>
       </div>
     </div>
   </div>

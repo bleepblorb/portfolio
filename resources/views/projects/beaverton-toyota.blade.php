@@ -5,7 +5,7 @@
 @section('heading', 'Beaverton Toyota')
 @section('desc')
   <p class="">
-    Beaverton Toyota is a locally owned Toyota dealership in – you guessed it – Beaverton. SRM tackled a huge, multi-year renovation of their existing building. The marketing team was responsible for all the new signage and graphics. During the process we also became their resource for design and marketing services.
+    Beaverton Toyota is a locally owned Toyota dealership in – you guessed it – Beaverton. My firm tackled a huge, multi-year renovation of their existing building. The marketing team was responsible for all the new signage and graphics. During the process we also became their resource for design and marketing services.
   </p>
 @endsection
 
@@ -27,7 +27,7 @@
       <div class="g__col t--center">
         <h4>Signage</h4>
         <p class="mb-6 t--lead">
-          SRM was doing a complete remodel of the Dealership. This meant plenty of graphics, signage, and wayfinding was needed. Throughout the project I worked on wayfinding, ADA signage, dimensional signs, a cafe menu, vinyl graphics, an interactive kiosk wall, a tire display wall, and more.
+          Since we were doing a complete remodel, this meant plenty of graphics and signage was needed. Throughout the project I worked on wayfinding, ADA signage, dimensional signs, a cafe menu, vinyl graphics, an interactive kiosk wall, a tire display wall, and more.
         </p>
       </div>
     </div>
@@ -57,7 +57,7 @@
       <div class="g__col t--center">
         <h4>Marketing</h4>
         <p class="t--lead">
-          SRM also helped with marketing and other graphic design services. Below is a random assortment of projects I worked on over the years – mostly digital and print marketing. The brand was already established when I joined the team, but over the years I worked to refine and elevate it.
+          We also helped with marketing and other graphic design services. Below is a random assortment of projects I worked on over the years – mostly digital and print marketing. The brand was already established when I joined the team, but over the years I worked to refine and elevate its application.
         </p>
       </div>
     </div>
@@ -101,5 +101,5 @@
 @endsection
 
 @section('next-link')
-  <a href="{{route('projects')}}/anderson-quality-spring" class="t--h1 c--white">Anderson Quality Spring</a>
+  <a href="{{route('projects')}}/adair-homes" class="t--h1 c--white">Adair Homes</a>
 @endsection

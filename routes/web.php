@@ -36,15 +36,21 @@ Route::get('/projects', function () {
   return view('project-index');
 })->name('projects');
 
+
+Route::get('/projects/archive', function () {
+  return view('project-archive');
+})->name('archive');
+
 Route::get('/projects/{project}', function ($project) {
-      $data = compact('style');
-      if (View::exists('projects.'.$project)) {
-        return view('projects.'.$project);
-      }
-      else {
-        abort(404);
-      }
+  $data = compact('style');
+  if (View::exists('projects.'.$project)) {
+    return view('projects.'.$project);
+  }
+  else {
+    abort(404);
+  }
 });
+
 
 // Style Guide
 
