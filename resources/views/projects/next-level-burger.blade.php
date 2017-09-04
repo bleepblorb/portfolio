@@ -5,7 +5,7 @@
 @section('heading', 'Next Level Burger')
 @section('desc')
   <p class="">
-    Next Level Burger is a 100% plant based burger joint that had gathered a following at their initial restaurant in Bend, OR. They were ready to start expanding, so naturally their first stop was Portland. They came to SRM to take their new restaurants to the next level (sorry).
+    Next Level Burger is a 100% plant based burger joint that had gathered a following at their initial restaurant in Bend, OR. They were ready to start expanding, so naturally their first stop was Portland. They came to us to take their new restaurants to the next level (sorry).
   </p>
 @endsection
 
