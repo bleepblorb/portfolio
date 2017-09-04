@@ -57,8 +57,39 @@
   @include make-col(12);
   text-align: center;
 
-  &:last-of-type() {
-    border-bottom: none;
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  };
+  @include media-breakpoint-up(lg) {
+    @include make-col(4);
+  };
+
+  margin-bottom: $grid-gutter-width-base;
+
+  .project-list__link {
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+      .project-list__title {
+        color: $jazzy;
+      }
+
+      img {
+        opacity: 1;
+        transform: translateY(-6px);
+      }
+    }
+  }
+
+  img {
+    margin-bottom: 2rem;
+    opacity: .5;
+    transition: all 240ms ease;
+  }
+
+  &:hover {
+
   }
 }
 
@@ -66,19 +97,16 @@
   color: $gray-dark;
 }
 
-a.project-list__title {
-  &:hover {
-    color: $jazzy;
-    text-decoration: none;
-  }
-}
 
 .project-list__cats {
   font-size: $font-size-h5;
+  font-size: $font-size-sm;
+  color: $gray-light;
 
   li {
     display: inline-block;
   }
+
   li:after {
     content: ','
   }

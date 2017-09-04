@@ -15,69 +15,88 @@
     </div>
   </div>
 
-  <div class="container project-list -max--md mt-6">
-    <div class="g__row">
+  <div class="container project-list -max--xl mt-6">
+    <div class="g__row" data-spy-in data-spy="target: .project-list__item; delay: 200">
 
       {{-- Anderson Quality Spring --}}
-      <div class="project-list__item py-5">
-        <a href="{{route('projects')}}/anderson-quality-spring" class="t--h1 project-list__title">Anderson Quality Spring</a>
-        <ul class="project-list__cats mt-2">
-          <li>Web Design</li>
-          <li>Development</li>
-        </ul>
+      <div class="project-list__item enter__fade-in-up">
+        <a href="{{route('projects')}}/anderson-quality-spring" class="project-list__link py-5">
+          <img src="{{asset('img/projects/aqs/aqs-logo.svg')}}" alt="" class="" height="72px">
+          <h4 class="t--h4 project-list__title">Anderson Quality Spring</h4>
+          <ul class="project-list__cats mt-2">
+            <li>Web Design</li>
+            <li>Development</li>
+          </ul>
+        </a>
       </div>
 
       {{-- Next Level Burger --}}
-      <div class="project-list__item py-5">
-        <a href="{{route('projects')}}/next-level-burger" class="t--h1 project-list__title">Next Level Burger</a>
-        <ul class="project-list__cats mt-2">
-          <li>Interior Graphics</li>
-          <li>Signage</li>
-        </ul>
+      <div class="project-list__item enter__fade-in-up">
+        <a href="{{route('projects')}}/next-level-burger" class="project-list__link py-5">
+          <img src="{{asset('img/projects/nlb/nlb-logo.svg')}}" alt="" class="" height="72px">
+          <h4 class="project-list__title">Next Level Burger</h4>
+          <ul class="project-list__cats mt-2">
+            <li>Interior Graphics</li>
+            <li>Signage</li>
+          </ul>
+        </a>
       </div>
 
       {{-- Beaverton Toyota --}}
-      <div class="project-list__item py-5">
-        <a href="{{route('projects')}}/beaverton-toyota" class="t--h1 project-list__title">Beaverton Toyota</a>
-        <ul class="project-list__cats mt-2">
-          <li>Interior Graphics</li>
-          <li>Signage</li>
-          <li>Marketing Materials</li>
-        </ul>
+      <div class="project-list__item enter__fade-in-up">
+        <a href="{{route('projects')}}/beaverton-toyota" class="project-list__link py-5">
+          <img src="{{asset('img/projects/bt/bt-logo.svg')}}" alt="" class="" height="72px">
+          <h4  class="project-list__title">Beaverton Toyota</h4>
+          <ul class="project-list__cats mt-2">
+            <li>Interior Graphics</li>
+            <li>Signage</li>
+            <li>Marketing</li>
+          </ul>
+        </a>
       </div>
 
       {{-- Adair Homes --}}
-      <div class="project-list__item py-5">
-        <h5 class="c--jazzy">Coming Soon</h5>
-        <h1 href="#" class="project-list__title c--gray-light">Adair Homes</h1>
-        <ul class="project-list__cats mt-2">
-          <li>Web Design</li>
-          <li>Development</li>
-        </ul>
-        <p>For now, you can visit the site at <a href="http://adairhomes.com" target="_blank">adairhomes.com</a></p>
+      <div class="project-list__item enter__fade-in-up">
+        <a href="{{route('projects')}}/adair-homes" class="project-list__link py-5"><img src="{{asset('img/projects/adair/adair-logo.svg')}}" alt="" class="" height="72px">
+          <h4 class="project-list__title">Adair Homes</h4>
+          <ul class="project-list__cats mt-2">
+            <li>Web Design</li>
+            <li>Development</li>
+          </ul>
+        </a>
       </div>
 
       {{-- World Trade Center --}}
-      <div class="project-list__item py-5">
-        <h5 class="c--jazzy">Working on it</h5>
-        <h1 class="t--h1 project-list__title c--gray-light">World Trade Center</h1>
+      <div class="project-list__item enter__fade-in-up py-5">
+        <img src="{{asset('img/projects/wtc/wtc-logo.svg')}}" alt="" class="" height="72px">
+        <h4 class="project-list__title">World Trade Center</h4>
         <ul class="project-list__cats mt-2">
           <li>Interactive Design</li>
           <li>Front End Development</li>
         </ul>
+        <h6 class="c--jazzy">Coming Soon</h6>
       </div>
 
       {{-- New Relic --}}
-      <div class="project-list__item py-5">
-        <h5 class="c--jazzy">In the Queue</h5>
-        <h1 class="t--h1 project-list__title c--gray-light">New Relic</h1>
+      <div class="project-list__item enter__fade-in-up py-5">
+        <img src="{{asset('img/projects/nr/nr-logo.svg')}}" alt="" class="" height="72px">
+        <h1 class="t--h4 project-list__title">New Relic</h1>
         <ul class="project-list__cats mt-2">
           <li>Interior Graphics</li>
           <li>Signage</li>
         </ul>
+        <h6 class="c--jazzy">In the Queue</h6>
       </div>
-
     </div>
+
+    {{-- Archive --}}
+    {{-- <div class="g__row mt-6">
+      <div class="g__col">
+        <p class="t--center">
+          <a href="{{route('archive')}}" class="t--h4 c--jean-jacket">Archive <icon name="arrow__right-lg"></icon></a>
+        </p>
+      </div>
+    </div> --}}
   </div>
 
 </div>
