@@ -88,5 +88,5 @@
 @endsection
 
 @section('next-link')
-  <a href="{{route('projects')}}/anderson-quality-spring" class="t--h1 c--white">Anderson Quality Spring</a>
+  <a href="{{route('projects')}}/world-trade-center" class="t--h1 c--white">World Trade Center</a>
 @endsection
