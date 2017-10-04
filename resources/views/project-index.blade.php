@@ -57,7 +57,8 @@
 
       {{-- Adair Homes --}}
       <div class="project-list__item enter__fade-in-up">
-        <a href="{{route('projects')}}/adair-homes" class="project-list__link py-5"><img src="{{asset('img/projects/adair/adair-logo.svg')}}" alt="" class="" height="72px">
+        <a href="{{route('projects')}}/adair-homes" class="project-list__link py-5">
+          <img src="{{asset('img/projects/adair/adair-logo.svg')}}" alt="" class="" height="72px">
           <h4 class="project-list__title">Adair Homes</h4>
           <ul class="project-list__cats mt-2">
             <li>Web Design</li>
@@ -67,14 +68,15 @@
       </div>
 
       {{-- World Trade Center --}}
-      <div class="project-list__item enter__fade-in-up py-5">
-        <img src="{{asset('img/projects/wtc/wtc-logo.svg')}}" alt="" class="" height="72px">
-        <h4 class="project-list__title">World Trade Center</h4>
-        <ul class="project-list__cats mt-2">
-          <li>Interactive Design</li>
-          <li>Front End Development</li>
-        </ul>
-        <h6 class="c--jazzy">Coming Soon</h6>
+      <div class="project-list__item enter__fade-in-up">
+        <a href="{{route('projects')}}/world-trade-center" class="project-list__link py-5">
+          <img src="{{asset('img/projects/wtc/wtc-logo.svg')}}" alt="" class="" height="72px">
+          <h4 class="project-list__title">World Trade Center</h4>
+          <ul class="project-list__cats mt-2">
+            <li>Interactive Design</li>
+            <li>Front End Development</li>
+          </ul>
+        </a>
       </div>
 
       {{-- New Relic --}}
