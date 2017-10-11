@@ -1,0 +1,6 @@
+/css
+/js
+/img/*
+/mix-manifest.json
+
+!img/UI
