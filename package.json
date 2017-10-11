@@ -13,16 +13,16 @@
     "axios": "^0.15.3",
     "cross-env": "^5.0.1",
     "cssuseragent": "^2.1.31",
-    "flickity": "^2.0.9",
+    "flickity": "^2.0.10",
     "flickity-imagesloaded": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-svg-symbols": "^2.0.2",
     "in-view": "^0.6.0",
-    "laravel-mix": "^1.4.2",
+    "laravel-mix": "^1.5.0",
     "lodash": "^4.17.4",
     "tether": "^1.4.0",
     "tether-shepherd": "^1.8.1",
     "velocity-animate": "^1.5.0",
-    "vue": "^2.4.2"
+    "vue": "^2.4.4"
   }
 }
