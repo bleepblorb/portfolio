@@ -1,5 +1,4 @@
 /node_modules
-/public/storage
 /vendor
 /.idea
 Homestead.json
@@ -7,7 +6,4 @@ Homestead.yaml
 .env
 
 #auto generated files
-/public/css/
-/public/js/
-/public/mix-manifest.json
 /resources/assets/js/components/icon-system.js

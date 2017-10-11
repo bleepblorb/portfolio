@@ -35,9 +35,20 @@
   </div>
 
 
-  <div>
-    <img src="{{asset('img/projects/wtc/wtc-story-intro.jpg')}}" alt="" class="-fill">
+ <div style="padding-top: 15%">
+    <div class="container" style="background-color: #5284b9;">
+      <div class="g__row -max--xl -center" >
+        <div class="g__col mb-6">
+          <video class="-rounded -floating" loop playsinline style="margin-top:-15%;" data-spy-in-out>
+            <source src="{{ asset('img/projects/wtc/wtc-dash-story-web.mp4') }}" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
   </div>
+  {{--  <div>
+    <img src="{{asset('img/projects/wtc/wtc-story-intro.jpg')}}" alt="" class="-fill">
+  </div>  --}}
 
   <div class="bg--gray-lightest pb-6"></div>
   <carousel
@@ -76,15 +87,16 @@
     </ul>
   </div>
 
+
   <div class="credit-col">
     <h5>Team</h5>
     <ul>
-      <li><a href="http://lee-feidelson.squarespace.com">Lee Feidelson</a>, creative direction</li>
+      <li><a href="http://lee-feidelson.squarespace.com">Lee Feidelson</a>, Creative Director</li>
     </ul>
   </div>
 
 @endsection
 
 @section('next-link')
-  <a href="{{route('projects')}}/anderson-quality-spring" class="t--h1 c--white">Anderson Quality Spring</a>
+  <a href="{{route('projects')}}/new-relic" class="t--h1 c--white">New Relic</a>
 @endsection

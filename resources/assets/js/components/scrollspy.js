@@ -83,11 +83,21 @@ function updateSpyElm(el, type) {
         })
       }, delay );
     }
+
+    // if its a video, start it
+    if (el.tagName == 'VIDEO') {
+      el.play();
+    }
   }
   else if ( type === 'exit' ) {
     classes.forEach( (cls) => {
       el.classList.remove(cls);
     })
+
+    // if its a video, pause it
+    if (el.tagName == 'VIDEO') {
+      el.pause();
+    }
   }
 
   return true;

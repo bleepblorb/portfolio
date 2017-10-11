@@ -80,14 +80,15 @@
       </div>
 
       {{-- New Relic --}}
-      <div class="project-list__item enter__fade-in-up py-5">
-        <img src="{{asset('img/projects/nr/nr-logo.svg')}}" alt="" class="" height="72px">
-        <h1 class="t--h4 project-list__title">New Relic</h1>
-        <ul class="project-list__cats mt-2">
-          <li>Interior Graphics</li>
-          <li>Signage</li>
-        </ul>
-        <h6 class="c--jazzy">In the Queue</h6>
+      <div class="project-list__item enter__fade-in-up">
+        <a href="{{route('projects')}}/new-relic" class="project-list__link py-5">
+          <img src="{{asset('img/projects/nr/nr-logo.svg')}}" alt="" class="" height="72px">
+          <h1 class="t--h4 project-list__title">New Relic</h1>
+          <ul class="project-list__cats mt-2">
+            <li>Interior Graphics</li>
+            <li>Signage</li>
+          </ul>
+        </a>
       </div>
     </div>
 
