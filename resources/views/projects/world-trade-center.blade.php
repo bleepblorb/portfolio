@@ -39,16 +39,14 @@
     <div class="container" style="background-color: #5284b9;">
       <div class="g__row -max--xl -center" >
         <div class="g__col mb-6">
-          <video class="-rounded -floating" loop playsinline style="margin-top:-15%;" data-spy-in-out>
+          <video class="-rounded -floating" loop playsinline preload style="margin-top:-15%;" data-spy-in-out>
             <source src="{{ asset('img/projects/wtc/wtc-dash-story-web.mp4') }}" type="video/mp4">
+            <source src="{{ asset('img/projects/wtc/wtc-dash-story-web.webm') }}" type="video/webm">
           </video>
         </div>
       </div>
     </div>
   </div>
-  {{--  <div>
-    <img src="{{asset('img/projects/wtc/wtc-story-intro.jpg')}}" alt="" class="-fill">
-  </div>  --}}
 
   <div class="bg--gray-lightest pb-6"></div>
   <carousel
@@ -92,6 +90,7 @@
     <h5>Team</h5>
     <ul>
       <li><a href="http://lee-feidelson.squarespace.com">Lee Feidelson</a>, Creative Director</li>
+      <li><a href="http://arcdigitalservices.com">James Hickman</a>, Developer</li>
     </ul>
   </div>
 
