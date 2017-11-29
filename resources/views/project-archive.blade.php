@@ -28,19 +28,24 @@
       <div class="g__col g__col4--@md mb-4">
         <h5>2016</h5>
         <ul>
-
+          <li><a href="{{route('projects')}}/next-level-burger">Next Level Burger</a></li>
+          <li><a href="{{route('projects')}}/world-trade-center">World Trade Center</a></li>
+          <li><a href="{{route('projects')}}/beaverton-toyota">Beaverton Toyota</a></li>
         </ul>
       </div>
 
       <div class="g__col g__col4--@md mb-4">
         <h5>2015</h5>
         <ul>
+          <li><a href="{{route('projects')}}/beaverton-toyota">Beaverton Toyota</a></li>
         </ul>
       </div>
 
       <div class="g__col g__col4--@md mb-4">
         <h5>2014</h5>
         <ul>
+          <li><a href="{{route('projects')}}/hood-river-distillers">Hood River Distillers</a></li>
+          <li><a href="{{route('projects')}}/new-relic">New Relic</a></li>
         </ul>
       </div>
 
@@ -54,6 +59,7 @@
       <div class="g__col g__col4--@md mb-4">
         <h5>2012</h5>
         <ul>
+          <li><a href="{{route('projects')}}/block-300">Block 300</a></li>
           <li><a href="{{route('projects')}}/publicity-center">Publicity Center</a></li>
         </ul>
       </div>
