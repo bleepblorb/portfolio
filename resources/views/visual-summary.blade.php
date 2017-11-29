@@ -5,18 +5,10 @@
 
 @section('app')
 
-  <div id="visual-summary" class="menu-pad pb-6">
-
+  <div id="visual-summary">
+  
   <!-- Intro -->
     @include('partials.pictures-menu', ['active' => 'visuals'])
-
-    <div class="container mb-6">
-      <div class="g__row">
-        <div class="g__col t--center">
-          <p>A smattering of my work from here and there.</p>
-        </div>
-      </div>
-    </div>
 
     <div class="container">
       <div class="image-grid -max--wumbo -center">
@@ -349,6 +341,15 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <div class="container -max--lg my-6">
+    <div class="g__row t--center">
+      <div class="g__col enter__fade-in-up" data-spy-in>
+        <h4>But Wait, There's more!</h4>
+        <p><a href="{{ route('projects') }}" class="btn -primary -outline">View Projects</a></p>
       </div>
     </div>
   </div>

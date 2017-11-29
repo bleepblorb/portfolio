@@ -69,8 +69,13 @@
   .project-list__link {
     display: block;
     text-decoration: none;
+    border: 1px solid $gray-lightest;
+    border-radius: $border-radius-lg;
+    transition: all 650ms;
 
     &:hover {
+      border-color: $jean-jacket;
+
       .project-list__title {
         color: $jazzy;
       }

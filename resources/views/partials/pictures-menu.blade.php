@@ -1,11 +1,16 @@
 <!-- Intro -->
-<div class="container -max--xl mt-6 mb-4">
-  <div class="g__row t--center">
+<div class="spacer" style="min-height: 40vh;"></div>
+
+<div class="container -max--lg mb-6 enter__fade-in-up" data-spy-in>
+  <div class="g__row">
     <div class="g__col">
-      <ul class="-inline">
-        <li class="mr-4"><a href="{{route('visuals')}}" class="t--h4 @if($active == 'visuals') c--gummy @endif">Visual Summary</a></li>
-        <li><a href="{{route('projects')}}" class="t--h4 @if($active == 'projects') c--gummy @endif">Projects</a></li>
-      </ul>
+      <h4 class="c--gray-light">pictures –</h4>
+      <h1>
+        Peep my
+        <a href="{{route('visuals')}}" class="@if($active == 'visuals') c--gummy @endif">Visual Summary</a>
+        or some
+        <a href="{{route('projects')}}" class=" @if($active == 'projects') c--gummy @endif">Specific Projects</a>
+      </h1>
     </div>
   </div>
 </div>

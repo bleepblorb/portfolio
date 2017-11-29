@@ -3,17 +3,9 @@
 @section('title', 'Projects')
 
 @section('app')
-<div id="project-index" class="menu-pad pb-6">
+<div id="project-index" class="pb-6">
   <!-- Intro -->
   @include('partials.pictures-menu', ['active' => 'projects'])
-
-  <div class="container">
-    <div class="g__row">
-      <div class="g__col t--center">
-        <p>I'm still working on populating these... more to come.</p>
-      </div>
-    </div>
-  </div>
 
   <div class="container project-list -max--xl mt-6">
     <div class="g__row" data-spy-in data-spy="target: .project-list__item; delay: 200">
