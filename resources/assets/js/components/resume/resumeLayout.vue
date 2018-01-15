@@ -271,9 +271,10 @@
                     <h4>software —</h4>
                     <ul class="-relaxed">
                       <li>Adobe inDesign / Photoshop / Illustrator</li>
+                      <li>Sketch</li>
                       <li>Apple Keynote</li>
-                      <li>Microsoft Powerpoint</li>
-                      <li>Sublime Text, Atom</li>
+                      <li>Microsoft Office</li>
+                      <li>Asana</li>
                     </ul>
                   </div>
                 </div>
