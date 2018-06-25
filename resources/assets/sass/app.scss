@@ -38,3 +38,6 @@ html {
 .menu-pad {
   padding-top: 160px;
 }
+
+::-moz-selection { background-color: rgba($lightning, .5)}
+::selection { background-color: rgba($lightning, .5) }
