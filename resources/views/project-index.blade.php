@@ -85,13 +85,13 @@
     </div>
 
     {{-- Archive --}}
-    {{-- <div class="g__row mt-6">
+    <div class="g__row mt-6">
       <div class="g__col">
         <p class="t--center">
           <a href="{{route('archive')}}" class="t--h4 c--jean-jacket">Archive <icon name="arrow__right-lg"></icon></a>
         </p>
       </div>
-    </div> --}}
+    </div>
   </div>
 
 </div>
