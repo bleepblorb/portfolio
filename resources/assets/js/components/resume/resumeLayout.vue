@@ -210,15 +210,15 @@
           <div class="g__col12 g__col9--@md mb-4">
             <div class="job" v-if="model.experience.past === 'detail'">
               <h6>
-                <span class="job__date">2017–Now</span>
-                <span class="job__location">Well Done</span>
+                <span class="job__date">2018–Now</span>
+                <span class="job__location">Adair Homes</span>
               </h6>
-              <h2 class="job__title">Currently working select freelance projects.</h2>
-              <p class="job__desc">I've been lucky enough to keep busy working on an assortment of freelance projects while I look for the right next step.</p>
+              <h2 class="job__title">UX Developer</h2>
+              <p class="job__desc">This ambiguously titled position primarly includes UX design for our internal and external web marketing and applications along with front-end development.</p>
             </div>
             <div v-if="model.experience.past === 'nutshell'">
-              <h2>I'm Currently working select freelance projects.</h2>
-              <p class="t--lead">I've been lucky enough to keep busy working on an assortment of freelance projects while I look for the right next step.</p>
+              <h2>UX Developer at Adair Homes</h2>
+              <p class="t--lead">This ambiguously titled position primarly includes UX design for our internal and external web marketing and applications along with front-end development.</p>
             </div>
 
             <h4 class="mt-6 mb-3 c--gray-light t--normal">Notable Skills and Experience</h4>
@@ -323,9 +323,9 @@
             <h4 class="c--gummy section-header">future —</h4>
           </div>
           <div class="g__col12 g__col9--@md mb-4">
-            <h4 class="c--gray-light t--normal">Seeking new full-time or contract work.</h4>
-            <h2>I'm looking for a team that can benefit from my diverse set of skills and push me to my fullest potential.</h2>
-            <p class="mt-3">A team who values quality, collaboration, and personal / professional growth. Who inspires and challenges me on a continual basis. In return I will strive to do the same. I can also offer hard work, commitment, and the occasional homemade pie. That and all the design stuff, of course.</p>
+            <h4 class="c--gray-light t--normal">Open to Possibilities.</h4>
+            <h2>Potentially open for interesting side projects, charitable help, or other opportunities</h2>
+            <p class="mt-3">If you have a fun project you need help with, get in touch. I'm always interested in collaborating with creative-minded businesses or individuals.</p>
 
             <div class="g__row mt-5">
               <div class="g__col6--@sm mb-3">

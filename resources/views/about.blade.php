@@ -49,7 +49,7 @@
 
       <div class="g__col6--@sm g__col4--@lg -offset-1--@lg mb-3 enter__fade-in-up">
         <h6 class="c--jean-jacket">Currently</h6>
-        <p>Freelancing select projects.</p>
+        <p>UX Developer at Adair Homes</p>
         <h6 class="c--jean-jacket mt-4">Location</h6>
         <p>Portland, Oregon</p>
         <h6 class="c--jean-jacket mt-4">Contact</h6>

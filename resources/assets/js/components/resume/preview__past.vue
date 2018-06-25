@@ -41,11 +41,19 @@
             On all digital projects I took on the lead design role and was more active with creative direction, project management and client communication responsibilities. Projects were typically websites and interactive displays.
             </p>
         </div>
+        <div class="job">
+          <h6>
+            <span class="job__date">2017–2018</span>
+            <span class="job__location">Well Done</span>
+          </h6>
+          <h2 class="job__title">Freelance Design</h2>
+          <p class="job__desc">Worked varies clients and partnered with local agencies on graphic design and web developemt projects.</p>
+        </div>
       </template>
 
       <!-- Overview -->
       <div v-if="format == 'nutshell'">
-        <h2>Previously I worked at <u>SRM Architecture and Marketing</u> as a graphic designer & developer on a wide variety of projects. Before that I was at <u>Western Washington University</u> grabbing a BA in Graphic Design. </h2>
+        <h2>Previously I was a freelance designer / developer, after working at <u>SRM Architecture and Marketing</u> as a graphic designer & developer on a wide variety of projects. Before that I was at <u>Western Washington University</u> grabbing a BA in Graphic Design. </h2>
       </div>
 
     </div>
